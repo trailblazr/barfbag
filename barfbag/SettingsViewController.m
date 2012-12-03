@@ -7,6 +7,7 @@
 //
 
 #import "SettingsViewController.h"
+#import "StandardSettingsViewController.h"
 
 @interface SettingsViewController ()
 
@@ -17,8 +18,9 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Settings", @"Settings");
         self.tabBarItem.image = [UIImage imageNamed:@"settings.png"];
+        self.tabBarItem.title = @"Settings";
+        self.navigationBar.barStyle = UIBarStyleBlackOpaque;
     }
     return self;
 }
@@ -26,6 +28,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    StandardSettingsViewController *settingsController = [[StandardSettingsViewController alloc] initWithNibName:@"StandardSettingsViewController" bundle:nil];
+    [self pushViewController:settingsController animated:NO];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Zurück" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 - (void)didReceiveMemoryWarning {

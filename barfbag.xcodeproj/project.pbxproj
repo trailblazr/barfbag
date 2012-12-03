@@ -37,6 +37,10 @@
 		8F754B07166C221600F74DBB /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B03166C221600F74DBB /* settings@2x.png */; };
 		8F754B0B166C22A100F74DBB /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B09166C22A100F74DBB /* WelcomeViewController.m */; };
 		8F754B0C166C22A100F74DBB /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B0A166C22A100F74DBB /* WelcomeViewController.xib */; };
+		8F754B14166C279800F74DBB /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B12166C279800F74DBB /* EventsViewController.m */; };
+		8F754B15166C279800F74DBB /* EventsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B13166C279800F74DBB /* EventsViewController.xib */; };
+		8F754B1B166C2B5C00F74DBB /* StandardSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B19166C2B5C00F74DBB /* StandardSettingsViewController.m */; };
+		8F754B1C166C2B5C00F74DBB /* StandardSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B1A166C2B5C00F74DBB /* StandardSettingsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +84,12 @@
 		8F754B08166C22A100F74DBB /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		8F754B09166C22A100F74DBB /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		8F754B0A166C22A100F74DBB /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
+		8F754B11166C279800F74DBB /* EventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsViewController.h; sourceTree = "<group>"; };
+		8F754B12166C279800F74DBB /* EventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsViewController.m; sourceTree = "<group>"; };
+		8F754B13166C279800F74DBB /* EventsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsViewController.xib; sourceTree = "<group>"; };
+		8F754B18166C2B5C00F74DBB /* StandardSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardSettingsViewController.h; sourceTree = "<group>"; };
+		8F754B19166C2B5C00F74DBB /* StandardSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardSettingsViewController.m; sourceTree = "<group>"; };
+		8F754B1A166C2B5C00F74DBB /* StandardSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StandardSettingsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,14 +198,36 @@
 				8F754B08166C22A100F74DBB /* WelcomeViewController.h */,
 				8F754B09166C22A100F74DBB /* WelcomeViewController.m */,
 				8F754B0A166C22A100F74DBB /* WelcomeViewController.xib */,
+				8F754B16166C2AF700F74DBB /* Fahrplan */,
+				8F754B17166C2AFF00F74DBB /* Settings */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		8F754B16166C2AF700F74DBB /* Fahrplan */ = {
+			isa = PBXGroup;
+			children = (
 				8F754AF6166C1F4300F74DBB /* FahrplanViewController.h */,
 				8F754AF7166C1F4300F74DBB /* FahrplanViewController.m */,
 				8F754AF8166C1F4300F74DBB /* FahrplanViewController.xib */,
+				8F754B11166C279800F74DBB /* EventsViewController.h */,
+				8F754B12166C279800F74DBB /* EventsViewController.m */,
+				8F754B13166C279800F74DBB /* EventsViewController.xib */,
+			);
+			name = Fahrplan;
+			sourceTree = "<group>";
+		};
+		8F754B17166C2AFF00F74DBB /* Settings */ = {
+			isa = PBXGroup;
+			children = (
 				8F754AFB166C1F6D00F74DBB /* SettingsViewController.h */,
 				8F754AFC166C1F6D00F74DBB /* SettingsViewController.m */,
 				8F754AFD166C1F6D00F74DBB /* SettingsViewController.xib */,
+				8F754B18166C2B5C00F74DBB /* StandardSettingsViewController.h */,
+				8F754B19166C2B5C00F74DBB /* StandardSettingsViewController.m */,
+				8F754B1A166C2B5C00F74DBB /* StandardSettingsViewController.xib */,
 			);
-			name = Classes;
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +303,8 @@
 				8F754B06166C221600F74DBB /* settings.png in Resources */,
 				8F754B07166C221600F74DBB /* settings@2x.png in Resources */,
 				8F754B0C166C22A100F74DBB /* WelcomeViewController.xib in Resources */,
+				8F754B15166C279800F74DBB /* EventsViewController.xib in Resources */,
+				8F754B1C166C2B5C00F74DBB /* StandardSettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +320,8 @@
 				8F754AF9166C1F4300F74DBB /* FahrplanViewController.m in Sources */,
 				8F754AFE166C1F6D00F74DBB /* SettingsViewController.m in Sources */,
 				8F754B0B166C22A100F74DBB /* WelcomeViewController.m in Sources */,
+				8F754B14166C279800F74DBB /* EventsViewController.m in Sources */,
+				8F754B1B166C2B5C00F74DBB /* StandardSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

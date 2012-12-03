@@ -1,5 +1,5 @@
 //
-//  FahrplanViewController.h
+//  EventsViewController.h
 //  barfbag
 //
 //  Created by Lincoln Six Echo on 03.12.12.
@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FahrplanViewController : UINavigationController {
-
-    
-}
+@interface EventsViewController : UITableViewController
 
 @end

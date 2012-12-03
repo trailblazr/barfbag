@@ -37,7 +37,13 @@
     }
     self.tabBarController = [[[UITabBarController alloc] init] autorelease];
     _tabBarController.viewControllers = viewControllers;
+    _window.alpha = 0.0f;
     _window.rootViewController = self.tabBarController;
+    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        _window.alpha = 1.0f;
+    } completion:^(BOOL finished) {
+        // do nothing
+    }];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

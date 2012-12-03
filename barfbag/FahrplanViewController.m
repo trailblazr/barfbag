@@ -7,6 +7,7 @@
 //
 
 #import "FahrplanViewController.h"
+#import "EventsViewController.h"
 
 @interface FahrplanViewController ()
 
@@ -17,8 +18,9 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Fahrplan", @"Fahrplan");
         self.tabBarItem.image = [UIImage imageNamed:@"plan.png"];
+        self.tabBarItem.title = @"Fahrplan";
+        self.navigationBar.barStyle = UIBarStyleBlackOpaque;
     }
     return self;
 }
@@ -26,6 +28,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    EventsViewController *eventsController = [[EventsViewController alloc] initWithNibName:@"EventsViewController" bundle:nil];
+    [self pushViewController:eventsController animated:NO];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Zurück" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 - (void)didReceiveMemoryWarning {
