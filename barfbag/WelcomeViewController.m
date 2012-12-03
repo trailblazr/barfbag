@@ -10,10 +10,12 @@
 
 @implementation WelcomeViewController
 
-@synthesize congressMessageLabel;
+@synthesize congressMessagePlainLabel;
+@synthesize congressMessageSemiboldLabel;
 
 - (void) dealloc {
-    self.congressMessageLabel = nil;
+    self.congressMessagePlainLabel = nil;
+    self.congressMessageSemiboldLabel = nil;
     [super dealloc];
 }
 
@@ -27,7 +29,8 @@
 
 - (void) continueAfterWelcome {
     [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        congressMessageLabel.alpha = 0.0f;
+        congressMessagePlainLabel.alpha = 0.0f;
+        congressMessageSemiboldLabel.alpha = 0.0f;
     } completion:^(BOOL finished) {
         if( finished ) {
             [[UIApplication sharedApplication].delegate performSelector:@selector(continueAfterWelcome)];        
@@ -35,30 +38,57 @@
     }];
 }
 
+- (CGFloat) randomFloatBetweenLow:(CGFloat)lowValue andHigh:(CGFloat)highValue {
+    return (((CGFloat)arc4random()/0x100000000)*(highValue-lowValue)+lowValue);
+}
+
+- (UIColor*) randomColor {
+    NSArray *colors = [NSArray arrayWithObjects:kHUE_VIOLET,kHUE_GREEN,kHUE_RED,kHUE_CYAN,kHUE_ORANGE,nil];
+    NSInteger colorIndex = [[NSNumber numberWithFloat:(0.4+[self randomFloatBetweenLow:0.0 andHigh:4.0])] integerValue];
+    return [colors objectAtIndex:colorIndex];
+}
+
 - (void) prepareMessage {
-    congressMessageLabel.alpha = 0.0f;
-    NSMutableString *message = [NSMutableString string];
-    [message appendString:@"N.O-T/M.Y-D\n"];
-    [message appendString:@"E/PA.R-TM/E\n"];
-    [message appendString:@"N.T-2.9-C/3\n"];
-    [message appendString:@"27.-30.12./\n"];
-    [message appendString:@"HA/M.B-U/RG"];
-    congressMessageLabel.font = [UIFont fontWithName:@"SourceCodePro-Semibold" size:40.0];
-    congressMessageLabel.text = message;    
+    congressMessagePlainLabel.alpha = 0.0f;
+    congressMessageSemiboldLabel.alpha = 0.0f;
+    
+    // PLAIN
+    NSMutableString *messagePlain = [NSMutableString string];
+    [messagePlain appendString:@"N.O-T/M.Y-D\n"];
+    [messagePlain appendString:@"E/PA.R-TM/E\n"];
+    [messagePlain appendString:@"N.T-2.9-C/3\n"];
+    [messagePlain appendString:@"27.-30.12./\n"];
+    [messagePlain appendString:@"HA/M.B-U/RG"];
+    congressMessagePlainLabel.font = [UIFont fontWithName:@"SourceCodePro-Light" size:40.0];
+    congressMessagePlainLabel.text = messagePlain;
+    congressMessagePlainLabel.textColor = kHUE_BACK;
+
+    // SEMIBOLD
+    NSMutableString *messageSemibold = [NSMutableString string];
+    [messageSemibold appendString:@" \n"];
+    [messageSemibold appendString:@" \n"];
+    [messageSemibold appendString:@"    2.9-C/3\n"];
+    [messageSemibold appendString:@" \n"];
+    [messageSemibold appendString:@" "];
+    congressMessageSemiboldLabel.font = [UIFont fontWithName:@"SourceCodePro-Semibold" size:40.0];
+    congressMessageSemiboldLabel.text = messageSemibold;
+    congressMessageSemiboldLabel.textColor = kHUE_BACK;
 }
 
 - (void) displayMessage {
     [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        congressMessageLabel.alpha = 1.0f;
+        congressMessagePlainLabel.alpha = 1.0f;
+        congressMessageSemiboldLabel.alpha = 1.0f;
     } completion:^(BOOL finished) {
         if( finished ) {
-            [self performSelector:@selector(continueAfterWelcome) withObject:self afterDelay:0.5];
+            [self performSelector:@selector(continueAfterWelcome) withObject:self afterDelay:10.5];
         }
     }];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [self randomColor];
     [self prepareMessage];
     [self displayMessage];
 }

@@ -10,9 +10,11 @@
 
 @interface WelcomeViewController : UIViewController {
 
-    IBOutlet UILabel *congressMessageLabel;
+    IBOutlet UILabel *congressMessagePlainLabel;
+    IBOutlet UILabel *congressMessageSemiboldLabel;
 }
 
-@property( nonatomic, retain ) UILabel *congressMessageLabel;
+@property( nonatomic, retain ) UILabel *congressMessagePlainLabel;
+@property( nonatomic, retain ) UILabel *congressMessageSemiboldLabel;
 
 @end

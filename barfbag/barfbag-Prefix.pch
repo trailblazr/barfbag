@@ -11,4 +11,21 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "UIColor-Expanded.h"
 #endif
+
+// COLOR DEFS
+#define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+#define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+
+// 29C3 COLORS
+#define kHUE_VIOLET [UIColor colorWithHue:0.672f saturation:0.51f brightness:0.63f alpha:1.0]
+#define kHUE_GREEN [UIColor colorWithHue:0.43f saturation:0.96f brightness:0.70f alpha:1.0]
+#define kHUE_RED [UIColor colorWithHue:0.972f saturation:0.90f brightness:0.93f alpha:1.0]
+#define kHUE_CYAN [UIColor colorWithHue:0.5138f saturation:0.58f brightness:0.82f alpha:1.0]
+#define kHUE_ORANGE [UIColor colorWithHue:0.083f saturation:0.80f brightness:0.97f alpha:1.0]
+#define kHUE_WHITE [UIColor colorWithHue:1.0f saturation:0.0f brightness:1.0f alpha:1.0]
+#define kHUE_BLACK [UIColor colorWithHue:0.0f saturation:0.0f brightness:0.0f alpha:1.0]
+
+#define kHUE_BACK [UIColor colorWithHue:0.65f saturation:1.0f brightness:0.2f alpha:1.0]
+
