@@ -19,8 +19,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.tabBarItem.image = [UIImage imageNamed:@"settings.png"];
-        self.tabBarItem.title = @"Settings";
+        self.tabBarItem.title = @"Einstellungen";
         self.navigationBar.barStyle = UIBarStyleBlackOpaque;
+        self.navigationBar.tintColor = kCOLOR_BACK;
     }
     return self;
 }

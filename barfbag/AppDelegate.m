@@ -16,10 +16,12 @@
 
 @synthesize window = _window;
 @synthesize tabBarController  = _tabBarController;
+@synthesize themeColor = _themeColor;
 
 - (void)dealloc {
     [_window release];
     [_tabBarController release];
+    [_themeColor release];
     [super dealloc];
 }
 
@@ -41,15 +43,27 @@
     _window.rootViewController = self.tabBarController;
     [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         _window.alpha = 1.0f;
+        _tabBarController.tabBar.selectedImageTintColor = [self themeColor];
+        _tabBarController.tabBar.tintColor = kCOLOR_BACK;
     } completion:^(BOOL finished) {
         // do nothing
     }];
 }
 
+- (CGFloat) randomFloatBetweenLow:(CGFloat)lowValue andHigh:(CGFloat)highValue {
+    return (((CGFloat)arc4random()/0x100000000)*(highValue-lowValue)+lowValue);
+}
+
+- (UIColor*) randomColor {
+    NSArray *colors = [NSArray arrayWithObjects:kCOLOR_VIOLET,kCOLOR_GREEN,kCOLOR_RED,kCOLOR_CYAN,kCOLOR_ORANGE,nil];
+    NSInteger colorIndex = [[NSNumber numberWithFloat:(0.4+[self randomFloatBetweenLow:0.0 andHigh:4.0])] integerValue];
+    return [colors objectAtIndex:colorIndex];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    
+    self.themeColor = [self randomColor];
     WelcomeViewController *controller = [[[WelcomeViewController alloc] init] autorelease];
     _window.rootViewController = controller;
     [_window makeKeyAndVisible];

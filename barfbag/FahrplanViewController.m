@@ -21,6 +21,7 @@
         self.tabBarItem.image = [UIImage imageNamed:@"plan.png"];
         self.tabBarItem.title = @"Fahrplan";
         self.navigationBar.barStyle = UIBarStyleBlackOpaque;
+        self.navigationBar.tintColor = kCOLOR_BACK;
     }
     return self;
 }

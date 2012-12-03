@@ -38,16 +38,6 @@
     }];
 }
 
-- (CGFloat) randomFloatBetweenLow:(CGFloat)lowValue andHigh:(CGFloat)highValue {
-    return (((CGFloat)arc4random()/0x100000000)*(highValue-lowValue)+lowValue);
-}
-
-- (UIColor*) randomColor {
-    NSArray *colors = [NSArray arrayWithObjects:kHUE_VIOLET,kHUE_GREEN,kHUE_RED,kHUE_CYAN,kHUE_ORANGE,nil];
-    NSInteger colorIndex = [[NSNumber numberWithFloat:(0.4+[self randomFloatBetweenLow:0.0 andHigh:4.0])] integerValue];
-    return [colors objectAtIndex:colorIndex];
-}
-
 - (void) prepareMessage {
     congressMessagePlainLabel.alpha = 0.0f;
     congressMessageSemiboldLabel.alpha = 0.0f;
@@ -61,7 +51,7 @@
     [messagePlain appendString:@"HA/M.B-U/RG"];
     congressMessagePlainLabel.font = [UIFont fontWithName:@"SourceCodePro-Light" size:40.0];
     congressMessagePlainLabel.text = messagePlain;
-    congressMessagePlainLabel.textColor = kHUE_BACK;
+    congressMessagePlainLabel.textColor = kCOLOR_BACK;
 
     // SEMIBOLD
     NSMutableString *messageSemibold = [NSMutableString string];
@@ -72,7 +62,7 @@
     [messageSemibold appendString:@" "];
     congressMessageSemiboldLabel.font = [UIFont fontWithName:@"SourceCodePro-Semibold" size:40.0];
     congressMessageSemiboldLabel.text = messageSemibold;
-    congressMessageSemiboldLabel.textColor = kHUE_BACK;
+    congressMessageSemiboldLabel.textColor = kCOLOR_BACK;
 }
 
 - (void) displayMessage {
@@ -81,14 +71,14 @@
         congressMessageSemiboldLabel.alpha = 1.0f;
     } completion:^(BOOL finished) {
         if( finished ) {
-            [self performSelector:@selector(continueAfterWelcome) withObject:self afterDelay:10.5];
+            [self performSelector:@selector(continueAfterWelcome) withObject:self afterDelay:1.5];
         }
     }];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [self randomColor];
+    self.view.backgroundColor = [self themeColor];
     [self prepareMessage];
     [self displayMessage];
 }

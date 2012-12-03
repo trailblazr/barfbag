@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GenericViewController.h"
 
-@interface WelcomeViewController : UIViewController {
+@interface WelcomeViewController : GenericViewController {
 
     IBOutlet UILabel *congressMessagePlainLabel;
     IBOutlet UILabel *congressMessageSemiboldLabel;

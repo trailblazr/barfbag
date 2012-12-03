@@ -42,6 +42,7 @@
 		8F754B1B166C2B5C00F74DBB /* StandardSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B19166C2B5C00F74DBB /* StandardSettingsViewController.m */; };
 		8F754B1C166C2B5C00F74DBB /* StandardSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B1A166C2B5C00F74DBB /* StandardSettingsViewController.xib */; };
 		8F754B24166C2F0800F74DBB /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B23166C2F0800F74DBB /* UIColor-Expanded.m */; };
+		8F754B2B166C36A100F74DBB /* GenericViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B2A166C36A000F74DBB /* GenericViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,8 @@
 		8F754B1A166C2B5C00F74DBB /* StandardSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StandardSettingsViewController.xib; sourceTree = "<group>"; };
 		8F754B22166C2F0800F74DBB /* UIColor-Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor-Expanded.h"; sourceTree = "<group>"; };
 		8F754B23166C2F0800F74DBB /* UIColor-Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-Expanded.m"; sourceTree = "<group>"; };
+		8F754B29166C36A000F74DBB /* GenericViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericViewController.h; sourceTree = "<group>"; };
+		8F754B2A166C36A000F74DBB /* GenericViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +202,8 @@
 			children = (
 				8F35653B166B937C00814549 /* AppDelegate.h */,
 				8F35653C166B937C00814549 /* AppDelegate.m */,
+				8F754B29166C36A000F74DBB /* GenericViewController.h */,
+				8F754B2A166C36A000F74DBB /* GenericViewController.m */,
 				8F754B08166C22A100F74DBB /* WelcomeViewController.h */,
 				8F754B09166C22A100F74DBB /* WelcomeViewController.m */,
 				8F754B0A166C22A100F74DBB /* WelcomeViewController.xib */,
@@ -336,6 +341,7 @@
 				8F754B14166C279800F74DBB /* EventsViewController.m in Sources */,
 				8F754B1B166C2B5C00F74DBB /* StandardSettingsViewController.m in Sources */,
 				8F754B24166C2F0800F74DBB /* UIColor-Expanded.m in Sources */,
+				8F754B2B166C36A100F74DBB /* GenericViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
