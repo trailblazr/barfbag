@@ -16,22 +16,27 @@
 		8F35653F166B937C00814549 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F35653E166B937C00814549 /* Default.png */; };
 		8F356541166B937C00814549 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F356540166B937C00814549 /* Default@2x.png */; };
 		8F356543166B937C00814549 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F356542166B937C00814549 /* Default-568h@2x.png */; };
-		8F356546166B937C00814549 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F356545166B937C00814549 /* FirstViewController.m */; };
-		8F356548166B937C00814549 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F356547166B937C00814549 /* first.png */; };
-		8F35654A166B937C00814549 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F356549166B937C00814549 /* first@2x.png */; };
-		8F35654D166B937C00814549 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F35654C166B937C00814549 /* SecondViewController.m */; };
-		8F35654F166B937C00814549 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F35654E166B937C00814549 /* second.png */; };
-		8F356551166B937C00814549 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F356550166B937C00814549 /* second@2x.png */; };
-		8F356554166B937C00814549 /* FirstViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F356552166B937C00814549 /* FirstViewController_iPhone.xib */; };
-		8F356557166B937C00814549 /* FirstViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F356555166B937C00814549 /* FirstViewController_iPad.xib */; };
-		8F35655A166B937C00814549 /* SecondViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F356558166B937C00814549 /* SecondViewController_iPhone.xib */; };
-		8F35655D166B937C00814549 /* SecondViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F35655B166B937C00814549 /* SecondViewController_iPad.xib */; };
 		8F754ACF166B93F000F74DBB /* Icon_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754AC9166B93F000F74DBB /* Icon_57.png */; };
 		8F754AD0166B93F000F74DBB /* Icon_72.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754ACA166B93F000F74DBB /* Icon_72.png */; };
 		8F754AD1166B93F000F74DBB /* Icon_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754ACB166B93F000F74DBB /* Icon_114.png */; };
 		8F754AD2166B93F000F74DBB /* Icon_144.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754ACC166B93F000F74DBB /* Icon_144.png */; };
 		8F754AD3166B93F000F74DBB /* Icon_1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754ACD166B93F000F74DBB /* Icon_1024.png */; };
-		8F754AD4166B93F000F74DBB /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754ACE166B93F000F74DBB /* Icon.png */; };
+		8F754AEE166C1E5F00F74DBB /* SourceCodePro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F754AE5166C1E5F00F74DBB /* SourceCodePro-Black.ttf */; };
+		8F754AEF166C1E5F00F74DBB /* SourceCodePro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F754AE6166C1E5F00F74DBB /* SourceCodePro-Bold.ttf */; };
+		8F754AF0166C1E5F00F74DBB /* SourceCodePro-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F754AE7166C1E5F00F74DBB /* SourceCodePro-ExtraLight.ttf */; };
+		8F754AF1166C1E5F00F74DBB /* SourceCodePro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F754AE8166C1E5F00F74DBB /* SourceCodePro-Light.ttf */; };
+		8F754AF2166C1E5F00F74DBB /* SourceCodePro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F754AE9166C1E5F00F74DBB /* SourceCodePro-Regular.ttf */; };
+		8F754AF3166C1E5F00F74DBB /* SourceCodePro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F754AEA166C1E5F00F74DBB /* SourceCodePro-Semibold.ttf */; };
+		8F754AF9166C1F4300F74DBB /* FahrplanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754AF7166C1F4300F74DBB /* FahrplanViewController.m */; };
+		8F754AFA166C1F4300F74DBB /* FahrplanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754AF8166C1F4300F74DBB /* FahrplanViewController.xib */; };
+		8F754AFE166C1F6D00F74DBB /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754AFC166C1F6D00F74DBB /* SettingsViewController.m */; };
+		8F754AFF166C1F6D00F74DBB /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754AFD166C1F6D00F74DBB /* SettingsViewController.xib */; };
+		8F754B04166C221600F74DBB /* plan.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B00166C221600F74DBB /* plan.png */; };
+		8F754B05166C221600F74DBB /* plan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B01166C221600F74DBB /* plan@2x.png */; };
+		8F754B06166C221600F74DBB /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B02166C221600F74DBB /* settings.png */; };
+		8F754B07166C221600F74DBB /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B03166C221600F74DBB /* settings@2x.png */; };
+		8F754B0B166C22A100F74DBB /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B09166C22A100F74DBB /* WelcomeViewController.m */; };
+		8F754B0C166C22A100F74DBB /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B0A166C22A100F74DBB /* WelcomeViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,24 +53,33 @@
 		8F35653E166B937C00814549 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8F356540166B937C00814549 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		8F356542166B937C00814549 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		8F356544166B937C00814549 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		8F356545166B937C00814549 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		8F356547166B937C00814549 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
-		8F356549166B937C00814549 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		8F35654B166B937C00814549 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		8F35654C166B937C00814549 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		8F35654E166B937C00814549 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
-		8F356550166B937C00814549 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
-		8F356553166B937C00814549 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstViewController_iPhone.xib; sourceTree = "<group>"; };
-		8F356556166B937C00814549 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstViewController_iPad.xib; sourceTree = "<group>"; };
-		8F356559166B937C00814549 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondViewController_iPhone.xib; sourceTree = "<group>"; };
-		8F35655C166B937C00814549 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondViewController_iPad.xib; sourceTree = "<group>"; };
 		8F754AC9166B93F000F74DBB /* Icon_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_57.png; sourceTree = "<group>"; };
 		8F754ACA166B93F000F74DBB /* Icon_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_72.png; sourceTree = "<group>"; };
 		8F754ACB166B93F000F74DBB /* Icon_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_114.png; sourceTree = "<group>"; };
 		8F754ACC166B93F000F74DBB /* Icon_144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_144.png; sourceTree = "<group>"; };
 		8F754ACD166B93F000F74DBB /* Icon_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_1024.png; sourceTree = "<group>"; };
-		8F754ACE166B93F000F74DBB /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		8F754AE3166C1E5F00F74DBB /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		8F754AE4166C1E5F00F74DBB /* ReadMe.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ReadMe.html; sourceTree = "<group>"; };
+		8F754AE5166C1E5F00F74DBB /* SourceCodePro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Black.ttf"; sourceTree = "<group>"; };
+		8F754AE6166C1E5F00F74DBB /* SourceCodePro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Bold.ttf"; sourceTree = "<group>"; };
+		8F754AE7166C1E5F00F74DBB /* SourceCodePro-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-ExtraLight.ttf"; sourceTree = "<group>"; };
+		8F754AE8166C1E5F00F74DBB /* SourceCodePro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Light.ttf"; sourceTree = "<group>"; };
+		8F754AE9166C1E5F00F74DBB /* SourceCodePro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Regular.ttf"; sourceTree = "<group>"; };
+		8F754AEA166C1E5F00F74DBB /* SourceCodePro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Semibold.ttf"; sourceTree = "<group>"; };
+		8F754AEB166C1E5F00F74DBB /* SourceCodeProReadMe.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SourceCodeProReadMe.html; sourceTree = "<group>"; };
+		8F754AF6166C1F4300F74DBB /* FahrplanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FahrplanViewController.h; sourceTree = "<group>"; };
+		8F754AF7166C1F4300F74DBB /* FahrplanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FahrplanViewController.m; sourceTree = "<group>"; };
+		8F754AF8166C1F4300F74DBB /* FahrplanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FahrplanViewController.xib; sourceTree = "<group>"; };
+		8F754AFB166C1F6D00F74DBB /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		8F754AFC166C1F6D00F74DBB /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		8F754AFD166C1F6D00F74DBB /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		8F754B00166C221600F74DBB /* plan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plan.png; path = images/plan.png; sourceTree = SOURCE_ROOT; };
+		8F754B01166C221600F74DBB /* plan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "plan@2x.png"; path = "images/plan@2x.png"; sourceTree = SOURCE_ROOT; };
+		8F754B02166C221600F74DBB /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settings.png; path = images/settings.png; sourceTree = SOURCE_ROOT; };
+		8F754B03166C221600F74DBB /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings@2x.png"; path = "images/settings@2x.png"; sourceTree = SOURCE_ROOT; };
+		8F754B08166C22A100F74DBB /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
+		8F754B09166C22A100F74DBB /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		8F754B0A166C22A100F74DBB /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,50 +127,75 @@
 		8F356532166B937C00814549 /* barfbag */ = {
 			isa = PBXGroup;
 			children = (
-				8F35653B166B937C00814549 /* AppDelegate.h */,
-				8F35653C166B937C00814549 /* AppDelegate.m */,
-				8F356544166B937C00814549 /* FirstViewController.h */,
-				8F356545166B937C00814549 /* FirstViewController.m */,
-				8F356547166B937C00814549 /* first.png */,
-				8F356549166B937C00814549 /* first@2x.png */,
-				8F35654B166B937C00814549 /* SecondViewController.h */,
-				8F35654C166B937C00814549 /* SecondViewController.m */,
-				8F35654E166B937C00814549 /* second.png */,
-				8F356550166B937C00814549 /* second@2x.png */,
-				8F356552166B937C00814549 /* FirstViewController_iPhone.xib */,
-				8F356555166B937C00814549 /* FirstViewController_iPad.xib */,
-				8F356558166B937C00814549 /* SecondViewController_iPhone.xib */,
-				8F35655B166B937C00814549 /* SecondViewController_iPad.xib */,
-				8F356533166B937C00814549 /* Supporting Files */,
+				8F754AF5166C1F1B00F74DBB /* Classes */,
+				8F356533166B937C00814549 /* Resources */,
 			);
 			path = barfbag;
 			sourceTree = "<group>";
 		};
-		8F356533166B937C00814549 /* Supporting Files */ = {
+		8F356533166B937C00814549 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				8F356534166B937C00814549 /* barfbag-Info.plist */,
 				8F356535166B937C00814549 /* InfoPlist.strings */,
 				8F356538166B937C00814549 /* main.m */,
+				8F754AE2166C1E5F00F74DBB /* fonts */,
 				8F754AC7166B93A800F74DBB /* images */,
 			);
-			name = "Supporting Files";
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		8F754AC7166B93A800F74DBB /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8F754B00166C221600F74DBB /* plan.png */,
+				8F754B01166C221600F74DBB /* plan@2x.png */,
+				8F754B02166C221600F74DBB /* settings.png */,
+				8F754B03166C221600F74DBB /* settings@2x.png */,
 				8F754AC9166B93F000F74DBB /* Icon_57.png */,
 				8F754ACA166B93F000F74DBB /* Icon_72.png */,
 				8F754ACB166B93F000F74DBB /* Icon_114.png */,
 				8F754ACC166B93F000F74DBB /* Icon_144.png */,
 				8F754ACD166B93F000F74DBB /* Icon_1024.png */,
-				8F754ACE166B93F000F74DBB /* Icon.png */,
 				8F35653E166B937C00814549 /* Default.png */,
 				8F356540166B937C00814549 /* Default@2x.png */,
 				8F356542166B937C00814549 /* Default-568h@2x.png */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		8F754AE2166C1E5F00F74DBB /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8F754AE3166C1E5F00F74DBB /* LICENSE.txt */,
+				8F754AE4166C1E5F00F74DBB /* ReadMe.html */,
+				8F754AE5166C1E5F00F74DBB /* SourceCodePro-Black.ttf */,
+				8F754AE6166C1E5F00F74DBB /* SourceCodePro-Bold.ttf */,
+				8F754AE7166C1E5F00F74DBB /* SourceCodePro-ExtraLight.ttf */,
+				8F754AE8166C1E5F00F74DBB /* SourceCodePro-Light.ttf */,
+				8F754AE9166C1E5F00F74DBB /* SourceCodePro-Regular.ttf */,
+				8F754AEA166C1E5F00F74DBB /* SourceCodePro-Semibold.ttf */,
+				8F754AEB166C1E5F00F74DBB /* SourceCodeProReadMe.html */,
+			);
+			path = fonts;
+			sourceTree = SOURCE_ROOT;
+		};
+		8F754AF5166C1F1B00F74DBB /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8F35653B166B937C00814549 /* AppDelegate.h */,
+				8F35653C166B937C00814549 /* AppDelegate.m */,
+				8F754B08166C22A100F74DBB /* WelcomeViewController.h */,
+				8F754B09166C22A100F74DBB /* WelcomeViewController.m */,
+				8F754B0A166C22A100F74DBB /* WelcomeViewController.xib */,
+				8F754AF6166C1F4300F74DBB /* FahrplanViewController.h */,
+				8F754AF7166C1F4300F74DBB /* FahrplanViewController.m */,
+				8F754AF8166C1F4300F74DBB /* FahrplanViewController.xib */,
+				8F754AFB166C1F6D00F74DBB /* SettingsViewController.h */,
+				8F754AFC166C1F6D00F74DBB /* SettingsViewController.m */,
+				8F754AFD166C1F6D00F74DBB /* SettingsViewController.xib */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,20 +253,24 @@
 				8F35653F166B937C00814549 /* Default.png in Resources */,
 				8F356541166B937C00814549 /* Default@2x.png in Resources */,
 				8F356543166B937C00814549 /* Default-568h@2x.png in Resources */,
-				8F356548166B937C00814549 /* first.png in Resources */,
-				8F35654A166B937C00814549 /* first@2x.png in Resources */,
-				8F35654F166B937C00814549 /* second.png in Resources */,
-				8F356551166B937C00814549 /* second@2x.png in Resources */,
-				8F356554166B937C00814549 /* FirstViewController_iPhone.xib in Resources */,
-				8F356557166B937C00814549 /* FirstViewController_iPad.xib in Resources */,
-				8F35655A166B937C00814549 /* SecondViewController_iPhone.xib in Resources */,
-				8F35655D166B937C00814549 /* SecondViewController_iPad.xib in Resources */,
 				8F754ACF166B93F000F74DBB /* Icon_57.png in Resources */,
 				8F754AD0166B93F000F74DBB /* Icon_72.png in Resources */,
 				8F754AD1166B93F000F74DBB /* Icon_114.png in Resources */,
 				8F754AD2166B93F000F74DBB /* Icon_144.png in Resources */,
 				8F754AD3166B93F000F74DBB /* Icon_1024.png in Resources */,
-				8F754AD4166B93F000F74DBB /* Icon.png in Resources */,
+				8F754AEE166C1E5F00F74DBB /* SourceCodePro-Black.ttf in Resources */,
+				8F754AEF166C1E5F00F74DBB /* SourceCodePro-Bold.ttf in Resources */,
+				8F754AF0166C1E5F00F74DBB /* SourceCodePro-ExtraLight.ttf in Resources */,
+				8F754AF1166C1E5F00F74DBB /* SourceCodePro-Light.ttf in Resources */,
+				8F754AF2166C1E5F00F74DBB /* SourceCodePro-Regular.ttf in Resources */,
+				8F754AF3166C1E5F00F74DBB /* SourceCodePro-Semibold.ttf in Resources */,
+				8F754AFA166C1F4300F74DBB /* FahrplanViewController.xib in Resources */,
+				8F754AFF166C1F6D00F74DBB /* SettingsViewController.xib in Resources */,
+				8F754B04166C221600F74DBB /* plan.png in Resources */,
+				8F754B05166C221600F74DBB /* plan@2x.png in Resources */,
+				8F754B06166C221600F74DBB /* settings.png in Resources */,
+				8F754B07166C221600F74DBB /* settings@2x.png in Resources */,
+				8F754B0C166C22A100F74DBB /* WelcomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,8 +283,9 @@
 			files = (
 				8F356539166B937C00814549 /* main.m in Sources */,
 				8F35653D166B937C00814549 /* AppDelegate.m in Sources */,
-				8F356546166B937C00814549 /* FirstViewController.m in Sources */,
-				8F35654D166B937C00814549 /* SecondViewController.m in Sources */,
+				8F754AF9166C1F4300F74DBB /* FahrplanViewController.m in Sources */,
+				8F754AFE166C1F6D00F74DBB /* SettingsViewController.m in Sources */,
+				8F754B0B166C22A100F74DBB /* WelcomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,38 +298,6 @@
 				8F356536166B937C00814549 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		8F356552166B937C00814549 /* FirstViewController_iPhone.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8F356553166B937C00814549 /* en */,
-			);
-			name = FirstViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		8F356555166B937C00814549 /* FirstViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8F356556166B937C00814549 /* en */,
-			);
-			name = FirstViewController_iPad.xib;
-			sourceTree = "<group>";
-		};
-		8F356558166B937C00814549 /* SecondViewController_iPhone.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8F356559166B937C00814549 /* en */,
-			);
-			name = SecondViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		8F35655B166B937C00814549 /* SecondViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8F35655C166B937C00814549 /* en */,
-			);
-			name = SecondViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

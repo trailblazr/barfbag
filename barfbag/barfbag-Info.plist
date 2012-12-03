@@ -24,6 +24,14 @@
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SourceCodePro-Black.ttf</string>
+		<string>SourceCodePro-Bold.ttf</string>
+		<string>SourceCodePro-ExtraLight.ttf</string>
+		<string>SourceCodePro-Light.ttf</string>
+		<string>SourceCodePro-Semibold.ttf</string>
+	</array>
 	<key>CFBundleIconFile</key>
 	<string>Icon_57.png</string>
 	<key>CFBundleIcons</key>
