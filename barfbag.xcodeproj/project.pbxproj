@@ -43,6 +43,12 @@
 		8F754B1C166C2B5C00F74DBB /* StandardSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B1A166C2B5C00F74DBB /* StandardSettingsViewController.xib */; };
 		8F754B24166C2F0800F74DBB /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B23166C2F0800F74DBB /* UIColor-Expanded.m */; };
 		8F754B2B166C36A100F74DBB /* GenericViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B2A166C36A000F74DBB /* GenericViewController.m */; };
+		8F754B30166D4D3A00F74DBB /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B2D166D4D3900F74DBB /* Event.m */; };
+		8F754B31166D4D3A00F74DBB /* BarfBagParserXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B2F166D4D3900F74DBB /* BarfBagParserXML.m */; };
+		8F754B3A166D556600F74DBB /* SinaURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B39166D556600F74DBB /* SinaURLConnection.m */; };
+		8F754B4D166D5D0600F74DBB /* UIDevice-Versions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B4C166D5D0600F74DBB /* UIDevice-Versions.m */; };
+		8F754B4F166D5D5500F74DBB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F754B4E166D5D5500F74DBB /* MobileCoreServices.framework */; };
+		8F754B51166D5D6B00F74DBB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F754B50166D5D6B00F74DBB /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +102,16 @@
 		8F754B23166C2F0800F74DBB /* UIColor-Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-Expanded.m"; sourceTree = "<group>"; };
 		8F754B29166C36A000F74DBB /* GenericViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericViewController.h; sourceTree = "<group>"; };
 		8F754B2A166C36A000F74DBB /* GenericViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericViewController.m; sourceTree = "<group>"; };
+		8F754B2C166D4D3800F74DBB /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		8F754B2D166D4D3900F74DBB /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		8F754B2E166D4D3900F74DBB /* BarfBagParserXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarfBagParserXML.h; sourceTree = "<group>"; };
+		8F754B2F166D4D3900F74DBB /* BarfBagParserXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarfBagParserXML.m; sourceTree = "<group>"; };
+		8F754B38166D556600F74DBB /* SinaURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaURLConnection.h; sourceTree = "<group>"; };
+		8F754B39166D556600F74DBB /* SinaURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaURLConnection.m; sourceTree = "<group>"; };
+		8F754B4B166D5D0600F74DBB /* UIDevice-Versions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice-Versions.h"; sourceTree = "<group>"; };
+		8F754B4C166D5D0600F74DBB /* UIDevice-Versions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice-Versions.m"; sourceTree = "<group>"; };
+		8F754B4E166D5D5500F74DBB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		8F754B50166D5D6B00F74DBB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +119,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F754B51166D5D6B00F74DBB /* SystemConfiguration.framework in Frameworks */,
+				8F754B4F166D5D5500F74DBB /* MobileCoreServices.framework in Frameworks */,
 				8F35652D166B937C00814549 /* UIKit.framework in Frameworks */,
 				8F35652F166B937C00814549 /* Foundation.framework in Frameworks */,
 				8F356531166B937C00814549 /* CoreGraphics.framework in Frameworks */,
@@ -133,6 +151,8 @@
 		8F35652B166B937C00814549 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8F754B50166D5D6B00F74DBB /* SystemConfiguration.framework */,
+				8F754B4E166D5D5500F74DBB /* MobileCoreServices.framework */,
 				8F35652C166B937C00814549 /* UIKit.framework */,
 				8F35652E166B937C00814549 /* Foundation.framework */,
 				8F356530166B937C00814549 /* CoreGraphics.framework */,
@@ -200,6 +220,8 @@
 		8F754AF5166C1F1B00F74DBB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8F754B37166D556500F74DBB /* SinaURLConnection */,
+				8F754B32166D4D3F00F74DBB /* XML processing */,
 				8F35653B166B937C00814549 /* AppDelegate.h */,
 				8F35653C166B937C00814549 /* AppDelegate.m */,
 				8F754B29166C36A000F74DBB /* GenericViewController.h */,
@@ -244,9 +266,31 @@
 			children = (
 				8F754B22166C2F0800F74DBB /* UIColor-Expanded.h */,
 				8F754B23166C2F0800F74DBB /* UIColor-Expanded.m */,
+				8F754B4B166D5D0600F74DBB /* UIDevice-Versions.h */,
+				8F754B4C166D5D0600F74DBB /* UIDevice-Versions.m */,
 			);
 			path = categories;
 			sourceTree = SOURCE_ROOT;
+		};
+		8F754B32166D4D3F00F74DBB /* XML processing */ = {
+			isa = PBXGroup;
+			children = (
+				8F754B2C166D4D3800F74DBB /* Event.h */,
+				8F754B2D166D4D3900F74DBB /* Event.m */,
+				8F754B2E166D4D3900F74DBB /* BarfBagParserXML.h */,
+				8F754B2F166D4D3900F74DBB /* BarfBagParserXML.m */,
+			);
+			name = "XML processing";
+			sourceTree = "<group>";
+		};
+		8F754B37166D556500F74DBB /* SinaURLConnection */ = {
+			isa = PBXGroup;
+			children = (
+				8F754B38166D556600F74DBB /* SinaURLConnection.h */,
+				8F754B39166D556600F74DBB /* SinaURLConnection.m */,
+			);
+			path = SinaURLConnection;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -342,6 +386,10 @@
 				8F754B1B166C2B5C00F74DBB /* StandardSettingsViewController.m in Sources */,
 				8F754B24166C2F0800F74DBB /* UIColor-Expanded.m in Sources */,
 				8F754B2B166C36A100F74DBB /* GenericViewController.m in Sources */,
+				8F754B30166D4D3A00F74DBB /* Event.m in Sources */,
+				8F754B31166D4D3A00F74DBB /* BarfBagParserXML.m in Sources */,
+				8F754B3A166D556600F74DBB /* SinaURLConnection.m in Sources */,
+				8F754B4D166D5D0600F74DBB /* UIDevice-Versions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

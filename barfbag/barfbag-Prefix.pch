@@ -12,7 +12,11 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "UIColor-Expanded.h"
+    #import "UIDevice-Versions.h"
 #endif
+
+// DEPLOYMENT & DEVELOPMENT PARAMETERS
+#define DEBUG 1
 
 // COLOR DEFS
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
@@ -26,6 +30,29 @@
 #define kCOLOR_ORANGE [UIColor colorWithHue:0.083f saturation:0.80f brightness:0.97f alpha:1.0]
 #define kCOLOR_WHITE [UIColor colorWithHue:1.0f saturation:0.0f brightness:1.0f alpha:1.0]
 #define kCOLOR_BLACK [UIColor colorWithHue:0.0f saturation:0.0f brightness:0.0f alpha:1.0]
-
 #define kCOLOR_BACK [UIColor colorWithHue:0.65f saturation:1.0f brightness:0.2f alpha:1.0]
+#define kCOLOR_CLEAR [UIColor clearColor]
+
+// CACHED & TEMPORARY FILES & FOLDERS
+#define kFOLDER_DOCUMENTS   [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+#define kFOLDER_CACHES      [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches"]
+#define kFILE_CACHED_FAHRPLAN   @"fahrplan.xml"
+
+// NETWORKING PARAMETERS
+#define kCONNECTION_TIMEOUT 60.0f
+#define kCONNECTION_CONTENT_URL_EN @"http://events.ccc.de/congress/2011/Fahrplan/schedule.en.xml"
+#define kCONNECTION_CONTENT_URL_DE @"http://events.ccc.de/congress/2011/Fahrplan/schedule.de.xml"
+
+// DEFAULT USER VALUE KEYS
+#define kUSERDEFAULT_KEY_DATA_VERSION_CURRENT @"barf_data_version_current"
+#define kUSERDEFAULT_KEY_DATA_VERSION_UPDATED @"barf_data_version_updated"
+
+// NOTIOFICATIONS
+#define kNOTIFICATION_PARSER_STARTED    @"xmlParserStarted"
+#define kNOTIFICATION_PARSER_FAILED     @"xmlParserFailed"
+#define kNOTIFICATION_PARSER_SUCCEEDED  @"xmlParserSucceeded"
+#define kNOTIFICATION_PARSER_FINISHED   @"xmlParserFinished"
+
+
+
 

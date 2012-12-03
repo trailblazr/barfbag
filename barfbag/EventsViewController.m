@@ -7,6 +7,8 @@
 //
 
 #import "EventsViewController.h"
+#import "AppDelegate.h"
+#import "Event.h"
 
 @interface EventsViewController ()
 
@@ -22,9 +24,30 @@
     return self;
 }
 
+- (AppDelegate*) appDelegate {
+    return (AppDelegate*)[UIApplication sharedApplication].delegate;
+}
+
+- (void) actionRefreshData {
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    [[self appDelegate] barfBagRefresh];
+}
+
+- (void) actionUpdateDisplayAfterRefresh {
+    [self.tableView reloadData];
+    self.navigationItem.rightBarButtonItem.enabled = YES;
+}
+
 - (void)viewDidLoad {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionUpdateDisplayAfterRefresh) name:kNOTIFICATION_PARSER_FINISHED  object:nil];
     [super viewDidLoad];
-    self.navigationItem.title = @"Fahrplan";
+    UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionRefreshData)] autorelease];
+    self.navigationItem.rightBarButtonItem = item;
+    NSString *dataVersion = [[NSUserDefaults standardUserDefaults] stringForKey:kUSERDEFAULT_KEY_DATA_VERSION_CURRENT];
+    NSRange range = [dataVersion rangeOfString:@"^\\s*" options:NSRegularExpressionSearch];
+    dataVersion = [dataVersion stringByReplacingCharactersInRange:range withString:@""];
+    
+    self.navigationItem.title = [NSString stringWithFormat:@"Fahrplan (%@)", dataVersion];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -40,25 +63,26 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [[self appDelegate].scheduledEvents count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell.textLabel.backgroundColor = kCOLOR_CLEAR;
+        cell.detailTextLabel.backgroundColor = kCOLOR_CLEAR;
     }
     
     // Configure the cell...
+    Event *currentEvent = [[self appDelegate].scheduledEvents objectAtIndex:indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ | %@",currentEvent.start, currentEvent.title];
+    cell.detailTextLabel.text = currentEvent.subtitle;
     
     return cell;
 }
