@@ -12,7 +12,6 @@
 #import "Event.h"
 #import "Person.h"
 
-
 @implementation BarfBagParser
 
 @synthesize delegate;
@@ -111,6 +110,8 @@
 #pragma mark xml parsing methods
 
 - (void)parserDidStartDocument:(NSXMLParser *)parser {
+    if( DEBUG ) NSLog( @"BARFBAG: PARSING STARTED." );
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_PARSER_STARTED object:self];
 	// init with fresh array
 	self.daysParsed = [NSMutableArray array];
 	self.eventsParsed = [NSMutableArray array];
@@ -243,7 +244,7 @@
 	NSString *prefixedKey = [NSString stringWithFormat:@"%@.%@", prefix, key];
 	NSString *stringToTakeAway = (NSString*)[currentElementKeyValues valueForKey:prefixedKey];
 	[currentElementKeyValues removeObjectForKey:prefixedKey];
-	return stringToTakeAway;
+	return [stringToTakeAway trimmedString];
 }
 
 - (NSDate*) dateFromString:(NSString*)string forFormat:(NSString*)format {
@@ -259,11 +260,13 @@
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
-	if ([delegate respondsToSelector:@selector(receivedConferences:)])
+    if( DEBUG ) NSLog( @"BARFBAG: PARSING FINISHED." );
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_PARSER_FINISHED object:self];
+	if( [delegate respondsToSelector:@selector(receivedConferences:)] )
         [delegate receivedConferences:conferencesParsed];
     else { 
         [NSException raise:NSInternalInconsistencyException
-					format:@"Delegate doesn't respond to receivedConferences:"];
+					format:@"PentaParser delegate doesn't respond to receivedConferences:"];
     }
 }
 

@@ -13,6 +13,7 @@
     #import <Foundation/Foundation.h>
     #import "UIColor-Expanded.h"
     #import "UIDevice-Versions.h"
+    #import "NSString-Toolkit.h"
 #endif
 
 // DEPLOYMENT & DEVELOPMENT PARAMETERS
@@ -53,6 +54,7 @@
 #define kNOTIFICATION_PARSER_FAILED     @"xmlParserFailed"
 #define kNOTIFICATION_PARSER_SUCCEEDED  @"xmlParserSucceeded"
 #define kNOTIFICATION_PARSER_FINISHED   @"xmlParserFinished"
+#define kNOTIFICATION_PARSER_COMPLETED  @"xmlParserCompleted"
 
 
 

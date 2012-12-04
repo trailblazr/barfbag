@@ -60,52 +60,79 @@
 	
 }
 
+- (void) alertWithTag:(NSInteger)tag title:(NSString*)title andMessage:(NSString*)message {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    alert.tag = tag;
+    [alert show];
+    [alert release];
+}
 
 #pragma mark - BarfBagParserDelegate
 
 - (void)receivedConferences:(NSArray *)conferencesArray {
     self.scheduledConferences = conferencesArray;
-    /*
-	Conference *conference = (Conference*)[conferencesArray lastObject];
-	NSLog( @"CREATED CONFERENCE: %@", conference );
-	NSLog( @"CREATED %i DAYS", [conference.days count] );
-	for( Day *currentDay in conference.days ) {
-		NSLog( @"\n\nDAY %i HAS %i EVENTS\n", currentDay.dayIndex, [currentDay.events count] );
-		for( Event *currentEvent in currentDay.events ) {
-			//NSLog( @"EVENT (%i): %@ [TIME: %i:%i]", currentEvent.eventId, currentEvent.title, currentEvent.timeHour, currentEvent.timeMinute );
-            NSLog( @"%@", currentEvent );
-		}
-	}
-     */
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_PARSER_FINISHED object:self];    
+
+    // CHECK IF WE HAVE VALID DATA
+    if( !scheduledConferences || [scheduledConferences count] == 0 ) {
+        if( DEBUG ) NSLog( @"BARFBAG: PARSING FAILED (NO DATA FOUND!)" );
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_PARSER_FAILED object:self];
+        return;
+    }
+    
+    // UPDATE VERSION & INFORM USER IF NECESSARY
+    Conference *currentConference = nil;
+    @try {
+        currentConference = (Conference*)[scheduledConferences lastObject];
+    }
+    @catch (NSException *exception) {
+        // do nothing
+    }
+    if( currentConference ) {
+        NSString *versionCurrent = [self barfBagCurrentDataVersion];
+        NSString *versionUpdated = currentConference.release;
+        [[NSUserDefaults standardUserDefaults] setObject:versionUpdated forKey:kUSERDEFAULT_KEY_DATA_VERSION_UPDATED];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        BOOL shouldDumpObjectGraph = NO; // FOR DEBUGGING PROBLEMS
+        if( shouldDumpObjectGraph ) {
+             NSLog( @"CREATED CONFERENCE: %@", currentConference );
+             NSLog( @"CREATED %i DAYS", [currentConference.days count] );
+             for( Day *currentDay in currentConference.days ) {
+                 NSLog( @"\n\nDAY %i HAS %i EVENTS\n", currentDay.dayIndex, [currentDay.events count] );
+                 for( Event *currentEvent in currentDay.events ) {
+                     //NSLog( @"EVENT (%i): %@ [TIME: %i:%i]", currentEvent.eventId, currentEvent.title, currentEvent.timeHour, currentEvent.timeMinute );
+                     NSLog( @"%@", currentEvent );
+                 }
+             }
+        }
+
+        BOOL hasNewDataVersion = ![versionUpdated isEqualToString:versionCurrent];
+        if( hasNewDataVersion ) {
+            [[NSUserDefaults standardUserDefaults] setObject:versionUpdated forKey:kUSERDEFAULT_KEY_DATA_VERSION_CURRENT];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [self alertWithTag:0 title:@"Aktualisierung" andMessage:[NSString stringWithFormat:@"Die Plandaten wurden aktualisiert auf %@.", versionUpdated]];
+        }
+    }
+    if( DEBUG ) NSLog( @"BARFBAG: PARSING COMPLETED." );
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_PARSER_COMPLETED object:self];
 }
 
 #pragma mark - Fetching, Caching & Parsing of XML
 
--(void) barfBagFillCached:(BOOL)isCachedContent {
-    if( DEBUG ) NSLog( @"BARFBAG: PARSING..." );
-    NSString *pathToStoredFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_FAHRPLAN]; // CACHE .xml file
+- (NSString*) barfBagCurrentDataVersion {
+    return [[NSUserDefaults standardUserDefaults] stringForKey:kUSERDEFAULT_KEY_DATA_VERSION_CURRENT];
+}
 
+-(void) barfBagFillCached:(BOOL)isCachedContent {
+    NSString *pathToStoredFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_FAHRPLAN]; // CACHE .xml file
 	BarfBagParser *pentaParser = [[BarfBagParser alloc] init];
 	pentaParser.responseData = [NSData dataWithContentsOfFile:pathToStoredFile];
 	pentaParser.delegate = self;
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_PARSER_STARTED object:self];
 	[pentaParser startParsingResponseData];
-
-    /*
-    if( DEBUG ) NSLog( @"BARFBAG: PARSING SUCCEEDED." );
-    NSString *versionCurrent = [[NSUserDefaults standardUserDefaults] stringForKey:kUSERDEFAULT_KEY_DATA_VERSION_CURRENT];
-    NSString *versionUpdated = [[NSUserDefaults standardUserDefaults] stringForKey:kUSERDEFAULT_KEY_DATA_VERSION_UPDATED];
-    BOOL hasNewDataVersion = ![versionCurrent isEqualToString:versionUpdated];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_PARSER_FAILED object:self];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_PARSER_FINISHED object:self];
-     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_PARSER_SUCCEEDED object:self];
-     */
-    
 }
 
 - (void) barfBagFetchContentWithUrlString:(NSString*)urlString {
-    if( DEBUG ) NSLog( @"BARFBAG: FETCHING FROM %@", urlString );
+    if( DEBUG ) NSLog( @"BARFBAG: XML FETCHING FROM %@", urlString );
     NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]
                                                               cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                                           timeoutInterval:kCONNECTION_TIMEOUT];
@@ -134,7 +161,7 @@
     
     // KICK OFF CONNECTION AS BLOCK
     [SinaURLConnection asyncConnectionWithRequest:theRequest completionBlock:^(NSData *data, NSURLResponse *response) {
-        if( DEBUG ) NSLog( @"BARFBAG: SERVER STATUSCODE WAS %i", ((NSHTTPURLResponse*)response).statusCode );
+        if( DEBUG ) NSLog( @"BARFBAG: XML CONNECTION RESPONSECODE: %i", ((NSHTTPURLResponse*)response).statusCode );
         // REPLACE STORED OFFLINE DATA
         BOOL isCached = NO;
         if( data && [data length] > 500 ) {
@@ -155,7 +182,8 @@
             [self barfBagFillCached:isCached];
         }
     } errorBlock:^(NSError *error) {
-        NSLog( @"error = %@", error );
+        if( DEBUG ) NSLog( @"BARFBAG: NO INTERNET CONNECTION." );
+        [self alertWithTag:0 title:@"Verbindungsproblem" andMessage:[NSString stringWithFormat:@"Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten.\n\nSie verwenden derzeit\n%@ der Daten.", [self barfBagCurrentDataVersion]]];
         // TODO: DISPLAY SOME ERROR...
         BOOL isCached = YES;
         [self barfBagFillCached:isCached];
@@ -170,6 +198,19 @@
 
 - (void) barfBagRefresh {
     [self barfBagFetchContentWithUrlString:kCONNECTION_CONTENT_URL_EN];
+}
+
+- (void) barfBargLoadCached {
+    NSString *pathToCachedFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_FAHRPLAN]; // CACHE .xml file
+    NSFileManager *fm = [NSFileManager defaultManager];
+    if( [fm fileExistsAtPath:pathToCachedFile] ) {
+        if( DEBUG ) NSLog( @"BARFBAG: XML LOADING CACHED..." );
+        [self barfBagFillCached:YES];
+    }
+    else {
+        // TRY TO UPDATE DATA IMMEDIATELY
+        [self barfBagRefresh];
+    }
 }
 
 #pragma mark - Application Transition after Welcome
@@ -209,8 +250,8 @@
     _window.rootViewController = controller;
     [_window makeKeyAndVisible];
     
-    // TRY TO UPDATE DATA IMMEDIATELY
-    [self barfBagRefresh];
+    // TRY TO INIT WITH EXISTING DATA
+    [self barfBargLoadCached];    
     return YES;
 }
 

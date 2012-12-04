@@ -112,17 +112,8 @@
 	self.duration = (NSTimeInterval)[[NSNumber numberWithInt:(hours+minutes)] doubleValue];
 }
 
-
-- (NSString*) trimmedString:(NSString*)stringToTrim {
-    NSMutableString *mStr = [stringToTrim mutableCopy];
-    CFStringTrimWhitespace((CFMutableStringRef)mStr);
-    NSString *result = [mStr copy];
-    [mStr release];
-    return [result autorelease];
-}
-
 - (void) takeStartDateTimeFromString:(NSString*)dateString {
-    self.start = [self trimmedString:dateString];
+    self.start = [dateString trimmedString];
     NSString *regex = @"[0-9]{2}:[0-9]{2}";
 	NSArray *matchesArray = [dateString componentsMatchedByRegex:regex];
     NSString *timeString = nil;

@@ -26,9 +26,46 @@
     return self;
 }
 
+#pragma mark - Convenience Methods
+
 - (AppDelegate*) appDelegate {
     return (AppDelegate*)[UIApplication sharedApplication].delegate;
 }
+
+- (UIView*) navigationTitleView {
+    CGFloat width = self.view.bounds.size.width-40.0f;
+    CGFloat height = self.navigationController.navigationBar.bounds.size.height;
+    UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, width, height)] autorelease];
+    titleLabel.textColor = kCOLOR_WHITE;
+    titleLabel.backgroundColor = kCOLOR_CLEAR;
+    titleLabel.adjustsFontSizeToFitWidth = YES;
+    titleLabel.text = [self navigationTitleString];
+    titleLabel.textAlignment = UITextAlignmentCenter;
+    titleLabel.font = [UIFont boldSystemFontOfSize:17.0];
+    return titleLabel;
+}
+
+- (NSString*) navigationTitleString {
+    NSString *title = [NSString stringWithFormat:@"%@", [self conference].title];
+    if( !title ) {
+        return @"Ereignisse";
+    }
+    else {
+        return title;
+    }
+}
+
+- (NSString*) stringDayForDate:(NSDate*)date {
+    if( !date ) return nil;
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.timeStyle = NSDateFormatterNoStyle;
+    df.dateStyle = NSDateFormatterMediumStyle;
+    NSString *formattedDate = [df stringFromDate:date];
+    [df release];
+    return formattedDate;
+}
+
+#pragma mark - User Actions
 
 - (void) actionRefreshData {
     self.navigationItem.rightBarButtonItem.enabled = NO;
@@ -37,16 +74,16 @@
 
 - (void) actionUpdateDisplayAfterRefresh {
     [self.tableView reloadData];
+    self.navigationItem.titleView = [self navigationTitleView];
     self.navigationItem.rightBarButtonItem.enabled = YES;
 }
 
 - (void)viewDidLoad {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionUpdateDisplayAfterRefresh) name:kNOTIFICATION_PARSER_FINISHED  object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionUpdateDisplayAfterRefresh) name:kNOTIFICATION_PARSER_COMPLETED  object:nil];
     [super viewDidLoad];
     UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionRefreshData)] autorelease];
     self.navigationItem.rightBarButtonItem = item;
-    
-    self.navigationItem.title = [NSString stringWithFormat:@"%@", [self conference].title];
+    self.navigationItem.titleView = [self navigationTitleView];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -70,7 +107,7 @@
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSArray *days = [[self conference] days];
     Day *currentDay = [days objectAtIndex:section];
-    return [NSString stringWithFormat:@"%@",currentDay.date];
+    return [NSString stringWithFormat:@"%@",[self stringDayForDate:currentDay.date]];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
