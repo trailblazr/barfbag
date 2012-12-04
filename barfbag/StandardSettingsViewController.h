@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GenericTableViewController.h"
 
-@interface StandardSettingsViewController : UITableViewController
+@interface StandardSettingsViewController : GenericTableViewController {
+
+    
+}
 
 @end

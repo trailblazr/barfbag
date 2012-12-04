@@ -59,6 +59,13 @@
 		8F754B92166EA46A00F74DBB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F754B91166EA46A00F74DBB /* QuartzCore.framework */; };
 		8F754B99166EA65800F74DBB /* GenericTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B98166EA65600F74DBB /* GenericTableViewController.m */; };
 		8F754B9C166EA7EA00F74DBB /* GenericTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B9B166EA7E800F74DBB /* GenericTabBarController.m */; };
+		8F754BB5166EAB5E00F74DBB /* ATMHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754BA9166EAB5E00F74DBB /* ATMHud.m */; };
+		8F754BB6166EAB5E00F74DBB /* ATMHudQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754BAC166EAB5E00F74DBB /* ATMHudQueueItem.m */; };
+		8F754BB7166EAB5E00F74DBB /* ATMHudView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754BAE166EAB5E00F74DBB /* ATMHudView.m */; };
+		8F754BB8166EAB5E00F74DBB /* ATMProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754BB0166EAB5E00F74DBB /* ATMProgressLayer.m */; };
+		8F754BB9166EAB5E00F74DBB /* ATMSoundFX.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754BB2166EAB5E00F74DBB /* ATMSoundFX.m */; };
+		8F754BBA166EAB5E00F74DBB /* ATMTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754BB4166EAB5E00F74DBB /* ATMTextLayer.m */; };
+		8F754BBC166EADA600F74DBB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F754BBB166EADA600F74DBB /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,6 +147,20 @@
 		8F754B98166EA65600F74DBB /* GenericTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericTableViewController.m; sourceTree = "<group>"; };
 		8F754B9A166EA7E600F74DBB /* GenericTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericTabBarController.h; sourceTree = "<group>"; };
 		8F754B9B166EA7E800F74DBB /* GenericTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericTabBarController.m; sourceTree = "<group>"; };
+		8F754BA8166EAB5E00F74DBB /* ATMHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHud.h; sourceTree = "<group>"; };
+		8F754BA9166EAB5E00F74DBB /* ATMHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHud.m; sourceTree = "<group>"; };
+		8F754BAA166EAB5E00F74DBB /* ATMHudDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudDelegate.h; sourceTree = "<group>"; };
+		8F754BAB166EAB5E00F74DBB /* ATMHudQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudQueueItem.h; sourceTree = "<group>"; };
+		8F754BAC166EAB5E00F74DBB /* ATMHudQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHudQueueItem.m; sourceTree = "<group>"; };
+		8F754BAD166EAB5E00F74DBB /* ATMHudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMHudView.h; sourceTree = "<group>"; };
+		8F754BAE166EAB5E00F74DBB /* ATMHudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMHudView.m; sourceTree = "<group>"; };
+		8F754BAF166EAB5E00F74DBB /* ATMProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMProgressLayer.h; sourceTree = "<group>"; };
+		8F754BB0166EAB5E00F74DBB /* ATMProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMProgressLayer.m; sourceTree = "<group>"; };
+		8F754BB1166EAB5E00F74DBB /* ATMSoundFX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMSoundFX.h; sourceTree = "<group>"; };
+		8F754BB2166EAB5E00F74DBB /* ATMSoundFX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMSoundFX.m; sourceTree = "<group>"; };
+		8F754BB3166EAB5E00F74DBB /* ATMTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMTextLayer.h; sourceTree = "<group>"; };
+		8F754BB4166EAB5E00F74DBB /* ATMTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMTextLayer.m; sourceTree = "<group>"; };
+		8F754BBB166EADA600F74DBB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,13 +168,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F754B92166EA46A00F74DBB /* QuartzCore.framework in Frameworks */,
 				8F754B79166D7B4200F74DBB /* libicucore.dylib in Frameworks */,
 				8F754B51166D5D6B00F74DBB /* SystemConfiguration.framework in Frameworks */,
 				8F754B4F166D5D5500F74DBB /* MobileCoreServices.framework in Frameworks */,
 				8F35652D166B937C00814549 /* UIKit.framework in Frameworks */,
 				8F35652F166B937C00814549 /* Foundation.framework in Frameworks */,
 				8F356531166B937C00814549 /* CoreGraphics.framework in Frameworks */,
+				8F754BBC166EADA600F74DBB /* AudioToolbox.framework in Frameworks */,
+				8F754B92166EA46A00F74DBB /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +210,7 @@
 				8F35652C166B937C00814549 /* UIKit.framework */,
 				8F35652E166B937C00814549 /* Foundation.framework */,
 				8F356530166B937C00814549 /* CoreGraphics.framework */,
+				8F754BBB166EADA600F74DBB /* AudioToolbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -254,6 +277,7 @@
 			children = (
 				8F754B75166D77E500F74DBB /* RegexKitLite.h */,
 				8F754B76166D77E700F74DBB /* RegexKitLite.m */,
+				8F754BA7166EAB5D00F74DBB /* ATMHud */,
 				8F754B37166D556500F74DBB /* SinaURLConnection */,
 				8F754B32166D4D3F00F74DBB /* XML processing */,
 				8F35653B166B937C00814549 /* AppDelegate.h */,
@@ -346,6 +370,26 @@
 				8F754B9B166EA7E800F74DBB /* GenericTabBarController.m */,
 			);
 			name = "Generic Controllers";
+			sourceTree = "<group>";
+		};
+		8F754BA7166EAB5D00F74DBB /* ATMHud */ = {
+			isa = PBXGroup;
+			children = (
+				8F754BA8166EAB5E00F74DBB /* ATMHud.h */,
+				8F754BA9166EAB5E00F74DBB /* ATMHud.m */,
+				8F754BAA166EAB5E00F74DBB /* ATMHudDelegate.h */,
+				8F754BAB166EAB5E00F74DBB /* ATMHudQueueItem.h */,
+				8F754BAC166EAB5E00F74DBB /* ATMHudQueueItem.m */,
+				8F754BAD166EAB5E00F74DBB /* ATMHudView.h */,
+				8F754BAE166EAB5E00F74DBB /* ATMHudView.m */,
+				8F754BAF166EAB5E00F74DBB /* ATMProgressLayer.h */,
+				8F754BB0166EAB5E00F74DBB /* ATMProgressLayer.m */,
+				8F754BB1166EAB5E00F74DBB /* ATMSoundFX.h */,
+				8F754BB2166EAB5E00F74DBB /* ATMSoundFX.m */,
+				8F754BB3166EAB5E00F74DBB /* ATMTextLayer.h */,
+				8F754BB4166EAB5E00F74DBB /* ATMTextLayer.m */,
+			);
+			path = ATMHud;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -454,6 +498,12 @@
 				8F754B8F166E828700F74DBB /* NSString-Toolkit.m in Sources */,
 				8F754B99166EA65800F74DBB /* GenericTableViewController.m in Sources */,
 				8F754B9C166EA7EA00F74DBB /* GenericTabBarController.m in Sources */,
+				8F754BB5166EAB5E00F74DBB /* ATMHud.m in Sources */,
+				8F754BB6166EAB5E00F74DBB /* ATMHudQueueItem.m in Sources */,
+				8F754BB7166EAB5E00F74DBB /* ATMHudView.m in Sources */,
+				8F754BB8166EAB5E00F74DBB /* ATMProgressLayer.m in Sources */,
+				8F754BB9166EAB5E00F74DBB /* ATMSoundFX.m in Sources */,
+				8F754BBA166EAB5E00F74DBB /* ATMTextLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

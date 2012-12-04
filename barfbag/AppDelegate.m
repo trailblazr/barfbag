@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "ATMHud.h"
+#import "ATMHudQueueItem.h"
+
 #import "GenericTabBarController.h"
 
 #import "FahrplanViewController.h"
@@ -27,12 +30,14 @@
 @synthesize tabBarController  = _tabBarController;
 @synthesize themeColor = _themeColor;
 @synthesize scheduledConferences;
+@synthesize hud;
 
 - (void)dealloc {
     [_window release];
     [_tabBarController release];
     [_themeColor release];
     self.scheduledConferences = nil;
+    self.hud = nil;
     [super dealloc];
 }
 
@@ -94,7 +99,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:versionUpdated forKey:kUSERDEFAULT_KEY_DATA_VERSION_UPDATED];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        BOOL shouldDumpObjectGraph = YES; // FOR DEBUGGING PROBLEMS
+        BOOL shouldDumpObjectGraph = NO; // FOR DEBUGGING PROBLEMS
         if( shouldDumpObjectGraph ) {
              NSLog( @"CREATED CONFERENCE: %@", currentConference );
              NSLog( @"CREATED %i DAYS", [currentConference.days count] );
@@ -182,22 +187,26 @@
             isCached = YES;
             [self barfBagFillCached:isCached];
         }
+        [self hideHud];
     } errorBlock:^(NSError *error) {
         if( DEBUG ) NSLog( @"BARFBAG: NO INTERNET CONNECTION." );
         [self alertWithTag:0 title:@"Verbindungsproblem" andMessage:[NSString stringWithFormat:@"Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten.\n\nSie verwenden derzeit\n%@ der Daten.", [self barfBagCurrentDataVersion]]];
         // TODO: DISPLAY SOME ERROR...
         BOOL isCached = YES;
         [self barfBagFillCached:isCached];
+        [self hideHud];
     } uploadProgressBlock:^(float progress) {
         // do nothing
     } downloadProgressBlock:^(float progress) {
         // TODO: UPDATE PROGRESS DISPLAY ...
     } cancelBlock:^(float progress) {
         // do nothing
+        [self hideHud];
     }];
 }
 
 - (void) barfBagRefresh {
+    [self showHudWithCaption:@"Aktualisiere Daten" hasActivity:YES];
     [self barfBagFetchContentWithUrlString:kCONNECTION_CONTENT_URL_EN];
 }
 
@@ -243,9 +252,9 @@
     CGRect windowRect = CGRectMake(0.0, 0.0, width, height);
     controller.view.frame = windowRect;
     [_window addSubview:controller.view];
-    
+        
     // TRY TO INIT WITH EXISTING DATA WHILE WELCOME IS PRESENTED
-    [self barfBargLoadCached];    
+    [self   barfBargLoadCached    ];
     return YES;
 }
 
@@ -278,11 +287,34 @@
 }
 */
 
+
 /*
 // Optional UITabBarControllerDelegate method.
 - (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed
 {
 }
 */
+
+#pragma mark - Headup Display Management
+
+- (void) showHudWithCaption:(NSString*)caption hasActivity:(BOOL)hasActivity {
+    // ADD HUD VIEW
+    if( !hud ) {
+        self.hud = [[ATMHud alloc] initWithDelegate:self];
+        [_window addSubview:hud.view];
+    }
+    [hud setCaption:caption];
+    [hud setActivity:hasActivity];
+    [hud show];
+}
+
+- (void) hideHud {
+    [hud hide];
+}
+
+- (void) userDidTapHud:(ATMHud *)_hud {
+	[_hud hide];
+}
+
 
 @end

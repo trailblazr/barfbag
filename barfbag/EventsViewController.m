@@ -75,6 +75,10 @@
     return formattedDate;
 }
 
+- (Conference*) conference {
+    return (Conference*)[[self appDelegate].scheduledConferences lastObject];
+}
+
 #pragma mark - User Actions
 
 - (void) actionRefreshData {
@@ -108,12 +112,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Convenient Data Access
-
-- (Conference*) conference {
-    return (Conference*)[[self appDelegate].scheduledConferences lastObject];
 }
 
 #pragma mark - Table view data source
