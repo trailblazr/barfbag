@@ -1,19 +1,19 @@
 //
-//  SettingsViewController.m
+//  ConfigurationNavigationController.m
 //  barfbag
 //
 //  Created by Lincoln Six Echo on 03.12.12.
 //  Copyright (c) 2012 appdoctors. All rights reserved.
 //
 
-#import "SettingsViewController.h"
-#import "StandardSettingsViewController.h"
+#import "ConfigurationNavigationController.h"
+#import "ConfigurationViewController.h"
 
-@interface SettingsViewController ()
+@interface ConfigurationNavigationController ()
 
 @end
 
-@implementation SettingsViewController
+@implementation ConfigurationNavigationController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    StandardSettingsViewController *settingsController = [[StandardSettingsViewController alloc] initWithNibName:@"StandardSettingsViewController" bundle:nil];
+    ConfigurationViewController *settingsController = [[ConfigurationViewController alloc] initWithNibName:@"ConfigurationViewController" bundle:nil];
     [self pushViewController:settingsController animated:NO];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Zurück" style:UIBarButtonItemStylePlain target:nil action:nil];
 }

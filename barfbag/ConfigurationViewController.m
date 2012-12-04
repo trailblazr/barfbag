@@ -1,23 +1,24 @@
 //
-//  StandardSettingsViewController.m
+//  ConfigurationViewController.m
 //  barfbag
 //
 //  Created by Lincoln Six Echo on 03.12.12.
 //  Copyright (c) 2012 appdoctors. All rights reserved.
 //
 
-#import "StandardSettingsViewController.h"
+#import "ConfigurationViewController.h"
 
-@interface StandardSettingsViewController ()
+@interface ConfigurationViewController ()
 
 @end
 
-@implementation StandardSettingsViewController
+@implementation ConfigurationViewController
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        self.tableView.backgroundColor = [self themeColor];
     }
     return self;
 }

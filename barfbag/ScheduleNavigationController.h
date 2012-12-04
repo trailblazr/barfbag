@@ -1,5 +1,5 @@
 //
-//  StandardSettingsViewController.h
+//  ScheduleNavigationController.h
 //  barfbag
 //
 //  Created by Lincoln Six Echo on 03.12.12.
@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GenericTableViewController.h"
 
-@interface StandardSettingsViewController : GenericTableViewController {
+@interface ScheduleNavigationController : UINavigationController {
 
     
 }

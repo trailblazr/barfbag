@@ -1,5 +1,5 @@
 //
-//  SettingsViewController.h
+//  ConfigurationViewController.h
 //  barfbag
 //
 //  Created by Lincoln Six Echo on 03.12.12.
@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GenericTableViewController.h"
 
-@interface SettingsViewController : UINavigationController
+@interface ConfigurationViewController : GenericTableViewController {
+
+    
+}
 
 @end

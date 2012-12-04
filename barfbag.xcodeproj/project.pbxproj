@@ -27,10 +27,10 @@
 		8F754AF1166C1E5F00F74DBB /* SourceCodePro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F754AE8166C1E5F00F74DBB /* SourceCodePro-Light.ttf */; };
 		8F754AF2166C1E5F00F74DBB /* SourceCodePro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F754AE9166C1E5F00F74DBB /* SourceCodePro-Regular.ttf */; };
 		8F754AF3166C1E5F00F74DBB /* SourceCodePro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F754AEA166C1E5F00F74DBB /* SourceCodePro-Semibold.ttf */; };
-		8F754AF9166C1F4300F74DBB /* FahrplanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754AF7166C1F4300F74DBB /* FahrplanViewController.m */; };
-		8F754AFA166C1F4300F74DBB /* FahrplanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754AF8166C1F4300F74DBB /* FahrplanViewController.xib */; };
-		8F754AFE166C1F6D00F74DBB /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754AFC166C1F6D00F74DBB /* SettingsViewController.m */; };
-		8F754AFF166C1F6D00F74DBB /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754AFD166C1F6D00F74DBB /* SettingsViewController.xib */; };
+		8F754AF9166C1F4300F74DBB /* ScheduleNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754AF7166C1F4300F74DBB /* ScheduleNavigationController.m */; };
+		8F754AFA166C1F4300F74DBB /* ScheduleNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754AF8166C1F4300F74DBB /* ScheduleNavigationController.xib */; };
+		8F754AFE166C1F6D00F74DBB /* ConfigurationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754AFC166C1F6D00F74DBB /* ConfigurationNavigationController.m */; };
+		8F754AFF166C1F6D00F74DBB /* ConfigurationNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754AFD166C1F6D00F74DBB /* ConfigurationNavigationController.xib */; };
 		8F754B04166C221600F74DBB /* plan.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B00166C221600F74DBB /* plan.png */; };
 		8F754B05166C221600F74DBB /* plan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B01166C221600F74DBB /* plan@2x.png */; };
 		8F754B06166C221600F74DBB /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B02166C221600F74DBB /* settings.png */; };
@@ -39,8 +39,8 @@
 		8F754B0C166C22A100F74DBB /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B0A166C22A100F74DBB /* WelcomeViewController.xib */; };
 		8F754B14166C279800F74DBB /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B12166C279800F74DBB /* EventsViewController.m */; };
 		8F754B15166C279800F74DBB /* EventsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B13166C279800F74DBB /* EventsViewController.xib */; };
-		8F754B1B166C2B5C00F74DBB /* StandardSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B19166C2B5C00F74DBB /* StandardSettingsViewController.m */; };
-		8F754B1C166C2B5C00F74DBB /* StandardSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B1A166C2B5C00F74DBB /* StandardSettingsViewController.xib */; };
+		8F754B1B166C2B5C00F74DBB /* ConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B19166C2B5C00F74DBB /* ConfigurationViewController.m */; };
+		8F754B1C166C2B5C00F74DBB /* ConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B1A166C2B5C00F74DBB /* ConfigurationViewController.xib */; };
 		8F754B24166C2F0800F74DBB /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B23166C2F0800F74DBB /* UIColor-Expanded.m */; };
 		8F754B2B166C36A100F74DBB /* GenericViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B2A166C36A000F74DBB /* GenericViewController.m */; };
 		8F754B3A166D556600F74DBB /* SinaURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B39166D556600F74DBB /* SinaURLConnection.m */; };
@@ -66,6 +66,11 @@
 		8F754BB9166EAB5E00F74DBB /* ATMSoundFX.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754BB2166EAB5E00F74DBB /* ATMSoundFX.m */; };
 		8F754BBA166EAB5E00F74DBB /* ATMTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754BB4166EAB5E00F74DBB /* ATMTextLayer.m */; };
 		8F754BBC166EADA600F74DBB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F754BBB166EADA600F74DBB /* AudioToolbox.framework */; };
+		8F754BBF166EB0AE00F74DBB /* VideoStreamNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754BBE166EB0AC00F74DBB /* VideoStreamNavigationController.m */; };
+		8F754BC4166EB28C00F74DBB /* VideoStreamsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754BC2166EB28C00F74DBB /* VideoStreamsViewController.m */; };
+		8F754BC5166EB28C00F74DBB /* VideoStreamsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754BC3166EB28C00F74DBB /* VideoStreamsViewController.xib */; };
+		8F754BC8166EB47200F74DBB /* video.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754BC6166EB47200F74DBB /* video.png */; };
+		8F754BC9166EB47200F74DBB /* video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754BC7166EB47200F74DBB /* video@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,12 +101,12 @@
 		8F754AE9166C1E5F00F74DBB /* SourceCodePro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Regular.ttf"; sourceTree = "<group>"; };
 		8F754AEA166C1E5F00F74DBB /* SourceCodePro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceCodePro-Semibold.ttf"; sourceTree = "<group>"; };
 		8F754AEB166C1E5F00F74DBB /* SourceCodeProReadMe.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SourceCodeProReadMe.html; sourceTree = "<group>"; };
-		8F754AF6166C1F4300F74DBB /* FahrplanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FahrplanViewController.h; sourceTree = "<group>"; };
-		8F754AF7166C1F4300F74DBB /* FahrplanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FahrplanViewController.m; sourceTree = "<group>"; };
-		8F754AF8166C1F4300F74DBB /* FahrplanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FahrplanViewController.xib; sourceTree = "<group>"; };
-		8F754AFB166C1F6D00F74DBB /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		8F754AFC166C1F6D00F74DBB /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		8F754AFD166C1F6D00F74DBB /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		8F754AF6166C1F4300F74DBB /* ScheduleNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleNavigationController.h; sourceTree = "<group>"; };
+		8F754AF7166C1F4300F74DBB /* ScheduleNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleNavigationController.m; sourceTree = "<group>"; };
+		8F754AF8166C1F4300F74DBB /* ScheduleNavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScheduleNavigationController.xib; sourceTree = "<group>"; };
+		8F754AFB166C1F6D00F74DBB /* ConfigurationNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationNavigationController.h; sourceTree = "<group>"; };
+		8F754AFC166C1F6D00F74DBB /* ConfigurationNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurationNavigationController.m; sourceTree = "<group>"; };
+		8F754AFD166C1F6D00F74DBB /* ConfigurationNavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigurationNavigationController.xib; sourceTree = "<group>"; };
 		8F754B00166C221600F74DBB /* plan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plan.png; path = images/plan.png; sourceTree = SOURCE_ROOT; };
 		8F754B01166C221600F74DBB /* plan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "plan@2x.png"; path = "images/plan@2x.png"; sourceTree = SOURCE_ROOT; };
 		8F754B02166C221600F74DBB /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settings.png; path = images/settings.png; sourceTree = SOURCE_ROOT; };
@@ -112,9 +117,9 @@
 		8F754B11166C279800F74DBB /* EventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsViewController.h; sourceTree = "<group>"; };
 		8F754B12166C279800F74DBB /* EventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsViewController.m; sourceTree = "<group>"; };
 		8F754B13166C279800F74DBB /* EventsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsViewController.xib; sourceTree = "<group>"; };
-		8F754B18166C2B5C00F74DBB /* StandardSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardSettingsViewController.h; sourceTree = "<group>"; };
-		8F754B19166C2B5C00F74DBB /* StandardSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardSettingsViewController.m; sourceTree = "<group>"; };
-		8F754B1A166C2B5C00F74DBB /* StandardSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StandardSettingsViewController.xib; sourceTree = "<group>"; };
+		8F754B18166C2B5C00F74DBB /* ConfigurationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationViewController.h; sourceTree = "<group>"; };
+		8F754B19166C2B5C00F74DBB /* ConfigurationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurationViewController.m; sourceTree = "<group>"; };
+		8F754B1A166C2B5C00F74DBB /* ConfigurationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigurationViewController.xib; sourceTree = "<group>"; };
 		8F754B22166C2F0800F74DBB /* UIColor-Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor-Expanded.h"; sourceTree = "<group>"; };
 		8F754B23166C2F0800F74DBB /* UIColor-Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-Expanded.m"; sourceTree = "<group>"; };
 		8F754B29166C36A000F74DBB /* GenericViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericViewController.h; sourceTree = "<group>"; };
@@ -161,6 +166,13 @@
 		8F754BB3166EAB5E00F74DBB /* ATMTextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATMTextLayer.h; sourceTree = "<group>"; };
 		8F754BB4166EAB5E00F74DBB /* ATMTextLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATMTextLayer.m; sourceTree = "<group>"; };
 		8F754BBB166EADA600F74DBB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		8F754BBD166EB0AA00F74DBB /* VideoStreamNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoStreamNavigationController.h; sourceTree = "<group>"; };
+		8F754BBE166EB0AC00F74DBB /* VideoStreamNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoStreamNavigationController.m; sourceTree = "<group>"; };
+		8F754BC1166EB28B00F74DBB /* VideoStreamsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoStreamsViewController.h; sourceTree = "<group>"; };
+		8F754BC2166EB28C00F74DBB /* VideoStreamsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoStreamsViewController.m; sourceTree = "<group>"; };
+		8F754BC3166EB28C00F74DBB /* VideoStreamsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoStreamsViewController.xib; sourceTree = "<group>"; };
+		8F754BC6166EB47200F74DBB /* video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = video.png; path = images/video.png; sourceTree = SOURCE_ROOT; };
+		8F754BC7166EB47200F74DBB /* video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "video@2x.png"; path = "images/video@2x.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +252,8 @@
 		8F754AC7166B93A800F74DBB /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8F754BC6166EB47200F74DBB /* video.png */,
+				8F754BC7166EB47200F74DBB /* video@2x.png */,
 				8F754B00166C221600F74DBB /* plan.png */,
 				8F754B01166C221600F74DBB /* plan@2x.png */,
 				8F754B02166C221600F74DBB /* settings.png */,
@@ -279,43 +293,44 @@
 				8F754B76166D77E700F74DBB /* RegexKitLite.m */,
 				8F754BA7166EAB5D00F74DBB /* ATMHud */,
 				8F754B37166D556500F74DBB /* SinaURLConnection */,
-				8F754B32166D4D3F00F74DBB /* XML processing */,
+				8F754B32166D4D3F00F74DBB /* PentaBarf XML Parsing */,
 				8F35653B166B937C00814549 /* AppDelegate.h */,
 				8F35653C166B937C00814549 /* AppDelegate.m */,
 				8F754B9D166EA95900F74DBB /* Generic Controllers */,
 				8F754B08166C22A100F74DBB /* WelcomeViewController.h */,
 				8F754B09166C22A100F74DBB /* WelcomeViewController.m */,
 				8F754B0A166C22A100F74DBB /* WelcomeViewController.xib */,
-				8F754B16166C2AF700F74DBB /* Fahrplan */,
-				8F754B17166C2AFF00F74DBB /* Settings */,
+				8F754B16166C2AF700F74DBB /* Schedule */,
+				8F754BC0166EB0B800F74DBB /* Video */,
+				8F754B17166C2AFF00F74DBB /* Configuration */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
 		};
-		8F754B16166C2AF700F74DBB /* Fahrplan */ = {
+		8F754B16166C2AF700F74DBB /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				8F754AF6166C1F4300F74DBB /* FahrplanViewController.h */,
-				8F754AF7166C1F4300F74DBB /* FahrplanViewController.m */,
-				8F754AF8166C1F4300F74DBB /* FahrplanViewController.xib */,
+				8F754AF6166C1F4300F74DBB /* ScheduleNavigationController.h */,
+				8F754AF7166C1F4300F74DBB /* ScheduleNavigationController.m */,
+				8F754AF8166C1F4300F74DBB /* ScheduleNavigationController.xib */,
 				8F754B11166C279800F74DBB /* EventsViewController.h */,
 				8F754B12166C279800F74DBB /* EventsViewController.m */,
 				8F754B13166C279800F74DBB /* EventsViewController.xib */,
 			);
-			name = Fahrplan;
+			name = Schedule;
 			sourceTree = "<group>";
 		};
-		8F754B17166C2AFF00F74DBB /* Settings */ = {
+		8F754B17166C2AFF00F74DBB /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				8F754AFB166C1F6D00F74DBB /* SettingsViewController.h */,
-				8F754AFC166C1F6D00F74DBB /* SettingsViewController.m */,
-				8F754AFD166C1F6D00F74DBB /* SettingsViewController.xib */,
-				8F754B18166C2B5C00F74DBB /* StandardSettingsViewController.h */,
-				8F754B19166C2B5C00F74DBB /* StandardSettingsViewController.m */,
-				8F754B1A166C2B5C00F74DBB /* StandardSettingsViewController.xib */,
+				8F754AFB166C1F6D00F74DBB /* ConfigurationNavigationController.h */,
+				8F754AFC166C1F6D00F74DBB /* ConfigurationNavigationController.m */,
+				8F754AFD166C1F6D00F74DBB /* ConfigurationNavigationController.xib */,
+				8F754B18166C2B5C00F74DBB /* ConfigurationViewController.h */,
+				8F754B19166C2B5C00F74DBB /* ConfigurationViewController.m */,
+				8F754B1A166C2B5C00F74DBB /* ConfigurationViewController.xib */,
 			);
-			name = Settings;
+			name = Configuration;
 			sourceTree = "<group>";
 		};
 		8F754B21166C2F0800F74DBB /* categories */ = {
@@ -331,7 +346,7 @@
 			path = categories;
 			sourceTree = SOURCE_ROOT;
 		};
-		8F754B32166D4D3F00F74DBB /* XML processing */ = {
+		8F754B32166D4D3F00F74DBB /* PentaBarf XML Parsing */ = {
 			isa = PBXGroup;
 			children = (
 				8F754B6B166D73B000F74DBB /* BarfBagParser.h */,
@@ -347,7 +362,7 @@
 				8F754B6D166D73B000F74DBB /* Person.h */,
 				8F754B6E166D73B000F74DBB /* Person.m */,
 			);
-			name = "XML processing";
+			name = "PentaBarf XML Parsing";
 			sourceTree = "<group>";
 		};
 		8F754B37166D556500F74DBB /* SinaURLConnection */ = {
@@ -390,6 +405,18 @@
 				8F754BB4166EAB5E00F74DBB /* ATMTextLayer.m */,
 			);
 			path = ATMHud;
+			sourceTree = "<group>";
+		};
+		8F754BC0166EB0B800F74DBB /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				8F754BBD166EB0AA00F74DBB /* VideoStreamNavigationController.h */,
+				8F754BBE166EB0AC00F74DBB /* VideoStreamNavigationController.m */,
+				8F754BC1166EB28B00F74DBB /* VideoStreamsViewController.h */,
+				8F754BC2166EB28C00F74DBB /* VideoStreamsViewController.m */,
+				8F754BC3166EB28C00F74DBB /* VideoStreamsViewController.xib */,
+			);
+			name = Video;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -458,15 +485,18 @@
 				8F754AF1166C1E5F00F74DBB /* SourceCodePro-Light.ttf in Resources */,
 				8F754AF2166C1E5F00F74DBB /* SourceCodePro-Regular.ttf in Resources */,
 				8F754AF3166C1E5F00F74DBB /* SourceCodePro-Semibold.ttf in Resources */,
-				8F754AFA166C1F4300F74DBB /* FahrplanViewController.xib in Resources */,
-				8F754AFF166C1F6D00F74DBB /* SettingsViewController.xib in Resources */,
+				8F754AFA166C1F4300F74DBB /* ScheduleNavigationController.xib in Resources */,
+				8F754AFF166C1F6D00F74DBB /* ConfigurationNavigationController.xib in Resources */,
 				8F754B04166C221600F74DBB /* plan.png in Resources */,
 				8F754B05166C221600F74DBB /* plan@2x.png in Resources */,
 				8F754B06166C221600F74DBB /* settings.png in Resources */,
 				8F754B07166C221600F74DBB /* settings@2x.png in Resources */,
 				8F754B0C166C22A100F74DBB /* WelcomeViewController.xib in Resources */,
 				8F754B15166C279800F74DBB /* EventsViewController.xib in Resources */,
-				8F754B1C166C2B5C00F74DBB /* StandardSettingsViewController.xib in Resources */,
+				8F754B1C166C2B5C00F74DBB /* ConfigurationViewController.xib in Resources */,
+				8F754BC5166EB28C00F74DBB /* VideoStreamsViewController.xib in Resources */,
+				8F754BC8166EB47200F74DBB /* video.png in Resources */,
+				8F754BC9166EB47200F74DBB /* video@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,11 +509,11 @@
 			files = (
 				8F356539166B937C00814549 /* main.m in Sources */,
 				8F35653D166B937C00814549 /* AppDelegate.m in Sources */,
-				8F754AF9166C1F4300F74DBB /* FahrplanViewController.m in Sources */,
-				8F754AFE166C1F6D00F74DBB /* SettingsViewController.m in Sources */,
+				8F754AF9166C1F4300F74DBB /* ScheduleNavigationController.m in Sources */,
+				8F754AFE166C1F6D00F74DBB /* ConfigurationNavigationController.m in Sources */,
 				8F754B0B166C22A100F74DBB /* WelcomeViewController.m in Sources */,
 				8F754B14166C279800F74DBB /* EventsViewController.m in Sources */,
-				8F754B1B166C2B5C00F74DBB /* StandardSettingsViewController.m in Sources */,
+				8F754B1B166C2B5C00F74DBB /* ConfigurationViewController.m in Sources */,
 				8F754B24166C2F0800F74DBB /* UIColor-Expanded.m in Sources */,
 				8F754B2B166C36A100F74DBB /* GenericViewController.m in Sources */,
 				8F754B3A166D556600F74DBB /* SinaURLConnection.m in Sources */,
@@ -504,6 +534,8 @@
 				8F754BB8166EAB5E00F74DBB /* ATMProgressLayer.m in Sources */,
 				8F754BB9166EAB5E00F74DBB /* ATMSoundFX.m in Sources */,
 				8F754BBA166EAB5E00F74DBB /* ATMTextLayer.m in Sources */,
+				8F754BBF166EB0AE00F74DBB /* VideoStreamNavigationController.m in Sources */,
+				8F754BC4166EB28C00F74DBB /* VideoStreamsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,19 +1,19 @@
 //
-//  FahrplanViewController.m
+//  ScheduleNavigationController.m
 //  barfbag
 //
 //  Created by Lincoln Six Echo on 03.12.12.
 //  Copyright (c) 2012 appdoctors. All rights reserved.
 //
 
-#import "FahrplanViewController.h"
+#import "ScheduleNavigationController.h"
 #import "EventsViewController.h"
 
-@interface FahrplanViewController ()
+@interface ScheduleNavigationController ()
 
 @end
 
-@implementation FahrplanViewController
+@implementation ScheduleNavigationController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

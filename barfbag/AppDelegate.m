@@ -9,14 +9,15 @@
 #import "AppDelegate.h"
 #import "ATMHud.h"
 #import "ATMHudQueueItem.h"
+#import "SinaURLConnection.h"
 
 #import "GenericTabBarController.h"
 
-#import "FahrplanViewController.h"
-#import "SettingsViewController.h"
-#import "WelcomeViewController.h"
-#import "SinaURLConnection.h"
+#import "ScheduleNavigationController.h"
+#import "ConfigurationNavigationController.h"
+#import "VideoStreamNavigationController.h"
 
+#import "WelcomeViewController.h"
 
 #import "Conference.h"
 #import "Day.h"
@@ -233,12 +234,14 @@
     // SETUP ROOT CONTROLLER
     NSMutableArray *viewControllers = [NSMutableArray array];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        [viewControllers addObject:[[[FahrplanViewController alloc] initWithNibName:@"FahrplanViewController" bundle:nil] autorelease]];
-        [viewControllers addObject:[[[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil] autorelease]];
+        [viewControllers addObject:[[[ScheduleNavigationController alloc] initWithNibName:@"ScheduleNavigationController" bundle:nil] autorelease]];
+        [viewControllers addObject:[[[VideoStreamNavigationController alloc] initWithNibName:@"VideoStreamNavigationController" bundle:nil] autorelease]];
+        [viewControllers addObject:[[[ConfigurationNavigationController alloc] initWithNibName:@"ConfigurationNavigationController" bundle:nil] autorelease]];
     }
     else {
-        [viewControllers addObject:[[[FahrplanViewController alloc] initWithNibName:@"FahrplanViewController" bundle:nil] autorelease]];
-        [viewControllers addObject:[[[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil] autorelease]];
+        [viewControllers addObject:[[[ScheduleNavigationController alloc] initWithNibName:@"ScheduleNavigationController" bundle:nil] autorelease]];
+        [viewControllers addObject:[[[VideoStreamNavigationController alloc] initWithNibName:@"VideoStreamNavigationController" bundle:nil] autorelease]];
+        [viewControllers addObject:[[[ConfigurationNavigationController alloc] initWithNibName:@"ConfigurationNavigationController" bundle:nil] autorelease]];
     }
     self.tabBarController = [[[GenericTabBarController alloc] init] autorelease];
     _tabBarController.viewControllers = viewControllers;
