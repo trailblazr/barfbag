@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+#import "GenericTableViewController.h"
 
-@interface EventsViewController : UITableViewController <UISearchBarDelegate> {
+@interface EventsViewController : GenericTableViewController <UISearchBarDelegate> {
 
     BOOL isSearching;
 

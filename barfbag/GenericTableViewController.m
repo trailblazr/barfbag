@@ -1,20 +1,18 @@
 //
-//  StandardSettingsViewController.m
+//  GenericTableViewController.m
 //  barfbag
 //
-//  Created by Lincoln Six Echo on 03.12.12.
+//  Created by Lincoln Six Echo on 04.12.12.
 //  Copyright (c) 2012 appdoctors. All rights reserved.
 //
 
-#import "StandardSettingsViewController.h"
+#import "GenericTableViewController.h"
+#import "AppDelegate.h"
 
-@interface StandardSettingsViewController ()
+@implementation GenericTableViewController
 
-@end
-
-@implementation StandardSettingsViewController
-
-- (id)initWithStyle:(UITableViewStyle)style {
+- (id)initWithStyle:(UITableViewStyle)style
+{
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -24,7 +22,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Einstellungen";
+    self.tableView.backgroundColor = [self brightColor];
+    self.tableView.separatorColor = [self darkColor];
+    if( self.searchDisplayController && self.searchDisplayController.searchBar ) {
+        self.searchDisplayController.searchBar.tintColor = [self themeColor];
+    }
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -33,29 +35,30 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     // Return the number of sections.
     return 0;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     // Return the number of rows in the section.
     return 0;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
     
@@ -103,7 +106,8 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -113,5 +117,24 @@
      [detailViewController release];
      */
 }
+
+- (AppDelegate*) appDelegate {
+    return (AppDelegate*)[UIApplication sharedApplication].delegate;
+}
+
+- (UIColor*) themeColor {
+    return [self appDelegate].themeColor;
+}
+
+- (UIColor*) brightColor {
+    CGFloat hue = [[self themeColor] hue];
+    return [UIColor colorWithHue:hue saturation:0.025f brightness:1.0 alpha:1.0];
+}
+
+- (UIColor*) darkColor {
+    CGFloat hue = [[self themeColor] hue];
+    return [UIColor colorWithHue:hue saturation:0.5 brightness:0.7 alpha:1.0];
+}
+
 
 @end

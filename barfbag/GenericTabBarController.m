@@ -1,15 +1,15 @@
 //
-//  GenericViewController.m
+//  GenericTabBarController.m
 //  barfbag
 //
-//  Created by Lincoln Six Echo on 03.12.12.
+//  Created by Lincoln Six Echo on 04.12.12.
 //  Copyright (c) 2012 appdoctors. All rights reserved.
 //
 
-#import "GenericViewController.h"
+#import "GenericTabBarController.h"
 #import "AppDelegate.h"
 
-@implementation GenericViewController
+@implementation GenericTabBarController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -20,10 +20,11 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.tabBar.tintColor = kCOLOR_BACK;
+    self.tabBar.selectedImageTintColor = [self themeColor];
 }
 
 - (void)didReceiveMemoryWarning

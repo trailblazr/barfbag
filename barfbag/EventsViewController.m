@@ -31,10 +31,6 @@
 
 #pragma mark - Convenience Methods
 
-- (AppDelegate*) appDelegate {
-    return (AppDelegate*)[UIApplication sharedApplication].delegate;
-}
-
 - (void) updateNavigationTitle {
     self.navigationItem.titleView = nil;
     BOOL useCustomTitleView = NO;
@@ -79,20 +75,6 @@
     return formattedDate;
 }
 
-- (UIColor*) themeColor {
-    return [self appDelegate].themeColor;
-}
-
-- (UIColor*) brightColor {
-    CGFloat hue = [[self themeColor] hue];
-    return [UIColor colorWithHue:hue saturation:0.1f brightness:1.0 alpha:1.0];
-}
-
-- (UIColor*) darkColor {
-    CGFloat hue = [[self themeColor] hue];
-    return [UIColor colorWithHue:hue saturation:0.5 brightness:0.7 alpha:1.0];
-}
-
 #pragma mark - User Actions
 
 - (void) actionRefreshData {
@@ -116,9 +98,6 @@
     UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionRefreshData)] autorelease];
     self.navigationItem.rightBarButtonItem = item;
     [self updateNavigationTitle];
-    self.tableView.backgroundColor = [self brightColor];
-    self.tableView.separatorColor = [self darkColor];
-    self.searchDisplayController.searchBar.tintColor = [self themeColor];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

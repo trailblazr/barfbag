@@ -9,16 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "BarfBagParser.h"
 
+@class GenericTabBarController;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate,BarfBagParserDelegate> {
 
     UIWindow *window;
-    UITabBarController *tabBarController;
+    GenericTabBarController *tabBarController;
     UIColor *themeColor;
     NSArray *scheduledConferences;
 }
 
 @property( strong, nonatomic ) UIWindow *window;
-@property( strong, nonatomic ) UITabBarController *tabBarController;
+@property( strong, nonatomic ) GenericTabBarController *tabBarController;
 @property( strong, nonatomic ) UIColor *themeColor;
 @property( retain, nonatomic ) NSArray *scheduledConferences;
 

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "GenericTabBarController.h"
 
 #import "FahrplanViewController.h"
 #import "SettingsViewController.h"
@@ -230,9 +231,7 @@
         [viewControllers addObject:[[[FahrplanViewController alloc] initWithNibName:@"FahrplanViewController" bundle:nil] autorelease]];
         [viewControllers addObject:[[[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil] autorelease]];
     }
-    self.tabBarController = [[[UITabBarController alloc] init] autorelease];
-    _tabBarController.tabBar.tintColor = kCOLOR_BACK;
-    _tabBarController.tabBar.selectedImageTintColor = _themeColor;
+    self.tabBarController = [[[GenericTabBarController alloc] init] autorelease];
     _tabBarController.viewControllers = viewControllers;
     _window.rootViewController = self.tabBarController;
     [_window makeKeyAndVisible];

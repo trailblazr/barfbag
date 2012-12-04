@@ -56,6 +56,9 @@
 		8F754B77166D77E700F74DBB /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B76166D77E700F74DBB /* RegexKitLite.m */; };
 		8F754B79166D7B4200F74DBB /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F754B78166D7B4100F74DBB /* libicucore.dylib */; };
 		8F754B8F166E828700F74DBB /* NSString-Toolkit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B8E166E828700F74DBB /* NSString-Toolkit.m */; };
+		8F754B92166EA46A00F74DBB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F754B91166EA46A00F74DBB /* QuartzCore.framework */; };
+		8F754B99166EA65800F74DBB /* GenericTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B98166EA65600F74DBB /* GenericTableViewController.m */; };
+		8F754B9C166EA7EA00F74DBB /* GenericTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B9B166EA7E800F74DBB /* GenericTabBarController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,6 +135,11 @@
 		8F754B78166D7B4100F74DBB /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		8F754B8D166E828700F74DBB /* NSString-Toolkit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString-Toolkit.h"; sourceTree = "<group>"; };
 		8F754B8E166E828700F74DBB /* NSString-Toolkit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString-Toolkit.m"; sourceTree = "<group>"; };
+		8F754B91166EA46A00F74DBB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8F754B97166EA65400F74DBB /* GenericTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericTableViewController.h; sourceTree = "<group>"; };
+		8F754B98166EA65600F74DBB /* GenericTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericTableViewController.m; sourceTree = "<group>"; };
+		8F754B9A166EA7E600F74DBB /* GenericTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericTabBarController.h; sourceTree = "<group>"; };
+		8F754B9B166EA7E800F74DBB /* GenericTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericTabBarController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F754B92166EA46A00F74DBB /* QuartzCore.framework in Frameworks */,
 				8F754B79166D7B4200F74DBB /* libicucore.dylib in Frameworks */,
 				8F754B51166D5D6B00F74DBB /* SystemConfiguration.framework in Frameworks */,
 				8F754B4F166D5D5500F74DBB /* MobileCoreServices.framework in Frameworks */,
@@ -173,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				8F754B78166D7B4100F74DBB /* libicucore.dylib */,
+				8F754B91166EA46A00F74DBB /* QuartzCore.framework */,
 				8F754B50166D5D6B00F74DBB /* SystemConfiguration.framework */,
 				8F754B4E166D5D5500F74DBB /* MobileCoreServices.framework */,
 				8F35652C166B937C00814549 /* UIKit.framework */,
@@ -248,8 +258,7 @@
 				8F754B32166D4D3F00F74DBB /* XML processing */,
 				8F35653B166B937C00814549 /* AppDelegate.h */,
 				8F35653C166B937C00814549 /* AppDelegate.m */,
-				8F754B29166C36A000F74DBB /* GenericViewController.h */,
-				8F754B2A166C36A000F74DBB /* GenericViewController.m */,
+				8F754B9D166EA95900F74DBB /* Generic Controllers */,
 				8F754B08166C22A100F74DBB /* WelcomeViewController.h */,
 				8F754B09166C22A100F74DBB /* WelcomeViewController.m */,
 				8F754B0A166C22A100F74DBB /* WelcomeViewController.xib */,
@@ -324,6 +333,19 @@
 				8F754B39166D556600F74DBB /* SinaURLConnection.m */,
 			);
 			path = SinaURLConnection;
+			sourceTree = "<group>";
+		};
+		8F754B9D166EA95900F74DBB /* Generic Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8F754B29166C36A000F74DBB /* GenericViewController.h */,
+				8F754B2A166C36A000F74DBB /* GenericViewController.m */,
+				8F754B97166EA65400F74DBB /* GenericTableViewController.h */,
+				8F754B98166EA65600F74DBB /* GenericTableViewController.m */,
+				8F754B9A166EA7E600F74DBB /* GenericTabBarController.h */,
+				8F754B9B166EA7E800F74DBB /* GenericTabBarController.m */,
+			);
+			name = "Generic Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,6 +452,8 @@
 				8F754B74166D73B000F74DBB /* Person.m in Sources */,
 				8F754B77166D77E700F74DBB /* RegexKitLite.m in Sources */,
 				8F754B8F166E828700F74DBB /* NSString-Toolkit.m in Sources */,
+				8F754B99166EA65800F74DBB /* GenericTableViewController.m in Sources */,
+				8F754B9C166EA7EA00F74DBB /* GenericTabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

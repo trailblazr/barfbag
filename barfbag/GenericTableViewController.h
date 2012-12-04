@@ -1,8 +1,8 @@
 //
-//  GenericViewController.h
+//  GenericTableViewController.h
 //  barfbag
 //
-//  Created by Lincoln Six Echo on 03.12.12.
+//  Created by Lincoln Six Echo on 04.12.12.
 //  Copyright (c) 2012 appdoctors. All rights reserved.
 //
 
@@ -10,8 +10,7 @@
 
 @class AppDelegate;
 
-@interface GenericViewController : UIViewController {
-
+@interface GenericTableViewController : UITableViewController {
 
 }
 
