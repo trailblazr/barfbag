@@ -93,7 +93,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:versionUpdated forKey:kUSERDEFAULT_KEY_DATA_VERSION_UPDATED];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        BOOL shouldDumpObjectGraph = NO; // FOR DEBUGGING PROBLEMS
+        BOOL shouldDumpObjectGraph = YES; // FOR DEBUGGING PROBLEMS
         if( shouldDumpObjectGraph ) {
              NSLog( @"CREATED CONFERENCE: %@", currentConference );
              NSLog( @"CREATED %i DAYS", [currentConference.days count] );
@@ -227,10 +227,8 @@
         [viewControllers addObject:[[[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil] autorelease]];
     }
     else {
-        /*
-         viewController1 = [[[FirstViewController alloc] initWithNibName:@"FirstViewController_iPad" bundle:nil] autorelease];
-         viewController2 = [[[SecondViewController alloc] initWithNibName:@"SecondViewController_iPad" bundle:nil] autorelease];
-         */
+        [viewControllers addObject:[[[FahrplanViewController alloc] initWithNibName:@"FahrplanViewController" bundle:nil] autorelease]];
+        [viewControllers addObject:[[[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil] autorelease]];
     }
     self.tabBarController = [[[UITabBarController alloc] init] autorelease];
     _tabBarController.tabBar.tintColor = kCOLOR_BACK;
@@ -240,7 +238,11 @@
     [_window makeKeyAndVisible];
     
     // ADD WELCOME CONTROLLER ON TOP
-    WelcomeViewController *controller = [[[WelcomeViewController alloc] init] autorelease];
+    WelcomeViewController *controller = [[[WelcomeViewController alloc] initWithNibName:@"WelcomeViewController" bundle:nil] autorelease];
+    CGFloat width = _window.bounds.size.width;
+    CGFloat height = _window.bounds.size.height;
+    CGRect windowRect = CGRectMake(0.0, 0.0, width, height);
+    controller.view.frame = windowRect;
     [_window addSubview:controller.view];
     
     // TRY TO INIT WITH EXISTING DATA WHILE WELCOME IS PRESENTED

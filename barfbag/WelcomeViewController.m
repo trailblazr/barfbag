@@ -38,6 +38,8 @@
 }
 
 - (void) prepareMessage {
+    CGFloat fontSize40 = [[UIDevice currentDevice] isPad] ? 80.0f : 40.0f;
+    
     congressMessagePlainLabel.alpha = 0.0f;
     congressMessageSemiboldLabel.alpha = 0.0f;
     
@@ -48,7 +50,7 @@
     [messagePlain appendString:@"N.T-2.9-C/3\n"];
     [messagePlain appendString:@"27.-30.12./\n"];
     [messagePlain appendString:@"HA/M.B-U/RG"];
-    congressMessagePlainLabel.font = [UIFont fontWithName:@"SourceCodePro-Light" size:40.0];
+    congressMessagePlainLabel.font = [UIFont fontWithName:@"SourceCodePro-Light" size:fontSize40];
     congressMessagePlainLabel.text = messagePlain;
     congressMessagePlainLabel.textColor = kCOLOR_BACK;
 
@@ -59,7 +61,7 @@
     [messageSemibold appendString:@"    2.9-C/3\n"];
     [messageSemibold appendString:@" \n"];
     [messageSemibold appendString:@" "];
-    congressMessageSemiboldLabel.font = [UIFont fontWithName:@"SourceCodePro-Semibold" size:40.0];
+    congressMessageSemiboldLabel.font = [UIFont fontWithName:@"SourceCodePro-Semibold" size:fontSize40];
     congressMessageSemiboldLabel.text = messageSemibold;
     congressMessageSemiboldLabel.textColor = kCOLOR_BACK;
 }

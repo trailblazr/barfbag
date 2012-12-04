@@ -46,8 +46,8 @@
 }
 
 - (NSString*) navigationTitleString {
-    NSString *title = [NSString stringWithFormat:@"%@", [self conference].title];
-    if( !title ) {
+    NSString *title = [self conference].title;
+    if( !title || [title length] == 0 ) {
         return @"Ereignisse";
     }
     else {
