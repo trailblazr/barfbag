@@ -13,18 +13,25 @@
 #import "WelcomeViewController.h"
 #import "SinaURLConnection.h"
 
+
+#import "Conference.h"
+#import "Day.h"
+#import "Event.h"
+#import "Link.h"
+#import "Person.h"
+ 
 @implementation AppDelegate
 
 @synthesize window = _window;
 @synthesize tabBarController  = _tabBarController;
 @synthesize themeColor = _themeColor;
-@synthesize scheduledEvents;
+@synthesize scheduledConferences;
 
 - (void)dealloc {
     [_window release];
     [_tabBarController release];
     [_themeColor release];
-    self.scheduledEvents = nil;
+    self.scheduledConferences = nil;
     [super dealloc];
 }
 
@@ -54,14 +61,23 @@
 }
 
 
-#pragma mark - XMLParserDelegate
+#pragma mark - BarfBagParserDelegate
 
-- (void) xmlParser:(BarfBagParserXML *)parser addEvent:(Event *)event {
-    [scheduledEvents addObject:event];
-}
-
-- (void) xmlParser:(BarfBagParserXML*)parser setAllEvents:(NSMutableArray*)events {
-    self.scheduledEvents = events;
+- (void)receivedConferences:(NSArray *)conferencesArray {
+    self.scheduledConferences = conferencesArray;
+    /*
+	Conference *conference = (Conference*)[conferencesArray lastObject];
+	NSLog( @"CREATED CONFERENCE: %@", conference );
+	NSLog( @"CREATED %i DAYS", [conference.days count] );
+	for( Day *currentDay in conference.days ) {
+		NSLog( @"\n\nDAY %i HAS %i EVENTS\n", currentDay.dayIndex, [currentDay.events count] );
+		for( Event *currentEvent in currentDay.events ) {
+			//NSLog( @"EVENT (%i): %@ [TIME: %i:%i]", currentEvent.eventId, currentEvent.title, currentEvent.timeHour, currentEvent.timeMinute );
+            NSLog( @"%@", currentEvent );
+		}
+	}
+     */
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_PARSER_FINISHED object:self];    
 }
 
 #pragma mark - Fetching, Caching & Parsing of XML
@@ -69,94 +85,23 @@
 -(void) barfBagFillCached:(BOOL)isCachedContent {
     if( DEBUG ) NSLog( @"BARFBAG: PARSING..." );
     NSString *pathToStoredFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_FAHRPLAN]; // CACHE .xml file
-    // PREPARE PARSING
-    NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL fileURLWithPath:pathToStoredFile]];
-    BarfBagParserXML *parser = [[BarfBagParserXML alloc] initXMLParserWithDelegate:self];
-    [xmlParser setDelegate:parser];
-    
+
+	BarfBagParser *pentaParser = [[BarfBagParser alloc] init];
+	pentaParser.responseData = [NSData dataWithContentsOfFile:pathToStoredFile];
+	pentaParser.delegate = self;
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_PARSER_STARTED object:self];
-    BOOL success = [xmlParser parse];
-    
-    if( success ) {
-        if( DEBUG ) NSLog( @"BARFBAG: PARSING SUCCEEDED." );
-        NSString *versionCurrent = [[NSUserDefaults standardUserDefaults] stringForKey:kUSERDEFAULT_KEY_DATA_VERSION_CURRENT];
-        NSString *versionUpdated = [[NSUserDefaults standardUserDefaults] stringForKey:kUSERDEFAULT_KEY_DATA_VERSION_UPDATED];
-        BOOL hasNewDataVersion = ![versionCurrent isEqualToString:versionUpdated];
-        
-        [[NSUserDefaults standardUserDefaults] setObject:versionUpdated forKey:kUSERDEFAULT_KEY_DATA_VERSION_CURRENT];
-        
-        if( hasNewDataVersion ) { // UPDATE LOCAL NOTIFICATIONS
-            BOOL shouldRescheduleAndCheckLocalNotifications = NO;
-            if( shouldRescheduleAndCheckLocalNotifications ) {
-                /*
-                NSUserDefaults *currentDefaults = [NSUserDefaults standardUserDefaults];
-                NSData *dataRepresentingSavedArray = [currentDefaults objectForKey:@"favorites"];
-                NSMutableArray *favoritesArray = [[NSMutableArray alloc] init];
-                
-                [[UIApplication sharedApplication] cancelAllLocalNotifications];
-                if (dataRepresentingSavedArray != nil) {
-                    NSArray *oldSavedArray = [NSKeyedUnarchiver unarchiveObjectWithData:dataRepresentingSavedArray];
-                    if (oldSavedArray != nil){
-                        [favoritesArray setArray:oldSavedArray];
-                    }
-                }
-                for (int i=0; i < favoritesArray.count; i++){
-                    Event *savedEvent = [favoritesArray objectAtIndex:i];
-                    
-                    for (int j=0;j < self.events.count;j++){
-                        Event *newEvent = [self.events objectAtIndex:j];
-                        if (savedEvent.eventID == newEvent.eventID){
-                            if (savedEvent.reminderSet){
-                                UILocalNotification *reminder = [[UILocalNotification alloc]init];
-                                reminder.fireDate = [NSDate dateWithTimeInterval:-900 sinceDate:newEvent.realDate];
-                                reminder.timeZone = [NSTimeZone timeZoneWithName:@"Europe/Berlin"];
-                                reminder.alertBody = [NSString stringWithFormat:@"Your favorite event %@ will start in 15 minutes",newEvent.title];
-                                reminder.alertAction = @"Open";
-                                reminder.soundName = @"scifi.caf";
-                                reminder.applicationIconBadgeNumber = 1;
-                                NSDictionary *userDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:newEvent.eventID] forKey:@"28C3Reminder"];
-                                reminder.userInfo = userDict;
-                                [[UIApplication sharedApplication] scheduleLocalNotification:reminder];
-                                [reminder release];
-                            }
-                            newEvent.reminderSet = savedEvent.reminderSet;
-                            [favoritesArray replaceObjectAtIndex:i withObject:newEvent];
-                        }
-                    }
-                }
-                [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:favoritesArray] forKey:@"favorites"];
-                [[NSUserDefaults standardUserDefaults]synchronize];
-                [favoritesArray release];
-                 */
-            }
-            
-            [[NSUserDefaults standardUserDefaults] synchronize]; // SAVE STATE
-            NSString *updatedReminders = shouldRescheduleAndCheckLocalNotifications ? @" We updated your reminders and favorites." : @"";
-            NSString *messageString = [NSString stringWithFormat:@"The Fahrplan was updated to %@.%@", versionUpdated, updatedReminders];
-            
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Updated" message:messageString delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-            [alert show];
-            [alert release];
-        }
-                
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_PARSER_SUCCEEDED object:self];
-        
-        if( isCachedContent ) {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Warning" message:@"Could not update data. Using last cached data!" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-            [alert show];
-            [alert release];
-        }
-    }
-    else{
-        if( DEBUG ) NSLog( @"BARFBAG: PARSING FAILED." );
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_PARSER_FAILED object:self];
-    }
-    if( DEBUG ) NSLog( @"BARFBAG: COMPLETE. WE GOT %i EVENTS.", [scheduledEvents count] );
+	[pentaParser startParsingResponseData];
+
+    /*
+    if( DEBUG ) NSLog( @"BARFBAG: PARSING SUCCEEDED." );
+    NSString *versionCurrent = [[NSUserDefaults standardUserDefaults] stringForKey:kUSERDEFAULT_KEY_DATA_VERSION_CURRENT];
+    NSString *versionUpdated = [[NSUserDefaults standardUserDefaults] stringForKey:kUSERDEFAULT_KEY_DATA_VERSION_UPDATED];
+    BOOL hasNewDataVersion = ![versionCurrent isEqualToString:versionUpdated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_PARSER_FAILED object:self];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_PARSER_FINISHED object:self];
-    parser.parserDelegate = nil;
-    xmlParser.delegate = nil;
-    [parser release];
-    [xmlParser release];
+     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_PARSER_SUCCEEDED object:self];
+     */
+    
 }
 
 - (void) barfBagFetchContentWithUrlString:(NSString*)urlString {

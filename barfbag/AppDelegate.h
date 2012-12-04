@@ -7,20 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BarfBagParserXML.h"
+#import "BarfBagParser.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate,BarfBagParserXMLDelegate> {
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate,BarfBagParserDelegate> {
 
     UIWindow *window;
     UITabBarController *tabBarController;
     UIColor *themeColor;
-    NSMutableArray *scheduledEvents;
+    NSArray *scheduledConferences;
 }
 
 @property( strong, nonatomic ) UIWindow *window;
 @property( strong, nonatomic ) UITabBarController *tabBarController;
 @property( strong, nonatomic ) UIColor *themeColor;
-@property( retain, nonatomic ) NSMutableArray *scheduledEvents;
+@property( retain, nonatomic ) NSArray *scheduledConferences;
 
 - (void) barfBagRefresh;
 

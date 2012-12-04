@@ -1,93 +1,169 @@
 //
-// Event.m
+//  Event.m
+//  AnyXML
+//
+//  Created by Helge Städtler on 26.12.10.
+//  Copyright 2010 staedtler development. All rights reserved.
 //
 
 #import "Event.h"
+#import "RegexKitLite.h"
 
 @implementation Event
 
-@synthesize title;
-@synthesize room;
-@synthesize abstract;
-@synthesize description;
-@synthesize eventID;
-@synthesize subtitle;
-@synthesize start;
+@synthesize eventId;
 @synthesize duration;
-@synthesize date;
-@synthesize language;
+@synthesize start;
+@synthesize timeHour;
+@synthesize timeMinute;
+@synthesize type;
+@synthesize room;
+@synthesize slug;
+@synthesize title;	
+@synthesize subtitle;
 @synthesize track;
-@synthesize startDate;
-@synthesize realDate;
-@synthesize reminderSet;
-@synthesize speaker;
+@synthesize language;
+@synthesize abstract;
+@synthesize descriptionText;
+@synthesize persons;
+@synthesize links;	
 
 
 - (void) dealloc {
-	[abstract release];
-    [description release];
-	[subtitle release];
 	[start release];
-	[duration release];
 	[room release];
+	[slug release];
 	[title release];
-	[date release];
-	[language release];
+	[subtitle release];
 	[track release];
-    [startDate release];
-    [realDate release];
-    
+	[language release];
+	[abstract release];
+	[descriptionText release];
+	[persons release];
+	[links release];
 	[super dealloc];
 }
 
-- (void)encodeWithCoder:(NSCoder *)coder; {
-    [coder encodeObject:title forKey:@"title"];
-    [coder encodeObject:room forKey:@"room"];
-    [coder encodeObject:abstract forKey:@"abstract"];
-    [coder encodeObject:description forKey:@"description"];
-    [coder encodeInteger:eventID forKey:@"eventID"]; 
-    [coder encodeObject:subtitle forKey:@"subtitle"];
-    [coder encodeObject:start forKey:@"start"]; 
-    [coder encodeObject:duration forKey:@"duration"];
-    [coder encodeObject:date forKey:@"date"];
-    [coder encodeObject:language forKey:@"language"];
-    [coder encodeObject:track forKey:@"track"];
-    [coder encodeObject:startDate forKey:@"startDate"];
-    [coder encodeObject:speaker forKey:@"speaker"];
-    [coder encodeObject:realDate forKey:@"realDate"];
-    [coder encodeBool:reminderSet forKey:@"reminderSet"];
-
-}
-
-- (id)initWithCoder:(NSCoder *)coder; {
-    if( self = [super init] ) {
-        self.title = [coder decodeObjectForKey:@"title"];
-        self.room = [coder decodeObjectForKey:@"room"];
-        self.abstract = [coder decodeObjectForKey:@"abstract"];
-        self.description = [coder decodeObjectForKey:@"description"];
-        self.subtitle = [coder decodeObjectForKey:@"subtitle"];
-        self.start = [coder decodeObjectForKey:@"start"];
-        self.duration = [coder decodeObjectForKey:@"duration"];
-        self.date = [coder decodeObjectForKey:@"date"];
-        self.language = [coder decodeObjectForKey:@"language"];
-        self.track = [coder decodeObjectForKey:@"track"];
-        self.startDate = [coder decodeObjectForKey:@"startDate"];
-        self.realDate = [coder decodeObjectForKey:@"realDate"];
-        self.speaker = [coder decodeObjectForKey:@"speaker"];
-        self.reminderSet = [coder decodeBoolForKey:@"reminderSet"];
-
-        self.eventID = [coder decodeIntegerForKey:@"eventID"];
-    }   
+- (id)init {
+    if (self = [super init]) {
+        // Initialization code
+		self.eventId = -1;
+		self.title = @"Unknown";
+        self.persons = [NSMutableArray array];
+        self.links = [NSMutableArray array];
+    }
     return self;
 }
 
-- (BOOL)isAtDate:(NSDate *)_date {
-    NSArray *durationArray = [self.duration componentsSeparatedByString:@":"];
-    double hours = [[durationArray objectAtIndex:0] doubleValue] * 60 * 60;
-    double minutes = [[durationArray objectAtIndex:1] doubleValue] * 60;
-    NSDate * endDate = [NSDate dateWithTimeInterval:hours+minutes sinceDate:self.startDate];
-    
-    return [_date compare:self.startDate] == NSOrderedDescending  && [_date compare:endDate] == NSOrderedAscending;
+- (NSString*) pngIconHref {
+    NSString *imageName = [NSString stringWithFormat:@"event-%i-128x128.png", eventId];
+    return [NSString stringWithFormat:@"%@/%@", kURL_IMAGE_PATH, imageName];
+}
+
+
+- (void) addPerson:(Person*)personToAdd {
+    [persons addObject:personToAdd];
+}
+
+- (void) addLink:(Link*)linkToAdd {
+    [links addObject:linkToAdd];
+}
+
+- (NSString*) description {
+	NSMutableString *stringRepresentation = [NSMutableString string];
+	[stringRepresentation appendFormat:@"EVENT (%i)\n", eventId];
+	[stringRepresentation appendFormat:@"title = %@\n", title == nil ? @"[NIL]" : title];
+	[stringRepresentation appendFormat:@"subtitle = %@\n", subtitle == nil ? @"[NIL]" : subtitle];
+	[stringRepresentation appendFormat:@"room = %@\n", room == nil ? @"[NIL]" : room];
+	[stringRepresentation appendFormat:@"track = %@\n", track == nil ? @"[NIL]" : track];
+	[stringRepresentation appendFormat:@"language = %@\n", language == nil ? @"[NIL]" : language];
+	[stringRepresentation appendFormat:@"room = %@\n", room == nil ? @"[NIL]" : room];
+	[stringRepresentation appendFormat:@"start = %@\n", start == nil ? @"[NIL]" : start];
+	[stringRepresentation appendFormat:@"duration = %f\n", duration == 0 ? -1.0f : duration];
+	[stringRepresentation appendFormat:@"icon = %@\n", [self pngIconHref]];
+	[stringRepresentation appendFormat:@"persons:\n%@", [persons count] ? persons : @"[NONE]"];
+	[stringRepresentation appendFormat:@"links:\n%@", [links count] ? links : @"[NONE]"];
+	[stringRepresentation appendFormat:@"\n\n"];
+	return stringRepresentation;
+}
+
+- (void) takeDurationFromString:(NSString*)durationString { //  <duration>01:00</duration>
+	// step 1: create parts of strings
+	NSArray *durationComponents = [durationString componentsSeparatedByString:@":"];
+	// step 2: calculate timeinterval in minutes
+	int hours, minutes, seconds = 0;
+	int i = 0;
+	for( NSString* currentComponent in durationComponents ) {
+		i++;
+		switch( i ) {
+			case 1:
+				hours = [currentComponent intValue];
+				break;
+			case 2:
+				minutes = [currentComponent intValue];
+				break;
+			case 3:
+				seconds = [currentComponent intValue];
+				break;
+			default:
+				break;
+		}
+	}
+	self.duration = (NSTimeInterval)[[NSNumber numberWithInt:(hours+minutes)] doubleValue];
+}
+
+
+- (NSString*) trimmedString:(NSString*)stringToTrim {
+    NSMutableString *mStr = [stringToTrim mutableCopy];
+    CFStringTrimWhitespace((CFMutableStringRef)mStr);
+    NSString *result = [mStr copy];
+    [mStr release];
+    return [result autorelease];
+}
+
+- (void) takeStartDateTimeFromString:(NSString*)dateString {
+    self.start = [self trimmedString:dateString];
+    NSString *regex = @"[0-9]{2}:[0-9]{2}";
+	NSArray *matchesArray = [dateString componentsMatchedByRegex:regex];
+    NSString *timeString = nil;
+    NSArray *timeComponents = nil;
+    if( [matchesArray count] > 0 ) {
+        timeString = [matchesArray objectAtIndex:0];
+        timeComponents = [timeString componentsSeparatedByString:@":"];
+    }
+    self.timeHour = [[timeComponents objectAtIndex:0] integerValue];
+	self.timeMinute = [[timeComponents objectAtIndex:1]  integerValue];
+}
+
+- (void) takeValuesFromDictionary:(NSDictionary*)dict {
+	// NSString *className = nil;
+	// className = [someObject isKindOfClass:[NSDictionary class]] ? @"NSDictionary" : @"no dict";
+	// NSLog( @"allkeys = %@", [dict allKeys]  );
+	if( [dict valueForKey:@"nodeName"] == nil ) return;
+	NSString *attributeValue = nil;
+	@try {
+		attributeValue = [dict valueForKey:@"nodeAttributeArray"];
+		
+	}
+	@catch (NSException * e) {
+		// do nothing
+	}
+	@finally {
+		// do noting
+	}
+}
+
++ (NSMutableArray*) completeEventListFromArray:(NSArray*)array withFetchLimit:(int)limitValue {
+	Event *createdEvent = nil;
+	NSMutableArray *listCreated = [NSMutableArray array];
+	NSDictionary *currentDict = nil;
+	for( int i = 0; i < [array count]; i++ ) {
+		currentDict = (NSDictionary*) [array objectAtIndex:i];
+		createdEvent = [[Event alloc] init];
+		[createdEvent takeValuesFromDictionary:currentDict];
+		[listCreated addObject:createdEvent];
+	}
+	return listCreated;
 }
 
 @end

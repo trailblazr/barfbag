@@ -42,6 +42,7 @@
 #define kCONNECTION_TIMEOUT 60.0f
 #define kCONNECTION_CONTENT_URL_EN @"http://events.ccc.de/congress/2011/Fahrplan/schedule.en.xml"
 #define kCONNECTION_CONTENT_URL_DE @"http://events.ccc.de/congress/2011/Fahrplan/schedule.de.xml"
+#define kURL_IMAGE_PATH @"http://events.ccc.de/congress/2011/Fahrplan/images"
 
 // DEFAULT USER VALUE KEYS
 #define kUSERDEFAULT_KEY_DATA_VERSION_CURRENT @"barf_data_version_current"

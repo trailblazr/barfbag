@@ -8,6 +8,8 @@
 
 #import "EventsViewController.h"
 #import "AppDelegate.h"
+#import "Conference.h"
+#import "Day.h"
 #import "Event.h"
 
 @interface EventsViewController ()
@@ -43,11 +45,8 @@
     [super viewDidLoad];
     UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionRefreshData)] autorelease];
     self.navigationItem.rightBarButtonItem = item;
-    NSString *dataVersion = [[NSUserDefaults standardUserDefaults] stringForKey:kUSERDEFAULT_KEY_DATA_VERSION_CURRENT];
-    NSRange range = [dataVersion rangeOfString:@"^\\s*" options:NSRegularExpressionSearch];
-    dataVersion = [dataVersion stringByReplacingCharactersInRange:range withString:@""];
     
-    self.navigationItem.title = [NSString stringWithFormat:@"Fahrplan (%@)", dataVersion];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@", [self conference].title];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -60,14 +59,28 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Convenient Data Access
+
+- (Conference*) conference {
+    return (Conference*)[[self appDelegate].scheduledConferences lastObject];
+}
+
 #pragma mark - Table view data source
 
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSArray *days = [[self conference] days];
+    Day *currentDay = [days objectAtIndex:section];
+    return [NSString stringWithFormat:@"%@",currentDay.date];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return [[[self conference] days] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[self appDelegate].scheduledEvents count];
+    NSArray *days = [[self conference] days];
+    Day *currentDay = [days objectAtIndex:section];
+    return [[currentDay events] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -80,8 +93,11 @@
     }
     
     // Configure the cell...
-    Event *currentEvent = [[self appDelegate].scheduledEvents objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ | %@",currentEvent.start, currentEvent.title];
+    NSArray *days = [[self conference] days];
+    Day *currentDay = [days objectAtIndex:indexPath.section];
+    Event *currentEvent = [currentDay.events objectAtIndex:indexPath.row];
+    // NSLog( @"EVENT: %@", currentEvent );
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",currentEvent.start, currentEvent.title];
     cell.detailTextLabel.text = currentEvent.subtitle;
     
     return cell;
