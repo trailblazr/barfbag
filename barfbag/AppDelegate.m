@@ -69,7 +69,7 @@
 
 #pragma mark - BarfBagParserDelegate
 
-- (void)receivedConferences:(NSArray *)conferencesArray {
+- (void) barfBagParser:(BarfBagParser*)parser parsedConferences:(NSArray *)conferencesArray {
     self.scheduledConferences = conferencesArray;
 
     // CHECK IF WE HAVE VALID DATA
@@ -213,9 +213,14 @@
     }
 }
 
-#pragma mark - Application Transition after Welcome
+#pragma mark - Application Launching & State Transitions
 
-- (void) continueAfterWelcome {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.themeColor = [self randomColor];
+
+    // SETUP ROOT CONTROLLER
     NSMutableArray *viewControllers = [NSMutableArray array];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         [viewControllers addObject:[[[FahrplanViewController alloc] initWithNibName:@"FahrplanViewController" bundle:nil] autorelease]];
@@ -228,29 +233,17 @@
          */
     }
     self.tabBarController = [[[UITabBarController alloc] init] autorelease];
+    _tabBarController.tabBar.tintColor = kCOLOR_BACK;
+    _tabBarController.tabBar.selectedImageTintColor = _themeColor;
     _tabBarController.viewControllers = viewControllers;
-    _window.alpha = 0.0f;
     _window.rootViewController = self.tabBarController;
-    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        _window.alpha = 1.0f;
-        _tabBarController.tabBar.selectedImageTintColor = [self themeColor];
-        _tabBarController.tabBar.tintColor = kCOLOR_BACK;
-    } completion:^(BOOL finished) {
-        // do nothing
-    }];
-}
-
-#pragma mark - Application Launching & State Transitions
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    self.themeColor = [self randomColor];
-    WelcomeViewController *controller = [[[WelcomeViewController alloc] init] autorelease];
-    _window.rootViewController = controller;
     [_window makeKeyAndVisible];
     
-    // TRY TO INIT WITH EXISTING DATA
+    // ADD WELCOME CONTROLLER ON TOP
+    WelcomeViewController *controller = [[[WelcomeViewController alloc] init] autorelease];
+    [_window addSubview:controller.view];
+    
+    // TRY TO INIT WITH EXISTING DATA WHILE WELCOME IS PRESENTED
     [self barfBargLoadCached];    
     return YES;
 }

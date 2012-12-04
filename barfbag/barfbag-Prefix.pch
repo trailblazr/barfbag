@@ -24,26 +24,26 @@
 #define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
 // 29C3 COLORS
-#define kCOLOR_VIOLET [UIColor colorWithHue:0.672f saturation:0.51f brightness:0.63f alpha:1.0]
-#define kCOLOR_GREEN [UIColor colorWithHue:0.43f saturation:0.96f brightness:0.70f alpha:1.0]
-#define kCOLOR_RED [UIColor colorWithHue:0.972f saturation:0.90f brightness:0.93f alpha:1.0]
-#define kCOLOR_CYAN [UIColor colorWithHue:0.5138f saturation:0.58f brightness:0.82f alpha:1.0]
-#define kCOLOR_ORANGE [UIColor colorWithHue:0.083f saturation:0.80f brightness:0.97f alpha:1.0]
-#define kCOLOR_WHITE [UIColor colorWithHue:1.0f saturation:0.0f brightness:1.0f alpha:1.0]
-#define kCOLOR_BLACK [UIColor colorWithHue:0.0f saturation:0.0f brightness:0.0f alpha:1.0]
-#define kCOLOR_BACK [UIColor colorWithHue:0.65f saturation:1.0f brightness:0.2f alpha:1.0]
-#define kCOLOR_CLEAR [UIColor clearColor]
+#define kCOLOR_VIOLET   [UIColor colorWithHue:0.672f saturation:0.51f brightness:0.63f alpha:1.0]
+#define kCOLOR_GREEN    [UIColor colorWithHue:0.43f saturation:0.96f brightness:0.70f alpha:1.0]
+#define kCOLOR_RED      [UIColor colorWithHue:0.972f saturation:0.90f brightness:0.93f alpha:1.0]
+#define kCOLOR_CYAN     [UIColor colorWithHue:0.5138f saturation:0.58f brightness:0.82f alpha:1.0]
+#define kCOLOR_ORANGE   [UIColor colorWithHue:0.083f saturation:0.80f brightness:0.97f alpha:1.0]
+#define kCOLOR_WHITE    [UIColor colorWithHue:1.0f saturation:0.0f brightness:1.0f alpha:1.0]
+#define kCOLOR_BLACK    [UIColor colorWithHue:0.0f saturation:0.0f brightness:0.0f alpha:1.0]
+#define kCOLOR_BACK     [UIColor colorWithHue:0.65f saturation:1.0f brightness:0.2f alpha:1.0]
+#define kCOLOR_CLEAR    [UIColor clearColor]
 
 // CACHED & TEMPORARY FILES & FOLDERS
-#define kFOLDER_DOCUMENTS   [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
-#define kFOLDER_CACHES      [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches"]
+#define kFOLDER_DOCUMENTS       [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+#define kFOLDER_CACHES          [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches"]
 #define kFILE_CACHED_FAHRPLAN   @"fahrplan.xml"
 
 // NETWORKING PARAMETERS
-#define kCONNECTION_TIMEOUT 60.0f
-#define kCONNECTION_CONTENT_URL_EN @"http://events.ccc.de/congress/2011/Fahrplan/schedule.en.xml"
-#define kCONNECTION_CONTENT_URL_DE @"http://events.ccc.de/congress/2011/Fahrplan/schedule.de.xml"
-#define kURL_IMAGE_PATH @"http://events.ccc.de/congress/2011/Fahrplan/images"
+#define kCONNECTION_TIMEOUT         60.0f
+#define kCONNECTION_CONTENT_URL_EN  @"http://events.ccc.de/congress/2011/Fahrplan/schedule.en.xml"
+#define kCONNECTION_CONTENT_URL_DE  @"http://events.ccc.de/congress/2011/Fahrplan/schedule.de.xml"
+#define kURL_IMAGE_PATH             @"http://events.ccc.de/congress/2011/Fahrplan/images"
 
 // DEFAULT USER VALUE KEYS
 #define kUSERDEFAULT_KEY_DATA_VERSION_CURRENT @"barf_data_version_current"

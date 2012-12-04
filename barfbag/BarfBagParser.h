@@ -14,11 +14,7 @@
 @class Person;
 @class Link;
 
-@protocol BarfBagParserDelegate <NSObject>
-
-- (void)receivedConferences:(NSArray *)conferencesArray;
-
-@end
+@protocol BarfBagParserDelegate;
 
 @interface BarfBagParser : NSObject <NSXMLParserDelegate> {
 
@@ -59,5 +55,11 @@
 - (void) appendString:(NSString*)stringToAppend forKey:(NSString*)key withPrefix:(NSString*)prefix;
 - (NSString*) stringValueForKey:(NSString*)key withPrefix:(NSString*)prefix;
 - (NSDate*) dateFromString:(NSString*)string forFormat:(NSString*)format;
+
+@end
+
+@protocol BarfBagParserDelegate <NSObject>
+
+- (void) barfBagParser:(BarfBagParser*)parser parsedConferences:(NSArray *)conferencesArray;
 
 @end

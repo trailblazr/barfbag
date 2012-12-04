@@ -29,11 +29,10 @@
 
 - (void) continueAfterWelcome {
     [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        congressMessagePlainLabel.alpha = 0.0f;
-        congressMessageSemiboldLabel.alpha = 0.0f;
+        self.view.alpha = 0.0;
     } completion:^(BOOL finished) {
         if( finished ) {
-            [[UIApplication sharedApplication].delegate performSelector:@selector(continueAfterWelcome)];        
+            [self.view removeFromSuperview];
         }
     }];
 }

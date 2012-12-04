@@ -262,11 +262,11 @@
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
     if( DEBUG ) NSLog( @"BARFBAG: PARSING FINISHED." );
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_PARSER_FINISHED object:self];
-	if( [delegate respondsToSelector:@selector(receivedConferences:)] )
-        [delegate receivedConferences:conferencesParsed];
+	if( [delegate respondsToSelector:@selector(barfBagParser:parsedConferences:)] )
+        [delegate barfBagParser:self parsedConferences:conferencesParsed];
     else { 
         [NSException raise:NSInternalInconsistencyException
-					format:@"PentaParser delegate doesn't respond to receivedConferences:"];
+					format:@"PentaParser delegate doesn't implement selector barfBagParser:parsedConferences:"];
     }
 }
 
