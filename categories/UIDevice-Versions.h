@@ -12,6 +12,7 @@
 - (BOOL) isLowerThanOS_3;
 - (BOOL) isLowerThanOS_4;
 - (BOOL) isLowerThanOS_5;
+- (BOOL) isLowerThanOS_6;
 - (BOOL) isDevice4Inches;
 - (BOOL) isPad;
 - (BOOL) isFon5;

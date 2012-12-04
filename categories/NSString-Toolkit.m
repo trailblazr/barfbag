@@ -11,4 +11,13 @@
     return [result autorelease];
 }
 
+- (NSString*)placeHolderWhenEmpty:(NSString*)placeholder {
+    if( [[self trimmedString] length] == 0 ) {
+        return placeholder;
+    }
+    else {
+        return self;
+    }
+}
+
 @end

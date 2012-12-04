@@ -18,6 +18,11 @@
 
 - (BOOL)red:(CGFloat *)r green:(CGFloat *)g blue:(CGFloat *)b alpha:(CGFloat *)a;
 
+- (CGFloat) hue;
+- (CGFloat) brightness;
+- (CGFloat) saturation;
+
+
 - (UIColor *)colorByLuminanceMapping;
 
 - (UIColor *)colorByMultiplyingByRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;

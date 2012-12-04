@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EventsViewController : UITableViewController
+@interface EventsViewController : UITableViewController <UISearchBarDelegate> {
+
+    BOOL isSearching;
+
+}
+
+@property( nonatomic, assign ) BOOL isSearching;
+
+
+- (IBAction) actionSearch:(id)sender;
+- (void) searchFilterEventsDisplayed;
 
 @end

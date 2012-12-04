@@ -84,6 +84,10 @@
     return( [self isOS_2] || [self isOS_3] || [self isOS_4] );
 }
 
+- (BOOL) isLowerThanOS_6 {
+    return( [self isOS_2] || [self isOS_3] || [self isOS_4] || [self isOS_5] );
+}
+
 - (BOOL) isOS_2 {
     NSString *versionString = [self systemVersion];
     return ( [[versionString substringToIndex:1] intValue] == 2 );

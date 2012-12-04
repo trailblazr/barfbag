@@ -12,11 +12,14 @@
 #import "Day.h"
 #import "Event.h"
 
-@interface EventsViewController ()
-
-@end
 
 @implementation EventsViewController
+
+@synthesize isSearching;
+
+- (void) dealloc {
+    [super dealloc];
+}
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -30,6 +33,17 @@
 
 - (AppDelegate*) appDelegate {
     return (AppDelegate*)[UIApplication sharedApplication].delegate;
+}
+
+- (void) updateNavigationTitle {
+    self.navigationItem.titleView = nil;
+    BOOL useCustomTitleView = NO;
+    if( useCustomTitleView ) {
+        self.navigationItem.titleView = [self navigationTitleView];
+    }
+    else {
+        self.navigationItem.title = [self navigationTitleString];
+    }
 }
 
 - (UIView*) navigationTitleView {
@@ -65,6 +79,20 @@
     return formattedDate;
 }
 
+- (UIColor*) themeColor {
+    return [self appDelegate].themeColor;
+}
+
+- (UIColor*) brightColor {
+    CGFloat hue = [[self themeColor] hue];
+    return [UIColor colorWithHue:hue saturation:0.1f brightness:1.0 alpha:1.0];
+}
+
+- (UIColor*) darkColor {
+    CGFloat hue = [[self themeColor] hue];
+    return [UIColor colorWithHue:hue saturation:0.5 brightness:0.7 alpha:1.0];
+}
+
 #pragma mark - User Actions
 
 - (void) actionRefreshData {
@@ -74,8 +102,12 @@
 
 - (void) actionUpdateDisplayAfterRefresh {
     [self.tableView reloadData];
-    self.navigationItem.titleView = [self navigationTitleView];
+    [self updateNavigationTitle];
     self.navigationItem.rightBarButtonItem.enabled = YES;
+}
+
+- (IBAction) actionSearch:(id)sender {
+    
 }
 
 - (void)viewDidLoad {
@@ -83,7 +115,10 @@
     [super viewDidLoad];
     UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionRefreshData)] autorelease];
     self.navigationItem.rightBarButtonItem = item;
-    self.navigationItem.titleView = [self navigationTitleView];
+    [self updateNavigationTitle];
+    self.tableView.backgroundColor = [self brightColor];
+    self.tableView.separatorColor = [self darkColor];
+    self.searchDisplayController.searchBar.tintColor = [self themeColor];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -103,6 +138,31 @@
 }
 
 #pragma mark - Table view data source
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    CGFloat height20 = [[UIDevice currentDevice] isPad] ? 40.0f : 20.0f;
+    return height20;
+}
+
+- (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    CGFloat height20 = [[UIDevice currentDevice] isPad] ? 40.0f : 20.0f;
+    CGFloat fontSize16 = [[UIDevice currentDevice] isPad] ? 32.0f : 16.0f;
+    CGRect containerRect = CGRectMake(0.0, 0.0, self.view.bounds.size.width, height20);
+    UIView *containerView = [[[UIView alloc] initWithFrame:containerRect] autorelease];
+    containerView.opaque = NO;
+    containerView.backgroundColor = [[self themeColor] colorWithAlphaComponent:0.9f];
+    CGFloat offset = 10.0f;
+    CGRect labelRect = CGRectMake(offset, 0.0, containerRect.size.width-(2*offset), containerRect.size.height);
+    UILabel *label = [[[UILabel alloc] initWithFrame:labelRect] autorelease];
+    [containerView addSubview:label];
+    label.backgroundColor = kCOLOR_CLEAR;
+    label.font = [UIFont boldSystemFontOfSize:fontSize16];
+    label.textColor = kCOLOR_WHITE;
+    label.shadowColor = [kCOLOR_BLACK colorWithAlphaComponent:0.5];
+    label.shadowOffset = CGSizeMake(1.0, 1.0);
+    label.text = [self tableView:tableView titleForHeaderInSection:section];
+    return containerView;
+}
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSArray *days = [[self conference] days];
@@ -134,8 +194,8 @@
     Day *currentDay = [days objectAtIndex:indexPath.section];
     Event *currentEvent = [currentDay.events objectAtIndex:indexPath.row];
     // NSLog( @"EVENT: %@", currentEvent );
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",currentEvent.start, currentEvent.title];
-    cell.detailTextLabel.text = currentEvent.subtitle;
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",currentEvent.start, [currentEvent.title placeHolderWhenEmpty:@"n.a."]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@",currentEvent.track, [currentEvent.subtitle placeHolderWhenEmpty:@"-"]];
     
     return cell;
 }
@@ -181,8 +241,7 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -192,5 +251,28 @@
      [detailViewController release];
      */
 }
+
+#pragma mark - UISearchBarDelegate
+
+- (void) searchFilterEventsDisplayed {
+    /*
+    NSString *searchText = searchBar.text;
+    
+    for (Event *aEvent in appDelegate.events) {
+        NSRange titleResultsRange = [aEvent.title rangeOfString:searchText options:NSCaseInsensitiveSearch];
+        NSRange subtitleResultsRange = [aEvent.subtitle rangeOfString:searchText options:NSCaseInsensitiveSearch];
+        NSRange abstractResultsRange = [aEvent.abstract rangeOfString:searchText options:NSCaseInsensitiveSearch];
+        NSRange speakerResultsRange = [aEvent.speaker rangeOfString:searchText options:NSCaseInsensitiveSearch];
+        
+        if (titleResultsRange.length > 0 || subtitleResultsRange.length > 0 || abstractResultsRange.length > 0 || speakerResultsRange.length >0)
+            [searchAllEvents addObject:aEvent];
+    }
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"realDate" ascending:TRUE];
+    [searchAllEvents sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    [sortDescriptor release];
+     */
+}
+
 
 @end
