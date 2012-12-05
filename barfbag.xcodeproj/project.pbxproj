@@ -71,6 +71,7 @@
 		8F754BC5166EB28C00F74DBB /* VideoStreamsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754BC3166EB28C00F74DBB /* VideoStreamsViewController.xib */; };
 		8F754BC8166EB47200F74DBB /* video.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754BC6166EB47200F74DBB /* video.png */; };
 		8F754BC9166EB47200F74DBB /* video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754BC7166EB47200F74DBB /* video@2x.png */; };
+		8F754BCC166EBDEF00F74DBB /* streams.html in Resources */ = {isa = PBXBuildFile; fileRef = 8F754BCB166EBDEF00F74DBB /* streams.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -173,6 +174,7 @@
 		8F754BC3166EB28C00F74DBB /* VideoStreamsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoStreamsViewController.xib; sourceTree = "<group>"; };
 		8F754BC6166EB47200F74DBB /* video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = video.png; path = images/video.png; sourceTree = SOURCE_ROOT; };
 		8F754BC7166EB47200F74DBB /* video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "video@2x.png"; path = "images/video@2x.png"; sourceTree = SOURCE_ROOT; };
+		8F754BCB166EBDEF00F74DBB /* streams.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = streams.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +245,7 @@
 				8F356534166B937C00814549 /* barfbag-Info.plist */,
 				8F356535166B937C00814549 /* InfoPlist.strings */,
 				8F356538166B937C00814549 /* main.m */,
+				8F754BCA166EBDEF00F74DBB /* html */,
 				8F754AE2166C1E5F00F74DBB /* fonts */,
 				8F754AC7166B93A800F74DBB /* images */,
 			);
@@ -419,6 +422,14 @@
 			name = Video;
 			sourceTree = "<group>";
 		};
+		8F754BCA166EBDEF00F74DBB /* html */ = {
+			isa = PBXGroup;
+			children = (
+				8F754BCB166EBDEF00F74DBB /* streams.html */,
+			);
+			path = html;
+			sourceTree = SOURCE_ROOT;
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -497,6 +508,7 @@
 				8F754BC5166EB28C00F74DBB /* VideoStreamsViewController.xib in Resources */,
 				8F754BC8166EB47200F74DBB /* video.png in Resources */,
 				8F754BC9166EB47200F74DBB /* video@2x.png in Resources */,
+				8F754BCC166EBDEF00F74DBB /* streams.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

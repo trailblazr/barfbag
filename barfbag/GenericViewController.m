@@ -11,8 +11,7 @@
 
 @implementation GenericViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -20,8 +19,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -48,6 +46,38 @@
 - (UIColor*) darkColor {
     CGFloat hue = [[self themeColor] hue];
     return [UIColor colorWithHue:hue saturation:0.5 brightness:0.7 alpha:1.0];
+}
+
+- (void) alertWithTag:(NSInteger)tag title:(NSString*)title andMessage:(NSString*)message {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    alert.tag = tag;
+    [alert show];
+    [alert release];
+}
+
+- (void) showActivityIndicator {
+    UIActivityIndicatorView *spinner = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+    CGFloat height = self.navigationController.navigationBar.bounds.size.height;
+    UIView *containerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 50.0, height)] autorelease];
+    containerView.backgroundColor = kCOLOR_CLEAR;
+    containerView.opaque = NO;
+    [containerView addSubview:spinner];
+    spinner.center = containerView.center;
+    UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithCustomView:containerView] autorelease];
+    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.navigationItem.leftBarButtonItem = item;
+        [spinner startAnimating];
+    } completion:^(BOOL finished) {
+        //
+    }];
+}
+
+- (void) hideActivityIndicator {
+    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.navigationItem.leftBarButtonItem = nil;
+    } completion:^(BOOL finished) {
+        //
+    }];
 }
 
 @end

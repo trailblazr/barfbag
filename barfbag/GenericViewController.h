@@ -19,5 +19,8 @@
 - (UIColor*) themeColor;
 - (UIColor*) brightColor;
 - (UIColor*) darkColor;
+- (void) alertWithTag:(NSInteger)tag title:(NSString*)title andMessage:(NSString*)message;
+- (void) showActivityIndicator;
+- (void) hideActivityIndicator;
 
 @end

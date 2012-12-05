@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "GenericViewController.h"
 
-@interface VideoStreamsViewController : GenericViewController {
+@interface VideoStreamsViewController : GenericViewController <UIWebViewDelegate> {
 
-    
+    IBOutlet UIWebView *videoStreamsWebView;
 }
+
+@property( nonatomic, retain ) UIWebView *videoStreamsWebView;
 
 @end
