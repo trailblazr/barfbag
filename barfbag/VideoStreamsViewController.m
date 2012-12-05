@@ -62,16 +62,23 @@
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    [self hideActivityIndicator];
+    BOOL shouldShowAlert = NO;
     NSString *errorString = nil;
     if( error ) {
+        NSInteger errorCode = [error code];
+        if( errorCode != 204 ) { // KNOWN ERRORS WHICH ARE NONE
+            shouldShowAlert = YES;
+        }
         errorString = [NSString stringWithFormat:@"\n\n%@", error];
     }
     else {
         errorString = @"";
     }
-    NSString *message = [NSString stringWithFormat:@"Videostreams could not be loaded successfully.%@", errorString];
-    [self alertWithTag:0 title:@"Problem" andMessage:message];
+    if( shouldShowAlert ) {
+        NSString *message = [NSString stringWithFormat:@"Videostreams could not be loaded successfully.%@", errorString];
+        [self alertWithTag:0 title:@"Problem" andMessage:message];
+    }
 }
-
 
 @end

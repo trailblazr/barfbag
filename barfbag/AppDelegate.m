@@ -74,6 +74,14 @@
     [alert release];
 }
 
+- (void) configureAppearance {
+    if( ![[UINavigationBar class] respondsToSelector:@selector(appearance)] ) return;
+
+    // MPAVController
+    // MPAVController *proxyMpavController = [MPAVController appearance];
+    
+}
+
 #pragma mark - BarfBagParserDelegate
 
 - (void) barfBagParser:(BarfBagParser*)parser parsedConferences:(NSArray *)conferencesArray {
@@ -230,7 +238,10 @@
 
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.themeColor = [self randomColor];
-
+    
+    // CONFIGURE CUSTOM UI APPEARANCE
+    [self configureAppearance];
+    
     // SETUP ROOT CONTROLLER
     NSMutableArray *viewControllers = [NSMutableArray array];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {

@@ -136,5 +136,4 @@
     return [UIColor colorWithHue:hue saturation:0.5 brightness:0.7 alpha:1.0];
 }
 
-
 @end
