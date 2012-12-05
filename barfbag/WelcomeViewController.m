@@ -12,10 +12,12 @@
 
 @synthesize congressMessagePlainLabel;
 @synthesize congressMessageSemiboldLabel;
+@synthesize barfBagBrandLabel;
 
 - (void) dealloc {
     self.congressMessagePlainLabel = nil;
     self.congressMessageSemiboldLabel = nil;
+    self.barfBagBrandLabel = nil;
     [super dealloc];
 }
 
@@ -64,6 +66,11 @@
     congressMessageSemiboldLabel.font = [UIFont fontWithName:@"SourceCodePro-Semibold" size:fontSize40];
     congressMessageSemiboldLabel.text = messageSemibold;
     congressMessageSemiboldLabel.textColor = kCOLOR_BACK;
+    
+    // BRAND
+    barfBagBrandLabel.font = [UIFont fontWithName:@"SourceCodePro-Black" size:fontSize40];
+    barfBagBrandLabel.text = @"B/AR.F-BA/G";
+    barfBagBrandLabel.textColor = kCOLOR_BACK;
 }
 
 - (void) displayMessage {
@@ -72,7 +79,7 @@
         congressMessageSemiboldLabel.alpha = 1.0f;
     } completion:^(BOOL finished) {
         if( finished ) {
-            [self performSelector:@selector(continueAfterWelcome) withObject:self afterDelay:1.5];
+            [self performSelector:@selector(continueAfterWelcome) withObject:self afterDelay:10.5];
         }
     }];
 }
