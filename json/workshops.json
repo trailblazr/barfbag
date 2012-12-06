@@ -1,0 +1,97 @@
+{
+	"properties": {
+		"description" : { "valueType": "text" },
+		"start_time" : { "valueType": "date" },
+		"end_time" : { "valueType": "date" },
+		"entry_location" : { "valueType": "text" }
+	},
+	"items": [
+		{
+			"label": "SMT soldering workshop day2",
+			"description": ["Learn how SMT soldering can be done at your hackerspace with *very* little effort"],
+			"start_time": ["2012-12-28 18:00:00"],
+			"end_time": ["2012-12-28 19:30:00"],
+			"entry_location": ["Hardware Hacking Area"]
+		},
+		{
+			"label": "SQL Injection Workshop - Basics",
+			"description": ["Ziel des Workshops ist es die Teilnehmer hinsichtilich Verwundbarkeit von Webapplikationen zu sensibilisieren"],
+			"start_time": ["2012-12-27 14:00:00"],
+			"end_time": ["2012-12-27 17:00:00"],
+			"entry_location": ["Hall 14"]
+		},
+		{
+			"label": "Sexuelle Beziehungen in Phantasie und Praxis - Vergewaltigung, eine Übung",
+			"description": ["Begriffe richtig deuten: Angesichts der Dikussion um die Klot\u00fcr in der c-base soll der Begriff der \"rape culture\" dem der \"Vergewaltigung\" gegen\u00fcber gestellt werden. Zudem werden Fakten aus der Soziologie und der sexualp\u00e4dagogischen Praxis geliefert. Danach evtl. Ideologiekritik und (troll)feministische Debatte."],
+			"start_time": ["2012-12-28 17:00:00"],
+			"end_time": ["2012-12-28 18:30:00"],
+			"entry_location": ["Speakers Corner"]
+		},
+		{
+			"label": "Solder Workshop day1",
+			"description": ["''Learn to solder and make cool things!''&lt;br \/&gt;''All ages, all skill levels, all welcome.''"],
+			"start_time": ["2012-12-27 12:00:00"],
+			"end_time": ["2012-12-27 23:59:00"],
+			"entry_location": ["Hardware Hacking Area"]
+		},
+		{
+			"label": "Solder Workshop day2",
+			"description": ["''Learn to solder and make cool things!''&lt;br \/&gt;''All ages, all skill levels, all welcome.''"],
+			"start_time": ["2012-12-28 00:00:00"],
+			"end_time": ["2012-12-28 23:59:00"],
+			"entry_location": ["Hardware Hacking Area"]
+		},
+		{
+			"label": "Solder Workshop day3",
+			"description": ["''Learn to solder and make cool things!''&lt;br \/&gt;''All ages, all skill levels, all welcome.''"],
+			"start_time": ["2012-12-29 00:00:00"],
+			"end_time": ["2012-12-29 23:59:00"],
+			"entry_location": ["Hardware Hacking Area"]
+		},
+		{
+			"label": "Solder Workshop day4",
+			"description": ["''Learn to solder and make cool things!''&lt;br \/&gt;''All ages, all skill levels, all welcome.''"],
+			"start_time": ["2012-12-30 00:00:00"],
+			"end_time": ["2012-12-30 16:00:00"],
+			"entry_location": ["Hardware Hacking Area"]
+		},
+		{
+			"label": "The Power of Names",
+			"description": ["An exploration of identity both online and offline, and suggestions on how to improve on systems such as Google. If time permits, we might also work together to construct an \"ideal identity system.\""],
+			"start_time": ["2012-12-28 17:00:00"],
+			"end_time": ["2012-12-28 18:30:00"],
+			"entry_location": ["Milliways"]
+		},
+		{
+			"label": "User Credential Handling in Web Applications done right",
+			"start_time": ["2012-12-28 16:00:00"],
+			"end_time": ["2012-12-28 17:00:00"],
+			"entry_location": ["Chaostreff Salzburg"]
+		},
+		{
+			"label": "Whisky!",
+			"description": ["Second time - let's make this a tradition.\nFor the Whisky (or Whiskey, if you wish) loving nerds, we would like to form a get-together and enjoy some fine specimen in front of a virtual Kaminfeuer (chimney fire) and\/or a stream from one of the talks. If someone wants to give a talk on whisky, thats awesome, too."]
+		},
+		{
+			"label": "Young hacker",
+			"description": ["day 3 will be a day with special program for younger hackers. this slot will be a part of it, and will be divided in different talks later. There will be also some workshops at the same time, see assembly."],
+			"start_time": ["2012-12-29 12:00:00"],
+			"end_time": ["2012-12-29 18:00:00"],
+			"entry_location": ["Hall 12"]
+		},
+		{
+			"label": "Young hacker workshops",
+			"description": ["day 3 will be a day with special program for younger hackers. this slot will be a part of it, and will be divided in different talks later. There will be also some workshops at the same time, see assembly."],
+			"start_time": ["2012-12-29 12:00:00"],
+			"end_time": ["2012-12-29 18:00:00"],
+			"entry_location": ["Speakers Corner"]
+		},
+		{
+			"label": "~friendica",
+			"description": ["bAvatar and heluecht will give a short introduction of ~friendica with a Q'n'A afterwards."],
+			"start_time": ["2012-12-28 16:00:00"],
+			"end_time": ["2012-12-28 17:00:00"],
+			"entry_location": ["Hall 14"]
+		}
+	]
+}

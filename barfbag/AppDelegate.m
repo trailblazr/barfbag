@@ -14,23 +14,31 @@
 #import "GenericTabBarController.h"
 
 #import "ScheduleNavigationController.h"
-#import "ConfigurationNavigationController.h"
+#import "ScheduleSemanticNavigationController.h"
 #import "VideoStreamNavigationController.h"
+#import "ConfigurationNavigationController.h"
 
 #import "WelcomeViewController.h"
 
+// PENTABARF SCHEDULE OBJECTS
 #import "Conference.h"
 #import "Day.h"
 #import "Event.h"
 #import "Link.h"
 #import "Person.h"
- 
+
+// SEMANTIC WIKI OBJECTS & CONNECTION HANDLING
+#import "JSONWorkshops.h"
+#import "JSONAssemblies.h"
+
 @implementation AppDelegate
 
 @synthesize window = _window;
 @synthesize tabBarController  = _tabBarController;
 @synthesize themeColor = _themeColor;
 @synthesize scheduledConferences;
+@synthesize semanticWikiAssemblies;
+@synthesize semanticWikiWorkshops;
 @synthesize hud;
 
 - (void)dealloc {
@@ -38,6 +46,8 @@
     [_tabBarController release];
     [_themeColor release];
     self.scheduledConferences = nil;
+    self.semanticWikiAssemblies = nil;
+    self.semanticWikiWorkshops = nil;
     self.hud = nil;
     [super dealloc];
 }
@@ -130,9 +140,100 @@
     }
     if( DEBUG ) NSLog( @"BARFBAG: PARSING COMPLETED." );
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_PARSER_COMPLETED object:self];
+    
+    [self semanticWikiRefresh];
 }
 
-#pragma mark - Fetching, Caching & Parsing of XML
+#pragma mark - Fetching, Caching & Parsing of XML (semantic wiki)
+
+- (BOOL) semanticWikiFetchAssemblies {
+    [self showHudWithCaption:@"Hole Assemblies" hasActivity:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_STARTED object:self];
+    NSURL *connectionUrl = [NSURL URLWithString:kURL_JSON_ASSEMBLIES];
+    BBJSONConnectOperation *operation = [BBJSONConnectOperation operationWithConnectUrl:connectionUrl andPathComponent:nil delegate:self selFail:@selector(operationFailedAssemblies:) selInvalid:@selector(operationInvalidAssemblies:) selSuccess:@selector(operationSuccessAssemblies:)];
+    operation.jsonObjectClass = [JSONAssemblies class];
+    operation.jsonMappingDictionary = [JSONAssemblies objectMapping];
+    operation.isOperationDebugEnabled = NO;
+    // [self operationAddAsPending:operation];
+    [[BBJSONConnector instance] operationInitiate:operation];
+    return YES;
+}
+
+- (void) operationSuccessAssemblies:(BBJSONConnectOperation*)operation {
+    if( DEBUG ) NSLog( @"%s: SUCCESS.\nOPERATION: %@", __PRETTY_FUNCTION__, operation );
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_SUCCEEDED object:self];
+    // [self operationRemoveFromPending:operation];
+    JSONAssemblies *assemblies = (JSONAssemblies*)operation.result;
+    self.semanticWikiAssemblies = [assemblies assemblyItems];
+    if( DEBUG ) NSLog( @"ASSEMBLIES FOUND: %i items", [semanticWikiAssemblies count] );
+    // if( DEBUG ) NSLog( @"ASSEMBLIES: %@", assemblies );
+    [self hideHud];
+    [self semanticWikiFetchWorkshops];
+}
+
+- (void) operationFailedAssemblies:(BBJSONConnectOperation*)operation {
+    // [self operationRemoveFromPending:operation];
+    if( DEBUG ) NSLog( @"%s: FAIL.\nOPERATION: %@", __PRETTY_FUNCTION__, operation );
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_FAILED object:self];
+    [self hideHud];
+}
+
+- (void) operationInvalidAssemblies:(BBJSONConnectOperation*)operation {
+    // [self operationRemoveFromPending:operation];
+    if( DEBUG ) NSLog( @"%s: INVALID.\nOPERATION: %@", __PRETTY_FUNCTION__, operation );
+    [self hideHud];
+}
+
+
+- (BOOL) semanticWikiFetchWorkshops {
+    [self showHudWithCaption:@"Hole Workshops" hasActivity:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_STARTED object:self];
+    NSURL *connectionUrl = [NSURL URLWithString:kURL_JSON_WORKSHOPS];
+    BBJSONConnectOperation *operation = [BBJSONConnectOperation operationWithConnectUrl:connectionUrl andPathComponent:nil delegate:self selFail:@selector(operationFailedWorkshops:) selInvalid:@selector(operationInvalidWorkshops:) selSuccess:@selector(operationSuccessWorkshops:)];
+    operation.jsonObjectClass = [JSONWorkshops class];
+    operation.jsonMappingDictionary = [JSONWorkshops objectMapping];
+    operation.isOperationDebugEnabled = NO;
+    // [self operationAddAsPending:operation];
+    [[BBJSONConnector instance] operationInitiate:operation];
+    return YES;
+}
+
+- (void) operationSuccessWorkshops:(BBJSONConnectOperation*)operation {
+    if( DEBUG ) NSLog( @"%s: SUCCESS.\nOPERATION: %@", __PRETTY_FUNCTION__, operation );
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_SUCCEEDED object:self];
+    // [self operationRemoveFromPending:operation];
+    JSONWorkshops *workshops = (JSONWorkshops*)operation.result;
+    self.semanticWikiWorkshops = [workshops workshopItems];
+    if( DEBUG ) NSLog( @"WORKSHOPS FOUND: %i items", [semanticWikiWorkshops count] );
+    // if( DEBUG ) NSLog( @"WORKSHOPS: %@", workshops );
+    [self hideHud];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_COMPLETED object:self]; // MARKS END OF FETCHING
+}
+
+- (void) operationFailedWorkshops:(BBJSONConnectOperation*)operation {
+    // [self operationRemoveFromPending:operation];
+    if( DEBUG ) NSLog( @"%s: FAIL.\nOPERATION: %@", __PRETTY_FUNCTION__, operation );
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_FAILED object:self];
+    [self hideHud];
+}
+
+- (void) operationInvalidWorkshops:(BBJSONConnectOperation*)operation {
+    // [self operationRemoveFromPending:operation];
+    if( DEBUG ) NSLog( @"%s: INVALID.\nOPERATION: %@", __PRETTY_FUNCTION__, operation );
+    [self hideHud];
+}
+
+
+- (void) semanticWikiFetchAllData {
+    if( DEBUG ) NSLog( @"WIKI: FETCHING DATA..." );
+    [self semanticWikiFetchAssemblies];
+}
+
+- (void) semanticWikiRefresh {
+    [self semanticWikiFetchAllData];
+}
+
+#pragma mark - Fetching, Caching & Parsing of XML (pentabarf data)
 
 - (NSString*) barfBagCurrentDataVersion {
     return [[NSUserDefaults standardUserDefaults] stringForKey:kUSERDEFAULT_KEY_DATA_VERSION_CURRENT];
@@ -246,11 +347,13 @@
     NSMutableArray *viewControllers = [NSMutableArray array];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         [viewControllers addObject:[[[ScheduleNavigationController alloc] initWithNibName:@"ScheduleNavigationController" bundle:nil] autorelease]];
+        [viewControllers addObject:[[[ScheduleSemanticNavigationController alloc] initWithNibName:@"ScheduleSemanticNavigationController" bundle:nil] autorelease]];
         [viewControllers addObject:[[[VideoStreamNavigationController alloc] initWithNibName:@"VideoStreamNavigationController" bundle:nil] autorelease]];
         [viewControllers addObject:[[[ConfigurationNavigationController alloc] initWithNibName:@"ConfigurationNavigationController" bundle:nil] autorelease]];
     }
     else {
         [viewControllers addObject:[[[ScheduleNavigationController alloc] initWithNibName:@"ScheduleNavigationController" bundle:nil] autorelease]];
+        [viewControllers addObject:[[[ScheduleSemanticNavigationController alloc] initWithNibName:@"ScheduleSemanticNavigationController" bundle:nil] autorelease]];
         [viewControllers addObject:[[[VideoStreamNavigationController alloc] initWithNibName:@"VideoStreamNavigationController" bundle:nil] autorelease]];
         [viewControllers addObject:[[[ConfigurationNavigationController alloc] initWithNibName:@"ConfigurationNavigationController" bundle:nil] autorelease]];
     }

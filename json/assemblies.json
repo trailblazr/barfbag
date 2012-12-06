@@ -1,0 +1,335 @@
+{
+	"properties": {
+		"description" : { "valueType": "text" },
+		"lecture_seats" : { "valueType": "number" },
+		"area" : { "valueType": "text" }
+	},
+	"items": [
+		{
+			"label": "CCCFFM",
+			"description": ["We are nerds from Chaos Computer Club in Frankfurt and the associated hackquarter."],
+			"lecture_seats": [0]
+		},
+		{
+			"label": "Chaos macht Schule",
+			"description": ["Workshop-Bereich des \u201eChaos macht Schule\u201c-Projekts"],
+			"lecture_seats": [20]
+		},
+		{
+			"label": "Chaosdorf / CCC Düsseldorf",
+			"description": ["D\u00fcsseldorfer Erfa Kreis. Die n\u00f6rdliche Chaos-Hochburg am Rhein, Ritter des Kampfes gegen die Netzzensur und tolerante Altbiertrinker, trifft sich jeden Freitag ab 18 Uhr in der H\u00fcttenstr. 25 in D\u00fcsseldorf."],
+			"lecture_seats": [25]
+		},
+		{
+			"label": "Chaospott",
+			"description": ["Assembly of CCC, Ruhrpott Edition"],
+			"lecture_seats": [10]
+		},
+		{
+			"label": "Chaostreff Dortmund",
+			"description": ["A Hackerspace from Dortmund, Germany"],
+			"lecture_seats": [10]
+		},
+		{
+			"label": "Chaostreff Salzburg",
+			"description": ["Assembly for the local Chaostreff group Salzburg"],
+			"lecture_seats": [10]
+		},
+		{
+			"label": "Chaoswelle",
+			"description": ["29C3 Representation of IG Chaoswelle, aka DARC e.V. OV \"Freunde des CCC\", aka D23"],
+			"lecture_seats": [15]
+		},
+		{
+			"label": "Chaotikum",
+			"description": ["Registered association for setting up a hackerspace in L\u00fcbeck, Germany."],
+			"lecture_seats": [0]
+		},
+		{
+			"label": "CryptoDotIs",
+			"description": ["Crypto.is is an organization designed to assist and encourage anonymity and encryption research, development, and use.  As part of this goal, we seek to revitalize the Cypherpunk movement and provide better software, security, and anonymity to individuals worldwide."],
+			"lecture_seats": [10]
+		},
+		{
+			"label": "Cryptoparty",
+			"description": ["What is CryptoParty? Interested parties with computers, devices, and the desire to learn to use the most basic crypto programs and the fundamental concepts of their operation! CryptoParties are free to attend, public, and are commercially and politically non-aligned."],
+			"lecture_seats": [10]
+		},
+		{
+			"label": "Cypherpunk.at",
+			"description": ["We are a loose pack of IT and Internet enthusiasts in Lower Austria. We discuss and do projects related to security and privacy, but not limited do."],
+			"lecture_seats": [2]
+		},
+		{
+			"label": "DFRI",
+			"description": ["DFRI is a nonprofit organisation working for digital rights."],
+			"lecture_seats": [0]
+		},
+		{
+			"label": "Das Labor",
+			"description": ["Members of the Hackerspace Das Labor"],
+			"lecture_seats": [15]
+		},
+		{
+			"label": "Debian",
+			"description": ["A home for the Debianistas at 29C3."],
+			"lecture_seats": [30]
+		},
+		{
+			"label": "Django",
+			"description": ["We are some people who like to hack on Django or on other Python related projects."],
+			"lecture_seats": [6]
+		},
+		{
+			"label": "Dn42",
+			"description": ["dn42 is the reboot of DIAC24. We are a big dynamic VPN with Internet services as BGP, OSPF, DNS, etc. We put emphasis on self-organization and sort the information in our Wiki. Each participant has a direct connection to at least on other (via GRE, OpenVPN, see Tunnelprotocols). This is where all the routes of the VPN are being exchanged via BGP."],
+			"lecture_seats": [0]
+		},
+		{
+			"label": "Dystopia",
+			"description": ["A small gathering of hackers from all over the world."],
+			"lecture_seats": [0]
+		},
+		{
+			"label": "Entropia",
+			"description": ["CCC Karlsruhe"]
+		},
+		{
+			"label": "EveryCook",
+			"description": ["Our aim is:\n'Better food trough information'\nWe want to collect all data about food, make it available as interactive buying\/cooking help and for all kinds of cooking devices."],
+			"lecture_seats": [20]
+		},
+		{
+			"label": "Fail0verflow",
+			"description": ["Console and embedded device hackers."],
+			"lecture_seats": [0]
+		},
+		{
+			"label": "Flauscheria",
+			"description": ["Small workshops about D.I.Y. stuff like podcasting and information about projects like \"Hardware f\u00fcr Alle\"."]
+		},
+		{
+			"label": "Flying Objects Assembly",
+			"description": ["flying objects ( multikopter and stuff )"],
+			"lecture_seats": [10]
+		},
+		{
+			"label": "Food Hacking Base",
+			"description": ["Our goal is clear. We are going to create a food hacking&amp;brewing paradis and you should join or at least come by!"],
+			"lecture_seats": [10]
+		},
+		{
+			"label": "Formula Student",
+			"description": ["We're trying to assemble several FSAE teams to bring their racecars to the 29c3 and hack our Electronics."],
+			"lecture_seats": [0]
+		},
+		{
+			"label": "Freitagsrunde TU-Berlin",
+			"description": ["we are a students initiative from the Berlin Institute of Technology.\nsee more about us at freitagsrunde.org (german)"],
+			"lecture_seats": [0]
+		},
+		{
+			"label": "FuWaR",
+			"description": ["We are a bunch of techies from the University of Furtwangen in the heart of the Black Forest in Germany. We share a common interrest in *nix, soldering, fun with LEDs + mcs and a special focus in network security.\nWe also had our Village at the Camp 2011 where you might have met us.\n\nhttp:\/\/events.ccc.de\/camp\/2011\/wiki\/FuWaR"],
+			"lecture_seats": [5]
+		},
+		{
+			"label": "G3r4ff3l v1ll4g3",
+			"description": ["a bunch of Veteran Nerds with about 666 years of experience within the realms of hacking, forensick and voodoo."],
+			"lecture_seats": [23]
+		},
+		{
+			"label": "GSM",
+			"description": ["We are the Osmocom and OpenBTS projects. Visit us in Room 11!"],
+			"lecture_seats": [0]
+		},
+		{
+			"label": "Geheimorganisation",
+			"description": ["The Geheimorganisation is a secret organisation of secret conspiracy."],
+			"lecture_seats": [0]
+		},
+		{
+			"label": "Gentoo Linux",
+			"description": ["Gentoo Linux users and developers joint table"],
+			"lecture_seats": [6]
+		},
+		{
+			"label": "Go@29C3",
+			"description": ["We want to provide the opportunity to play Go - or learn the rules of the game. Go is an ancient board game. Easy to learn (only 3 rules), quick to grasp (first game after only 10min introduction - promise!)  but providing complex gameplay and fun."],
+			"lecture_seats": [10]
+		},
+		{
+			"label": "GodObject Assembly",
+			"description": ["Usergroup of open-source Ruby\/Rails programmers."],
+			"lecture_seats": [6]
+		},
+		{
+			"label": "Hackademics",
+			"description": ["The Hackademics CTF Team was founded by students in 2011. It is a independant team of students, representing the 'University of Applied Sciences Offenburg' (Germany)."],
+			"lecture_seats": [0]
+		},
+		{
+			"label": "Hackeriet",
+			"lecture_seats": [23]
+		},
+		{
+			"label": "Hardware Hacking Area",
+			"description": ["The main Hardware Hacking Area"],
+			"lecture_seats": [50]
+		},
+		{
+			"label": "Hgg",
+			"description": ["hackerspace global grid"],
+			"lecture_seats": [5]
+		},
+		{
+			"label": "HoloVersum",
+			"description": ["The HoloVersum is a Hamburg group of galactical hackers, musicians, DJs and holistic workers mainly consisting of Universum All Ton A, Dr. med Hans-Peter Greb aka Doc GoDo and HoloClaus. We are setting up several holograms and 3D Prints, a pseudo holographic projection system, will do other installations on the congress as well as a HoloDeck with 3D items, Holography Books, spontaneous workshops and more. At the end of the Congress HoloVersum with Universum All Ton A are doing the after Party at a very special location ;-)"],
+			"lecture_seats": [10]
+		},
+		{
+			"label": "Information Etudes",
+			"description": ["In order to develop new tools for information-based advocacy, we will study fundamental properties of how information is shared, sought, and contextualized in various formats.\n\nWe will focus on the economy of information, archives, trends, cultural wisdom, effective communication, language barriers, perception, clich\u00e9s, story sharing, search engines, and community curation."]
+		},
+		{
+			"label": "Integral domain",
+			"description": ["We have been around the congress for years, and we have, at times, felt that there's a large gap between hackers and the math they need. Wherever possible, we'd like to close that gap and in the remaining cases, at least we'd like to help understand why it's not that simple."],
+			"lecture_seats": [10]
+		},
+		{
+			"label": "KoFfeIn - Karlsruher organisieren Freiraum für erleuchtete Individuen",
+			"description": ["Ein Platz f\u00fcr alle Nerds, Hacker, Ponies, Eichh\u00f6rnchen, ... aus Karlsruhe und dem Umland!"]
+		},
+		{
+			"label": "LSE",
+			"description": ["We are a small student lab from EPITA (a CS school near Paris) with interests in systems programming, computer security, etc. About 6-8 of us will be present at 29c3."],
+			"lecture_seats": [0]
+		},
+		{
+			"label": "La Quadrature du Net",
+			"description": ["La Quadrature du Net is an advocacy group defending the rights and freedoms of citizens on the Internet."],
+			"lecture_seats": [15]
+		},
+		{
+			"label": "Linux-Call-Router",
+			"description": ["Provisioning of voice and telephony services"],
+			"lecture_seats": [6]
+		},
+		{
+			"label": "Lockpicking Area",
+			"description": ["We\u00b4ll provide Informations about non destructive entry methods (NDE) in general. There are always members at the table to answer questions and show basic lockpicking techniques. \nEvery day there will be a special workshop with a main focus on methods like: impressioning, e-picking, special tools etc."]
+		},
+		{
+			"label": "Mass collaboration",
+			"description": ["Good things happen when a lot of people come together on the internet and decide to create something together. We'd like to showcase and talk about some of them."],
+			"lecture_seats": [15]
+		},
+		{
+			"label": "Metalab",
+			"description": ["Vienna's first &amp; most awesome hackerspace"]
+		},
+		{
+			"label": "Milliways",
+			"description": ["You know milliways? The restaurant at the end of the universe? We just are it..."],
+			"lecture_seats": [0]
+		},
+		{
+			"label": "Muccc",
+			"description": ["The local chapter of the CCC in munich. Best known for ACAB and r0ket."],
+			"lecture_seats": [10]
+		},
+		{
+			"label": "Mw",
+			"description": ["In Bremen, Germany, some people are sharing their apartment and call it mw\/Milliways. The Milliways also is some kind of hacker community."]
+		},
+		{
+			"label": "Nerdlicht",
+			"description": ["lights &amp; bits"]
+		},
+		{
+			"label": "OpenStreetMap"
+		},
+		{
+			"label": "Phlausch Operation Center",
+			"description": ["Social circle around some people mostly from Berlin, Erlangen and Vienna."]
+		},
+		{
+			"label": "Pyneo",
+			"lecture_seats": [6]
+		},
+		{
+			"label": "RFID hacking",
+			"description": ["We have RFID hardware and software to read nearly all the cards you have in your pocket. So we can at least determine the typ of the card and can say something about its security. Depending on the type we also can readout or change the content. We also will have a zapper for disabling your RFID cards."],
+			"lecture_seats": [2]
+		},
+		{
+			"label": "RTL-SDR",
+			"description": ["The RTL-SDR project develops software for using DVB-T sticks based on the Realtek RTL2832U as cheap Software Defined Radios."],
+			"lecture_seats": [0]
+		},
+		{
+			"label": "RaumZeitLabor",
+			"description": ["The mobile version of our Hackerspace \"RaumZeitLabor\" in Mannheim.\nWe move a lot of our Tools and Equipment to 29C3 for the fun of it.\n\nMore sugar than you can imagine"],
+			"lecture_seats": [8]
+		},
+		{
+			"label": "Retrogaming",
+			"description": ["We are a small group of people who gathered old videogameconsoles and games. The assembly will provide space to people to play with the old consoles and computers. There will be a lecture about the Intellivision console."],
+			"lecture_seats": [20]
+		},
+		{
+			"label": "Schweizer Chaos",
+			"description": ["Swiss chaos with the (hopefully) newborn ccc-ch. An association of the swiss erfas, hackerspaces and chaostreffs."]
+		},
+		{
+			"label": "Shackspace",
+			"description": ["the stuttgart hackerspace"],
+			"lecture_seats": [15]
+		},
+		{
+			"label": "Sigrok",
+			"description": ["Portable, GPL'd software suite for logic analyzers, MSOs, oscilloscopes, DMMs..."],
+			"lecture_seats": [6]
+		},
+		{
+			"label": "Stratum 0",
+			"description": ["Hackerspace Braunschweig"],
+			"lecture_seats": [0]
+		},
+		{
+			"label": "Sublab / c3le",
+			"description": ["sublab is a hackerspace in leipzig. Chaostreff Leipzig, Freifunk Leipzig and other projects are located here."],
+			"lecture_seats": [8]
+		},
+		{
+			"label": "Swedish House Maffia",
+			"description": ["Local gathering spot for the usual suspects from sweden that usually gather at CCC."],
+			"lecture_seats": [10]
+		},
+		{
+			"label": "Tetalab",
+			"description": ["Toulouse Hackerspace"],
+			"lecture_seats": [4]
+		},
+		{
+			"label": "The (un)employed schemers & lispers guild",
+			"description": ["Lisp and scheme hackers all over the world gather and discuss the state of the union. We welcome beginners and interested people and will direct flamewars to the \/dev\/null room.\n\nThere will also be workshops, and we are always open to helping newcomers get up to speed"],
+			"lecture_seats": [10]
+		},
+		{
+			"label": "UAVP-NG",
+			"description": ["This is a community-driven open source project to build a modern autonomously flying Multicopter."],
+			"lecture_seats": [8]
+		},
+		{
+			"label": "Wau Holland Stiftung",
+			"description": ["The Wau Holland Foundation would like to inform about it's activities, projects supported by the foundation and also discuss possibilities for funding of additional projects within the scope of the foundation. If technically possible we will also show small movies about Wau Holland and his ideas transformed into the foundation."],
+			"lecture_seats": [5]
+		},
+		{
+			"label": "Wireless",
+			"description": ["This is the assembly traditionally known as \"Wireless Corner\" with people from freifunk.net, OpenWRT and surrounding projects."],
+			"lecture_seats": [0]
+		}
+	]
+}

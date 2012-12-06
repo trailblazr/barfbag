@@ -79,7 +79,7 @@
         congressMessageSemiboldLabel.alpha = 1.0f;
     } completion:^(BOOL finished) {
         if( finished ) {
-            [self performSelector:@selector(continueAfterWelcome) withObject:self afterDelay:10.5];
+            [self performSelector:@selector(continueAfterWelcome) withObject:self afterDelay:1.5];
         }
     }];
 }
