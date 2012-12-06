@@ -142,7 +142,7 @@
         case 0: {
             NSArray *workshops = [self appDelegate].semanticWikiWorkshops;
             JSONWorkshop *currentWorkshop = [workshops objectAtIndex:indexPath.row];
-            NSLog( @"WORKSHOP: %@", currentWorkshop );
+            // NSLog( @"WORKSHOP: %@", currentWorkshop );
             cell.textLabel.text = [NSString stringWithFormat:@"%@",[NSString placeHolder:@"n.a."forEmptyString:currentWorkshop.label]];
             cell.detailTextLabel.text = [NSString stringWithFormat:@"[%@]: %@", [NSString placeHolder:@"-" forEmptyString:currentWorkshop.eventLocation], [NSString placeHolder:@"n.a." forEmptyString:currentWorkshop.abstract]];
             break;
