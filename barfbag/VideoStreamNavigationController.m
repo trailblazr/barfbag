@@ -16,7 +16,7 @@
     if (self) {
         // Custom initialization
         self.tabBarItem.image = [UIImage imageNamed:@"video.png"];
-        self.tabBarItem.title = @"Videostreams";
+        self.tabBarItem.title = LOC( @"Videostreams" );
         self.navigationBar.barStyle = UIBarStyleBlackOpaque;
         self.navigationBar.tintColor = kCOLOR_BACK;
     }
@@ -28,7 +28,7 @@
 	// Do any additional setup after loading the view.
     VideoStreamsViewController *controller = [[VideoStreamsViewController alloc] initWithNibName:@"VideoStreamsViewController" bundle:nil];
     [self pushViewController:controller animated:NO];
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Zurück" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:LOC( @"Zurück" ) style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 - (void)didReceiveMemoryWarning {

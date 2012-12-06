@@ -36,7 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationItem.title = @"Videostreams";
+    self.navigationItem.title = LOC( @"Videostreams" );
     self.view.backgroundColor = [self themeColor];
     videoStreamsWebView.opaque = NO;
     videoStreamsWebView.backgroundColor = kCOLOR_CLEAR;
@@ -76,8 +76,8 @@
         errorString = @"";
     }
     if( shouldShowAlert ) {
-        NSString *message = [NSString stringWithFormat:@"Videostreams could not be loaded successfully.%@", errorString];
-        [self alertWithTag:0 title:@"Problem" andMessage:message];
+        NSString *message = [NSString stringWithFormat:LOC( @"Videostreams konnten nicht erfolgreich geladen werden. %@" ), errorString];
+        [self alertWithTag:0 title:LOC( @"Problem" ) andMessage:message];
     }
 }
 

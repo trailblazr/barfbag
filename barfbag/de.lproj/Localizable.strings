@@ -1,0 +1,66 @@
+/* 
+  Localizable.strings
+  GERMAN
+
+  Created by Lincoln Six Echo on 06.12.12.
+  Copyright (c) 2012 appdoctors. All rights reserved.
+*/
+
+
+/* AppDelegate */
+
+"OK" = "OK";
+"Aktualisierung" = "Aktualisierung";
+"Die Plandaten wurden aktualisiert auf %@." = "Die Plandaten wurden aktualisiert auf %@.";
+"Aktualisiere Assemblies" = "Aktualisiere Assemblies";
+"Aktualisiere Workshops" = "Aktualisiere Workshops";
+"Verbindungsproblem" = "Verbindungsproblem";
+"Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten.\n\nSie verwenden derzeit\n%@ der Daten." = "Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten.\n\nSie verwenden derzeit\n%@ der Daten.";
+"Aktualisiere Fahrplan" = "Aktualisiere Fahrplan";
+
+
+/* ScheduleNavigationController */
+
+"Fahrplan" = "Fahrplan";
+"Zurück" = "Zurück";
+
+/* EventsViewController */
+
+"Ereignisse" = "Ereignisse";
+
+/* ScheduleSemanticNavigationController */
+
+"Wikiplan" = "Wikiplan";
+"Zurück" = "Zurück";
+
+/* SemanticItemsViewController */
+
+"Wikiplan" = "Wikiplan";
+"%i Workshops" = "%i Workshops";
+"%i Assemblies" = "%i Assemblies";
+"[%i Plätze]: %@" = "[%i Plätze]: %@";
+
+/* VideoStreamNavigationController */
+
+"Videostreams" = "Videostreams";
+"Zurück" = "Zurück";
+
+/* VideoStreamsViewController */
+
+"Videostreams" = "Videostreams";
+"Videostreams konnten nicht erfolgreich geladen werden. %@" = "Videostreams konnten nicht erfolgreich geladen werden. %@";
+"Problem" = "Problem";
+
+/* ConfigurationNavigationController */
+
+"Einstellungen" = "Einstellungen";
+"Zurück" = "Zurück";
+
+/* ConfigurationViewController */
+
+"Einstellungen" = "Einstellungen";
+
+
+
+
+

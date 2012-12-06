@@ -78,7 +78,7 @@
 }
 
 - (void) alertWithTag:(NSInteger)tag title:(NSString*)title andMessage:(NSString*)message {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
     alert.tag = tag;
     [alert show];
     [alert release];
@@ -135,7 +135,7 @@
         if( hasNewDataVersion ) {
             [[NSUserDefaults standardUserDefaults] setObject:versionUpdated forKey:kUSERDEFAULT_KEY_DATA_VERSION_CURRENT];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            [self alertWithTag:0 title:@"Aktualisierung" andMessage:[NSString stringWithFormat:@"Die Plandaten wurden aktualisiert auf %@.", versionUpdated]];
+            [self alertWithTag:0 title:LOC( @"Aktualisierung" ) andMessage:[NSString stringWithFormat:LOC( @"Die Plandaten wurden aktualisiert auf %@." ), versionUpdated]];
         }
     }
     if( DEBUG ) NSLog( @"BARFBAG: PARSING COMPLETED." );
@@ -147,7 +147,7 @@
 #pragma mark - Fetching, Caching & Parsing of XML (semantic wiki)
 
 - (BOOL) semanticWikiFetchAssemblies {
-    [self showHudWithCaption:@"Hole Assemblies" hasActivity:YES];
+    [self showHudWithCaption:LOC( @"Aktualisiere Assemblies" ) hasActivity:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_STARTED object:self];
     NSURL *connectionUrl = [NSURL URLWithString:kURL_JSON_ASSEMBLIES];
     BBJSONConnectOperation *operation = [BBJSONConnectOperation operationWithConnectUrl:connectionUrl andPathComponent:nil delegate:self selFail:@selector(operationFailedAssemblies:) selInvalid:@selector(operationInvalidAssemblies:) selSuccess:@selector(operationSuccessAssemblies:)];
@@ -185,7 +185,7 @@
 
 
 - (BOOL) semanticWikiFetchWorkshops {
-    [self showHudWithCaption:@"Hole Workshops" hasActivity:YES];
+    [self showHudWithCaption:LOC( @"Aktualisiere Workshops" ) hasActivity:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_STARTED object:self];
     NSURL *connectionUrl = [NSURL URLWithString:kURL_JSON_WORKSHOPS];
     BBJSONConnectOperation *operation = [BBJSONConnectOperation operationWithConnectUrl:connectionUrl andPathComponent:nil delegate:self selFail:@selector(operationFailedWorkshops:) selInvalid:@selector(operationInvalidWorkshops:) selSuccess:@selector(operationSuccessWorkshops:)];
@@ -299,7 +299,7 @@
         [self hideHud];
     } errorBlock:^(NSError *error) {
         if( DEBUG ) NSLog( @"BARFBAG: NO INTERNET CONNECTION." );
-        [self alertWithTag:0 title:@"Verbindungsproblem" andMessage:[NSString stringWithFormat:@"Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten.\n\nSie verwenden derzeit\n%@ der Daten.", [self barfBagCurrentDataVersion]]];
+        [self alertWithTag:0 title:LOC( @"Verbindungsproblem" ) andMessage:[NSString stringWithFormat:LOC( @"Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten.\n\nSie verwenden derzeit\n%@ der Daten." ), [self barfBagCurrentDataVersion]]];
         // TODO: DISPLAY SOME ERROR...
         BOOL isCached = YES;
         [self barfBagFillCached:isCached];
@@ -315,7 +315,7 @@
 }
 
 - (void) barfBagRefresh {
-    [self showHudWithCaption:@"Aktualisiere Daten" hasActivity:YES];
+    [self showHudWithCaption:LOC( @"Aktualisiere Fahrplan" ) hasActivity:YES];
     [self barfBagFetchContentWithUrlString:kCONNECTION_CONTENT_URL_EN];
 }
 

@@ -58,7 +58,7 @@
 - (NSString*) navigationTitleString {
     NSString *title = [self conference].title;
     if( !title || [title length] == 0 ) {
-        return @"Ereignisse";
+        return LOC( @"Ereignisse" );
     }
     else {
         return title;

@@ -25,7 +25,7 @@
 
 - (void) updateNavigationTitle {
     self.navigationItem.titleView = nil;
-    self.navigationItem.title = @"Wikiplan";
+    self.navigationItem.title = LOC( @"Wikiplan" );
 }
 
 #pragma mark - User Actions
@@ -91,11 +91,11 @@
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return [NSString stringWithFormat:@"%i Workshops", [[self appDelegate].semanticWikiWorkshops count]];
+            return [NSString stringWithFormat:LOC( @"%i Workshops" ), [[self appDelegate].semanticWikiWorkshops count]];
             break;
 
         case 1:
-            return [NSString stringWithFormat:@"%i Assemblies", [[self appDelegate].semanticWikiAssemblies count]];
+            return [NSString stringWithFormat:LOC( @"%i Assemblies" ), [[self appDelegate].semanticWikiAssemblies count]];
             break;
             
         default:
@@ -157,7 +157,7 @@
             JSONAssembly *currentAssembly = [assemblies objectAtIndex:indexPath.row];
             // NSLog( @"ASSEMBLY: %@", currentAssembly );
             cell.textLabel.text = [NSString stringWithFormat:@"%@",currentAssembly.label];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"[%i Plätze]: %@", currentAssembly.numLectureSeats, [NSString placeHolder:@"n.a." forEmptyString:currentAssembly.abstract]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:LOC( @"[%i Plätze]: %@" ), currentAssembly.numLectureSeats, [NSString placeHolder:@"n.a." forEmptyString:currentAssembly.abstract]];
             break;
         }
 
