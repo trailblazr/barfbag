@@ -7,13 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ATMHudDelegate.h"
+#import "ATMHud.h"
 
 @class AppDelegate;
 
-@interface GenericTabBarController : UITabBarController {
+@interface GenericTabBarController : UITabBarController <ATMHudDelegate> {
 
+    ATMHud *hud;
 
 }
+
+@property( nonatomic, retain ) ATMHud *hud;
+
+- (void) showHudWithCaption:(NSString*)caption hasActivity:(BOOL)hasActivity;
+- (void) hideHud;
 
 - (AppDelegate*) appDelegate;
 - (UIColor*) themeColor;

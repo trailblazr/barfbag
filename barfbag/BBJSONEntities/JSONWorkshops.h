@@ -14,6 +14,4 @@
 + (NSDictionary*) objectMapping;
 - (NSString*) description;
 
-- (NSString*)abstract;
-
 @end

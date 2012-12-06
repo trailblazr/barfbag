@@ -143,7 +143,11 @@
             NSArray *workshops = [self appDelegate].semanticWikiWorkshops;
             JSONWorkshop *currentWorkshop = [workshops objectAtIndex:indexPath.row];
             // NSLog( @"WORKSHOP: %@", currentWorkshop );
-            cell.textLabel.text = [NSString stringWithFormat:@"%@",[NSString placeHolder:@"n.a."forEmptyString:currentWorkshop.label]];
+            NSDateFormatter *df = [[NSDateFormatter alloc] init];
+            df.dateFormat = @"HH:mm";
+            NSString *startTimeString = [df stringFromDate:currentWorkshop.startTime];
+            [df release];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",[NSString placeHolder:@"--:--" forEmptyString:startTimeString], [NSString placeHolder:@"n.a."forEmptyString:currentWorkshop.label]];
             cell.detailTextLabel.text = [NSString stringWithFormat:@"[%@]: %@", [NSString placeHolder:@"-" forEmptyString:currentWorkshop.eventLocation], [NSString placeHolder:@"n.a." forEmptyString:currentWorkshop.abstract]];
             break;
         }

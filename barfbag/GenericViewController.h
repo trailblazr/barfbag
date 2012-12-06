@@ -7,13 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ATMHudDelegate.h"
+#import "ATMHud.h"
 
 @class AppDelegate;
 
-@interface GenericViewController : UIViewController {
+@interface GenericViewController : UIViewController <ATMHudDelegate> {
 
+	ATMHud *hud;
 
 }
+
+@property( nonatomic, retain ) ATMHud *hud;
+
+- (void) showHudWithCaption:(NSString*)caption hasActivity:(BOOL)hasActivity;
+- (void) hideHud;
 
 - (AppDelegate*) appDelegate;
 - (UIColor*) themeColor;
@@ -22,5 +30,6 @@
 - (void) alertWithTag:(NSInteger)tag title:(NSString*)title andMessage:(NSString*)message;
 - (void) showActivityIndicator;
 - (void) hideActivityIndicator;
+
 
 @end

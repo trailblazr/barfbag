@@ -11,6 +11,13 @@
 
 @implementation GenericTableViewController
 
+@synthesize hud;
+
+- (void) dealloc {
+    self.hud = nil;
+    [super dealloc];
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -134,6 +141,27 @@
 - (UIColor*) darkColor {
     CGFloat hue = [[self themeColor] hue];
     return [UIColor colorWithHue:hue saturation:0.5 brightness:0.7 alpha:1.0];
+}
+
+#pragma mark - Headup Display Management
+
+- (void) showHudWithCaption:(NSString*)caption hasActivity:(BOOL)hasActivity {
+    // ADD HUD VIEW
+    if( !hud ) {
+        self.hud = [[ATMHud alloc] initWithDelegate:self];
+        [self.view addSubview:hud.view];
+    }
+    [hud setCaption:caption];
+    [hud setActivity:hasActivity];
+    [hud show];
+}
+
+- (void) hideHud {
+    [hud hide];
+}
+
+- (void) userDidTapHud:(ATMHud *)_hud {
+	[_hud hide];
 }
 
 @end

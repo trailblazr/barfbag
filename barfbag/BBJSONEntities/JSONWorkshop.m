@@ -25,6 +25,59 @@
     return mappingDict;
 }
 
+/**
+ * I don't get it why this fucking semantic wiki stuff throws out arrays for single item properties like start_time
+ * this is such a huge data structure fuckup... *throwingmyheadagainstthewall* *facepalm*
+ * It is also completely in the blue which timezone these dates are in... this will get very funny...
+ */
+
+- (id) singlePropertyFromObject:(id)arrayOrObject {
+    if( [arrayOrObject isKindOfClass:[NSArray class]] || [arrayOrObject isKindOfClass:[NSMutableArray class]] ) {
+        return [arrayOrObject lastObject];
+    }
+    else {
+        return arrayOrObject;
+    }
+}
+
+- (NSDate*) dateExtracted:(id)dateOrString {
+    // NSLog( @"DATE = %@ (CLASS = %@)", dateOrString, NSStringFromClass( [dateOrString class] ) );
+    NSDate *date = nil;
+    if( [dateOrString isKindOfClass:[NSString class]] ) {
+        @try {
+            NSDateFormatter *df = [[NSDateFormatter alloc] init];
+            df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"]; // GOING WITH GMT here in hope someone has done his job right!
+            df.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+            date = [df dateFromString:dateOrString];
+            [df release];
+        }
+        @catch (NSException *exception) {
+            // I am not interested.
+        }
+    }
+    else if( [dateOrString isKindOfClass:[NSDate class]] ) {
+        date = dateOrString;
+    }
+    else {
+        date = nil; // FUCK YOU ALL! THERE WILL BE NO DATE!
+    }
+    return date;
+}
+
+#pragma mark - Decrypted Semantic Wiki Data
+
+- (NSString*) eventLocation {
+    return [self singlePropertyFromObject:location];
+}
+
+- (NSDate*) startTime {
+    return [self dateExtracted:[self singlePropertyFromObject:dateTimeStart]];
+}
+
+- (NSDate*) endTime {
+    return [self dateExtracted:[self singlePropertyFromObject:dateTimeEnd]];
+}
+
 - (NSString*)abstract {
     NSString *text = nil;
     @try {
@@ -34,17 +87,6 @@
         //
     }
     return text;
-}
-
-- (NSString*)eventLocation {
-    NSString *locationName = nil;
-    @try {
-        locationName = [(NSArray*)location lastObject];
-    }
-    @catch (NSException *exception) {
-        //
-    }
-    return locationName;
 }
 
 /*

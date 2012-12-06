@@ -19,5 +19,7 @@
 
 - (NSString*)abstract;
 - (NSString*)eventLocation;
+- (NSDate*) startTime;
+- (NSDate*) endTime;
 
 @end

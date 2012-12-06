@@ -21,25 +21,28 @@
     return mappingDict;
 }
 
+/**
+ * I don't get it why this fucking semantic wiki stuff throws out arrays for single item properties
+ * this is such a huge data structure fuckup... *throwingmyheadagainstthewall* *facepalm*
+ * It is also completely in the blue which timezone these dates are in... this will get very funny...
+ */
+
+- (id) singlePropertyFromObject:(id)arrayOrObject {
+    if( [arrayOrObject isKindOfClass:[NSArray class]] || [arrayOrObject isKindOfClass:[NSMutableArray class]] ) {
+        return [arrayOrObject lastObject];
+    }
+    else {
+        return arrayOrObject;
+    }
+}
+
 - (NSString*)abstract {
-    NSString *text = nil;
-    @try {
-        text = [(NSArray*)descriptionText lastObject];
-    }
-    @catch (NSException *exception) {
-        //
-    }
-    return text;
+    return [self singlePropertyFromObject:descriptionText];
 }
 
 - (NSInteger) numLectureSeats {
-    NSNumber *seats = nil;
-    @try {
-        seats = [(NSArray*)lectureSeats lastObject];
-    }
-    @catch (NSException *exception) {
-        //
-    }
+    NSNumber *seats = [self singlePropertyFromObject:lectureSeats];
+;
     if( seats ) {
         return [seats integerValue];
     }

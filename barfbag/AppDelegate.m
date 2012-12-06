@@ -167,7 +167,6 @@
     self.semanticWikiAssemblies = [assemblies assemblyItems];
     if( DEBUG ) NSLog( @"ASSEMBLIES FOUND: %i items", [semanticWikiAssemblies count] );
     // if( DEBUG ) NSLog( @"ASSEMBLIES: %@", assemblies );
-    [self hideHud];
     [self semanticWikiFetchWorkshops];
 }
 
@@ -368,7 +367,7 @@
     CGFloat height = _window.bounds.size.height;
     CGRect windowRect = CGRectMake(0.0, 0.0, width, height);
     controller.view.frame = windowRect;
-    [_window addSubview:controller.view];
+    [_window.rootViewController.view addSubview:controller.view];
         
     // TRY TO INIT WITH EXISTING DATA WHILE WELCOME IS PRESENTED
     [self   barfBargLoadCached    ];
@@ -418,7 +417,7 @@
     // ADD HUD VIEW
     if( !hud ) {
         self.hud = [[ATMHud alloc] initWithDelegate:self];
-        [_window addSubview:hud.view];
+        [_window.rootViewController.view addSubview:hud.view];
     }
     [hud setCaption:caption];
     [hud setActivity:hasActivity];
