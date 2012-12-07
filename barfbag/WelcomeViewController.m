@@ -43,12 +43,7 @@
 }
 
 - (void) prepareMessage {
-    UIColor *textColor = nil;
-#if SCREENSHOTMODE
-    textColor = kCOLOR_WHITE;
-#else
-    textColor = kCOLOR_BACK;
-#endif
+    UIColor *textColor = kCOLOR_WHITE;
 
     CGFloat fontSize40 = [[UIDevice currentDevice] isPad] ? 80.0f : 40.0f;
     
@@ -85,16 +80,23 @@
 }
 
 - (void) displayMessage {
+    UIColor *textColor = kCOLOR_WHITE;
     UIColor *backgroundColor = kCOLOR_BACK;
 #if SCREENSHOTMODE
     backgroundColor = kCOLOR_BACK;
+    textColor = kCOLOR_WHITE;
 #else
     backgroundColor = [self themeColor];
+    textColor = kCOLOR_BACK;
 #endif
-    [UIView animateWithDuration:0.7 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         congressMessagePlainLabel.alpha = 1.0f;
         congressMessageSemiboldLabel.alpha = 1.0f;
         barfBagBrandLabel.alpha = 1.0f;
+        
+        congressMessagePlainLabel.textColor = textColor;
+        congressMessageSemiboldLabel.textColor = textColor;
+        barfBagBrandLabel.textColor = textColor;
         self.view.backgroundColor = backgroundColor;
     } completion:^(BOOL finished) {
         if( finished ) {

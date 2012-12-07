@@ -153,7 +153,7 @@
 - (BOOL) semanticWikiFetchAssemblies {
     [self showHudWithCaption:LOC( @"Aktualisiere Assemblies" ) hasActivity:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_STARTED object:self];
-    NSURL *connectionUrl = [NSURL URLWithString:kURL_JSON_ASSEMBLIES];
+    NSURL *connectionUrl = [NSURL URLWithString:kURL_DATA_29C3_ASSEMBLIES];
     BBJSONConnectOperation *operation = [BBJSONConnectOperation operationWithConnectUrl:connectionUrl andPathComponent:nil delegate:self selFail:@selector(operationFailedAssemblies:) selInvalid:@selector(operationInvalidAssemblies:) selSuccess:@selector(operationSuccessAssemblies:)];
     operation.jsonObjectClass = [JSONAssemblies class];
     operation.jsonMappingDictionary = [JSONAssemblies objectMapping];
@@ -191,7 +191,7 @@
 - (BOOL) semanticWikiFetchWorkshops {
     [self showHudWithCaption:LOC( @"Aktualisiere Workshops" ) hasActivity:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_STARTED object:self];
-    NSURL *connectionUrl = [NSURL URLWithString:kURL_JSON_WORKSHOPS];
+    NSURL *connectionUrl = [NSURL URLWithString:kURL_DATA_29C3_WORKSHOPS];
     BBJSONConnectOperation *operation = [BBJSONConnectOperation operationWithConnectUrl:connectionUrl andPathComponent:nil delegate:self selFail:@selector(operationFailedWorkshops:) selInvalid:@selector(operationInvalidWorkshops:) selSuccess:@selector(operationSuccessWorkshops:)];
     operation.jsonObjectClass = [JSONWorkshops class];
     operation.jsonMappingDictionary = [JSONWorkshops objectMapping];
@@ -243,7 +243,7 @@
 }
 
 -(void) barfBagFillCached:(BOOL)isCachedContent {
-    NSString *pathToStoredFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_FAHRPLAN]; // CACHE .xml file
+    NSString *pathToStoredFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_FAHRPLAN_EN]; // CACHE .xml file
 	BarfBagParser *pentaParser = [[BarfBagParser alloc] init];
 	pentaParser.responseData = [NSData dataWithContentsOfFile:pathToStoredFile];
 	pentaParser.delegate = self;
@@ -286,7 +286,7 @@
         if( data && [data length] > 500 ) {
             isCached = NO;
             // SAVE INFOS
-            NSString *pathToStoreFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_FAHRPLAN]; // CACHE .xml file
+            NSString *pathToStoreFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_FAHRPLAN_EN]; // CACHE .xml file
             BOOL hasStoredFile = [data writeToFile:pathToStoreFile atomically:YES];
             if( !hasStoredFile ) {
                 if( DEBUG ) NSLog( @"BARFBAG: XML SAVING FAILED!!!" );
@@ -320,11 +320,11 @@
 
 - (void) barfBagRefresh {
     [self showHudWithCaption:LOC( @"Aktualisiere Fahrplan" ) hasActivity:YES];
-    [self barfBagFetchContentWithUrlString:kCONNECTION_CONTENT_URL_EN];
+    [self barfBagFetchContentWithUrlString:kURL_DATA_29C3_FAHRPLAN_EN];
 }
 
 - (void) barfBargLoadCached {
-    NSString *pathToCachedFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_FAHRPLAN]; // CACHE .xml file
+    NSString *pathToCachedFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_FAHRPLAN_EN]; // CACHE .xml file
     NSFileManager *fm = [NSFileManager defaultManager];
     if( [fm fileExistsAtPath:pathToCachedFile] ) {
         if( DEBUG ) NSLog( @"BARFBAG: XML LOADING CACHED..." );

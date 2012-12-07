@@ -47,18 +47,29 @@
 // CACHED & TEMPORARY FILES & FOLDERS
 #define kFOLDER_DOCUMENTS       [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 #define kFOLDER_CACHES          [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches"]
-#define kFILE_CACHED_FAHRPLAN   @"fahrplan.xml"
+#define kFILE_CACHED_FAHRPLAN_EN    @"fahrplan_en.xml"
+#define kFILE_CACHED_FAHRPLAN_DE    @"fahrplan_de.xml"
+#define kFILE_CACHED_STREAMS_EN     @"streams_en.html"
+#define kFILE_CACHED_STREAMS_DE     @"streams_de.html"
+#define kFILE_CACHED_ASSEMBLIES     @"assemblies.json"
+#define kFILE_CACHED_WORKSHOPS      @"workshops.json"
 
 // NETWORKING PARAMETERS
 #define kCONNECTION_TIMEOUT         60.0f
-#define kCONNECTION_CONTENT_URL_EN  @"http://events.ccc.de/congress/2011/Fahrplan/schedule.en.xml"
-#define kCONNECTION_CONTENT_URL_DE  @"http://events.ccc.de/congress/2011/Fahrplan/schedule.de.xml"
-#define kURL_IMAGE_PATH             @"http://events.ccc.de/congress/2011/Fahrplan/images"
 
-// SEMANTIC WIKI CONNECTION URLS
+// 29C3 URLS FAHRPLAN
+#define kURL_DATA_29C3_FAHRPLAN_EN      @"http://events.ccc.de/congress/2011/Fahrplan/schedule.en.xml"
+#define kURL_DATA_29C3_FAHRPLAN_DE      @"http://events.ccc.de/congress/2011/Fahrplan/schedule.de.xml"
+#define kURL_DATA_29C3_IMAGE_PATH       @"http://events.ccc.de/congress/2011/Fahrplan/images"
+
+// 29C3 URLS SEMANTIC WIKI
 #define kASIHTTP_SHOULD_VALIDATE_SECURE_CERTIFICATE NO
-#define kURL_JSON_ASSEMBLIES        @"https://events.ccc.de/congress/2012/wiki/Special:Ask/-5B-5BCategory:Assembly-5D-5D/-3FDescription/-3FLecture-20seats/-3FArea/mainlabel%3D/offset%3D20/limit%3D500/searchlabel%3D/format%3Djson"
-#define kURL_JSON_WORKSHOPS         @"https://events.ccc.de/congress/2012/wiki/Special:Ask/-5B-5BCategory:ScheduleEntry-5D-5D/-3FDescription/-3FStart-20time/-3FEnd-20time/-3FEntry-20location/mainlabel%3D/offset%3D20/limit%3D500/searchlabel%3D/format%3Djson"
+#define kURL_DATA_29C3_ASSEMBLIES        @"https://events.ccc.de/congress/2012/wiki/Special:Ask/-5B-5BCategory:Assembly-5D-5D/-3FDescription/-3FLecture-20seats/-3FArea/mainlabel%3D/offset%3D20/limit%3D500/searchlabel%3D/format%3Djson"
+#define kURL_DATA_29C3_WORKSHOPS         @"https://events.ccc.de/congress/2012/wiki/Special:Ask/-5B-5BCategory:ScheduleEntry-5D-5D/-3FDescription/-3FStart-20time/-3FEnd-20time/-3FEntry-20location/mainlabel%3D/offset%3D20/limit%3D500/searchlabel%3D/format%3Djson"
+
+// 29C3 URLS VIDEO STREAM
+#define kURL_DATA_29C3_STREAMS_EN       @"http://www.noxymo.com/29c3/streams_en.html"
+#define kURL_DATA_29C3_STREAMS_DE       @"http://www.noxymo.com/29c3/streams_de.html"
 
 // DEFAULT USER VALUE KEYS
 #define kUSERDEFAULT_KEY_DATA_VERSION_CURRENT @"barf_data_version_current"
