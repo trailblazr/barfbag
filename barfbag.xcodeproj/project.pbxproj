@@ -12,6 +12,13 @@
 		8F1663791672A25E003347EA /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F1663781672A25E003347EA /* Default-Landscape~ipad.png */; };
 		8F16637B1672A264003347EA /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F16637A1672A264003347EA /* Default-Portrait@2x~ipad.png */; };
 		8F16637D1672A267003347EA /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F16637C1672A267003347EA /* Default-Landscape@2x~ipad.png */; };
+		8F1663821672A7E4003347EA /* favourites.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F16637E1672A7E4003347EA /* favourites.png */; };
+		8F1663831672A7E4003347EA /* favourites@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F16637F1672A7E4003347EA /* favourites@2x.png */; };
+		8F1663841672A7E4003347EA /* wikiplan.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F1663801672A7E4003347EA /* wikiplan.png */; };
+		8F1663851672A7E4003347EA /* wikiplan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F1663811672A7E4003347EA /* wikiplan@2x.png */; };
+		8F1663881672A91C003347EA /* FavouritesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1663871672A91C003347EA /* FavouritesNavigationController.m */; };
+		8F1663921672A9DE003347EA /* FavouritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1663901672A9DE003347EA /* FavouritesViewController.m */; };
+		8F1663931672A9DE003347EA /* FavouritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F1663911672A9DE003347EA /* FavouritesViewController.xib */; };
 		8F35652D166B937C00814549 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F35652C166B937C00814549 /* UIKit.framework */; };
 		8F35652F166B937C00814549 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F35652E166B937C00814549 /* Foundation.framework */; };
 		8F356531166B937C00814549 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F356530166B937C00814549 /* CoreGraphics.framework */; };
@@ -35,9 +42,7 @@
 		8F754AF2166C1E5F00F74DBB /* SourceCodePro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F754AE9166C1E5F00F74DBB /* SourceCodePro-Regular.ttf */; };
 		8F754AF3166C1E5F00F74DBB /* SourceCodePro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F754AEA166C1E5F00F74DBB /* SourceCodePro-Semibold.ttf */; };
 		8F754AF9166C1F4300F74DBB /* ScheduleNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754AF7166C1F4300F74DBB /* ScheduleNavigationController.m */; };
-		8F754AFA166C1F4300F74DBB /* ScheduleNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754AF8166C1F4300F74DBB /* ScheduleNavigationController.xib */; };
 		8F754AFE166C1F6D00F74DBB /* ConfigurationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754AFC166C1F6D00F74DBB /* ConfigurationNavigationController.m */; };
-		8F754AFF166C1F6D00F74DBB /* ConfigurationNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754AFD166C1F6D00F74DBB /* ConfigurationNavigationController.xib */; };
 		8F754B04166C221600F74DBB /* plan.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B00166C221600F74DBB /* plan.png */; };
 		8F754B05166C221600F74DBB /* plan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B01166C221600F74DBB /* plan@2x.png */; };
 		8F754B06166C221600F74DBB /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B02166C221600F74DBB /* settings.png */; };
@@ -128,6 +133,15 @@
 		8F1663781672A25E003347EA /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		8F16637A1672A264003347EA /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait@2x~ipad.png"; path = "../Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		8F16637C1672A267003347EA /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape@2x~ipad.png"; path = "../Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
+		8F16637E1672A7E4003347EA /* favourites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = favourites.png; path = images/favourites.png; sourceTree = SOURCE_ROOT; };
+		8F16637F1672A7E4003347EA /* favourites@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "favourites@2x.png"; path = "images/favourites@2x.png"; sourceTree = SOURCE_ROOT; };
+		8F1663801672A7E4003347EA /* wikiplan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wikiplan.png; path = images/wikiplan.png; sourceTree = SOURCE_ROOT; };
+		8F1663811672A7E4003347EA /* wikiplan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wikiplan@2x.png"; path = "images/wikiplan@2x.png"; sourceTree = SOURCE_ROOT; };
+		8F1663861672A91C003347EA /* FavouritesNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouritesNavigationController.h; sourceTree = "<group>"; };
+		8F1663871672A91C003347EA /* FavouritesNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouritesNavigationController.m; sourceTree = "<group>"; };
+		8F16638F1672A9DE003347EA /* FavouritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouritesViewController.h; sourceTree = "<group>"; };
+		8F1663901672A9DE003347EA /* FavouritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouritesViewController.m; sourceTree = "<group>"; };
+		8F1663911672A9DE003347EA /* FavouritesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavouritesViewController.xib; sourceTree = "<group>"; };
 		8F356528166B937C00814549 /* barfbag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = barfbag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F35652C166B937C00814549 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8F35652E166B937C00814549 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -159,10 +173,8 @@
 		8F754AEB166C1E5F00F74DBB /* SourceCodeProReadMe.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SourceCodeProReadMe.html; sourceTree = "<group>"; };
 		8F754AF6166C1F4300F74DBB /* ScheduleNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleNavigationController.h; sourceTree = "<group>"; };
 		8F754AF7166C1F4300F74DBB /* ScheduleNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleNavigationController.m; sourceTree = "<group>"; };
-		8F754AF8166C1F4300F74DBB /* ScheduleNavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScheduleNavigationController.xib; sourceTree = "<group>"; };
 		8F754AFB166C1F6D00F74DBB /* ConfigurationNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationNavigationController.h; sourceTree = "<group>"; };
 		8F754AFC166C1F6D00F74DBB /* ConfigurationNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurationNavigationController.m; sourceTree = "<group>"; };
-		8F754AFD166C1F6D00F74DBB /* ConfigurationNavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigurationNavigationController.xib; sourceTree = "<group>"; };
 		8F754B00166C221600F74DBB /* plan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plan.png; path = images/plan.png; sourceTree = SOURCE_ROOT; };
 		8F754B01166C221600F74DBB /* plan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "plan@2x.png"; path = "images/plan@2x.png"; sourceTree = SOURCE_ROOT; };
 		8F754B02166C221600F74DBB /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = settings.png; path = images/settings.png; sourceTree = SOURCE_ROOT; };
@@ -358,6 +370,18 @@
 			name = ThirdPartyStuff;
 			sourceTree = "<group>";
 		};
+		8F1663891672A924003347EA /* Favourites */ = {
+			isa = PBXGroup;
+			children = (
+				8F1663861672A91C003347EA /* FavouritesNavigationController.h */,
+				8F1663871672A91C003347EA /* FavouritesNavigationController.m */,
+				8F16638F1672A9DE003347EA /* FavouritesViewController.h */,
+				8F1663901672A9DE003347EA /* FavouritesViewController.m */,
+				8F1663911672A9DE003347EA /* FavouritesViewController.xib */,
+			);
+			name = Favourites;
+			sourceTree = "<group>";
+		};
 		8F35651D166B937C00814549 = {
 			isa = PBXGroup;
 			children = (
@@ -421,6 +445,10 @@
 		8F754AC7166B93A800F74DBB /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8F16637E1672A7E4003347EA /* favourites.png */,
+				8F16637F1672A7E4003347EA /* favourites@2x.png */,
+				8F1663801672A7E4003347EA /* wikiplan.png */,
+				8F1663811672A7E4003347EA /* wikiplan@2x.png */,
 				8F754BC6166EB47200F74DBB /* video.png */,
 				8F754BC7166EB47200F74DBB /* video@2x.png */,
 				8F754B00166C221600F74DBB /* plan.png */,
@@ -475,6 +503,7 @@
 				8F754B16166C2AF700F74DBB /* BarfSchedule */,
 				8FF921D6167019F7005A1C55 /* SemanticWikiSchedule */,
 				8F754BC0166EB0B800F74DBB /* Video */,
+				8F1663891672A924003347EA /* Favourites */,
 				8F754B17166C2AFF00F74DBB /* Configuration */,
 			);
 			name = Classes;
@@ -485,7 +514,6 @@
 			children = (
 				8F754AF6166C1F4300F74DBB /* ScheduleNavigationController.h */,
 				8F754AF7166C1F4300F74DBB /* ScheduleNavigationController.m */,
-				8F754AF8166C1F4300F74DBB /* ScheduleNavigationController.xib */,
 				8F754B11166C279800F74DBB /* EventsViewController.h */,
 				8F754B12166C279800F74DBB /* EventsViewController.m */,
 				8F754B13166C279800F74DBB /* EventsViewController.xib */,
@@ -498,7 +526,6 @@
 			children = (
 				8F754AFB166C1F6D00F74DBB /* ConfigurationNavigationController.h */,
 				8F754AFC166C1F6D00F74DBB /* ConfigurationNavigationController.m */,
-				8F754AFD166C1F6D00F74DBB /* ConfigurationNavigationController.xib */,
 				8F754B18166C2B5C00F74DBB /* ConfigurationViewController.h */,
 				8F754B19166C2B5C00F74DBB /* ConfigurationViewController.m */,
 				8F754B1A166C2B5C00F74DBB /* ConfigurationViewController.xib */,
@@ -805,8 +832,6 @@
 				8F754AF1166C1E5F00F74DBB /* SourceCodePro-Light.ttf in Resources */,
 				8F754AF2166C1E5F00F74DBB /* SourceCodePro-Regular.ttf in Resources */,
 				8F754AF3166C1E5F00F74DBB /* SourceCodePro-Semibold.ttf in Resources */,
-				8F754AFA166C1F4300F74DBB /* ScheduleNavigationController.xib in Resources */,
-				8F754AFF166C1F6D00F74DBB /* ConfigurationNavigationController.xib in Resources */,
 				8F754B04166C221600F74DBB /* plan.png in Resources */,
 				8F754B05166C221600F74DBB /* plan@2x.png in Resources */,
 				8F754B06166C221600F74DBB /* settings.png in Resources */,
@@ -829,6 +854,11 @@
 				8F1663791672A25E003347EA /* Default-Landscape~ipad.png in Resources */,
 				8F16637B1672A264003347EA /* Default-Portrait@2x~ipad.png in Resources */,
 				8F16637D1672A267003347EA /* Default-Landscape@2x~ipad.png in Resources */,
+				8F1663821672A7E4003347EA /* favourites.png in Resources */,
+				8F1663831672A7E4003347EA /* favourites@2x.png in Resources */,
+				8F1663841672A7E4003347EA /* wikiplan.png in Resources */,
+				8F1663851672A7E4003347EA /* wikiplan@2x.png in Resources */,
+				8F1663931672A9DE003347EA /* FavouritesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -903,6 +933,8 @@
 				8FF92202167024A5005A1C55 /* SBJsonTokeniser.m in Sources */,
 				8FF92203167024A5005A1C55 /* SBJsonUTF8Stream.m in Sources */,
 				8FF92204167024A5005A1C55 /* SBJsonWriter.m in Sources */,
+				8F1663881672A91C003347EA /* FavouritesNavigationController.m in Sources */,
+				8F1663921672A9DE003347EA /* FavouritesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

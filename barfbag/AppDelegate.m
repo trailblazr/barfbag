@@ -15,6 +15,7 @@
 
 #import "ScheduleNavigationController.h"
 #import "ScheduleSemanticNavigationController.h"
+#import "FavouritesNavigationController.h"
 #import "VideoStreamNavigationController.h"
 #import "ConfigurationNavigationController.h"
 
@@ -350,12 +351,14 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         [viewControllers addObject:[[[ScheduleNavigationController alloc] initWithNibName:@"ScheduleNavigationController" bundle:nil] autorelease]];
         [viewControllers addObject:[[[ScheduleSemanticNavigationController alloc] initWithNibName:@"ScheduleSemanticNavigationController" bundle:nil] autorelease]];
+        [viewControllers addObject:[[[FavouritesNavigationController alloc] initWithNibName:@"FavouritesNavigationController" bundle:nil] autorelease]];
         [viewControllers addObject:[[[VideoStreamNavigationController alloc] initWithNibName:@"VideoStreamNavigationController" bundle:nil] autorelease]];
         [viewControllers addObject:[[[ConfigurationNavigationController alloc] initWithNibName:@"ConfigurationNavigationController" bundle:nil] autorelease]];
     }
     else {
         [viewControllers addObject:[[[ScheduleNavigationController alloc] initWithNibName:@"ScheduleNavigationController" bundle:nil] autorelease]];
         [viewControllers addObject:[[[ScheduleSemanticNavigationController alloc] initWithNibName:@"ScheduleSemanticNavigationController" bundle:nil] autorelease]];
+        [viewControllers addObject:[[[FavouritesNavigationController alloc] initWithNibName:@"FavouritesNavigationController" bundle:nil] autorelease]];
         [viewControllers addObject:[[[VideoStreamNavigationController alloc] initWithNibName:@"VideoStreamNavigationController" bundle:nil] autorelease]];
         [viewControllers addObject:[[[ConfigurationNavigationController alloc] initWithNibName:@"ConfigurationNavigationController" bundle:nil] autorelease]];
     }

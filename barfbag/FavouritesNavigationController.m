@@ -1,21 +1,22 @@
 //
-//  ScheduleSemanticNavigationController.m
+//  FavouritesNavigationController.m
 //  barfbag
 //
-//  Created by Lincoln Six Echo on 06.12.12.
+//  Created by Lincoln Six Echo on 07.12.12.
 //  Copyright (c) 2012 appdoctors. All rights reserved.
 //
 
-#import "ScheduleSemanticNavigationController.h"
-#import "SemanticItemsViewController.h"
+#import "FavouritesNavigationController.h"
+#import "FavouritesViewController.h"
 
-@implementation ScheduleSemanticNavigationController
+@implementation FavouritesNavigationController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.tabBarItem.image = [UIImage imageNamed:@"wikiplan.png"];
-        self.tabBarItem.title = LOC( @"Wikiplan" );
+        // Custom initialization
+        self.tabBarItem.image = [UIImage imageNamed:@"favourites.png"];
+        self.tabBarItem.title = LOC( @"Favoriten" );
         self.navigationBar.barStyle = UIBarStyleBlackOpaque;
         self.navigationBar.tintColor = kCOLOR_BACK;
     }
@@ -25,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    SemanticItemsViewController *controller = [[SemanticItemsViewController alloc] initWithNibName:@"SemanticItemsViewController" bundle:nil];
+    FavouritesViewController *controller = [[FavouritesViewController alloc] initWithNibName:@"FavouritesViewController" bundle:nil];
     [self pushViewController:controller animated:NO];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:LOC( @"Zurück" ) style:UIBarButtonItemStylePlain target:nil action:nil];
 }

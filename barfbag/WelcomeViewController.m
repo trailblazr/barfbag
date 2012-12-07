@@ -91,7 +91,7 @@
 #else
     backgroundColor = [self themeColor];
 #endif
-    [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    [UIView animateWithDuration:0.7 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         congressMessagePlainLabel.alpha = 1.0f;
         congressMessageSemiboldLabel.alpha = 1.0f;
         barfBagBrandLabel.alpha = 1.0f;

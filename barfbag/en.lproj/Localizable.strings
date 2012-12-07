@@ -26,6 +26,7 @@
 /* EventsViewController */
 
 "Ereignisse" = "Events";
+"Fahrplan" = "Fahrplan";
 
 /* ScheduleSemanticNavigationController */
 
@@ -38,6 +39,14 @@
 "%i Workshops" = "%i Workshops";
 "%i Assemblies" = "%i Assemblies";
 "[%i Plätze]: %@" = "[%i places]: %@";
+
+/* FavouritesNavigationController */
+
+"Favoriten" = "Favorites";
+
+/* FavouritesViewController */
+
+"Favoriten" = "Favorites";
 
 /* VideoStreamNavigationController */
 

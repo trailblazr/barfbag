@@ -57,6 +57,10 @@
 
 - (NSString*) navigationTitleString {
     NSString *title = [self conference].title;
+    BOOL shouldOverrideScheduleTitle = YES;
+    if( shouldOverrideScheduleTitle ) {
+        return LOC( @"Fahrplan" );
+    }
     if( !title || [title length] == 0 ) {
         return LOC( @"Ereignisse" );
     }
