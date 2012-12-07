@@ -7,6 +7,7 @@
 //
 
 #import "WelcomeViewController.h"
+#import "AppDelegate.h"
 
 @implementation WelcomeViewController
 
@@ -34,16 +35,26 @@
         self.view.alpha = 0.0;
     } completion:^(BOOL finished) {
         if( finished ) {
+            // TRY TO INIT WITH EXISTING DATA
+            [[self appDelegate] barfBagRefresh];
             [self.view removeFromSuperview];
         }
     }];
 }
 
 - (void) prepareMessage {
+    UIColor *textColor = nil;
+#if SCREENSHOTMODE
+    textColor = kCOLOR_WHITE;
+#else
+    textColor = kCOLOR_BACK;
+#endif
+
     CGFloat fontSize40 = [[UIDevice currentDevice] isPad] ? 80.0f : 40.0f;
     
-    congressMessagePlainLabel.alpha = 0.0f;
-    congressMessageSemiboldLabel.alpha = 0.0f;
+    // congressMessagePlainLabel.alpha = 0.0f;
+    // congressMessageSemiboldLabel.alpha = 0.0f;
+    // barfBagBrandLabel.alpha = 0.0f;
     
     // PLAIN
     NSMutableString *messagePlain = [NSMutableString string];
@@ -54,7 +65,7 @@
     [messagePlain appendString:@"HA/M.B-U/RG"];
     congressMessagePlainLabel.font = [UIFont fontWithName:@"SourceCodePro-Light" size:fontSize40];
     congressMessagePlainLabel.text = messagePlain;
-    congressMessagePlainLabel.textColor = kCOLOR_BACK;
+    congressMessagePlainLabel.textColor = textColor;
 
     // SEMIBOLD
     NSMutableString *messageSemibold = [NSMutableString string];
@@ -65,28 +76,36 @@
     [messageSemibold appendString:@" "];
     congressMessageSemiboldLabel.font = [UIFont fontWithName:@"SourceCodePro-Semibold" size:fontSize40];
     congressMessageSemiboldLabel.text = messageSemibold;
-    congressMessageSemiboldLabel.textColor = kCOLOR_BACK;
+    congressMessageSemiboldLabel.textColor = textColor;
     
     // BRAND
     barfBagBrandLabel.font = [UIFont fontWithName:@"SourceCodePro-Black" size:fontSize40];
     barfBagBrandLabel.text = @"B/AR.F-BA/G";
-    barfBagBrandLabel.textColor = kCOLOR_BACK;
+    barfBagBrandLabel.textColor = textColor;
 }
 
 - (void) displayMessage {
+    UIColor *backgroundColor = kCOLOR_BACK;
+#if SCREENSHOTMODE
+    backgroundColor = kCOLOR_BACK;
+#else
+    backgroundColor = [self themeColor];
+#endif
     [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         congressMessagePlainLabel.alpha = 1.0f;
         congressMessageSemiboldLabel.alpha = 1.0f;
+        barfBagBrandLabel.alpha = 1.0f;
+        self.view.backgroundColor = backgroundColor;
     } completion:^(BOOL finished) {
         if( finished ) {
-            [self performSelector:@selector(continueAfterWelcome) withObject:self afterDelay:1.5];
+            [self performSelector:@selector(continueAfterWelcome) withObject:self afterDelay:kSECONDS_DISPLAY_WELCOME];
         }
     }];
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    self.view.backgroundColor = [self themeColor];
+   [super viewDidLoad];
+    self.view.backgroundColor = kCOLOR_BACK;
     [self prepareMessage];
     [self displayMessage];
 }

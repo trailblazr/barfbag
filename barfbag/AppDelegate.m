@@ -59,6 +59,9 @@
 }
 
 - (UIColor*) randomColor {
+#if SCREENSHOTMODE
+    return kCOLOR_CYAN;
+#endif
     NSArray *colors = [NSArray arrayWithObjects:kCOLOR_VIOLET,kCOLOR_GREEN,kCOLOR_RED,kCOLOR_CYAN,kCOLOR_ORANGE,nil];
     NSInteger colorIndex = [[NSNumber numberWithFloat:(0.4+[self randomFloatBetweenLow:0.0 andHigh:4.0])] integerValue];
     return [colors objectAtIndex:colorIndex];
@@ -368,9 +371,8 @@
     CGRect windowRect = CGRectMake(0.0, 0.0, width, height);
     controller.view.frame = windowRect;
     [_window.rootViewController.view addSubview:controller.view];
-        
-    // TRY TO INIT WITH EXISTING DATA WHILE WELCOME IS PRESENTED
-    [self   barfBargLoadCached    ];
+    
+    // WELCOME CONTROLLER WILL TRIGGER UPDATE OF DATA WHEN IT DISMISSES ITSELF
     return YES;
 }
 
@@ -414,6 +416,9 @@
 #pragma mark - Headup Display Management
 
 - (void) showHudWithCaption:(NSString*)caption hasActivity:(BOOL)hasActivity {
+#if SCREENSHOTMODE
+    return;
+#endif
     // ADD HUD VIEW
     if( !hud ) {
         self.hud = [[ATMHud alloc] initWithDelegate:self];
