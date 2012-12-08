@@ -29,8 +29,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.tabBar.tintColor = kCOLOR_BACK;
-    self.tabBar.selectedImageTintColor = [self themeColor];
 }
 
 - (void)didReceiveMemoryWarning {

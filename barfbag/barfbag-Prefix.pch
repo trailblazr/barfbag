@@ -77,12 +77,13 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 #define kFILE_CACHED_STREAMS_DE     @"streams_de.html"
 #define kFILE_CACHED_ASSEMBLIES     @"assemblies.json"
 #define kFILE_CACHED_WORKSHOPS      @"workshops.json"
+#define kFILE_CACHED_MASTER_CONFIG  @"config.plist"
 
 // NETWORKING PARAMETERS
 #define kCONNECTION_TIMEOUT         60.0f
 
-// 29C3 URL MASTER CONFIGURATION (WILL OVERRIDE ALL URLS SEEN BELOW)
-#define kURL_CONFIG_29C3                @"http://www.noxymo.com/29c3/config_remote.plist"
+// 29C3 URL MASTER CONFIGURATION (WILL OVERRIDE ALL URLS SEEN BELOW, STORES TO kFILE_CACHED_MASTER_CONFIG)
+#define kURL_MASTER_CONFIG_29C3         @"http://www.noxymo.com/29c3/config_remote.plist"
 
 // 29C3 URLS FAHRPLAN
 #define kURL_DATA_29C3_FAHRPLAN_EN      @"http://events.ccc.de/congress/2012/Fahrplan/schedule.en.xml"
@@ -122,9 +123,15 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 #define kNOTIFICATION_STREAM_FINISHED       @"streamFetchFinished"
 #define kNOTIFICATION_STREAM_COMPLETED      @"streamFetchCompleted"
 
-#define kNOTIFICATION_FAVOURITE_ADDED       @"streamFetchCompleted"
-#define kNOTIFICATION_FAVOURITE_REMOVED     @"streamFetchCompleted"
-#define kNOTIFICATION_FAVOURITE_CHANGED     @"streamFetchCompleted"
+#define kNOTIFICATION_FAVOURITE_ADDED       @"favouriteAdded"
+#define kNOTIFICATION_FAVOURITE_REMOVED     @"favouriteRemoved"
+#define kNOTIFICATION_FAVOURITE_CHANGED     @"favouriteChanged"
+
+#define kNOTIFICATION_MASTER_CONFIG_STARTED     @"masterConfigStarted"
+#define kNOTIFICATION_MASTER_CONFIG_FAILED      @"masterConfigFailed"
+#define kNOTIFICATION_MASTER_CONFIG_SUCCEEDED   @"masterConfigSucceeded"
+#define kNOTIFICATION_MASTER_CONFIG_FINISHED    @"masterConfigFinished"
+#define kNOTIFICATION_MASTER_CONFIG_COMPLETED   @"masterConfigCompleted"
 
 
 

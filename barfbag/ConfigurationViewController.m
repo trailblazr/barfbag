@@ -63,14 +63,14 @@
 
 - (IBAction) actionSwitchChanged:(UISwitch*)theSwitch {
     for( NSDictionary *currentDict in sectionsArray ) {
-        if( [[currentDict keyForObject:theSwitch] isEqualToString:@"switchAutoUpdate"] ) {
+        if( [currentDict objectForKey:@"switchAutoUpdate"] == theSwitch ) {
             [self updateDefaultsForKey:kUSERDEFAULT_KEY_BOOL_AUTOUPDATE withValue:theSwitch.isOn];        
         }
     }
 }
 
 - (IBAction) actionForceReconfigureClient {
-    NSLog( @"FORCE RECONFIGURE" );
+    [[self appDelegate] configRefresh];
 }
 
 - (void) setupTableData {

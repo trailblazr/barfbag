@@ -42,6 +42,7 @@
 @synthesize semanticWikiAssemblies;
 @synthesize semanticWikiWorkshops;
 @synthesize videoStreamsHtml;
+@synthesize masterConfiguration;
 @synthesize hud;
 
 - (void)dealloc {
@@ -52,6 +53,7 @@
     self.semanticWikiAssemblies = nil;
     self.semanticWikiWorkshops = nil;
     self.videoStreamsHtml = nil;
+    self.masterConfiguration = nil;
     self.hud = nil;
     [super dealloc];
 }
@@ -151,14 +153,126 @@
     BOOL useCustomSlider = YES;
     if( useCustomSlider ) {
         UISlider *proxySlider = [UISlider appearance];
-        [proxySlider setMinimumTrackTintColor:[self brightColor]];
-        [proxySlider setMaximumTrackTintColor:[self darkColor]];
+        [proxySlider setMinimumTrackTintColor:[self darkColor]];
+        [proxySlider setMaximumTrackTintColor:[self themeColor]];
     }
     
     // SWITCH
     UISwitch *proxySwitch = [UISwitch appearance];
-    proxySwitch.onTintColor = [self themeColor];
-    // proxySwitch.thumbTintColor = [UIColor hexColorWithRGB:0x555555];
+    proxySwitch.onTintColor = [self darkColor];
+    
+    // TABBAR
+    UITabBar *proxyTabBar = [UITabBar appearance];
+    proxyTabBar.tintColor = kCOLOR_BACK;
+    proxyTabBar.selectedImageTintColor = [self themeColor];
+}
+
+#pragma mark - Fetch Master Configuration
+
+- (void) configFetchContentWithUrlString:(NSString*)urlString {
+    if( DEBUG ) NSLog( @"MASTERCONFIG: PLIST FETCHING FROM %@", urlString );
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_MASTER_CONFIG_STARTED object:self];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]
+                                                              cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                                          timeoutInterval:kCONNECTION_TIMEOUT];
+    
+    [self addUserAgentInfoToRequest:theRequest];
+    
+    BOOL shouldCheckModifiedDate = NO;
+    if( shouldCheckModifiedDate ) {
+        NSString *modifiedDateString = nil;
+        CGFloat secondsForTwoMonths = 60*24*60*60;
+        NSDate *lastModifiedDate = [NSDate dateWithTimeIntervalSinceNow:-secondsForTwoMonths];
+        @try {
+            NSDateFormatter *df = [[NSDateFormatter alloc] init];
+            df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss 'GMT'";
+            df.locale = [[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] autorelease];
+            df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+            modifiedDateString = [df stringFromDate:lastModifiedDate];
+            [df release];
+        }
+        @catch (NSException * e) {
+            // do nothing
+        }
+        NSLog( @"FETCHING STUFF SINCE DATE: %@", lastModifiedDate );
+        [theRequest addValue:modifiedDateString forHTTPHeaderField:@"If-Modified-Since"];
+    }
+    
+    // KICK OFF CONNECTION AS BLOCK
+    [SinaURLConnection asyncConnectionWithRequest:theRequest completionBlock:^(NSData *data, NSURLResponse *response) {
+        NSInteger statusCode = ((NSHTTPURLResponse*)response).statusCode;
+        if( DEBUG ) NSLog( @"MASTERCONFIG: PLIST CONNECTION RESPONSECODE: %i", statusCode );
+        // REPLACE STORED OFFLINE DATA
+        if( statusCode != 200 ) {
+            [self alertWithTag:0 title:LOC( @"Master Configuration" ) andMessage:LOC( @"Derzeit liegen keine\nKonfigurationsdaten vor\num zu Aktualisieren.\n\nProbieren sie es später\nnoch einmal bitte!" )];
+        }
+        else {
+            BOOL isCached = NO;
+            if( data && [data length] > 500 ) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_MASTER_CONFIG_SUCCEEDED object:self];
+                isCached = NO;
+                // SAVE INFOS
+                NSString *pathToStoreFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_MASTER_CONFIG];
+                BOOL hasStoredFile = [data writeToFile:pathToStoreFile atomically:YES];
+                if( !hasStoredFile ) {
+                    if( DEBUG ) NSLog( @"MASTERCONFIG: PLIST SAVING FAILED!!!" );
+                }
+                else {
+                    if( DEBUG ) NSLog( @"MASTERCONFIG: PLIST SAVING SUCCEEDED." );
+                }
+                [self configFillCached:isCached];
+            }
+            else {
+                isCached = YES;
+                [self configFillCached:isCached];
+            }
+        }
+        [self hideHud];
+    } errorBlock:^(NSError *error) {
+        if( DEBUG ) NSLog( @"MASTERCONFIG: NO INTERNET CONNECTION." );
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_MASTER_CONFIG_FAILED object:self];
+        [self alertWithTag:0 title:LOC( @"Verbindungsproblem" ) andMessage:LOC( @"Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten." )];
+        // TODO: DISPLAY SOME ERROR...
+        BOOL isCached = YES;
+        [self configFillCached:isCached];
+        [self hideHud];
+    } uploadProgressBlock:^(float progress) {
+        // do nothing
+    } downloadProgressBlock:^(float progress) {
+        // TODO: UPDATE PROGRESS DISPLAY ...
+    } cancelBlock:^(float progress) {
+        // do nothing
+        [self hideHud];
+    }];
+}
+
+-(void) configFillCached:(BOOL)isCachedContent {
+    NSString *pathToStoredFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_MASTER_CONFIG];
+    @try {
+        self.masterConfiguration = [NSString stringWithContentsOfFile:pathToStoredFile encoding:NSUTF8StringEncoding error:nil];
+    }
+    @catch (NSException *exception) {
+        // Not interested, sorry!
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_MASTER_CONFIG_COMPLETED object:self];
+}
+
+- (void) configLoadCached {
+    NSString *pathToCachedFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_MASTER_CONFIG];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    if( [fm fileExistsAtPath:pathToCachedFile] ) {
+        if( DEBUG ) NSLog( @"MASTERCONFIG: PLIST LOADING CACHED..." );
+        [self configFillCached:YES];
+    }
+    else {
+        // TRY TO UPDATE DATA IMMEDIATELY
+        [self configRefresh];
+    }
+}
+
+- (void) configRefresh {
+    [self showHudWithCaption:LOC( @"Aktualisiere Master Configuration" ) hasActivity:YES];
+    [self configFetchContentWithUrlString:kURL_MASTER_CONFIG_29C3];
 }
 
 #pragma mark - Fetching & Caching of HTML (videostreams)
