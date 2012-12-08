@@ -35,7 +35,7 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.navigationItem.title = LOC( @"Favoriten" );
+    self.navigationItem.title = LOC( @"29C3 Favoriten" );
 }
 
 - (void)didReceiveMemoryWarning {

@@ -526,8 +526,8 @@
 				8F754B0A166C22A100F74DBB /* WelcomeViewController.xib */,
 				8F754B16166C2AF700F74DBB /* BarfSchedule */,
 				8FF921D6167019F7005A1C55 /* SemanticWikiSchedule */,
-				8F754BC0166EB0B800F74DBB /* Video */,
 				8F1663891672A924003347EA /* Favourites */,
+				8F754BC0166EB0B800F74DBB /* Video */,
 				8F754B17166C2AFF00F74DBB /* Configuration */,
 			);
 			name = Classes;

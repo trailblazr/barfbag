@@ -59,7 +59,7 @@
     NSString *title = [self conference].title;
     BOOL shouldOverrideScheduleTitle = YES;
     if( shouldOverrideScheduleTitle ) {
-        return LOC( @"Fahrplan" );
+        return LOC( @"29C3 Fahrplan" );
     }
     if( !title || [title length] == 0 ) {
         return LOC( @"Ereignisse" );

@@ -25,7 +25,7 @@
 
 - (void) updateNavigationTitle {
     self.navigationItem.titleView = nil;
-    self.navigationItem.title = LOC( @"Wikiplan" );
+    self.navigationItem.title = LOC( @"29C3 Wikiplan" );
 }
 
 #pragma mark - User Actions

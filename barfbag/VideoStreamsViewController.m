@@ -58,7 +58,7 @@
     UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionRefreshData)] autorelease];
     self.navigationItem.rightBarButtonItem = item;
 
-    self.navigationItem.title = LOC( @"Videostreams" );
+    self.navigationItem.title = LOC( @"29C3 Livestreams" );
     self.view.backgroundColor = [self themeColor];
     videoStreamsWebView.opaque = NO;
     videoStreamsWebView.backgroundColor = kCOLOR_CLEAR;

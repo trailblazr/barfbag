@@ -684,7 +684,12 @@
     [self barfBagFetchContentWithUrlString:kURL_DATA_29C3_FAHRPLAN_EN];
 }
 
-#pragma mark - Manage Full Auto Update Run
+#pragma mark - Manage Full Auto Update Run & Master Configuration
+
+- (NSString*) masterConfigRemoteStringForKey:(NSString*)key {
+    if( !masterConfiguration || [masterConfiguration count] == 0 ) return nil;
+    
+}
 
 - (void) allDataLoadCached {
     [self barfBagLoadCached];

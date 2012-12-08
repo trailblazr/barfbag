@@ -27,6 +27,7 @@
 
 "Ereignisse" = "Events";
 "Fahrplan" = "Fahrplan";
+"29C3 Fahrplan" = "29C3 Schedule";
 
 /* ScheduleSemanticNavigationController */
 
@@ -38,7 +39,8 @@
 "Wikiplan" = "Wikischedule";
 "%i Workshops" = "%i Workshops";
 "%i Assemblies" = "%i Assemblies";
-"[%i Plätze]: %@" = "[%i places]: %@";
+"[%i Plätze]: %@" = "[%i seats]: %@";
+"29C3 Wikiplan" = "29C3 Wikischedule";
 
 /* FavouritesNavigationController */
 
@@ -47,6 +49,7 @@
 /* FavouritesViewController */
 
 "Favoriten" = "Favorites";
+"29C3 Favoriten" = "29C3 Favorites";
 
 /* VideoStreamNavigationController */
 
@@ -56,6 +59,7 @@
 /* VideoStreamsViewController */
 
 "Videostreams" = "Livestreams";
+"29C3 Livestreams" = "29C3 Livestreams";
 "Videostreams konnten nicht erfolgreich geladen werden. %@" = "Videostreams could not be loaded.%@";
 "Problem" = "Problem";
 
@@ -67,9 +71,9 @@
 /* ConfigurationViewController */
 
 "Einstellungen" = "Settings";
+"Optionen" = "Not my department";
 "Autoupdate" = "Autoupdate";
 "Aktualisiere alle Daten beim Start" = "Refresh all data on startup";
-"Optionen" = "Parameters";
 "created in 2012 by trailblazr\nwith some help & code of plaetzchen" = "created in 2012 by trailblazr\nwith some help & code of plaetzchen";
 "Reconfig" = "Reset";
 "Force Reconfigure" = "Factory Settings";
