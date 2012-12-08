@@ -47,7 +47,9 @@
     UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionRefreshData)] autorelease];
     self.navigationItem.rightBarButtonItem = item;
     [self updateNavigationTitle];
-
+    if( [self tableView:self.tableView numberOfRowsInSection:0] == 0 ) {
+        [[self appDelegate] semanticWikiLoadCached];
+    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

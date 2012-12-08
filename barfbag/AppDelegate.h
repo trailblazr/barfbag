@@ -25,10 +25,8 @@
     NSArray *semanticWikiAssemblies;
     NSArray *semanticWikiWorkshops;
     NSString *videoStreamsHtml;
-    BOOL isAppStarting;
 }
 
-@property( nonatomic,assign ) BOOL isAppStarting;
 @property( strong, nonatomic ) UIWindow *window;
 @property( strong, nonatomic ) GenericTabBarController *tabBarController;
 @property( strong, nonatomic ) UIColor *themeColor;
@@ -39,9 +37,18 @@
 
 @property( nonatomic, retain ) ATMHud *hud;
 
+- (BOOL) isConfigOnForKey:(NSString*)key defaultValue:(BOOL)isOn;
+
+- (void) allDataRefresh;
+- (void) allDataLoadCached;
+
 - (void) barfBagRefresh;
+- (void) barfBagLoadCached;
 - (void) semanticWikiRefresh;
+- (void) semanticWikiLoadCached;
 - (void) videoStreamsRefresh;
+- (void) videoStreamsLoadCached;
+
 - (void) showHudWithCaption:(NSString*)caption hasActivity:(BOOL)hasActivity;
 - (void) hideHud;
 

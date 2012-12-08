@@ -11,7 +11,7 @@
 #import "Conference.h"
 #import "Day.h"
 #import "Event.h"
-
+#import "AppDelegate.h"
 
 @implementation EventsViewController
 
@@ -103,6 +103,9 @@
 - (void)viewDidLoad {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionUpdateDisplayAfterRefresh) name:kNOTIFICATION_PARSER_COMPLETED  object:nil];
     [super viewDidLoad];
+    if( [self tableView:self.tableView numberOfRowsInSection:0] == 0 ) {
+        [[self appDelegate] barfBagLoadCached];
+    }
     UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionRefreshData)] autorelease];
     self.navigationItem.rightBarButtonItem = item;
     [self updateNavigationTitle];

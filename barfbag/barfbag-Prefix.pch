@@ -72,8 +72,9 @@
 #define kURL_DATA_29C3_STREAMS_DE       @"http://www.noxymo.com/29c3/streams_de.html"
 
 // DEFAULT USER VALUE KEYS
-#define kUSERDEFAULT_KEY_DATA_VERSION_CURRENT @"barf_data_version_current"
-#define kUSERDEFAULT_KEY_DATA_VERSION_UPDATED @"barf_data_version_updated"
+#define kUSERDEFAULT_KEY_DATA_VERSION_CURRENT   @"barf_data_version_current"
+#define kUSERDEFAULT_KEY_DATA_VERSION_UPDATED   @"barf_data_version_updated"
+#define kUSERDEFAULT_KEY_BOOL_AUTOUPDATE        @"boolAutoUpdateData"
 
 // NOTIFICATIONS
 #define kNOTIFICATION_PARSER_STARTED    @"xmlParserStarted"

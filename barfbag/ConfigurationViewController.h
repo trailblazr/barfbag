@@ -11,7 +11,10 @@
 
 @interface ConfigurationViewController : GenericTableViewController {
 
-    
+    NSMutableArray *sectionsArray;
+
 }
+
+@property( nonatomic, retain ) NSMutableArray *sectionsArray;
 
 @end

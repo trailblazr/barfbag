@@ -36,7 +36,13 @@
     } completion:^(BOOL finished) {
         if( finished ) {
             // TRY TO INIT WITH EXISTING DATA
-            [[self appDelegate] barfBagRefresh];
+            BOOL shouldAutoUpdateOnStartup = [[self appDelegate] isConfigOnForKey:kUSERDEFAULT_KEY_BOOL_AUTOUPDATE defaultValue:YES];
+            if( shouldAutoUpdateOnStartup ) {
+                [[self appDelegate] allDataRefresh];
+            }
+            else {
+                [[self appDelegate] allDataLoadCached];
+            }
             [self.view removeFromSuperview];
         }
     }];

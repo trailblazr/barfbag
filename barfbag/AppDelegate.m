@@ -29,6 +29,7 @@
 #import "Person.h"
 
 // SEMANTIC WIKI OBJECTS & CONNECTION HANDLING
+#import "NSObject+SBJson.h"
 #import "JSONWorkshops.h"
 #import "JSONAssemblies.h"
 
@@ -42,7 +43,6 @@
 @synthesize semanticWikiWorkshops;
 @synthesize videoStreamsHtml;
 @synthesize hud;
-@synthesize isAppStarting;
 
 - (void)dealloc {
     [_window release];
@@ -91,12 +91,41 @@
     [alert release];
 }
 
+- (UIColor*) brightColor {
+    CGFloat hue = [[self themeColor] hue];
+    return [UIColor colorWithHue:hue saturation:0.025f brightness:1.0 alpha:1.0];
+}
+
+- (UIColor*) darkColor {
+    CGFloat hue = [[self themeColor] hue];
+    return [UIColor colorWithHue:hue saturation:0.5 brightness:0.7 alpha:1.0];
+}
+
+- (BOOL) isConfigOnForKey:(NSString*)key defaultValue:(BOOL)isOn {
+    if( ![[NSUserDefaults standardUserDefaults] objectForKey:key] ) {
+        return isOn;
+    }
+    return [[NSUserDefaults standardUserDefaults] boolForKey:key];
+}
+
 - (void) configureAppearance {
     if( ![[UINavigationBar class] respondsToSelector:@selector(appearance)] ) return;
 
     // MPAVController
     // MPAVController *proxyMpavController = [MPAVController appearance];
+
+    // SLIDER
+    BOOL useCustomSlider = YES;
+    if( useCustomSlider ) {
+        UISlider *proxySlider = [UISlider appearance];
+        [proxySlider setMinimumTrackTintColor:[self brightColor]];
+        [proxySlider setMaximumTrackTintColor:[self darkColor]];
+    }
     
+    // SWITCH
+    UISwitch *proxySwitch = [UISwitch appearance];
+    proxySwitch.onTintColor = [self themeColor];
+    // proxySwitch.thumbTintColor = [UIColor hexColorWithRGB:0x555555];
 }
 
 #pragma mark - Fetching & Caching of HTML (videostreams)
@@ -162,24 +191,14 @@
             isCached = YES;
             [self videoStreamsFillCached:isCached];
         }
-        if( isAppStarting ) {
-            [self semanticWikiRefresh];
-        }
-        else {
-            [self hideHud];
-        }
+        [self hideHud];
     } errorBlock:^(NSError *error) {
         if( DEBUG ) NSLog( @"VIDEOSTREAMS: NO INTERNET CONNECTION." );
         [self alertWithTag:0 title:LOC( @"Verbindungsproblem" ) andMessage:[NSString stringWithFormat:LOC( @"Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten.\n\nSie verwenden derzeit\n%@ der Daten." ), [self barfBagCurrentDataVersion]]];
         // TODO: DISPLAY SOME ERROR...
         BOOL isCached = YES;
         [self videoStreamsFillCached:isCached];
-        if( isAppStarting ) {
-            [self semanticWikiRefresh];
-        }
-        else {
-            [self hideHud];
-        }
+        [self hideHud];
     } uploadProgressBlock:^(float progress) {
         // do nothing
     } downloadProgressBlock:^(float progress) {
@@ -210,6 +229,27 @@
 
 #pragma mark - Fetching, Caching & Parsing of XML (semantic wiki)
 
+-(void) semanticWikiFillCached:(BOOL)isCachedContent {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *pathToCachedAssemblyFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_ASSEMBLIES];
+    NSString *pathToCachedWorkshopFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_WORKSHOPS];
+    // FETCH FROM CACHE
+    if( [fm fileExistsAtPath:pathToCachedAssemblyFile] ) {
+        NSString *jsonString = [NSString stringWithContentsOfFile:pathToCachedAssemblyFile encoding:NSUTF8StringEncoding error:nil];
+        id result = [[JSONAssemblies class] objectFromJSONObject:[jsonString JSONValue] mapping:[JSONAssemblies objectMapping]];
+        JSONAssemblies *assemblies = (JSONAssemblies*)result;
+        self.semanticWikiAssemblies = [assemblies assemblyItems];
+        if( DEBUG ) NSLog( @"WIKI: ASSEMBLIES FOUND %i items", [semanticWikiAssemblies count] );
+    }
+    if( [fm fileExistsAtPath:pathToCachedWorkshopFile] ) {
+        NSString *jsonString = [NSString stringWithContentsOfFile:pathToCachedWorkshopFile encoding:NSUTF8StringEncoding error:nil];
+        id result = [[JSONWorkshops class] objectFromJSONObject:[jsonString JSONValue] mapping:[JSONWorkshops objectMapping]];
+        JSONWorkshops *workshops = (JSONWorkshops*)result;
+        self.semanticWikiWorkshops = [workshops workshopItems];
+        if( DEBUG ) NSLog( @"WIKI: WORKSHOPS FOUND %i items", [semanticWikiWorkshops count] );
+    }
+}
+
 - (BOOL) semanticWikiFetchAssemblies {
     [self showHudWithCaption:LOC( @"Aktualisiere Assemblies" ) hasActivity:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_STARTED object:self];
@@ -230,6 +270,18 @@
     JSONAssemblies *assemblies = (JSONAssemblies*)operation.result;
     self.semanticWikiAssemblies = [assemblies assemblyItems];
     if( DEBUG ) NSLog( @"WIKI: ASSEMBLIES FOUND %i items", [semanticWikiAssemblies count] );
+
+    // SAVE ASSEMBLIES TO CACHE...
+    NSString *jsonString = operation.currentRequest.responseString;
+    NSString *pathToStoreFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_ASSEMBLIES];
+    BOOL hasStoredFile = [jsonString writeToFile:pathToStoreFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    if( !hasStoredFile ) {
+        if( DEBUG ) NSLog( @"WIKI: ASSEMBLY JSON SAVING FAILED!!!" );
+    }
+    else {
+        if( DEBUG ) NSLog( @"WIKI: ASSEMBLY JSON SAVING SUCCEEDED." );
+    }
+    
     // if( DEBUG ) NSLog( @"ASSEMBLIES: %@", assemblies );
     [self semanticWikiFetchWorkshops];
 }
@@ -269,11 +321,17 @@
     self.semanticWikiWorkshops = [workshops workshopItems];
     if( DEBUG ) NSLog( @"WIKI: WORKSHOPS FOUND %i items", [semanticWikiWorkshops count] );
     // if( DEBUG ) NSLog( @"WORKSHOPS: %@", workshops );
-    [self hideHud];
-    if( isAppStarting ) {
-        self.isAppStarting = NO;
-        if( DEBUG ) NSLog( @"APP STARTUP COMPLETED. (ALL DATA UPDATED)" );
+    NSString *jsonString = operation.currentRequest.responseString;
+    NSString *pathToStoreFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_WORKSHOPS];
+    BOOL hasStoredFile = [jsonString writeToFile:pathToStoreFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    if( !hasStoredFile ) {
+        if( DEBUG ) NSLog( @"WIKI: WORKSHOP JSON SAVING FAILED!!!" );
     }
+    else {
+        if( DEBUG ) NSLog( @"WIKI: WORKSHOP JSON SAVING SUCCEEDED." );
+    }
+
+    [self hideHud];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_COMPLETED object:self]; // MARKS END OF FETCHING
 }
 
@@ -294,6 +352,20 @@
 - (void) semanticWikiFetchAllData {
     if( DEBUG ) NSLog( @"WIKI: FETCHING DATA..." );
     [self semanticWikiFetchAssemblies];
+}
+
+- (void) semanticWikiLoadCached {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *pathToCachedAssemblyFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_ASSEMBLIES];
+    NSString *pathToCachedWorkshopFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_WORKSHOPS];
+    if( [fm fileExistsAtPath:pathToCachedAssemblyFile] && [fm fileExistsAtPath:pathToCachedWorkshopFile] ) {
+        if( DEBUG ) NSLog( @"WIKI: JSON LOADING CACHED..." );
+        [self semanticWikiFillCached:YES];
+    }
+    else {
+        // TRY TO UPDATE DATA IMMEDIATELY
+        [self semanticWikiRefresh];
+    }
 }
 
 - (void) semanticWikiRefresh {
@@ -350,13 +422,7 @@
     }
     if( DEBUG ) NSLog( @"BARFBAG: PARSING COMPLETED." );
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_PARSER_COMPLETED object:self];
-    
-    if( isAppStarting ) {
-        [self videoStreamsRefresh];
-    }
-    else {
-        [self hideHud];
-    }
+    [self hideHud];
 }
 
 - (NSString*) barfBagCurrentDataVersion {
@@ -439,7 +505,7 @@
     }];
 }
 
-- (void) barfBargLoadCached {
+- (void) barfBagLoadCached {
     NSString *pathToCachedFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_FAHRPLAN_EN]; // CACHE .xml file
     NSFileManager *fm = [NSFileManager defaultManager];
     if( [fm fileExistsAtPath:pathToCachedFile] ) {
@@ -457,10 +523,23 @@
     [self barfBagFetchContentWithUrlString:kURL_DATA_29C3_FAHRPLAN_EN];
 }
 
+#pragma mark - Manage Full Auto Update Run
+
+- (void) allDataLoadCached {
+    [self barfBagLoadCached];
+    [self semanticWikiLoadCached];
+    [self videoStreamsLoadCached];
+}
+
+- (void) allDataRefresh {
+    [self barfBagRefresh];
+    [self semanticWikiRefresh];
+    [self videoStreamsRefresh];
+}
+
 #pragma mark - Application Launching & State Transitions
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.isAppStarting = YES;
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.themeColor = [self randomColor];
     
