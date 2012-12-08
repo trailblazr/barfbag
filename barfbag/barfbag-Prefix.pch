@@ -14,6 +14,7 @@
     #import "UIColor-Expanded.h"
     #import "UIDevice-Versions.h"
     #import "NSString-Toolkit.h"
+    #import <QuartzCore/QuartzCore.h>
 #endif
 
 // TYPEDEFS
@@ -79,6 +80,9 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 
 // NETWORKING PARAMETERS
 #define kCONNECTION_TIMEOUT         60.0f
+
+// 29C3 URL MASTER CONFIGURATION (WILL OVERRIDE ALL URLS SEEN BELOW)
+#define kURL_CONFIG_29C3                @"http://www.noxymo.com/29c3/config_remote.plist"
 
 // 29C3 URLS FAHRPLAN
 #define kURL_DATA_29C3_FAHRPLAN_EN      @"http://events.ccc.de/congress/2012/Fahrplan/schedule.en.xml"

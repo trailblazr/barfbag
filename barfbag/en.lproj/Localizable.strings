@@ -71,6 +71,9 @@
 "Aktualisiere alle Daten beim Start" = "Refresh all data on startup";
 "Optionen" = "Parameters";
 "created in 2012 by trailblazr\nwith some help & code of plaetzchen" = "created in 2012 by trailblazr\nwith some help & code of plaetzchen";
+"Reconfig" = "Reset";
+"Force Reconfigure" = "Factory Settings";
+"Basiskonfiguration resetten" = "Reset & configure all settings";
 
 
 

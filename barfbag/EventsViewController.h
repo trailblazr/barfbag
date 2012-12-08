@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
 #import "GenericTableViewController.h"
 
 @interface EventsViewController : GenericTableViewController <UISearchBarDelegate> {

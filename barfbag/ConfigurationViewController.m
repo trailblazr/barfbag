@@ -28,28 +28,85 @@
     return self;
 }
 
+#pragma mark - Convenience Methods
+
 - (void) updateDefaultsForKey:(NSString*)key withValue:(BOOL)isOn {
     [[NSUserDefaults standardUserDefaults] setBool:isOn forKey:key];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+- (UIImage*) maskImage:(UIImage *)image withMask:(UIImage *)maskImage {
+    
+	CGImageRef maskRef = maskImage.CGImage;
+    
+	CGImageRef mask = CGImageMaskCreate(CGImageGetWidth(maskRef),
+                                        CGImageGetHeight(maskRef),
+                                        CGImageGetBitsPerComponent(maskRef),
+                                        CGImageGetBitsPerPixel(maskRef),
+                                        CGImageGetBytesPerRow(maskRef),
+                                        CGImageGetDataProvider(maskRef), NULL, false);
+    
+	CGImageRef masked = CGImageCreateWithMask([image CGImage], mask);
+	return [UIImage imageWithCGImage:masked];
+    
+}
+
+- (UIImage*) imageFromView:(UIView*)viewToRender {
+    UIGraphicsBeginImageContext(viewToRender.frame.size);
+    [[viewToRender layer] renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *screenshot = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return screenshot;
+}
+
+#pragma mark - User Actions
+
 - (IBAction) actionSwitchChanged:(UISwitch*)theSwitch {
-    if( theSwitch == [sectionsArray objectAtIndex:0] ) {
-        [self updateDefaultsForKey:kUSERDEFAULT_KEY_BOOL_AUTOUPDATE withValue:theSwitch.isOn];
+    for( NSDictionary *currentDict in sectionsArray ) {
+        if( [[currentDict keyForObject:theSwitch] isEqualToString:@"switchAutoUpdate"] ) {
+            [self updateDefaultsForKey:kUSERDEFAULT_KEY_BOOL_AUTOUPDATE withValue:theSwitch.isOn];        
+        }
     }
 }
 
-- (void) setupSwitches {
+- (IBAction) actionForceReconfigureClient {
+    NSLog( @"FORCE RECONFIGURE" );
+}
+
+- (void) setupTableData {
     self.sectionsArray = [NSMutableArray array];
+    NSDictionary *itemEntry = nil;    
+    
+    // SWITCH
     UISwitch *switchRefreshDataOnStartup = [[[UISwitch alloc] init] autorelease];
     switchRefreshDataOnStartup.on = [[self appDelegate] isConfigOnForKey:kUSERDEFAULT_KEY_BOOL_AUTOUPDATE defaultValue:YES];
     [switchRefreshDataOnStartup addTarget:self action:@selector(actionSwitchChanged:) forControlEvents:UIControlEventValueChanged];
-    [sectionsArray addObject:switchRefreshDataOnStartup];
+    itemEntry = [NSDictionary dictionaryWithObject:switchRefreshDataOnStartup forKey:@"switchAutoUpdate"];
+    [sectionsArray addObject:itemEntry];
+    
+    // BUTTON
+    UIButton *buttonForceReconfiguration = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    buttonForceReconfiguration.frame = CGRectMake(0.0, 0.0, 85.0, 30.0);
+    [buttonForceReconfiguration setTitle:LOC( @"Reconfig" ) forState:UIControlStateNormal];
+    [buttonForceReconfiguration setTitleColor:[self darkColor] forState:UIControlStateNormal];
+    [buttonForceReconfiguration setTitleColor:kCOLOR_WHITE forState:UIControlStateHighlighted];
+    // MASK BUTTON
+    UIImage *gradientImage = [self imageGradientWithSize:buttonForceReconfiguration.bounds.size color1:[self themeColor] color2:[self darkColor]];
+    UIImageView *maskedImageView = [[UIImageView alloc] initWithImage:gradientImage];
+    maskedImageView.layer.cornerRadius = 7.0;
+    maskedImageView.layer.masksToBounds = YES;
+    gradientImage = [self imageFromView:maskedImageView];
+    [buttonForceReconfiguration setBackgroundImage:gradientImage forState:UIControlStateHighlighted];
+    [buttonForceReconfiguration addTarget:self action:@selector(actionForceReconfigureClient) forControlEvents:UIControlEventTouchUpInside];
+    itemEntry = [NSDictionary dictionaryWithObject:buttonForceReconfiguration forKey:@"buttonForceReconfig"];
+    [sectionsArray addObject:itemEntry];
+    
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupSwitches];
+    [self setupTableData];
     [self.tableView reloadData];
     self.tableView.backgroundColor = [self brighterColor];
     self.navigationItem.title = LOC( @"Einstellungen" );
@@ -137,14 +194,26 @@
     }
     
     // Configure the cell...
-    UIView *currentView = [sectionsArray objectAtIndex:indexPath.row];
+    NSDictionary *currentDict = [sectionsArray objectAtIndex:indexPath.row];
+    id uiElement = nil;
+        
     switch( indexPath.row ) {
-        case 0:
+
+        case 0: {
+            uiElement = [currentDict objectForKey:@"switchAutoUpdate"];
             cell.textLabel.text = LOC( @"Autoupdate" );
             cell.detailTextLabel.text = LOC( @"Aktualisiere alle Daten beim Start" );
-            cell.accessoryView = currentView;
+            cell.accessoryView = uiElement;
             break;
-            
+        }
+
+        case 1:
+            uiElement = [currentDict objectForKey:@"buttonForceReconfig"];
+            cell.textLabel.text = LOC( @"Force Reconfigure" );
+            cell.detailTextLabel.text = LOC( @"Basiskonfiguration resetten" );
+            cell.accessoryView = uiElement;
+            break;
+
         default:
             break;
     }
