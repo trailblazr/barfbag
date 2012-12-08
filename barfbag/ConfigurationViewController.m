@@ -9,6 +9,8 @@
 #import "ConfigurationViewController.h"
 #import "AppDelegate.h"
 
+#define kTABLE_SECTION_HEADER_HEIGHT 50.0f
+
 @implementation ConfigurationViewController
 
 @synthesize sectionsArray;
@@ -53,7 +55,21 @@
     [self.tableView reloadData];
     self.navigationItem.title = LOC( @"Einstellungen" );
     self.tableView.backgroundColor = [self themeColor];
-
+    
+    // FOOTER
+    CGFloat width = self.view.bounds.size.width;
+    UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 70.0)] autorelease];
+    footerView.backgroundColor = kCOLOR_CLEAR;
+    UILabel *creditsLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, width-20.0f, 70.0)] autorelease];
+    creditsLabel.backgroundColor = kCOLOR_CLEAR;
+    creditsLabel.numberOfLines = 3;
+    creditsLabel.textAlignment = UITextAlignmentCenter;
+    creditsLabel.text = LOC( @"created in 2012 by trailblazr\nwith some help & code of plaetzchen" );
+    creditsLabel.font = [UIFont systemFontOfSize:12.0];
+    creditsLabel.textColor = kCOLOR_BLACK;
+    [footerView addSubview:creditsLabel];
+    creditsLabel.center = footerView.center;
+    self.tableView.tableFooterView = footerView;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -67,6 +83,34 @@
 }
 
 #pragma mark - Table view data source
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return kTABLE_SECTION_HEADER_HEIGHT;
+}
+
+- (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    CGFloat width = self.view.bounds.size.width;
+    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, kTABLE_SECTION_HEADER_HEIGHT)] autorelease];
+    headerView.backgroundColor = kCOLOR_CLEAR;
+    UILabel *sectionHeader = [[[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, width-20.0f, kTABLE_SECTION_HEADER_HEIGHT)] autorelease];
+    sectionHeader.backgroundColor = kCOLOR_CLEAR;
+    sectionHeader.numberOfLines = 3;
+    sectionHeader.textAlignment = UITextAlignmentLeft;
+    sectionHeader.text = LOC( @"Optionen" );
+    sectionHeader.font = [UIFont boldSystemFontOfSize:17.0];
+    sectionHeader.shadowColor = [kCOLOR_WHITE colorWithAlphaComponent:0.3];
+    sectionHeader.shadowOffset = CGSizeMake(1.0, 1.0);
+    sectionHeader.textColor = kCOLOR_BLACK;
+    [headerView addSubview:sectionHeader];
+    sectionHeader.center = headerView.center;
+    return headerView;
+}
+
+/*
+- (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return LOC( @"Optionen" );
+}
+*/
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;

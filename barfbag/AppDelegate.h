@@ -38,6 +38,7 @@
 @property( nonatomic, retain ) ATMHud *hud;
 
 - (BOOL) isConfigOnForKey:(NSString*)key defaultValue:(BOOL)isOn;
+- (UIFont*) fontWithType:(CustomFontType)fontType andPointSize:(CGFloat)pointSize;
 
 - (void) allDataRefresh;
 - (void) allDataLoadCached;

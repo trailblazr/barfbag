@@ -64,7 +64,7 @@
     [messagePlain appendString:@"N.T-2.9-C/3\n"];
     [messagePlain appendString:@"27.-30.12./\n"];
     [messagePlain appendString:@"HA/M.B-U/RG"];
-    congressMessagePlainLabel.font = [UIFont fontWithName:@"SourceCodePro-Light" size:fontSize40];
+    congressMessagePlainLabel.font = [[self appDelegate] fontWithType:CustomFontTypeLight andPointSize:fontSize40];
     congressMessagePlainLabel.text = messagePlain;
     congressMessagePlainLabel.textColor = textColor;
 
@@ -75,12 +75,12 @@
     [messageSemibold appendString:@"    2.9-C/3\n"];
     [messageSemibold appendString:@" \n"];
     [messageSemibold appendString:@" "];
-    congressMessageSemiboldLabel.font = [UIFont fontWithName:@"SourceCodePro-Semibold" size:fontSize40];
+    congressMessageSemiboldLabel.font = [[self appDelegate] fontWithType:CustomFontTypeSemibold andPointSize:fontSize40];
     congressMessageSemiboldLabel.text = messageSemibold;
     congressMessageSemiboldLabel.textColor = textColor;
     
     // BRAND
-    barfBagBrandLabel.font = [UIFont fontWithName:@"SourceCodePro-Black" size:fontSize40];
+    barfBagBrandLabel.font = [[self appDelegate] fontWithType:CustomFontTypeBlack andPointSize:fontSize40];
     barfBagBrandLabel.text = @"B/AR.F-BA/G";
     barfBagBrandLabel.textColor = textColor;
 }

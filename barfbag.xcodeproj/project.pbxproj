@@ -145,6 +145,8 @@
 		8F1663911672A9DE003347EA /* FavouritesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavouritesViewController.xib; sourceTree = "<group>"; };
 		8F1663A71672B1B6003347EA /* streams_de.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = streams_de.html; sourceTree = "<group>"; };
 		8F1663A81672B1B6003347EA /* streams_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = streams_en.html; sourceTree = "<group>"; };
+		8F1663AF1672D900003347EA /* streams_de_remote.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = streams_de_remote.html; sourceTree = "<group>"; };
+		8F1663B01672D900003347EA /* streams_en_remote.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = streams_en_remote.html; sourceTree = "<group>"; };
 		8F356528166B937C00814549 /* barfbag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = barfbag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F35652C166B937C00814549 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8F35652E166B937C00814549 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -624,6 +626,8 @@
 		8F754BCA166EBDEF00F74DBB /* html */ = {
 			isa = PBXGroup;
 			children = (
+				8F1663AF1672D900003347EA /* streams_de_remote.html */,
+				8F1663B01672D900003347EA /* streams_en_remote.html */,
 				8F1663A71672B1B6003347EA /* streams_de.html */,
 				8F1663A81672B1B6003347EA /* streams_en.html */,
 			);

@@ -56,7 +56,7 @@
 /* VideoStreamsViewController */
 
 "Videostreams" = "Videostreams";
-"Videostreams konnten nicht erfolgreich geladen werden. %@" = "Videostreams could not be loaded successfully.%@";
+"Videostreams konnten nicht erfolgreich geladen werden. %@" = "Videostreams could not be loaded.%@";
 "Problem" = "Problem";
 
 /* ConfigurationNavigationController */
@@ -69,8 +69,8 @@
 "Einstellungen" = "Settings";
 "Autoupdate" = "Autoupdate";
 "Aktualisiere alle Daten beim Start" = "Refresh all data on startup";
-
-
+"Optionen" = "Options";
+"created in 2012 by trailblazr\nwith some help & code of plaetzchen" = "created in 2012 by trailblazr\nwith some help & code of plaetzchen";
 
 
 

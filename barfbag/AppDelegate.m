@@ -58,6 +58,38 @@
 
 #pragma mark - Convenience & Helper Methods
 
+- (UIFont*) fontWithType:(CustomFontType)fontType andPointSize:(CGFloat)pointSize {
+    switch( fontType ) {
+        case CustomFontTypeExtralight:
+            return [UIFont fontWithName:@"SourceCodePro-ExtraLight" size:pointSize];
+            break;
+
+        case CustomFontTypeLight:
+            return [UIFont fontWithName:@"SourceCodePro-Light" size:pointSize];
+            break;
+
+        case CustomFontTypeRegular:
+            return [UIFont fontWithName:@"Source Code Pro" size:pointSize];
+            break;
+
+        case CustomFontTypeSemibold:
+            return [UIFont fontWithName:@"SourceCodePro-Semibold" size:pointSize];
+            break;
+
+        case CustomFontTypeBold:
+            return [UIFont fontWithName:@"SourceCodePro-Bold" size:pointSize];
+            break;
+
+        case CustomFontTypeBlack:
+            return [UIFont fontWithName:@"SourceCodePro-Black" size:pointSize];
+            break;
+
+        default:
+            break;
+    }
+    return nil;
+}
+
 - (CGFloat) randomFloatBetweenLow:(CGFloat)lowValue andHigh:(CGFloat)highValue {
     return (((CGFloat)arc4random()/0x100000000)*(highValue-lowValue)+lowValue);
 }
@@ -171,25 +203,31 @@
     
     // KICK OFF CONNECTION AS BLOCK
     [SinaURLConnection asyncConnectionWithRequest:theRequest completionBlock:^(NSData *data, NSURLResponse *response) {
-        if( DEBUG ) NSLog( @"VIDEOSTREAMS: HTML CONNECTION RESPONSECODE: %i", ((NSHTTPURLResponse*)response).statusCode );
+        NSInteger statusCode = ((NSHTTPURLResponse*)response).statusCode;
+        if( DEBUG ) NSLog( @"VIDEOSTREAMS: HTML CONNECTION RESPONSECODE: %i", statusCode );
         // REPLACE STORED OFFLINE DATA
-        BOOL isCached = NO;
-        if( data && [data length] > 500 ) {
-            isCached = NO;
-            // SAVE INFOS
-            NSString *pathToStoreFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_STREAMS_EN];
-            BOOL hasStoredFile = [data writeToFile:pathToStoreFile atomically:YES];
-            if( !hasStoredFile ) {
-                if( DEBUG ) NSLog( @"VIDEOSTREAMS: HTML SAVING FAILED!!!" );
-            }
-            else {
-                if( DEBUG ) NSLog( @"VIDEOSTREAMS: HTML SAVING SUCCEEDED." );
-            }
-            [self videoStreamsFillCached:isCached];
+        if( statusCode != 200 ) {
+            [self alertWithTag:0 title:LOC( @"Videostream" ) andMessage:LOC( @"Derzeit liegen keine\nVideostreamdaten vor\num zu Aktualisieren.\n\nProbieren sie es später\nnoch einmal bitte!" )];
         }
         else {
-            isCached = YES;
-            [self videoStreamsFillCached:isCached];
+            BOOL isCached = NO;
+            if( data && [data length] > 500 ) {
+                isCached = NO;
+                // SAVE INFOS
+                NSString *pathToStoreFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_STREAMS_EN];
+                BOOL hasStoredFile = [data writeToFile:pathToStoreFile atomically:YES];
+                if( !hasStoredFile ) {
+                    if( DEBUG ) NSLog( @"VIDEOSTREAMS: HTML SAVING FAILED!!!" );
+                }
+                else {
+                    if( DEBUG ) NSLog( @"VIDEOSTREAMS: HTML SAVING SUCCEEDED." );
+                }
+                [self videoStreamsFillCached:isCached];
+            }
+            else {
+                isCached = YES;
+                [self videoStreamsFillCached:isCached];
+            }
         }
         [self hideHud];
     } errorBlock:^(NSError *error) {
