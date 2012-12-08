@@ -44,7 +44,11 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 #define SCREENSHOTMODE 0
 
 // APP LAUNCH PARAMETERS
+#if SCREENSHOTMODE
+#define kSECONDS_DISPLAY_WELCOME 15.0f // 15f for making screenshots of welcome view
+#else
 #define kSECONDS_DISPLAY_WELCOME 1.5f // 1.5f usually
+#endif
 
 // CONVENIENCE DEFINITIONS
 

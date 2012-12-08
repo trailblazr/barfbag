@@ -132,9 +132,10 @@
 		NSString *dayIndexString = [attributeDict objectForKey:@"index"];
 		currentDay.dayIndex = [dayIndexString intValue];
 		NSString *dayDateString = [attributeDict objectForKey:@"date"];
+        
         // PARSE DATE
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
-        df.dateFormat = @"YYYY-MM-dd";
+        df.dateFormat = @"yyyy-MM-dd";
         @try {
             currentDay.date = [df dateFromString:dayDateString];
         }
