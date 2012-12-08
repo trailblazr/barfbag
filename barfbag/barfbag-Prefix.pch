@@ -88,6 +88,12 @@
 #define kNOTIFICATION_JSON_FINISHED     @"jsonParserFinished"
 #define kNOTIFICATION_JSON_COMPLETED    @"jsonParserCompleted"
 
+#define kNOTIFICATION_STREAM_STARTED      @"streamFetchStarted"
+#define kNOTIFICATION_STREAM_FAILED       @"streamFetchFailed"
+#define kNOTIFICATION_STREAM_SUCCEEDED    @"streamFetchSucceeded"
+#define kNOTIFICATION_STREAM_FINISHED     @"streamFetchFinished"
+#define kNOTIFICATION_STREAM_COMPLETED    @"streamFetchCompleted"
+
 
 
 

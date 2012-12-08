@@ -19,6 +19,8 @@
 		8F1663881672A91C003347EA /* FavouritesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1663871672A91C003347EA /* FavouritesNavigationController.m */; };
 		8F1663921672A9DE003347EA /* FavouritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1663901672A9DE003347EA /* FavouritesViewController.m */; };
 		8F1663931672A9DE003347EA /* FavouritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F1663911672A9DE003347EA /* FavouritesViewController.xib */; };
+		8F1663A91672B1B6003347EA /* streams_de.html in Resources */ = {isa = PBXBuildFile; fileRef = 8F1663A71672B1B6003347EA /* streams_de.html */; };
+		8F1663AA1672B1B6003347EA /* streams_en.html in Resources */ = {isa = PBXBuildFile; fileRef = 8F1663A81672B1B6003347EA /* streams_en.html */; };
 		8F35652D166B937C00814549 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F35652C166B937C00814549 /* UIKit.framework */; };
 		8F35652F166B937C00814549 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F35652E166B937C00814549 /* Foundation.framework */; };
 		8F356531166B937C00814549 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F356530166B937C00814549 /* CoreGraphics.framework */; };
@@ -83,7 +85,6 @@
 		8F754BC5166EB28C00F74DBB /* VideoStreamsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754BC3166EB28C00F74DBB /* VideoStreamsViewController.xib */; };
 		8F754BC8166EB47200F74DBB /* video.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754BC6166EB47200F74DBB /* video.png */; };
 		8F754BC9166EB47200F74DBB /* video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754BC7166EB47200F74DBB /* video@2x.png */; };
-		8F754BCC166EBDEF00F74DBB /* streams.html in Resources */ = {isa = PBXBuildFile; fileRef = 8F754BCB166EBDEF00F74DBB /* streams.html */; };
 		8FF9216D166FFD47005A1C55 /* BBJSONConnectOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF92165166FFD47005A1C55 /* BBJSONConnectOperation.m */; };
 		8FF9216E166FFD47005A1C55 /* BBJSONConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF92167166FFD47005A1C55 /* BBJSONConnector.m */; };
 		8FF9216F166FFD47005A1C55 /* BBJSONStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF92169166FFD47005A1C55 /* BBJSONStatusView.m */; };
@@ -142,6 +143,8 @@
 		8F16638F1672A9DE003347EA /* FavouritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouritesViewController.h; sourceTree = "<group>"; };
 		8F1663901672A9DE003347EA /* FavouritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouritesViewController.m; sourceTree = "<group>"; };
 		8F1663911672A9DE003347EA /* FavouritesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavouritesViewController.xib; sourceTree = "<group>"; };
+		8F1663A71672B1B6003347EA /* streams_de.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = streams_de.html; sourceTree = "<group>"; };
+		8F1663A81672B1B6003347EA /* streams_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = streams_en.html; sourceTree = "<group>"; };
 		8F356528166B937C00814549 /* barfbag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = barfbag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F35652C166B937C00814549 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8F35652E166B937C00814549 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -241,7 +244,6 @@
 		8F754BC3166EB28C00F74DBB /* VideoStreamsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoStreamsViewController.xib; sourceTree = "<group>"; };
 		8F754BC6166EB47200F74DBB /* video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = video.png; path = images/video.png; sourceTree = SOURCE_ROOT; };
 		8F754BC7166EB47200F74DBB /* video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "video@2x.png"; path = "images/video@2x.png"; sourceTree = SOURCE_ROOT; };
-		8F754BCB166EBDEF00F74DBB /* streams.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = streams.html; sourceTree = "<group>"; };
 		8FF92164166FFD47005A1C55 /* BBJSONConnectOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBJSONConnectOperation.h; sourceTree = "<group>"; };
 		8FF92165166FFD47005A1C55 /* BBJSONConnectOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBJSONConnectOperation.m; sourceTree = "<group>"; };
 		8FF92166166FFD47005A1C55 /* BBJSONConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBJSONConnector.h; sourceTree = "<group>"; };
@@ -622,7 +624,8 @@
 		8F754BCA166EBDEF00F74DBB /* html */ = {
 			isa = PBXGroup;
 			children = (
-				8F754BCB166EBDEF00F74DBB /* streams.html */,
+				8F1663A71672B1B6003347EA /* streams_de.html */,
+				8F1663A81672B1B6003347EA /* streams_en.html */,
 			);
 			path = html;
 			sourceTree = SOURCE_ROOT;
@@ -842,7 +845,6 @@
 				8F754BC5166EB28C00F74DBB /* VideoStreamsViewController.xib in Resources */,
 				8F754BC8166EB47200F74DBB /* video.png in Resources */,
 				8F754BC9166EB47200F74DBB /* video@2x.png in Resources */,
-				8F754BCC166EBDEF00F74DBB /* streams.html in Resources */,
 				8FF92170166FFD47005A1C55 /* icon_accepted_48.png in Resources */,
 				8FF92171166FFD47005A1C55 /* icon_cancel_48.png in Resources */,
 				8FF92172166FFD47005A1C55 /* icon_warning_48.png in Resources */,
@@ -859,6 +861,8 @@
 				8F1663841672A7E4003347EA /* wikiplan.png in Resources */,
 				8F1663851672A7E4003347EA /* wikiplan@2x.png in Resources */,
 				8F1663931672A9DE003347EA /* FavouritesViewController.xib in Resources */,
+				8F1663A91672B1B6003347EA /* streams_de.html in Resources */,
+				8F1663AA1672B1B6003347EA /* streams_en.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -79,7 +79,7 @@
 	
 	NSString *uaString = [NSString stringWithFormat:@"%@/%@ (%@; iOS %@; %@)", appDisplayName, appVersion, appPlatform, appSystemVersion, appLanguageContext];	
 	
-	if( DEBUG ) NSLog( @"USER AGENT: %@", uaString );
+	if( DEBUG ) NSLog( @"CONNECTION: USER AGENT: %@", uaString );
     [request addRequestHeader:@"User-Agent" value:uaString];
     request.useCookiePersistence = NO;
 }

@@ -24,19 +24,24 @@
 	ATMHud *hud;
     NSArray *semanticWikiAssemblies;
     NSArray *semanticWikiWorkshops;
+    NSString *videoStreamsHtml;
+    BOOL isAppStarting;
 }
 
+@property( nonatomic,assign ) BOOL isAppStarting;
 @property( strong, nonatomic ) UIWindow *window;
 @property( strong, nonatomic ) GenericTabBarController *tabBarController;
 @property( strong, nonatomic ) UIColor *themeColor;
 @property( retain, nonatomic ) NSArray *scheduledConferences;
 @property( retain, nonatomic ) NSArray *semanticWikiAssemblies;
 @property( retain, nonatomic ) NSArray *semanticWikiWorkshops;
+@property( retain, nonatomic ) NSString *videoStreamsHtml;
 
 @property( nonatomic, retain ) ATMHud *hud;
 
 - (void) barfBagRefresh;
 - (void) semanticWikiRefresh;
+- (void) videoStreamsRefresh;
 - (void) showHudWithCaption:(NSString*)caption hasActivity:(BOOL)hasActivity;
 - (void) hideHud;
 

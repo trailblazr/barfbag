@@ -7,6 +7,7 @@
 //
 
 #import "VideoStreamsViewController.h"
+#import "AppDelegate.h"
 
 @implementation VideoStreamsViewController
 
@@ -28,20 +29,39 @@
 
 #pragma mark - User Actions
 
+#pragma mark - User Actions
+
+- (void) actionRefreshData {
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    [[self appDelegate] videoStreamsRefresh];
+}
+
+- (void) actionUpdateDisplayAfterRefresh {
+    [self actionRefreshStreamHtml];
+    self.navigationItem.rightBarButtonItem.enabled = YES;
+}
+
 - (void) actionRefreshStreamHtml {
     self.navigationItem.rightBarButtonItem.enabled = NO;
-    [videoStreamsWebView loadRequest:[NSURLRequest requestWithURL:[[NSBundle mainBundle] URLForResource:@"streams" withExtension:@"html"]]];
+    NSString *cachedRemoteHtml = [self appDelegate].videoStreamsHtml;
+    if( cachedRemoteHtml && [cachedRemoteHtml length] > 0 ) {
+        [videoStreamsWebView loadHTMLString:cachedRemoteHtml baseURL:nil];
+    }
+    else {
+        [videoStreamsWebView loadRequest:[NSURLRequest requestWithURL:[[NSBundle mainBundle] URLForResource:@"streams_en" withExtension:@"html"]]];
+    }
 }
 
 - (void)viewDidLoad {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionUpdateDisplayAfterRefresh) name:kNOTIFICATION_STREAM_COMPLETED  object:nil];
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionRefreshData)] autorelease];
+    self.navigationItem.rightBarButtonItem = item;
+
     self.navigationItem.title = LOC( @"Videostreams" );
     self.view.backgroundColor = [self themeColor];
     videoStreamsWebView.opaque = NO;
     videoStreamsWebView.backgroundColor = kCOLOR_CLEAR;
-    UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionRefreshStreamHtml)] autorelease];
-    self.navigationItem.rightBarButtonItem = item;    
     [self actionRefreshStreamHtml];
 }
 
