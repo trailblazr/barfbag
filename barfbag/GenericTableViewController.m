@@ -29,8 +29,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.backgroundColor = [self brightColor];
+    self.tableView.backgroundColor = [self themeColor];
     self.tableView.separatorColor = [self darkColor];
+    self.tableView.backgroundView = nil;
     if( self.searchDisplayController && self.searchDisplayController.searchBar ) {
         self.searchDisplayController.searchBar.tintColor = [self themeColor];
     }
@@ -136,6 +137,11 @@
 - (UIColor*) brightColor {
     CGFloat hue = [[self themeColor] hue];
     return [UIColor colorWithHue:hue saturation:0.025f brightness:1.0 alpha:1.0];
+}
+
+- (UIColor*) brighterColor {
+    CGFloat hue = [[self themeColor] hue];
+    return [UIColor colorWithHue:hue saturation:0.1f brightness:1.0 alpha:1.0];
 }
 
 - (UIColor*) darkColor {

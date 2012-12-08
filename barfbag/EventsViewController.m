@@ -164,6 +164,12 @@
     return [[currentDay events] count];
 }
 
+- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.backgroundColor = kCOLOR_WHITE;
+    cell.contentView.backgroundColor = kCOLOR_WHITE;
+    cell.accessoryView.backgroundColor = kCOLOR_WHITE;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];

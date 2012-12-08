@@ -9,10 +9,6 @@
 #import "ConfigurationNavigationController.h"
 #import "ConfigurationViewController.h"
 
-@interface ConfigurationNavigationController ()
-
-@end
-
 @implementation ConfigurationNavigationController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {

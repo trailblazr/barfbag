@@ -24,8 +24,6 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        self.sectionsArray = [NSMutableArray array];
-        self.tableView.backgroundColor = [self themeColor];
     }
     return self;
 }
@@ -53,8 +51,8 @@
     [super viewDidLoad];
     [self setupSwitches];
     [self.tableView reloadData];
+    self.tableView.backgroundColor = [self brighterColor];
     self.navigationItem.title = LOC( @"Einstellungen" );
-    self.tableView.backgroundColor = [self themeColor];
     
     // FOOTER
     CGFloat width = self.view.bounds.size.width;
@@ -69,6 +67,8 @@
     creditsLabel.textColor = kCOLOR_BLACK;
     [footerView addSubview:creditsLabel];
     creditsLabel.center = footerView.center;
+    creditsLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.tableView.tableFooterView = footerView;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -85,19 +85,22 @@
 #pragma mark - Table view data source
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return kTABLE_SECTION_HEADER_HEIGHT;
+    CGFloat height50 = [[UIDevice currentDevice] isPad] ? kTABLE_SECTION_HEADER_HEIGHT*1.5f : kTABLE_SECTION_HEADER_HEIGHT;
+    return height50;
 }
 
 - (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     CGFloat width = self.view.bounds.size.width;
     UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, kTABLE_SECTION_HEADER_HEIGHT)] autorelease];
     headerView.backgroundColor = kCOLOR_CLEAR;
-    UILabel *sectionHeader = [[[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, width-20.0f, kTABLE_SECTION_HEADER_HEIGHT)] autorelease];
+    CGFloat offsetLeftRight = [[UIDevice currentDevice] isPad] ? 40.0f : 20.0f;
+    UILabel *sectionHeader = [[[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, width-offsetLeftRight, kTABLE_SECTION_HEADER_HEIGHT)] autorelease];
     sectionHeader.backgroundColor = kCOLOR_CLEAR;
     sectionHeader.numberOfLines = 3;
     sectionHeader.textAlignment = UITextAlignmentLeft;
     sectionHeader.text = LOC( @"Optionen" );
-    sectionHeader.font = [UIFont boldSystemFontOfSize:17.0];
+    CGFloat fontSize17 = [[UIDevice currentDevice] isPad] ? 34.0 : 17.0;
+    sectionHeader.font = [UIFont boldSystemFontOfSize:fontSize17];
     sectionHeader.shadowColor = [kCOLOR_WHITE colorWithAlphaComponent:0.3];
     sectionHeader.shadowOffset = CGSizeMake(1.0, 1.0);
     sectionHeader.textColor = kCOLOR_BLACK;
@@ -119,6 +122,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     return [sectionsArray count];
+}
+
+- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

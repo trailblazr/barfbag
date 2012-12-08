@@ -15,7 +15,7 @@
 "Aktualisiere Assemblies" = "Updating Assemblies";
 "Aktualisiere Workshops" = "Updating Workshops";
 "Verbindungsproblem" = "Connection";
-"Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten.\n\nSie verwenden derzeit\n%@ der Daten." = "It seems as if we do\nnot have a network connection\nto update the data.\n\nYou are using\n%@ of the data.";
+"Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten.\n\nSie verwenden derzeit\n%@ der Daten." = "It seems as if we do\nnot have a network connection\nto update the data.\n\nYou are using\n%@ of the Fahrplan.";
 "Aktualisiere Fahrplan" = "Updating Fahrplan";
 
 /* ScheduleNavigationController */

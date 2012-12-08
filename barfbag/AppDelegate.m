@@ -329,6 +329,7 @@
     if( DEBUG ) NSLog( @"%s: FAIL.\nOPERATION: %@", __PRETTY_FUNCTION__, operation );
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_FAILED object:self];
     [self hideHud];
+    [self alertWithTag:0 title:LOC( @"Wikiplan" ) andMessage:LOC( @"Derzeit liegen keine\nAssemblydaten vor\num zu Aktualisieren.\n\nProbieren sie es später\nnoch einmal bitte!" )];
 }
 
 - (void) operationInvalidAssemblies:(BBJSONConnectOperation*)operation {
@@ -378,6 +379,7 @@
     if( DEBUG ) NSLog( @"%s: FAIL.\nOPERATION: %@", __PRETTY_FUNCTION__, operation );
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_FAILED object:self];
     [self hideHud];
+    [self alertWithTag:0 title:LOC( @"Wikiplan" ) andMessage:LOC( @"Derzeit liegen keine\nWorkshopdaten vor\num zu Aktualisieren.\n\nProbieren sie es später\nnoch einmal bitte!" )];
 }
 
 - (void) operationInvalidWorkshops:(BBJSONConnectOperation*)operation {
@@ -505,25 +507,31 @@
     
     // KICK OFF CONNECTION AS BLOCK
     [SinaURLConnection asyncConnectionWithRequest:theRequest completionBlock:^(NSData *data, NSURLResponse *response) {
-        if( DEBUG ) NSLog( @"BARFBAG: XML CONNECTION RESPONSECODE: %i", ((NSHTTPURLResponse*)response).statusCode );
+        NSInteger statusCode = ((NSHTTPURLResponse*)response).statusCode;
+        if( DEBUG ) NSLog( @"BARFBAG: XML CONNECTION RESPONSECODE: %i", statusCode );
         // REPLACE STORED OFFLINE DATA
-        BOOL isCached = NO;
-        if( data && [data length] > 500 ) {
-            isCached = NO;
-            // SAVE INFOS
-            NSString *pathToStoreFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_FAHRPLAN_EN]; // CACHE .xml file
-            BOOL hasStoredFile = [data writeToFile:pathToStoreFile atomically:YES];
-            if( !hasStoredFile ) {
-                if( DEBUG ) NSLog( @"BARFBAG: XML SAVING FAILED!!!" );
-            }
-            else {
-                if( DEBUG ) NSLog( @"BARFBAG: XML SAVING SUCCEEDED." );
-            }
-            [self barfBagFillCached:isCached];
+        if( statusCode != 200 ) {
+            [self alertWithTag:0 title:LOC( @"Fahrplan" ) andMessage:LOC( @"Derzeit liegen keine\nFahrplandaten vor\num zu Aktualisieren.\n\nProbieren sie es später\nnoch einmal bitte!" )];
         }
         else {
-            isCached = YES;
-            [self barfBagFillCached:isCached];
+            BOOL isCached = NO;
+            if( data && [data length] > 500 ) {
+                isCached = NO;
+                // SAVE INFOS
+                NSString *pathToStoreFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_FAHRPLAN_EN]; // CACHE .xml file
+                BOOL hasStoredFile = [data writeToFile:pathToStoreFile atomically:YES];
+                if( !hasStoredFile ) {
+                    if( DEBUG ) NSLog( @"BARFBAG: XML SAVING FAILED!!!" );
+                }
+                else {
+                    if( DEBUG ) NSLog( @"BARFBAG: XML SAVING SUCCEEDED." );
+                }
+                [self barfBagFillCached:isCached];
+            }
+            else {
+                isCached = YES;
+                [self barfBagFillCached:isCached];
+            }
         }
         [self hideHud];
     } errorBlock:^(NSError *error) {

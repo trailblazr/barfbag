@@ -26,6 +26,7 @@
 - (AppDelegate*) appDelegate;
 - (UIColor*) themeColor;
 - (UIColor*) brightColor;
+- (UIColor*) brighterColor;
 - (UIColor*) darkColor;
 
 @end
