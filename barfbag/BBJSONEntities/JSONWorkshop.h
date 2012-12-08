@@ -11,6 +11,9 @@
 @property (nonatomic, copy) NSString *label;
 @property (nonatomic, copy) NSString *descriptionText;
 @property (nonatomic, copy) NSString *location;
+@property (nonatomic, copy) NSString *personOrganizing;
+@property (nonatomic, copy) NSString *contactOrganizing;
+@property (nonatomic, retain) NSNumber *duration;
 @property (nonatomic, retain) NSDate *dateTimeStart;
 @property (nonatomic, retain) NSDate *dateTimeEnd;
 

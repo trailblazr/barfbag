@@ -51,25 +51,25 @@
 
 /* VideoStreamNavigationController */
 
-"Videostreams" = "Videostreams";
+"Videostreams" = "Livestreams";
 "Zurück" = "Zurück";
 
 /* VideoStreamsViewController */
 
-"Videostreams" = "Videostreams";
+"Videostreams" = "Livestreams";
 "Videostreams konnten nicht erfolgreich geladen werden. %@" = "Videostreams konnten nicht geladen werden. %@";
 "Problem" = "Problem";
 
 /* ConfigurationNavigationController */
 
-"Einstellungen" = "Einstellungen";
+"Einstellungen" = "Optionen";
 "Zurück" = "Zurück";
 
 /* ConfigurationViewController */
 
-"Einstellungen" = "Einstellungen";
+"Einstellungen" = "Optionen";
 "Autoupdate" = "Aktualisierung";
 "Aktualisiere alle Daten beim Start" = "Aktualisiere alle Daten beim Start";
-"Optionen" = "Optionen";
+"Optionen" = "Parameter";
 "created in 2012 by trailblazr\nwith some help & code of plaetzchen" = "erstellt in 2012 von trailblazr\nmit hilfe & code von plaetzchen";
 

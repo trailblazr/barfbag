@@ -12,15 +12,21 @@
 @synthesize location;
 @synthesize dateTimeStart; // 2012-12-28 18:00:00
 @synthesize dateTimeEnd; // 2012-12-28 19:30:00
+@synthesize personOrganizing;
+@synthesize contactOrganizing;
+@synthesize duration;
 
 + (NSDictionary*) objectMapping {
     NSDictionary *mappingDict = [NSDictionary dictionaryWithObjectsAndKeys:
                                  @"objId", @"id",
                                  @"label", @"label",
                                  @"descriptionText", @"description",
-                                 @"location", @"location",
+                                 @"location", @"entry_location",
                                  @"dateTimeStart", @"start_time",
                                  @"dateTimeEnd", @"end_time",
+                                 @"duration", @"duration",
+                                 @"personOrganizing", @"person_organizing",
+                                 @"contactOrganizing", @"orga_contact",
                                  nil];
     return mappingDict;
 }
@@ -102,6 +108,9 @@
     [string appendFormat:@"location = %@\n", location];
     [string appendFormat:@"dateTimeStart = %@\n", dateTimeStart];
     [string appendFormat:@"dateTimeEnd = %@\n", dateTimeEnd];
+    [string appendFormat:@"duration = %@\n", duration];
+    [string appendFormat:@"personOrganizing = %@\n", personOrganizing];
+    [string appendFormat:@"contactOrganizing = %@\n", contactOrganizing];
     return string;
 }
 

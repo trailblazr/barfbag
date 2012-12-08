@@ -52,7 +52,8 @@
 
 - (UIColor*) darkColor {
     CGFloat hue = [[self themeColor] hue];
-    return [UIColor colorWithHue:hue saturation:0.5 brightness:0.7 alpha:1.0];
+    CGFloat brightness = [[self themeColor] brightness];
+    return [UIColor colorWithHue:hue saturation:1.0 brightness:brightness-0.2 alpha:1.0];
 }
 
 - (void) alertWithTag:(NSInteger)tag title:(NSString*)title andMessage:(NSString*)message {

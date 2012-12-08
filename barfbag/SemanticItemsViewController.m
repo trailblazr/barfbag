@@ -156,7 +156,7 @@
         case 0: {
             NSArray *workshops = [self appDelegate].semanticWikiWorkshops;
             JSONWorkshop *currentWorkshop = [workshops objectAtIndex:indexPath.row];
-            // NSLog( @"WORKSHOP: %@", currentWorkshop );
+            NSLog( @"WORKSHOP: %@", currentWorkshop );
             NSDateFormatter *df = [[NSDateFormatter alloc] init];
             df.dateFormat = @"HH:mm";
             NSString *startTimeString = [df stringFromDate:currentWorkshop.startTime];
@@ -169,7 +169,7 @@
         case 1: {
             NSArray *assemblies = [self appDelegate].semanticWikiAssemblies;
             JSONAssembly *currentAssembly = [assemblies objectAtIndex:indexPath.row];
-            // NSLog( @"ASSEMBLY: %@", currentAssembly );
+            NSLog( @"ASSEMBLY: %@", currentAssembly );
             cell.textLabel.text = [NSString stringWithFormat:@"%@",currentAssembly.label];
             cell.detailTextLabel.text = [NSString stringWithFormat:LOC( @"[%i Plätze]: %@" ), currentAssembly.numLectureSeats, [NSString placeHolder:@"n.a." forEmptyString:currentAssembly.abstract]];
             break;

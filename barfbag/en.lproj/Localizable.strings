@@ -50,12 +50,12 @@
 
 /* VideoStreamNavigationController */
 
-"Videostreams" = "Videostreams";
+"Videostreams" = "Livestreams";
 "Zurück" = "Back";
 
 /* VideoStreamsViewController */
 
-"Videostreams" = "Videostreams";
+"Videostreams" = "Livestreams";
 "Videostreams konnten nicht erfolgreich geladen werden. %@" = "Videostreams could not be loaded.%@";
 "Problem" = "Problem";
 
@@ -69,7 +69,7 @@
 "Einstellungen" = "Settings";
 "Autoupdate" = "Autoupdate";
 "Aktualisiere alle Daten beim Start" = "Refresh all data on startup";
-"Optionen" = "Options";
+"Optionen" = "Parameters";
 "created in 2012 by trailblazr\nwith some help & code of plaetzchen" = "created in 2012 by trailblazr\nwith some help & code of plaetzchen";
 
 
