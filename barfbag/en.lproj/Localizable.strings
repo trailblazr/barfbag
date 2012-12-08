@@ -67,6 +67,8 @@
 /* ConfigurationViewController */
 
 "Einstellungen" = "Settings";
+"Autoupdate" = "Autoupdate";
+"Aktualisiere alle Daten beim Start" = "Refresh all data on startup";
 
 
 
