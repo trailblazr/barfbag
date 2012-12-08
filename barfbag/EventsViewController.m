@@ -191,8 +191,8 @@
     Day *currentDay = [days objectAtIndex:indexPath.section];
     Event *currentEvent = [currentDay.events objectAtIndex:indexPath.row];
     // NSLog( @"EVENT: %@", currentEvent );
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",currentEvent.start, [currentEvent.title placeHolderWhenEmpty:@"n.a."]];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@",currentEvent.track, [currentEvent.subtitle placeHolderWhenEmpty:@"-"]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",[currentEvent.start placeHolderWhenEmpty:@"<start>"], [currentEvent.title placeHolderWhenEmpty:@"<title>"]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@",[currentEvent.track placeHolderWhenEmpty:@"<track>"], [currentEvent.subtitle placeHolderWhenEmpty:@"<subtitle>"]];
     
     return cell;
 }

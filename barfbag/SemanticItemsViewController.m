@@ -161,8 +161,8 @@
             df.dateFormat = @"HH:mm";
             NSString *startTimeString = [df stringFromDate:currentWorkshop.startTime];
             [df release];
-            cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",[NSString placeHolder:@"--:--" forEmptyString:startTimeString], [NSString placeHolder:@"n.a."forEmptyString:currentWorkshop.label]];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"[%@]: %@", [NSString placeHolder:@"-" forEmptyString:currentWorkshop.eventLocation], [NSString placeHolder:@"n.a." forEmptyString:currentWorkshop.abstract]];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",[NSString placeHolder:@"<start>" forEmptyString:startTimeString], [NSString placeHolder:@"<title>"forEmptyString:currentWorkshop.label]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@", [NSString placeHolder:@"<location>" forEmptyString:currentWorkshop.eventLocation], [NSString placeHolder:@"<description>" forEmptyString:currentWorkshop.abstract]];
             break;
         }
 
@@ -170,8 +170,8 @@
             NSArray *assemblies = [self appDelegate].semanticWikiAssemblies;
             JSONAssembly *currentAssembly = [assemblies objectAtIndex:indexPath.row];
             NSLog( @"ASSEMBLY: %@", currentAssembly );
-            cell.textLabel.text = [NSString stringWithFormat:@"%@",currentAssembly.label];
-            cell.detailTextLabel.text = [NSString stringWithFormat:LOC( @"[%i Plätze]: %@" ), currentAssembly.numLectureSeats, [NSString placeHolder:@"n.a." forEmptyString:currentAssembly.abstract]];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@",[currentAssembly.label placeHolderWhenEmpty:@"<title>"]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:LOC( @"%i Plätze: %@" ), currentAssembly.numLectureSeats, [NSString placeHolder:@"<description>" forEmptyString:currentAssembly.abstract]];
             break;
         }
 
