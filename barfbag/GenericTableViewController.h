@@ -28,5 +28,6 @@
 - (UIColor*) brightColor;
 - (UIColor*) brighterColor;
 - (UIColor*) darkColor;
+- (UIImage*) imageGradientWithSize:(CGSize)imageSize color1:(UIColor*)color1 color2:(UIColor*)color2;
 
 @end

@@ -146,7 +146,52 @@
 
 - (UIColor*) darkColor {
     CGFloat hue = [[self themeColor] hue];
-    return [UIColor colorWithHue:hue saturation:0.5 brightness:0.7 alpha:1.0];
+    return [UIColor colorWithHue:hue saturation:0.8 brightness:0.8 alpha:1.0];
+}
+
+- (UIImage*) imageGradientWithSize:(CGSize)imageSize color1:(UIColor*)color1 color2:(UIColor*)color2 {
+    if (NULL != UIGraphicsBeginImageContextWithOptions) {
+        UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
+    }
+    else {
+        UIGraphicsBeginImageContext(imageSize);
+    }
+    CGContextRef c = UIGraphicsGetCurrentContext();
+    
+    CGContextSaveGState(c);
+    
+    // draw gradient
+	CGGradientRef gradient;
+	CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
+    
+    CGFloat locations[2] = { 0.0, 1.0 };
+    
+	// step 3: define gradient with components
+	CGFloat colors[] = {
+        [color1 red],[color1 green],[color1 blue],[color1 alpha],
+        [color2 red],[color2 green],[color2 blue],[color2 alpha]
+	};
+    
+    gradient = CGGradientCreateWithColorComponents(rgb, colors, locations, sizeof(colors)/(sizeof(colors[0])*4));
+	//gradient = CGGradientCreateWithColorComponents(rgb, colors, NULL, sizeof(colors)/(sizeof(colors[0])*4));
+	// gradient = CGGradientCreateWithColorComponents(rgb, colors, NULL, 0);
+	
+	CGPoint start, end;
+	start = CGPointMake( 0.0, 0.0 );
+	end = CGPointMake( 0.0, imageSize.height );
+    CGContextClearRect(c, CGRectMake(0.0, 0.0, imageSize.width, imageSize.height) );
+	CGContextDrawLinearGradient(c, gradient, start, end, 0);
+	
+	// release c-stuff
+	CGColorSpaceRelease(rgb);
+	CGGradientRelease(gradient);
+    
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    CGContextRestoreGState(c);
+    
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 #pragma mark - Headup Display Management

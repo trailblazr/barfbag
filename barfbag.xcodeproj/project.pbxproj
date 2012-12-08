@@ -21,6 +21,8 @@
 		8F1663931672A9DE003347EA /* FavouritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F1663911672A9DE003347EA /* FavouritesViewController.xib */; };
 		8F1663A91672B1B6003347EA /* streams_de.html in Resources */ = {isa = PBXBuildFile; fileRef = 8F1663A71672B1B6003347EA /* streams_de.html */; };
 		8F1663AA1672B1B6003347EA /* streams_en.html in Resources */ = {isa = PBXBuildFile; fileRef = 8F1663A81672B1B6003347EA /* streams_en.html */; };
+		8F1663BB16736871003347EA /* FavouriteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1663BA16736871003347EA /* FavouriteManager.m */; };
+		8F1663BE16736A05003347EA /* FavouriteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1663BD16736A04003347EA /* FavouriteItem.m */; };
 		8F35652D166B937C00814549 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F35652C166B937C00814549 /* UIKit.framework */; };
 		8F35652F166B937C00814549 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F35652E166B937C00814549 /* Foundation.framework */; };
 		8F356531166B937C00814549 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F356530166B937C00814549 /* CoreGraphics.framework */; };
@@ -147,6 +149,10 @@
 		8F1663A81672B1B6003347EA /* streams_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = streams_en.html; sourceTree = "<group>"; };
 		8F1663AF1672D900003347EA /* streams_de_remote.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = streams_de_remote.html; sourceTree = "<group>"; };
 		8F1663B01672D900003347EA /* streams_en_remote.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = streams_en_remote.html; sourceTree = "<group>"; };
+		8F1663B916736870003347EA /* FavouriteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FavouriteManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8F1663BA16736871003347EA /* FavouriteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FavouriteManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8F1663BC16736A04003347EA /* FavouriteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FavouriteItem.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		8F1663BD16736A04003347EA /* FavouriteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FavouriteItem.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8F356528166B937C00814549 /* barfbag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = barfbag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F35652C166B937C00814549 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8F35652E166B937C00814549 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -377,6 +383,10 @@
 		8F1663891672A924003347EA /* Favourites */ = {
 			isa = PBXGroup;
 			children = (
+				8F1663BC16736A04003347EA /* FavouriteItem.h */,
+				8F1663BD16736A04003347EA /* FavouriteItem.m */,
+				8F1663B916736870003347EA /* FavouriteManager.h */,
+				8F1663BA16736871003347EA /* FavouriteManager.m */,
 				8F1663861672A91C003347EA /* FavouritesNavigationController.h */,
 				8F1663871672A91C003347EA /* FavouritesNavigationController.m */,
 				8F16638F1672A9DE003347EA /* FavouritesViewController.h */,
@@ -943,6 +953,8 @@
 				8FF92204167024A5005A1C55 /* SBJsonWriter.m in Sources */,
 				8F1663881672A91C003347EA /* FavouritesNavigationController.m in Sources */,
 				8F1663921672A9DE003347EA /* FavouritesViewController.m in Sources */,
+				8F1663BB16736871003347EA /* FavouriteManager.m in Sources */,
+				8F1663BE16736A05003347EA /* FavouriteItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

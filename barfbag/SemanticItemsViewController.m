@@ -129,9 +129,7 @@
 }
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    cell.backgroundColor = kCOLOR_WHITE;
-    cell.contentView.backgroundColor = kCOLOR_WHITE;
-    cell.accessoryView.backgroundColor = kCOLOR_WHITE;
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -142,6 +140,14 @@
         cell.textLabel.backgroundColor = kCOLOR_CLEAR;
         cell.detailTextLabel.backgroundColor = kCOLOR_CLEAR;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        UIView *backgroundView = [[[UIView alloc] initWithFrame:CGRectNull] autorelease];
+        backgroundView.backgroundColor = [self brightColor];
+        cell.backgroundView = backgroundView;
+        UIImage *gradientImage = [self imageGradientWithSize:cell.bounds.size color1:[self themeColor] color2:[self darkColor]];
+        UIView *selectedBackgroundView = [[[UIImageView alloc] initWithImage:gradientImage] autorelease];
+        selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        selectedBackgroundView.backgroundColor = [self darkColor];
+        cell.selectedBackgroundView = selectedBackgroundView;
     }
     
     // Configure the cell...
@@ -174,6 +180,7 @@
     }
     return cell;
 }
+
 
 /*
 // Override to support conditional editing of the table view.
