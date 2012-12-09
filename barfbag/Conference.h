@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class Event;
 @class Day;
+@class Person;
+@class Link;
 
 @interface Conference : NSObject {
 
@@ -23,6 +26,15 @@
 	int timeslotDuration;
 	
 	NSMutableArray* days;
+    
+    NSMutableArray *cachedAvailableTracks;
+    NSMutableArray *cachedAvailableTypes;
+    NSMutableArray *cachedAvailableLanguages;
+    NSMutableArray *cachedAvailableRooms;
+    NSMutableArray *cachedAvailableSlugs;
+    NSMutableArray *cachedAvailablePersons;
+    NSMutableArray *cachedAvailableLinks;
+
 }
 
 @property(nonatomic, assign) int dayChange;
@@ -36,8 +48,29 @@
 @property(nonatomic, retain) NSString *release;
 @property(nonatomic, retain) NSMutableArray* days;
 
+@property(nonatomic, retain) NSMutableArray *cachedAvailableTracks;
+@property(nonatomic, retain) NSMutableArray *cachedAvailableTypes;
+@property(nonatomic, retain) NSMutableArray *cachedAvailableLanguages;
+@property(nonatomic, retain) NSMutableArray *cachedAvailableRooms;
+@property(nonatomic, retain) NSMutableArray *cachedAvailableSlugs;
+@property(nonatomic, retain) NSMutableArray *cachedAvailablePersons;
+@property(nonatomic, retain) NSMutableArray *cachedAvailableLinks;
+
+
 - (void) addDay:(Day*)dayToAdd;
 - (NSString*) stringForDate:(NSDate*)date;
+- (void) computeCachedProperties;
+
+- (NSArray*) eventsWithProperty:(NSString*)property matchingValue:(NSString*)value;
+
+- (NSArray*) eventsForTrack:(NSString*)track;
+- (NSArray*) eventsForType:(NSString*)type;
+- (NSArray*) eventsForLanguage:(NSString*)language;
+- (NSArray*) eventsForRoom:(NSString*)room;
+- (NSArray*) eventsForSlug:(NSString*)slug;
+- (NSArray*) eventsForPerson:(Person*)person;
+- (NSArray*) eventsForLink:(Link*)link;
+
 
 @end
 

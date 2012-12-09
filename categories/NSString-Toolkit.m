@@ -11,6 +11,13 @@
     return [result autorelease];
 }
 
+- (NSString*) normalizedString {
+    NSString *unaccentedString = [self stringByFoldingWithOptions:NSDiacriticInsensitiveSearch locale:[NSLocale currentLocale]];
+    NSString *lowercaseString = [unaccentedString lowercaseString];
+    NSString *trimmedString = [lowercaseString trimmedString];
+    return trimmedString;
+}
+
 - (NSString*)placeHolderWhenEmpty:(NSString*)placeholder {
     NSString *clean = [self trimmedString];
     if( [clean length] == 0 || [[clean lowercaseString] isEqualToString:@"(null)"] ) {

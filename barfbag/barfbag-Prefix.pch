@@ -42,6 +42,7 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 // DEPLOYMENT & DEVELOPMENT PARAMETERS
 #define DEBUG 1
 #define SCREENSHOTMODE 0
+#define SIMULATE_28C3 0
 
 // APP LAUNCH PARAMETERS
 #if SCREENSHOTMODE
@@ -60,15 +61,24 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 #define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
-// 29C3 COLORS
+// 29C3 COLORS (OFFICIAL)
+#define kCOLOR_CYAN     RGB( 86, 197, 208 )
+#define kCOLOR_RED      RGB( 237, 26, 59 )
+#define kCOLOR_GREEN    RGB( 0, 178, 107 )
+#define kCOLOR_ORANGE   RGB( 247, 148, 51 )
+#define kCOLOR_VIOLET   RGB( 109, 104, 175 )
+#define kCOLOR_BACK     RGB( 0, 5, 50 )
+/*
+// COLORS REVERSE ENGINEERED
 #define kCOLOR_VIOLET   [UIColor colorWithHue:0.672f saturation:0.51f brightness:0.63f alpha:1.0]
 #define kCOLOR_GREEN    [UIColor colorWithHue:0.43f saturation:0.96f brightness:0.70f alpha:1.0]
 #define kCOLOR_RED      [UIColor colorWithHue:0.972f saturation:0.90f brightness:0.93f alpha:1.0]
 #define kCOLOR_CYAN     [UIColor colorWithHue:0.5138f saturation:0.58f brightness:0.82f alpha:1.0]
 #define kCOLOR_ORANGE   [UIColor colorWithHue:0.083f saturation:0.80f brightness:0.97f alpha:1.0]
+#define kCOLOR_BACK     [UIColor colorWithHue:0.65f saturation:1.0f brightness:0.2f alpha:1.0]
+*/
 #define kCOLOR_WHITE    [UIColor colorWithHue:1.0f saturation:0.0f brightness:1.0f alpha:1.0]
 #define kCOLOR_BLACK    [UIColor colorWithHue:0.0f saturation:0.0f brightness:0.0f alpha:1.0]
-#define kCOLOR_BACK     [UIColor colorWithHue:0.65f saturation:1.0f brightness:0.2f alpha:1.0]
 #define kCOLOR_CLEAR    [UIColor clearColor]
 
 // CACHED & TEMPORARY FILES & FOLDERS
@@ -93,6 +103,20 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 #define kURL_DATA_29C3_FAHRPLAN_EN      @"http://events.ccc.de/congress/2012/Fahrplan/schedule.en.xml"
 #define kURL_DATA_29C3_FAHRPLAN_DE      @"http://events.ccc.de/congress/2012/Fahrplan/schedule.de.xml"
 #define kURL_DATA_29C3_IMAGE_PATH       @"http://events.ccc.de/congress/2012/Fahrplan/images"
+
+#define kURL_DATA_28C3_FAHRPLAN_EN      @"http://events.ccc.de/congress/2011/Fahrplan/schedule.en.xml"
+#define kURL_DATA_28C3_FAHRPLAN_DE      @"http://events.ccc.de/congress/2011/Fahrplan/schedule.de.xml"
+#define kURL_DATA_28C3_IMAGE_PATH       @"http://events.ccc.de/congress/2011/Fahrplan/images"
+
+#if SIMULATE_28C3
+    #define kURL_DATA_FAHRPLAN_EN   kURL_DATA_28C3_FAHRPLAN_EN
+    #define kURL_DATA_FAHRPLAN_DE   kURL_DATA_28C3_FAHRPLAN_DE
+    #define kURL_DATA_IMAGE_PATH    kURL_DATA_28C3_IMAGE_PATH
+#else
+    #define kURL_DATA_FAHRPLAN_EN   kURL_DATA_29C3_FAHRPLAN_EN
+    #define kURL_DATA_FAHRPLAN_DE   kURL_DATA_29C3_FAHRPLAN_DE
+    #define kURL_DATA_IMAGE_PATH    kURL_DATA_29C3_IMAGE_PATH
+#endif
 
 // 29C3 URLS SEMANTIC WIKI
 #define kASIHTTP_SHOULD_VALIDATE_SECURE_CERTIFICATE NO

@@ -57,7 +57,7 @@
 
 - (NSString*) pngIconHref {
     NSString *imageName = [NSString stringWithFormat:@"event-%i-128x128.png", eventId];
-    return [NSString stringWithFormat:@"%@/%@", kURL_DATA_29C3_IMAGE_PATH, imageName];
+    return [NSString stringWithFormat:@"%@/%@", kURL_DATA_IMAGE_PATH, imageName];
 }
 
 

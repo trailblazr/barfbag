@@ -8,6 +8,7 @@
 
 #import "Conference.h"
 #import "Day.h"
+#import "Event.h"
 
 @implementation Conference
 
@@ -22,6 +23,14 @@
 @synthesize timeslotDuration;
 @synthesize days;
 
+@synthesize cachedAvailableTracks;
+@synthesize cachedAvailableTypes;
+@synthesize cachedAvailableLanguages;
+@synthesize cachedAvailableRooms;
+@synthesize cachedAvailableSlugs;
+@synthesize cachedAvailablePersons;
+@synthesize cachedAvailableLinks;
+
 - (void) dealloc {
 	[title release];
 	[subtitle release];
@@ -31,6 +40,13 @@
 	[endDate release];
 	[release release];
 	[days release];
+    self.cachedAvailableTracks = nil;
+    self.cachedAvailableTypes = nil;
+    self.cachedAvailableLanguages = nil;
+    self.cachedAvailableRooms = nil;
+    self.cachedAvailableSlugs = nil;
+    self.cachedAvailablePersons = nil;
+    self.cachedAvailableLinks = nil;
 	[super dealloc];
 }
 
@@ -65,6 +81,115 @@
 
 - (void) addDay:(Day*)dayToAdd {
 	[days addObject:dayToAdd];
+}
+
+#pragma mark - Post Processing for convenient Access to Stuff
+
+- (BOOL) array:(NSMutableArray*)array containsString:(NSString*)string {
+    for( NSString* currentString in array ) {
+        if( [currentString isEqualToString:string] ) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (void) addKey:(NSString*)key toArray:(NSMutableArray*)array {
+    key = [key stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    NSArray *keys = [key componentsSeparatedByString:@","];
+    for( NSString* currentKey in keys ) {
+        key = [key normalizedString];
+        if( !key || [key length] == 0 ) {
+            break;
+        }
+        else {
+            if( [self array:array containsString:key] ) {
+                break;
+            }
+            else {
+                [array addObject:key];
+            }
+        }
+    }
+}
+
+- (void) computeCachedProperties {
+
+    self.cachedAvailableTracks = [NSMutableArray array];
+    self.cachedAvailableTypes = [NSMutableArray array];
+    self.cachedAvailableLanguages = [NSMutableArray array];
+    self.cachedAvailableRooms = [NSMutableArray array];
+    self.cachedAvailableSlugs = [NSMutableArray array];
+    self.cachedAvailablePersons = [NSMutableArray array];
+    self.cachedAvailableLinks = [NSMutableArray array];
+    
+    NSMutableArray *allEvents = [NSMutableArray array];
+    for( Day* currentDay in days ) {
+        [allEvents addObjectsFromArray:currentDay.events];
+    }
+    
+    // COMPUTE LIST OF USED TRACKS
+    for( Event *currentEvent in allEvents ) {
+        [self addKey:currentEvent.track toArray:cachedAvailableTracks];
+        [self addKey:currentEvent.type toArray:cachedAvailableTypes];
+        [self addKey:currentEvent.language toArray:cachedAvailableLanguages];
+        [self addKey:currentEvent.room toArray:cachedAvailableRooms];
+        [self addKey:currentEvent.slug toArray:cachedAvailableSlugs];
+    }
+    
+    NSLog( @"tracks = %@", cachedAvailableTracks );
+    NSLog( @"types = %@", cachedAvailableTypes );
+    NSLog( @"languages = %@", cachedAvailableLanguages );
+    NSLog( @"rooms = %@", cachedAvailableRooms );
+    NSLog( @"slugs = %@", cachedAvailableSlugs );
+    
+}
+
+- (NSArray*) eventsWithProperty:(NSString*)property matchingValue:(NSString*)value {
+    // TODO: implement
+    return nil;
+}
+
+- (NSArray*) eventsForTrack:(NSString*)track {
+    // TODO: implement
+    return nil;
+
+}
+
+- (NSArray*) eventsForType:(NSString*)type {
+    // TODO: implement
+    return nil;
+
+}
+
+- (NSArray*) eventsForLanguage:(NSString*)language {
+    // TODO: implement
+    return nil;
+
+}
+
+- (NSArray*) eventsForRoom:(NSString*)room {
+    // TODO: implement
+    return nil;
+
+}
+
+- (NSArray*) eventsForSlug:(NSString*)slug {
+    // TODO: implement
+    return nil;
+
+}
+
+- (NSArray*) eventsForPerson:(Person*)person {
+    // TODO: implement
+    return nil;
+
+}
+
+- (NSArray*) eventsForLink:(Link*)link {
+    // TODO: implement
+    return nil;
+
 }
 
 

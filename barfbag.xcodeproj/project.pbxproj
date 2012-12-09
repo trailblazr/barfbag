@@ -23,6 +23,12 @@
 		8F1663AA1672B1B6003347EA /* streams_en.html in Resources */ = {isa = PBXBuildFile; fileRef = 8F1663A81672B1B6003347EA /* streams_en.html */; };
 		8F1663BB16736871003347EA /* FavouriteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1663BA16736871003347EA /* FavouriteManager.m */; };
 		8F1663BE16736A05003347EA /* FavouriteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1663BD16736A04003347EA /* FavouriteItem.m */; };
+		8F1663CD1675055A003347EA /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1663CB16750559003347EA /* EventDetailViewController.m */; };
+		8F1663CE1675055A003347EA /* EventDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F1663CC16750559003347EA /* EventDetailViewController.xib */; };
+		8F1663D3167505AE003347EA /* AssemblyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1663D1167505AD003347EA /* AssemblyDetailViewController.m */; };
+		8F1663D4167505AE003347EA /* AssemblyDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F1663D2167505AE003347EA /* AssemblyDetailViewController.xib */; };
+		8F1663D9167505C5003347EA /* WorkshopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1663D7167505C5003347EA /* WorkshopDetailViewController.m */; };
+		8F1663DA167505C5003347EA /* WorkshopDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F1663D8167505C5003347EA /* WorkshopDetailViewController.xib */; };
 		8F35652D166B937C00814549 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F35652C166B937C00814549 /* UIKit.framework */; };
 		8F35652F166B937C00814549 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F35652E166B937C00814549 /* Foundation.framework */; };
 		8F356531166B937C00814549 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F356530166B937C00814549 /* CoreGraphics.framework */; };
@@ -154,6 +160,15 @@
 		8F1663BC16736A04003347EA /* FavouriteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = FavouriteItem.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		8F1663BD16736A04003347EA /* FavouriteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FavouriteItem.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		8F1663C31673C906003347EA /* scram29c3.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = scram29c3.js; sourceTree = "<group>"; };
+		8F1663CA16750559003347EA /* EventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailViewController.h; sourceTree = "<group>"; };
+		8F1663CB16750559003347EA /* EventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailViewController.m; sourceTree = "<group>"; };
+		8F1663CC16750559003347EA /* EventDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailViewController.xib; sourceTree = "<group>"; };
+		8F1663D0167505AD003347EA /* AssemblyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssemblyDetailViewController.h; sourceTree = "<group>"; };
+		8F1663D1167505AD003347EA /* AssemblyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssemblyDetailViewController.m; sourceTree = "<group>"; };
+		8F1663D2167505AE003347EA /* AssemblyDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssemblyDetailViewController.xib; sourceTree = "<group>"; };
+		8F1663D6167505C5003347EA /* WorkshopDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkshopDetailViewController.h; sourceTree = "<group>"; };
+		8F1663D7167505C5003347EA /* WorkshopDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkshopDetailViewController.m; sourceTree = "<group>"; };
+		8F1663D8167505C5003347EA /* WorkshopDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkshopDetailViewController.xib; sourceTree = "<group>"; };
 		8F356528166B937C00814549 /* barfbag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = barfbag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F35652C166B937C00814549 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8F35652E166B937C00814549 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -368,7 +383,7 @@
 			name = RegexKitLite;
 			sourceTree = "<group>";
 		};
-		8F09CCAB16703022008F8D26 /* ThirdPartyStuff */ = {
+		8F09CCAB16703022008F8D26 /* Third Party Code */ = {
 			isa = PBXGroup;
 			children = (
 				8FF921B116701904005A1C55 /* allseeing */,
@@ -378,7 +393,7 @@
 				8F754BA7166EAB5D00F74DBB /* ATMHud */,
 				8F754B37166D556500F74DBB /* SinaURLConnection */,
 			);
-			name = ThirdPartyStuff;
+			name = "Third Party Code";
 			sourceTree = "<group>";
 		};
 		8F1663891672A924003347EA /* Favourites */ = {
@@ -404,6 +419,74 @@
 			);
 			path = js;
 			sourceTree = SOURCE_ROOT;
+		};
+		8F1663C8167504A0003347EA /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				8F754B08166C22A100F74DBB /* WelcomeViewController.h */,
+				8F754B09166C22A100F74DBB /* WelcomeViewController.m */,
+				8F754B0A166C22A100F74DBB /* WelcomeViewController.xib */,
+			);
+			name = Welcome;
+			sourceTree = "<group>";
+		};
+		8F1663C9167504D7003347EA /* Data Processing */ = {
+			isa = PBXGroup;
+			children = (
+				8FF92163166FFD47005A1C55 /* Semantic Wiki JSON */,
+				8FF92174166FFD4E005A1C55 /* Semantic Wiki Entities */,
+				8F754B32166D4D3F00F74DBB /* PentaBarf XML */,
+				8F1663DC167506DB003347EA /* PentaBarf Entities */,
+			);
+			name = "Data Processing";
+			sourceTree = "<group>";
+		};
+		8F1663CF16750566003347EA /* Event Detail */ = {
+			isa = PBXGroup;
+			children = (
+				8F1663CA16750559003347EA /* EventDetailViewController.h */,
+				8F1663CB16750559003347EA /* EventDetailViewController.m */,
+				8F1663CC16750559003347EA /* EventDetailViewController.xib */,
+			);
+			name = "Event Detail";
+			sourceTree = "<group>";
+		};
+		8F1663D5167505B2003347EA /* Assembly Detail */ = {
+			isa = PBXGroup;
+			children = (
+				8F1663D0167505AD003347EA /* AssemblyDetailViewController.h */,
+				8F1663D1167505AD003347EA /* AssemblyDetailViewController.m */,
+				8F1663D2167505AE003347EA /* AssemblyDetailViewController.xib */,
+			);
+			name = "Assembly Detail";
+			sourceTree = "<group>";
+		};
+		8F1663DB167505C9003347EA /* Workshop Detail */ = {
+			isa = PBXGroup;
+			children = (
+				8F1663D6167505C5003347EA /* WorkshopDetailViewController.h */,
+				8F1663D7167505C5003347EA /* WorkshopDetailViewController.m */,
+				8F1663D8167505C5003347EA /* WorkshopDetailViewController.xib */,
+			);
+			name = "Workshop Detail";
+			sourceTree = "<group>";
+		};
+		8F1663DC167506DB003347EA /* PentaBarf Entities */ = {
+			isa = PBXGroup;
+			children = (
+				8F754B63166D73B000F74DBB /* Conference.h */,
+				8F754B64166D73B000F74DBB /* Conference.m */,
+				8F754B65166D73B000F74DBB /* Day.h */,
+				8F754B66166D73B000F74DBB /* Day.m */,
+				8F754B67166D73B000F74DBB /* Event.h */,
+				8F754B68166D73B000F74DBB /* Event.m */,
+				8F754B69166D73B000F74DBB /* Link.h */,
+				8F754B6A166D73B000F74DBB /* Link.m */,
+				8F754B6D166D73B000F74DBB /* Person.h */,
+				8F754B6E166D73B000F74DBB /* Person.m */,
+			);
+			name = "PentaBarf Entities";
+			sourceTree = "<group>";
 		};
 		8F35651D166B937C00814549 = {
 			isa = PBXGroup;
@@ -514,38 +597,35 @@
 		8F754AF5166C1F1B00F74DBB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				8F09CCAB16703022008F8D26 /* ThirdPartyStuff */,
-				8FF92163166FFD47005A1C55 /* BBJSON */,
-				8FF92174166FFD4E005A1C55 /* BBJSONEntities */,
-				8F754B32166D4D3F00F74DBB /* PentaBarf XML Parsing */,
+				8F09CCAB16703022008F8D26 /* Third Party Code */,
+				8F1663C9167504D7003347EA /* Data Processing */,
 				8F754B9D166EA95900F74DBB /* Generic Controllers */,
 				8F35653B166B937C00814549 /* AppDelegate.h */,
 				8F35653C166B937C00814549 /* AppDelegate.m */,
-				8F754B08166C22A100F74DBB /* WelcomeViewController.h */,
-				8F754B09166C22A100F74DBB /* WelcomeViewController.m */,
-				8F754B0A166C22A100F74DBB /* WelcomeViewController.xib */,
-				8F754B16166C2AF700F74DBB /* BarfSchedule */,
-				8FF921D6167019F7005A1C55 /* SemanticWikiSchedule */,
+				8F1663C8167504A0003347EA /* Welcome */,
+				8F754B16166C2AF700F74DBB /* Fahrplan */,
+				8FF921D6167019F7005A1C55 /* Wiki */,
 				8F1663891672A924003347EA /* Favourites */,
-				8F754BC0166EB0B800F74DBB /* Video */,
-				8F754B17166C2AFF00F74DBB /* Configuration */,
+				8F754BC0166EB0B800F74DBB /* Livestreams */,
+				8F754B17166C2AFF00F74DBB /* Settings */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
 		};
-		8F754B16166C2AF700F74DBB /* BarfSchedule */ = {
+		8F754B16166C2AF700F74DBB /* Fahrplan */ = {
 			isa = PBXGroup;
 			children = (
+				8F1663CF16750566003347EA /* Event Detail */,
 				8F754AF6166C1F4300F74DBB /* ScheduleNavigationController.h */,
 				8F754AF7166C1F4300F74DBB /* ScheduleNavigationController.m */,
 				8F754B11166C279800F74DBB /* EventsViewController.h */,
 				8F754B12166C279800F74DBB /* EventsViewController.m */,
 				8F754B13166C279800F74DBB /* EventsViewController.xib */,
 			);
-			name = BarfSchedule;
+			name = Fahrplan;
 			sourceTree = "<group>";
 		};
-		8F754B17166C2AFF00F74DBB /* Configuration */ = {
+		8F754B17166C2AFF00F74DBB /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				8F754AFB166C1F6D00F74DBB /* ConfigurationNavigationController.h */,
@@ -554,7 +634,7 @@
 				8F754B19166C2B5C00F74DBB /* ConfigurationViewController.m */,
 				8F754B1A166C2B5C00F74DBB /* ConfigurationViewController.xib */,
 			);
-			name = Configuration;
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		8F754B21166C2F0800F74DBB /* categories */ = {
@@ -570,23 +650,13 @@
 			path = categories;
 			sourceTree = SOURCE_ROOT;
 		};
-		8F754B32166D4D3F00F74DBB /* PentaBarf XML Parsing */ = {
+		8F754B32166D4D3F00F74DBB /* PentaBarf XML */ = {
 			isa = PBXGroup;
 			children = (
 				8F754B6B166D73B000F74DBB /* BarfBagParser.h */,
 				8F754B6C166D73B000F74DBB /* BarfBagParser.m */,
-				8F754B63166D73B000F74DBB /* Conference.h */,
-				8F754B64166D73B000F74DBB /* Conference.m */,
-				8F754B65166D73B000F74DBB /* Day.h */,
-				8F754B66166D73B000F74DBB /* Day.m */,
-				8F754B67166D73B000F74DBB /* Event.h */,
-				8F754B68166D73B000F74DBB /* Event.m */,
-				8F754B69166D73B000F74DBB /* Link.h */,
-				8F754B6A166D73B000F74DBB /* Link.m */,
-				8F754B6D166D73B000F74DBB /* Person.h */,
-				8F754B6E166D73B000F74DBB /* Person.m */,
 			);
-			name = "PentaBarf XML Parsing";
+			name = "PentaBarf XML";
 			sourceTree = "<group>";
 		};
 		8F754B37166D556500F74DBB /* SinaURLConnection */ = {
@@ -631,7 +701,7 @@
 			path = ATMHud;
 			sourceTree = "<group>";
 		};
-		8F754BC0166EB0B800F74DBB /* Video */ = {
+		8F754BC0166EB0B800F74DBB /* Livestreams */ = {
 			isa = PBXGroup;
 			children = (
 				8F754BBD166EB0AA00F74DBB /* VideoStreamNavigationController.h */,
@@ -640,7 +710,7 @@
 				8F754BC2166EB28C00F74DBB /* VideoStreamsViewController.m */,
 				8F754BC3166EB28C00F74DBB /* VideoStreamsViewController.xib */,
 			);
-			name = Video;
+			name = Livestreams;
 			sourceTree = "<group>";
 		};
 		8F754BCA166EBDEF00F74DBB /* html */ = {
@@ -654,7 +724,7 @@
 			path = html;
 			sourceTree = SOURCE_ROOT;
 		};
-		8FF92163166FFD47005A1C55 /* BBJSON */ = {
+		8FF92163166FFD47005A1C55 /* Semantic Wiki JSON */ = {
 			isa = PBXGroup;
 			children = (
 				8FF92164166FFD47005A1C55 /* BBJSONConnectOperation.h */,
@@ -667,10 +737,11 @@
 				8FF9216B166FFD47005A1C55 /* icon_cancel_48.png */,
 				8FF9216C166FFD47005A1C55 /* icon_warning_48.png */,
 			);
+			name = "Semantic Wiki JSON";
 			path = BBJSON;
 			sourceTree = "<group>";
 		};
-		8FF92174166FFD4E005A1C55 /* BBJSONEntities */ = {
+		8FF92174166FFD4E005A1C55 /* Semantic Wiki Entities */ = {
 			isa = PBXGroup;
 			children = (
 				8FF9217D166FFD4E005A1C55 /* JSONProperties.h */,
@@ -686,6 +757,7 @@
 				8FF92179166FFD4E005A1C55 /* JSONArray.h */,
 				8FF9217A166FFD4E005A1C55 /* JSONArray.m */,
 			);
+			name = "Semantic Wiki Entities";
 			path = BBJSONEntities;
 			sourceTree = "<group>";
 		};
@@ -741,16 +813,18 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
-		8FF921D6167019F7005A1C55 /* SemanticWikiSchedule */ = {
+		8FF921D6167019F7005A1C55 /* Wiki */ = {
 			isa = PBXGroup;
 			children = (
+				8F1663D5167505B2003347EA /* Assembly Detail */,
+				8F1663DB167505C9003347EA /* Workshop Detail */,
 				8FF921D716701A43005A1C55 /* ScheduleSemanticNavigationController.h */,
 				8FF921D816701A43005A1C55 /* ScheduleSemanticNavigationController.m */,
 				8FF921DA16701A8F005A1C55 /* SemanticItemsViewController.h */,
 				8FF921DB16701A8F005A1C55 /* SemanticItemsViewController.m */,
 				8FF921DC16701A8F005A1C55 /* SemanticItemsViewController.xib */,
 			);
-			name = SemanticWikiSchedule;
+			name = Wiki;
 			sourceTree = "<group>";
 		};
 		8FF921DF16702352005A1C55 /* json */ = {
@@ -887,6 +961,9 @@
 				8F1663931672A9DE003347EA /* FavouritesViewController.xib in Resources */,
 				8F1663A91672B1B6003347EA /* streams_de.html in Resources */,
 				8F1663AA1672B1B6003347EA /* streams_en.html in Resources */,
+				8F1663CE1675055A003347EA /* EventDetailViewController.xib in Resources */,
+				8F1663D4167505AE003347EA /* AssemblyDetailViewController.xib in Resources */,
+				8F1663DA167505C5003347EA /* WorkshopDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -965,6 +1042,9 @@
 				8F1663921672A9DE003347EA /* FavouritesViewController.m in Sources */,
 				8F1663BB16736871003347EA /* FavouriteManager.m in Sources */,
 				8F1663BE16736A05003347EA /* FavouriteItem.m in Sources */,
+				8F1663CD1675055A003347EA /* EventDetailViewController.m in Sources */,
+				8F1663D3167505AE003347EA /* AssemblyDetailViewController.m in Sources */,
+				8F1663D9167505C5003347EA /* WorkshopDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1035,6 +1115,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

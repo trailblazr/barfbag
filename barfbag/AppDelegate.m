@@ -550,6 +550,7 @@
         // do nothing
     }
     if( currentConference ) {
+        [currentConference computeCachedProperties];
         NSString *versionCurrent = [self barfBagCurrentDataVersion];
         NSString *versionUpdated = currentConference.release;
         [[NSUserDefaults standardUserDefaults] setObject:versionUpdated forKey:kUSERDEFAULT_KEY_DATA_VERSION_UPDATED];
@@ -681,14 +682,14 @@
 
 - (void) barfBagRefresh {
     [self showHudWithCaption:LOC( @"Aktualisiere Fahrplan" ) hasActivity:YES];
-    [self barfBagFetchContentWithUrlString:kURL_DATA_29C3_FAHRPLAN_EN];
+    [self barfBagFetchContentWithUrlString:kURL_DATA_FAHRPLAN_EN];
 }
 
 #pragma mark - Manage Full Auto Update Run & Master Configuration
 
 - (NSString*) masterConfigRemoteStringForKey:(NSString*)key {
     if( !masterConfiguration || [masterConfiguration count] == 0 ) return nil;
-    
+    return nil;
 }
 
 - (void) allDataLoadCached {

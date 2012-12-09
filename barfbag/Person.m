@@ -24,7 +24,7 @@
 
 - (NSString*) pngIconHref {
     NSString *imageName = [NSString stringWithFormat:@"person-%i-128x128.png", personId];
-    return [NSString stringWithFormat:@"%@/%@", kURL_DATA_29C3_IMAGE_PATH, imageName];
+    return [NSString stringWithFormat:@"%@/%@", kURL_DATA_IMAGE_PATH, imageName];
 }
 
 @end

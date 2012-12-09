@@ -4,7 +4,8 @@
 @interface NSString (Toolkit)
 
 - (NSString*) trimmedString;
-- (NSString*)placeHolderWhenEmpty:(NSString*)placeholder;
+- (NSString*) normalizedString;
+- (NSString*) placeHolderWhenEmpty:(NSString*)placeholder;
 
 + (BOOL) isEmpty:(NSString*)str;
 + (BOOL) isValidEmailAddress:(NSString*)str;
