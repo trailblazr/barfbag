@@ -174,6 +174,11 @@
     return [self appDelegate].darkerColor;
 }
 
+- (CGSize) textSizeNeededForString:(NSString*)textToDisplay {
+    CGSize sizeForText = [textToDisplay sizeWithFont:[UIFont systemFontOfSize:16.0] constrainedToSize:CGSizeMake(self.tableView.bounds.size.width-10.0, 999999999.0) lineBreakMode:NSLineBreakByWordWrapping];
+    return CGSizeMake(sizeForText.width, sizeForText.height+50.0);
+}
+
 - (UIImage*) imageGradientWithSize:(CGSize)imageSize color1:(UIColor*)color1 color2:(UIColor*)color2 {
     if (NULL != UIGraphicsBeginImageContextWithOptions) {
         UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
@@ -189,7 +194,7 @@
 	CGGradientRef gradient;
 	CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
     
-    CGFloat locations[2] = { 0.97, 1.0 };
+    CGFloat locations[2] = { 0.0, 1.0 };
     
 	// step 3: define gradient with components
 	CGFloat colors[] = {

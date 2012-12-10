@@ -41,8 +41,6 @@
     self.tableView.tableHeaderView = detailHeaderViewController.view;
 
     detailHeaderViewController.titleLabel.text = assembly.label;
-    detailHeaderViewController.titleLabel.adjustsFontSizeToFitWidth = YES;
-    detailHeaderViewController.titleLabel.layer.masksToBounds = NO;
     detailHeaderViewController.subtitleLabel.text = @"";
     detailHeaderViewController.timeStart.text = assembly.locationOpenedAt;
     detailHeaderViewController.timeDuration.text = @"";
@@ -138,6 +136,16 @@
     return containerView;
 }
 
+- (NSString*) textToDisplayForIndexPath:(NSIndexPath*)indexPath {
+    NSString *sectionKey = [sectionKeys objectAtIndex:indexPath.section];
+    NSString *itemString = [[sectionArrays objectForKey:sectionKey] objectAtIndex:indexPath.row];
+    return [NSString placeHolder:LOC( @"Kein Eintrag" ) forEmptyString:itemString];
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [self textSizeNeededForString:[self textToDisplayForIndexPath:indexPath]].height;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -145,15 +153,34 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.contentView.backgroundColor = kCOLOR_BACK;
-        cell.textLabel.textColor = [self brighterColor];
     }
     
+    // clean existing cell
+    while( [cell.contentView.subviews count] > 0 ) {
+        [[cell.contentView.subviews lastObject] removeFromSuperview];
+    }
+    CGSize textSize = [self textSizeNeededForString:[self textToDisplayForIndexPath:indexPath]];
+    UILabel *cellTextLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5.0, 0.0, textSize.width, textSize.height-10)] autorelease];
+    cellTextLabel.font = [UIFont systemFontOfSize:16.0];
+    cellTextLabel.numberOfLines = 9999999999;
+    cellTextLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    cellTextLabel.backgroundColor = kCOLOR_BACK;
+    cellTextLabel.textColor = [self themeColor];
+    cellTextLabel.shadowColor = [[self darkerColor] colorWithAlphaComponent:0.6];
+    cellTextLabel.shadowOffset = CGSizeMake(1.0, 1.0);
+    [cell.contentView addSubview:cellTextLabel];
+    
     // Configure the cell...
+    cellTextLabel.text = [self textToDisplayForIndexPath:indexPath];
+    return cell;
+}
+
+/*
+// Configure the cell...
     NSString *sectionKey = [sectionKeys objectAtIndex:indexPath.section];
     NSString *itemString = [[sectionArrays objectForKey:sectionKey] objectAtIndex:indexPath.row];
     cell.textLabel.text = itemString;
-    return cell;
-}
+*/
 
 /*
 // Override to support conditional editing of the table view.

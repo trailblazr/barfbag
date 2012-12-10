@@ -43,6 +43,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    titleLabel.adjustsFontSizeToFitWidth = YES;
+    titleLabel.layer.masksToBounds = NO;
     NSArray *labelArray = [NSArray arrayWithObjects:titleLabel,subtitleLabel,timeStart,timeDuration,roomLabel,dateLabel,languageLabel,trackLabel,speakerLabel,nil];
     for( UILabel *currentLabel in labelArray ) {
         currentLabel.textColor = [self brighterColor];

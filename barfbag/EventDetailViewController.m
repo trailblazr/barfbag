@@ -72,6 +72,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (NSString*) eventDescriptionText {
+    return [NSString placeHolder:LOC( @"Keine Beschreibung vorhanden." ) forEmptyString:event.descriptionText];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -82,14 +86,8 @@
     return 1;
 }
 
-- (CGSize) textSize {
-    NSString* textToDisplay = [NSString placeHolder:LOC( @"Keine Beschreibung vorhanden." ) forEmptyString:event.descriptionText];
-    CGSize sizeForText = [textToDisplay sizeWithFont:[UIFont systemFontOfSize:16.0] constrainedToSize:CGSizeMake(self.tableView.bounds.size.width-10.0, 999999999.0) lineBreakMode:NSLineBreakByWordWrapping];
-    return CGSizeMake(sizeForText.width, sizeForText.height+50.0);
-}
-
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self textSize].height;
+    return [self textSizeNeededForString:[self eventDescriptionText]].height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -105,7 +103,7 @@
     while( [cell.contentView.subviews count] > 0 ) {
         [[cell.contentView.subviews lastObject] removeFromSuperview];
     }
-    CGSize textSize = [self textSize];
+    CGSize textSize = [self textSizeNeededForString:[self eventDescriptionText]];
     self.cellTextLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5.0, 0.0, textSize.width, textSize.height-10)] autorelease];
     cellTextLabel.font = [UIFont systemFontOfSize:16.0];
     cellTextLabel.numberOfLines = 9999999999;
@@ -117,7 +115,7 @@
     [cell.contentView addSubview:cellTextLabel];
     
     // Configure the cell...
-    cellTextLabel.text = [NSString placeHolder:LOC( @"Keine Beschreibung vorhanden." ) forEmptyString:event.descriptionText];
+    cellTextLabel.text = [self eventDescriptionText];
     return cell;
 }
 
