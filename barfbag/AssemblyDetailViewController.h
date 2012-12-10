@@ -7,7 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GenericTableViewController.h"
+#import "GenericDetailViewController.h"
+#import "JSONAssembly.h"
 
-@interface AssemblyDetailViewController : UITableViewController
+@interface AssemblyDetailViewController : GenericTableViewController {
+
+    GenericDetailViewController *detailHeaderViewController;
+    JSONAssembly *assembly;
+    NSArray *sectionKeys;
+    NSMutableDictionary *sectionArrays;
+}
+
+@property( nonatomic, retain ) GenericDetailViewController *detailHeaderViewController;
+@property( nonatomic, retain ) JSONAssembly *assembly;
+@property( nonatomic, retain ) NSArray *sectionKeys;
+@property( nonatomic, retain ) NSMutableDictionary *sectionArrays;
 
 @end

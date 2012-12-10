@@ -8,14 +8,22 @@
 
 #import "WorkshopDetailViewController.h"
 
-@interface WorkshopDetailViewController ()
-
-@end
-
 @implementation WorkshopDetailViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+@synthesize detailHeaderViewController;
+@synthesize workshop;
+@synthesize sectionKeys;
+@synthesize sectionArrays;
+
+- (void) dealloc {
+    self.workshop = nil;
+    self.detailHeaderViewController = nil;
+    self.sectionKeys = nil;
+    self.sectionArrays = nil;
+    [super dealloc];
+}
+
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -23,13 +31,65 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+/*
+ @property (nonatomic, retain) NSNumber *objId;
+ @property (nonatomic, copy) NSString *descriptionText;
+ @property (nonatomic, copy) NSString *contactOrganizing;
+ */
+- (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.navigationItem.title = [NSString placeHolder:@"n.a." forEmptyString:workshop.label];
+    if( !detailHeaderViewController ) {
+        self.detailHeaderViewController = [[[GenericDetailViewController alloc] initWithNibName:@"GenericDetailViewController" bundle:nil] autorelease];
+    }
+    self.tableView.tableHeaderView = detailHeaderViewController.view;
+    
+    detailHeaderViewController.titleLabel.text = workshop.label;
+    detailHeaderViewController.titleLabel.adjustsFontSizeToFitWidth = YES;
+    detailHeaderViewController.titleLabel.layer.masksToBounds = NO;
+    detailHeaderViewController.subtitleLabel.text = [workshop singlePropertyFromObject:workshop.location];
+    detailHeaderViewController.timeStart.text = [self stringDayForDate:[workshop singlePropertyFromObject:workshop.dateTimeStart]];
+    detailHeaderViewController.timeDuration.text = [NSString stringWithFormat:@"%i min", [[workshop singlePropertyFromObject:workshop.duration] integerValue]];
+    detailHeaderViewController.roomLabel.text = [workshop singlePropertyFromObject:workshop.location];;
+    detailHeaderViewController.dateLabel.text = @"";
+    detailHeaderViewController.languageLabel.text = @"";
+    detailHeaderViewController.trackLabel.text = [self stringDayForDate:[workshop singlePropertyFromObject:workshop.dateTimeEnd]];
+    detailHeaderViewController.speakerLabel.text = [workshop singlePropertyFromObject:workshop.personOrganizing];
+    
+    
+    // SETUP SECTION ORDER
+    self.sectionKeys = [NSArray arrayWithObjects:
+                        @"descriptionText",
+                        @"contactOrganizing",
+                        nil];
+    
+    // SETUP DATA
+    self.sectionArrays = [NSMutableDictionary dictionary];
+    NSMutableArray *neededSectionKeys = [NSMutableArray array];
+    NSArray *currentArray = nil;
+    for( NSString *currentPropertyName in sectionKeys ) {
+        currentArray = [workshop arrayForPropertyWithName:currentPropertyName];
+        if( [currentArray count] > 0 ) {
+            [neededSectionKeys addObject:currentPropertyName];
+            [sectionArrays setObject:currentArray forKey:currentPropertyName];
+        }
+        else {
+            // do nothing
+        }
+    }
+    self.sectionKeys = [NSArray arrayWithArray:neededSectionKeys];
+    
+    // APPLY BACKGROUND
+    UIImage *gradientImage = [self imageGradientWithSize:self.tableView.tableHeaderView.bounds.size color1:[self darkerColor] color2:[self backgroundColor]];
+    UIImageView *selectedBackgroundView = [[[UIImageView alloc] initWithImage:gradientImage] autorelease];
+    selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    selectedBackgroundView.contentMode = UIViewContentModeScaleToFill;
+    [self.tableView.tableHeaderView insertSubview:selectedBackgroundView atIndex:0];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -42,30 +102,59 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+- (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSString *sectionKey = [sectionKeys objectAtIndex:section];
+    return LOC( sectionKey );
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [sectionKeys count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSString *sectionKey = [sectionKeys objectAtIndex:section];
+    return [[sectionArrays objectForKey:sectionKey] count];
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    CGFloat height20 = [[UIDevice currentDevice] isPad] ? 40.0f : 20.0f;
+    return height20;
+}
+
+- (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    CGFloat height20 = [[UIDevice currentDevice] isPad] ? 40.0f : 20.0f;
+    CGFloat fontSize16 = [[UIDevice currentDevice] isPad] ? 32.0f : 16.0f;
+    CGRect containerRect = CGRectMake(0.0, 0.0, self.view.bounds.size.width, height20);
+    UIView *containerView = [[[UIView alloc] initWithFrame:containerRect] autorelease];
+    containerView.opaque = NO;
+    containerView.backgroundColor = [[self darkerColor] colorWithAlphaComponent:0.9f];
+    CGFloat offset = 10.0f;
+    CGRect labelRect = CGRectMake(offset, 0.0, containerRect.size.width-(2*offset), containerRect.size.height);
+    UILabel *label = [[[UILabel alloc] initWithFrame:labelRect] autorelease];
+    [containerView addSubview:label];
+    label.backgroundColor = kCOLOR_CLEAR;
+    label.font = [UIFont boldSystemFontOfSize:fontSize16];
+    label.textColor = kCOLOR_WHITE;
+    label.shadowColor = [kCOLOR_BLACK colorWithAlphaComponent:0.5];
+    label.shadowOffset = CGSizeMake(1.0, 1.0);
+    label.text = [self tableView:tableView titleForHeaderInSection:section];
+    return containerView;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.contentView.backgroundColor = kCOLOR_BACK;
+        cell.textLabel.textColor = [self brighterColor];
     }
     
     // Configure the cell...
-    
+    NSString *sectionKey = [sectionKeys objectAtIndex:indexPath.section];
+    NSString *itemString = [[sectionArrays objectForKey:sectionKey] objectAtIndex:indexPath.row];
+    cell.textLabel.text = itemString;
     return cell;
 }
 

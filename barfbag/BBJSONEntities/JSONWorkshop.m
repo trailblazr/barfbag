@@ -37,6 +37,20 @@
  * It is also completely in the blue which timezone these dates are in... this will get very funny...
  */
 
+- (NSArray*) arrayForPropertyWithName:(NSString*)propertyName {
+    SEL selector = NSSelectorFromString(propertyName);
+    id value = [self performSelector:selector];
+    if( [value isKindOfClass:[NSArray class]] || [value isKindOfClass:[NSMutableArray class]] ) {
+        return value;
+    }
+    else if( value ) {
+        return [NSArray arrayWithObject:value];
+    }
+    else {
+        return [NSArray array];
+    }
+}
+
 - (id) singlePropertyFromObject:(id)arrayOrObject {
     if( [arrayOrObject isKindOfClass:[NSArray class]] || [arrayOrObject isKindOfClass:[NSMutableArray class]] ) {
         return [arrayOrObject lastObject];

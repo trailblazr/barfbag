@@ -52,7 +52,21 @@ nil];
     }
 }
 
-- (NSString*)abstract {
+- (NSArray*) arrayForPropertyWithName:(NSString*)propertyName {
+    SEL selector = NSSelectorFromString(propertyName);
+    id value = [self performSelector:selector];
+    if( [value isKindOfClass:[NSArray class]] || [value isKindOfClass:[NSMutableArray class]] ) {
+        return value;
+    }
+    else if( value ) {
+        return [NSArray arrayWithObject:value];
+    }
+    else {
+        return [NSArray array];
+    }
+}
+
+- (NSString*) abstract {
     return [self singlePropertyFromObject:descriptionText];
 }
 

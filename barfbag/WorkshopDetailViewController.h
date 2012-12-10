@@ -7,7 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GenericTableViewController.h"
+#import "GenericDetailViewController.h"
+#import "JSONWorkshop.h"
 
-@interface WorkshopDetailViewController : UITableViewController
+@interface WorkshopDetailViewController : GenericTableViewController {
+
+    GenericDetailViewController *detailHeaderViewController;
+    JSONWorkshop *workshop;
+    NSArray *sectionKeys;
+    NSMutableDictionary *sectionArrays;
+}
+
+@property( nonatomic, retain ) GenericDetailViewController *detailHeaderViewController;
+@property( nonatomic, retain ) JSONWorkshop *workshop;
+@property( nonatomic, retain ) NSArray *sectionKeys;
+@property( nonatomic, retain ) NSMutableDictionary *sectionArrays;
 
 @end

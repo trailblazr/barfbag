@@ -45,6 +45,8 @@
     self.navigationItem.rightBarButtonItem.enabled = NO;
     NSString *cachedRemoteHtml = [self appDelegate].videoStreamsHtml;
     if( cachedRemoteHtml && [cachedRemoteHtml length] > 0 ) {
+        videoStreamsWebView.scalesPageToFit = NO;
+        [videoStreamsWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
         [videoStreamsWebView loadHTMLString:cachedRemoteHtml baseURL:nil];
     }
     else {
@@ -70,6 +72,12 @@
 }
 
 #pragma mark - UIWebViewDelegate
+
+- (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    webView.scalesPageToFit = ( navigationType == UIWebViewNavigationTypeLinkClicked );
+    NSLog( @"WILL SCALE TO FIT: %@", webView.scalesPageToFit ? @"YES" : @"NO" );
+    return YES;
+}
 
 - (void) webViewDidFinishLoad:(UIWebView *)webView {
     self.navigationItem.rightBarButtonItem.enabled = YES;

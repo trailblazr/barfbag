@@ -7,6 +7,8 @@
 //
 
 #import "SemanticItemsViewController.h"
+#import "AssemblyDetailViewController.h"
+#import "WorkshopDetailViewController.h"
 #import "AppDelegate.h"
 #import "JSONAssembly.h"
 #import "JSONWorkshop.h"
@@ -44,6 +46,7 @@
 - (void)viewDidLoad {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionUpdateDisplayAfterRefresh) name:kNOTIFICATION_JSON_COMPLETED  object:nil];
     [super viewDidLoad];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:LOC( @"Zurück" ) style:UIBarButtonItemStyleBordered target:nil action:nil];
     UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionRefreshData)] autorelease];
     self.navigationItem.rightBarButtonItem = item;
     [self updateNavigationTitle];
@@ -225,16 +228,22 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    if( indexPath.section == 0 ) {
+        JSONWorkshop *workshop = [[self appDelegate].semanticWikiWorkshops objectAtIndex:indexPath.row];
+        WorkshopDetailViewController *detailViewController = [[WorkshopDetailViewController alloc] initWithNibName:@"AssemblyDetailViewController" bundle:nil];
+        detailViewController.workshop = workshop;
+        [self.navigationController pushViewController:detailViewController animated:YES];
+        [detailViewController release];
+    }
+    if( indexPath.section == 1 ) {
+        JSONAssembly *assembly = [[self appDelegate].semanticWikiAssemblies objectAtIndex:indexPath.row];
+        AssemblyDetailViewController *detailViewController = [[AssemblyDetailViewController alloc] initWithNibName:@"AssemblyDetailViewController" bundle:nil];
+        detailViewController.assembly = assembly;
+        [self.navigationController pushViewController:detailViewController animated:YES];
+        [detailViewController release];
+    }
 }
 
 @end

@@ -20,6 +20,9 @@
 + (NSDictionary*) objectMapping;
 - (NSString*) description;
 
+- (NSArray*) arrayForPropertyWithName:(NSString*)propertyName;
+- (id) singlePropertyFromObject:(id)arrayOrObject;
+
 - (NSString*)abstract;
 - (NSString*)eventLocation;
 - (NSDate*) startTime;

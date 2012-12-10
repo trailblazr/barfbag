@@ -23,6 +23,9 @@
 + (NSDictionary*) objectMapping;
 - (NSString*) description;
 
+- (id) singlePropertyFromObject:(id)arrayOrObject;
+- (NSArray*) arrayForPropertyWithName:(NSString*)propertyName;
+
 - (NSInteger) numLectureSeats;
 - (NSString*)abstract;
 

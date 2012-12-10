@@ -13,30 +13,14 @@
 
 @synthesize event;
 @synthesize day;
-@synthesize titleLabel;
-@synthesize subtitleLabel;
-@synthesize timeStart;
-@synthesize timeDuration;
-@synthesize roomLabel;
-@synthesize dateLabel;
-@synthesize languageLabel;
-@synthesize trackLabel;
-@synthesize speakerLabel;
 @synthesize cellTextLabel;
+@synthesize detailHeaderViewController;
 
 - (void) dealloc {
     self.event = nil;
     self.day = nil;
-    self.titleLabel = nil;
-    self.subtitleLabel = nil;
-    self.timeStart = nil;
-    self.timeDuration = nil;
-    self.roomLabel = nil;
-    self.dateLabel = nil;
-    self.languageLabel = nil;
-    self.trackLabel = nil;
-    self.speakerLabel = nil;
     self.cellTextLabel = nil;
+    self.detailHeaderViewController =nil;
     [super dealloc];
 }
 
@@ -53,30 +37,29 @@
     self.navigationItem.title = [self stringShortDayForDate:day.date];
     self.tableView.tableHeaderView.backgroundColor = [self themeColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    if( !detailHeaderViewController ) {
+        self.detailHeaderViewController = [[GenericDetailViewController alloc] initWithNibName:@"GenericDetailViewController" bundle:nil];
+    }
+    detailHeaderViewController.titleLabel.text = event.title;
+    detailHeaderViewController.titleLabel.adjustsFontSizeToFitWidth = YES;
+    detailHeaderViewController.titleLabel.layer.masksToBounds = NO;
+    detailHeaderViewController.subtitleLabel.text = event.subtitle;
+    detailHeaderViewController.timeStart.text = [NSString stringWithFormat:LOC( @"%@ Uhr" ), event.start];
+    detailHeaderViewController.timeDuration.text = [NSString stringWithFormat:@"%.1f h", event.duration];
+    detailHeaderViewController.roomLabel.text = event.room;
+    detailHeaderViewController.dateLabel.text = @"-";
+    detailHeaderViewController.languageLabel.text = event.localizedLanguageName;
+    detailHeaderViewController.trackLabel.text = event.track;
+    detailHeaderViewController.speakerLabel.text = event.speakerList;
+
     // APPLY BACKGROUND
     UIImage *gradientImage = [self imageGradientWithSize:self.tableView.tableHeaderView.bounds.size color1:[self darkerColor] color2:[self backgroundColor]];
     UIImageView *selectedBackgroundView = [[[UIImageView alloc] initWithImage:gradientImage] autorelease];
+    selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    selectedBackgroundView.contentMode = UIViewContentModeScaleToFill;
     [self.tableView.tableHeaderView insertSubview:selectedBackgroundView atIndex:0];
-    titleLabel.text = event.title;
-    titleLabel.adjustsFontSizeToFitWidth = YES;
-    titleLabel.layer.masksToBounds = NO;
-    subtitleLabel.text = event.subtitle;
-    timeStart.text = [NSString stringWithFormat:LOC( @"%@ Uhr" ), event.start];
-    timeDuration.text = [NSString stringWithFormat:@"%.1f h", event.duration];
-    roomLabel.text = event.room;
-    dateLabel.text = @"-";
-    languageLabel.text = event.localizedLanguageName;
-    trackLabel.text = event.track;
-    speakerLabel.text = event.speakerList;
-    
-    NSArray *labelArray = [NSArray arrayWithObjects:titleLabel,subtitleLabel,timeStart,timeDuration,roomLabel,dateLabel,languageLabel,trackLabel,speakerLabel,nil];
-    for( UILabel *currentLabel in labelArray ) {
-        currentLabel.textColor = [self brighterColor];
-        currentLabel.shadowColor = [[self darkColor] colorWithAlphaComponent:0.8];
-        currentLabel.shadowOffset = CGSizeMake(1.0, 1.0);
-    }
 
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

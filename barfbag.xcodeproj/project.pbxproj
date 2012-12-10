@@ -93,6 +93,8 @@
 		8F754BC5166EB28C00F74DBB /* VideoStreamsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754BC3166EB28C00F74DBB /* VideoStreamsViewController.xib */; };
 		8F754BC8166EB47200F74DBB /* video.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754BC6166EB47200F74DBB /* video.png */; };
 		8F754BC9166EB47200F74DBB /* video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754BC7166EB47200F74DBB /* video@2x.png */; };
+		8F96FCFD1676853600EE0D5B /* GenericDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F96FCFB1676853600EE0D5B /* GenericDetailViewController.m */; };
+		8F96FCFE1676853600EE0D5B /* GenericDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F96FCFC1676853600EE0D5B /* GenericDetailViewController.xib */; };
 		8FF9216D166FFD47005A1C55 /* BBJSONConnectOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF92165166FFD47005A1C55 /* BBJSONConnectOperation.m */; };
 		8FF9216E166FFD47005A1C55 /* BBJSONConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF92167166FFD47005A1C55 /* BBJSONConnector.m */; };
 		8FF9216F166FFD47005A1C55 /* BBJSONStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF92169166FFD47005A1C55 /* BBJSONStatusView.m */; };
@@ -268,6 +270,9 @@
 		8F754BC3166EB28C00F74DBB /* VideoStreamsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoStreamsViewController.xib; sourceTree = "<group>"; };
 		8F754BC6166EB47200F74DBB /* video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = video.png; path = images/video.png; sourceTree = SOURCE_ROOT; };
 		8F754BC7166EB47200F74DBB /* video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "video@2x.png"; path = "images/video@2x.png"; sourceTree = SOURCE_ROOT; };
+		8F96FCFA1676853600EE0D5B /* GenericDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericDetailViewController.h; sourceTree = "<group>"; };
+		8F96FCFB1676853600EE0D5B /* GenericDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericDetailViewController.m; sourceTree = "<group>"; };
+		8F96FCFC1676853600EE0D5B /* GenericDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GenericDetailViewController.xib; sourceTree = "<group>"; };
 		8FF92164166FFD47005A1C55 /* BBJSONConnectOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBJSONConnectOperation.h; sourceTree = "<group>"; };
 		8FF92165166FFD47005A1C55 /* BBJSONConnectOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBJSONConnectOperation.m; sourceTree = "<group>"; };
 		8FF92166166FFD47005A1C55 /* BBJSONConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBJSONConnector.h; sourceTree = "<group>"; };
@@ -677,6 +682,9 @@
 				8F754B98166EA65600F74DBB /* GenericTableViewController.m */,
 				8F754B9A166EA7E600F74DBB /* GenericTabBarController.h */,
 				8F754B9B166EA7E800F74DBB /* GenericTabBarController.m */,
+				8F96FCFA1676853600EE0D5B /* GenericDetailViewController.h */,
+				8F96FCFB1676853600EE0D5B /* GenericDetailViewController.m */,
+				8F96FCFC1676853600EE0D5B /* GenericDetailViewController.xib */,
 			);
 			name = "Generic Controllers";
 			sourceTree = "<group>";
@@ -964,6 +972,7 @@
 				8F1663CE1675055A003347EA /* EventDetailViewController.xib in Resources */,
 				8F1663D4167505AE003347EA /* AssemblyDetailViewController.xib in Resources */,
 				8F1663DA167505C5003347EA /* WorkshopDetailViewController.xib in Resources */,
+				8F96FCFE1676853600EE0D5B /* GenericDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1045,6 +1054,7 @@
 				8F1663CD1675055A003347EA /* EventDetailViewController.m in Sources */,
 				8F1663D3167505AE003347EA /* AssemblyDetailViewController.m in Sources */,
 				8F1663D9167505C5003347EA /* WorkshopDetailViewController.m in Sources */,
+				8F96FCFD1676853600EE0D5B /* GenericDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -50,6 +50,19 @@
 "[%i Plätze]: %@" = "[%i Plätze]: %@";
 "29C3 Wikiplan" = "29C3 Wikiplan";
 
+/* AssemblyDetailViewController */
+
+"descriptionText" = "Beschreibung";
+"orgaContact" = "Kontaktperson";
+"plannedWorkshops" = "Geplante Workshops";
+"webLinks" = "Links";
+"planningNotes" = "Hinweise";
+"bringsStuff" = "Zeugs";
+
+/* WorkshopDetailViewController */
+
+"contactOrganizing" = "Ansprechpartner";
+
 /* FavouritesNavigationController */
 
 "Favoriten" = "Favoriten";
