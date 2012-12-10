@@ -53,6 +53,8 @@
 - (void) addPerson:(Person*)personToAdd;
 - (void) addLink:(Link*)linkToAdd;
 - (NSString*) pngIconHref;
+- (NSString*) speakerList;
+- (NSString*) localizedLanguageName;
 
 - (void) takeValuesFromDictionary:(NSDictionary*)dict;
 - (void) takeDurationFromString:(NSString*)durationString;

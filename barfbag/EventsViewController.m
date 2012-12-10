@@ -12,6 +12,7 @@
 #import "Day.h"
 #import "Event.h"
 #import "AppDelegate.h"
+#import "EventDetailViewController.h"
 
 @implementation EventsViewController
 
@@ -106,6 +107,7 @@
     if( [self tableView:self.tableView numberOfRowsInSection:0] == 0 ) {
         [[self appDelegate] barfBagLoadCached];
     }
+    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:LOC( @"Zurück" ) style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
     UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionRefreshData)] autorelease];
     self.navigationItem.rightBarButtonItem = item;
     [self updateNavigationTitle];
@@ -239,14 +241,14 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
+    
+    EventDetailViewController *detailViewController = [[EventDetailViewController alloc] initWithNibName:@"EventDetailViewController" bundle:nil];
+    NSArray *days = [[self conference] days];
+    Day *currentDay = [days objectAtIndex:indexPath.section];
+    Event *currentEvent = [currentDay.events objectAtIndex:indexPath.row];
+    detailViewController.event = currentEvent;
+    [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
-     */
 }
 
 #pragma mark - UISearchBarDelegate

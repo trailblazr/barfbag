@@ -69,6 +69,19 @@
     [links addObject:linkToAdd];
 }
 
+- (NSString*) localizedLanguageName {
+    return LOC( self.language );
+}
+
+- (NSString*) speakerList {
+    NSMutableString *listString = [NSMutableString string];
+    for( Person *currentPerson in [self persons] ) {
+        BOOL needsComma = ( [listString length] > 0 );
+        [listString appendFormat:@"%@%@", needsComma ? @", " : @"", currentPerson.personName];
+    }
+    return listString;
+}
+
 - (NSString*) description {
 	NSMutableString *stringRepresentation = [NSMutableString string];
 	[stringRepresentation appendFormat:@"EVENT (%i)\n", eventId];

@@ -113,6 +113,14 @@
     }
 }
 
+- (NSArray*) allEvents {
+    NSMutableArray *allEvents = [NSMutableArray array];
+    for( Day* currentDay in days ) {
+        [allEvents addObjectsFromArray:currentDay.events];
+    }
+    return [NSArray arrayWithArray:allEvents];
+}
+
 - (void) computeCachedProperties {
 
     self.cachedAvailableTracks = [NSMutableArray array];
@@ -123,10 +131,7 @@
     self.cachedAvailablePersons = [NSMutableArray array];
     self.cachedAvailableLinks = [NSMutableArray array];
     
-    NSMutableArray *allEvents = [NSMutableArray array];
-    for( Day* currentDay in days ) {
-        [allEvents addObjectsFromArray:currentDay.events];
-    }
+    NSMutableArray *allEvents = [NSMutableArray arrayWithArray:[self allEvents]];
     
     // COMPUTE LIST OF USED TRACKS
     for( Event *currentEvent in allEvents ) {
@@ -143,53 +148,57 @@
     NSLog( @"rooms = %@", cachedAvailableRooms );
     NSLog( @"slugs = %@", cachedAvailableSlugs );
     
+    NSLog( @"events in room 'saal 1': %@", [self eventsForRoom:@"saal 1"] );
+    
 }
 
-- (NSArray*) eventsWithProperty:(NSString*)property matchingValue:(NSString*)value {
-    // TODO: implement
-    return nil;
+- (NSArray*) eventsWithProperty:(NSString*)propertyName matchingValue:(NSString*)value {
+    NSMutableArray *eventsMatching = [NSMutableArray array];
+    NSArray *allEvents = [self allEvents];
+    for( Event* currentEvent in allEvents ) {
+        SEL selector = NSSelectorFromString(propertyName);
+        id result = [currentEvent performSelector:selector];
+        if( [result isKindOfClass:[NSString class]] ) {
+            NSString *resultNormalized = [(NSString*)result normalizedString];
+            if( [resultNormalized isEqualToString:value] ) {
+                [eventsMatching addObject:currentEvent];
+            }
+        }
+        else {
+            NSLog( @"No NSString Property: %@", propertyName );
+        }
+    }
+    return [NSArray arrayWithArray:eventsMatching];
 }
 
 - (NSArray*) eventsForTrack:(NSString*)track {
-    // TODO: implement
-    return nil;
-
+    return [self eventsWithProperty:@"track" matchingValue:track];
 }
 
 - (NSArray*) eventsForType:(NSString*)type {
-    // TODO: implement
-    return nil;
-
+    return [self eventsWithProperty:@"type" matchingValue:type];
 }
 
 - (NSArray*) eventsForLanguage:(NSString*)language {
-    // TODO: implement
-    return nil;
-
+    return [self eventsWithProperty:@"language" matchingValue:language];
 }
 
 - (NSArray*) eventsForRoom:(NSString*)room {
-    // TODO: implement
-    return nil;
-
+    return [self eventsWithProperty:@"room" matchingValue:room];
 }
 
 - (NSArray*) eventsForSlug:(NSString*)slug {
-    // TODO: implement
-    return nil;
-
+    return [self eventsWithProperty:@"slug" matchingValue:slug];
 }
 
 - (NSArray*) eventsForPerson:(Person*)person {
     // TODO: implement
     return nil;
-
 }
 
 - (NSArray*) eventsForLink:(Link*)link {
     // TODO: implement
     return nil;
-
 }
 
 

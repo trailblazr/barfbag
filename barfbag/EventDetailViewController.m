@@ -12,9 +12,31 @@
 @implementation EventDetailViewController
 
 @synthesize event;
+@synthesize titleLabel;
+@synthesize subtitleLabel;
+@synthesize timeStart;
+@synthesize timeDuration;
+@synthesize roomLabel;
+@synthesize dateLabel;
+@synthesize languageLabel;
+@synthesize trackLabel;
+@synthesize speakerLabel;
+@synthesize cellTextView;
+@synthesize cellTextLabel;
 
 - (void) dealloc {
     self.event = nil;
+    self.titleLabel = nil;
+    self.subtitleLabel = nil;
+    self.timeStart = nil;
+    self.timeDuration = nil;
+    self.roomLabel = nil;
+    self.dateLabel = nil;
+    self.languageLabel = nil;
+    self.trackLabel = nil;
+    self.speakerLabel = nil;
+    self.cellTextView = nil;
+    self.cellTextLabel = nil;
     [super dealloc];
 }
 
@@ -28,7 +50,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.navigationItem.title = [event.room capitalizedString];
+    self.tableView.tableHeaderView.backgroundColor = [self themeColor];
+    titleLabel.text = event.title;
+    titleLabel.adjustsFontSizeToFitWidth = YES;
+    titleLabel.layer.masksToBounds = NO;
+    subtitleLabel.text = event.subtitle;
+    timeStart.text = [NSString stringWithFormat:LOC( @"%@ Uhr" ), event.start];
+    timeDuration.text = [NSString stringWithFormat:@"%.1f h", event.duration];
+    roomLabel.text = event.room;
+    dateLabel.text = @"-";
+    languageLabel.text = event.localizedLanguageName;
+    trackLabel.text = event.track;
+    speakerLabel.text = event.speakerList;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -43,30 +77,49 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGSize) textSize {
+    NSString* textToDisplay = event.descriptionText;
+    CGSize sizeForText = [textToDisplay sizeWithFont:[UIFont systemFontOfSize:16.0] constrainedToSize:CGSizeMake(self.tableView.bounds.size.width-10.0, 999999999.0) lineBreakMode:NSLineBreakByWordWrapping];
+    return CGSizeMake(sizeForText.width, sizeForText.height+50.0);
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [self textSize].height;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.contentView.backgroundColor = kCOLOR_BACK;
     }
     
-    // Configure the cell...
+    while( [cell.contentView.subviews count] > 0 ) {
+        [[cell.contentView.subviews lastObject] removeFromSuperview];
+    }
+    CGSize textSize = [self textSize];
+    self.cellTextLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5.0, 0.0, textSize.width, textSize.height-10)] autorelease];
+    cellTextLabel.font = [UIFont systemFontOfSize:16.0];
+    cellTextLabel.numberOfLines = 9999999999;
+    cellTextLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    cellTextLabel.backgroundColor = kCOLOR_BACK;
+    cellTextLabel.textColor = kCOLOR_WHITE;
+    [cell.contentView addSubview:cellTextLabel];
+
     
+    // Configure the cell...
+    // cellTextView.text = event.descriptionText;
+    cellTextLabel.text = event.descriptionText;
     return cell;
 }
 

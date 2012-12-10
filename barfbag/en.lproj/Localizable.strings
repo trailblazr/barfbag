@@ -29,6 +29,12 @@
 "Fahrplan" = "Fahrplan";
 "29C3 Fahrplan" = "29C3 Schedule";
 
+/* EventDetailViewController */
+
+"en" = "English";
+"de" = "German";
+"%@ Uhr" = "%@";
+
 /* ScheduleSemanticNavigationController */
 
 "Wikiplan" = "Wikischedule";
