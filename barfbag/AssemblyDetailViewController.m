@@ -14,12 +14,14 @@
 @synthesize assembly;
 @synthesize sectionKeys;
 @synthesize sectionArrays;
+@synthesize navigationTitle;
 
 - (void) dealloc {
     self.assembly = nil;
     self.detailHeaderViewController = nil;
     self.sectionKeys = nil;
     self.sectionArrays = nil;
+    self.navigationTitle = nil;
     [super dealloc];
 }
 
@@ -34,7 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.navigationItem.title = [NSString placeHolder:@"n.a." forEmptyString:assembly.label];
+    self.navigationItem.title = navigationTitle;
     if( !detailHeaderViewController ) {
         self.detailHeaderViewController = [[[GenericDetailViewController alloc] initWithNibName:@"GenericDetailViewController" bundle:nil] autorelease];
     }

@@ -234,12 +234,14 @@
         JSONWorkshop *workshop = [[self appDelegate].semanticWikiWorkshops objectAtIndex:indexPath.row];
         WorkshopDetailViewController *detailViewController = [[WorkshopDetailViewController alloc] initWithNibName:@"AssemblyDetailViewController" bundle:nil];
         detailViewController.workshop = workshop;
+        detailViewController.navigationTitle = [NSString stringWithFormat:LOC( @"Workshop #%i" ), indexPath.row+1];
         [self.navigationController pushViewController:detailViewController animated:YES];
         [detailViewController release];
     }
     if( indexPath.section == 1 ) {
         JSONAssembly *assembly = [[self appDelegate].semanticWikiAssemblies objectAtIndex:indexPath.row];
         AssemblyDetailViewController *detailViewController = [[AssemblyDetailViewController alloc] initWithNibName:@"AssemblyDetailViewController" bundle:nil];
+        detailViewController.navigationTitle = [NSString stringWithFormat:LOC( @"Assembly #%i" ), indexPath.row+1];
         detailViewController.assembly = assembly;
         [self.navigationController pushViewController:detailViewController animated:YES];
         [detailViewController release];

@@ -14,12 +14,14 @@
 @synthesize workshop;
 @synthesize sectionKeys;
 @synthesize sectionArrays;
+@synthesize navigationTitle;
 
 - (void) dealloc {
     self.workshop = nil;
     self.detailHeaderViewController = nil;
     self.sectionKeys = nil;
     self.sectionArrays = nil;
+    self.navigationTitle = nil;
     [super dealloc];
 }
 
@@ -39,7 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.navigationItem.title = [NSString placeHolder:@"n.a." forEmptyString:workshop.label];
+    self.navigationItem.title = navigationTitle;
     if( !detailHeaderViewController ) {
         self.detailHeaderViewController = [[[GenericDetailViewController alloc] initWithNibName:@"GenericDetailViewController" bundle:nil] autorelease];
     }
@@ -47,12 +49,12 @@
     
     detailHeaderViewController.titleLabel.text = workshop.label;
     detailHeaderViewController.subtitleLabel.text = [workshop singlePropertyFromObject:workshop.location];
-    detailHeaderViewController.timeStart.text = [self stringDayForDate:[workshop singlePropertyFromObject:workshop.dateTimeStart]];
+    detailHeaderViewController.timeStart.text = [self stringTimeForDate:workshop.startTime];
     detailHeaderViewController.timeDuration.text = [NSString stringWithFormat:@"%i min", [[workshop singlePropertyFromObject:workshop.duration] integerValue]];
     detailHeaderViewController.roomLabel.text = [workshop singlePropertyFromObject:workshop.location];;
     detailHeaderViewController.dateLabel.text = @"";
     detailHeaderViewController.languageLabel.text = @"";
-    detailHeaderViewController.trackLabel.text = [self stringDayForDate:[workshop singlePropertyFromObject:workshop.dateTimeEnd]];
+    detailHeaderViewController.trackLabel.text = [self stringTimeForDate:workshop.endTime];
     detailHeaderViewController.speakerLabel.text = [workshop singlePropertyFromObject:workshop.personOrganizing];
     
     

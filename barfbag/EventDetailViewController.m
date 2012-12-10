@@ -35,12 +35,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = [self stringShortDayForDate:day.date];
-    self.tableView.tableHeaderView.backgroundColor = [self themeColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     if( !detailHeaderViewController ) {
-        self.detailHeaderViewController = [[GenericDetailViewController alloc] initWithNibName:@"GenericDetailViewController" bundle:nil];
+        self.detailHeaderViewController = [[[GenericDetailViewController alloc] initWithNibName:@"GenericDetailViewController" bundle:nil] autorelease];
     }
+    self.tableView.tableHeaderView = detailHeaderViewController.view;
+    self.tableView.tableHeaderView.backgroundColor = [self themeColor];
+
     detailHeaderViewController.titleLabel.text = event.title;
     detailHeaderViewController.titleLabel.adjustsFontSizeToFitWidth = YES;
     detailHeaderViewController.titleLabel.layer.masksToBounds = NO;

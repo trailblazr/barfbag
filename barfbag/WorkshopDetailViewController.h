@@ -17,11 +17,13 @@
     JSONWorkshop *workshop;
     NSArray *sectionKeys;
     NSMutableDictionary *sectionArrays;
+    NSString *navigationTitle;
 }
 
 @property( nonatomic, retain ) GenericDetailViewController *detailHeaderViewController;
 @property( nonatomic, retain ) JSONWorkshop *workshop;
 @property( nonatomic, retain ) NSArray *sectionKeys;
 @property( nonatomic, retain ) NSMutableDictionary *sectionArrays;
+@property( nonatomic, retain ) NSString *navigationTitle;
 
 @end

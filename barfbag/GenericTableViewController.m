@@ -127,6 +127,16 @@
     return (AppDelegate*)[UIApplication sharedApplication].delegate;
 }
 
+- (NSString*) stringForDate:(NSDate*)date withFormat:(NSString*)format {
+    if( !date ) return nil;
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateFormat = format;
+    NSString *formattedDate = [df stringFromDate:date];
+    [df release];
+    return formattedDate;
+}
+
+
 - (NSString*) stringDayForDate:(NSDate*)date withDayFormat:(NSString*)dayFormat {
     if( !date ) return nil;
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
@@ -136,6 +146,11 @@
     NSString *formattedDate = [df stringFromDate:date];
     [df release];
     return formattedDate;
+}
+
+- (NSString*) stringTimeForDate:(NSDate*)date {
+    if( !date ) return nil;
+    return [self stringForDate:date withFormat:@"eee, dd. @ HH:mm"];
 }
 
 - (NSString*) stringDayForDate:(NSDate*)date {

@@ -48,6 +48,8 @@
 "%i Assemblies" = "%i Assemblies";
 "[%i Plätze]: %@" = "[%i seats]: %@";
 "29C3 Wikiplan" = "29C3 Wikischedule";
+"Workshop #%i" = "Workshop #%i";
+"Assembly #%i" = "Assembly #%i";
 
 /* AssemblyDetailViewController */
 

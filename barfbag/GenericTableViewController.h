@@ -27,6 +27,7 @@
 
 - (NSString*) stringDayForDate:(NSDate*)date;
 - (NSString*) stringShortDayForDate:(NSDate*)date;
+- (NSString*) stringTimeForDate:(NSDate*)date;
 
 - (CGSize) textSizeNeededForString:(NSString*)textToDisplay;
 - (UIImage*) imageGradientWithSize:(CGSize)imageSize color1:(UIColor*)color1 color2:(UIColor*)color2;

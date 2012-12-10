@@ -17,11 +17,13 @@
     JSONAssembly *assembly;
     NSArray *sectionKeys;
     NSMutableDictionary *sectionArrays;
+    NSString *navigationTitle;
 }
 
 @property( nonatomic, retain ) GenericDetailViewController *detailHeaderViewController;
 @property( nonatomic, retain ) JSONAssembly *assembly;
 @property( nonatomic, retain ) NSArray *sectionKeys;
 @property( nonatomic, retain ) NSMutableDictionary *sectionArrays;
+@property( nonatomic, retain ) NSString *navigationTitle;
 
 @end
