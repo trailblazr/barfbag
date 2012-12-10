@@ -163,6 +163,18 @@
     return [self stringDayForDate:date withDayFormat:@"eee"];
 }
 
+- (UILabel*) cellTextLabelWithRect:(CGRect)rect {
+    UILabel *label = [[[UILabel alloc] initWithFrame:rect] autorelease];
+    label.font = [UIFont systemFontOfSize:16.0];
+    label.numberOfLines = 9999999999;
+    label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    label.backgroundColor = kCOLOR_BACK;
+    label.textColor = [self themeColor];
+    label.shadowColor = [[self darkerColor] colorWithAlphaComponent:0.3];
+    label.shadowOffset = CGSizeMake(1.0, 1.0);
+    return label;
+}
+
 #pragma mark - Colors
 
 - (UIColor*) backgroundColor {
@@ -258,6 +270,26 @@
 
 - (void) userDidTapHud:(ATMHud *)_hud {
 	[_hud hide];
+}
+
+- (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    CGFloat height20 = [[UIDevice currentDevice] isPad] ? 40.0f : 20.0f;
+    CGFloat fontSize16 = [[UIDevice currentDevice] isPad] ? 32.0f : 16.0f;
+    CGRect containerRect = CGRectMake(0.0, 0.0, self.view.bounds.size.width, height20);
+    UIView *containerView = [[[UIView alloc] initWithFrame:containerRect] autorelease];
+    containerView.opaque = NO;
+    containerView.backgroundColor = [[self themeColor] colorWithAlphaComponent:0.9f];
+    CGFloat offset = 10.0f;
+    CGRect labelRect = CGRectMake(offset, 0.0, containerRect.size.width-(2*offset), containerRect.size.height);
+    UILabel *label = [[[UILabel alloc] initWithFrame:labelRect] autorelease];
+    [containerView addSubview:label];
+    label.backgroundColor = kCOLOR_CLEAR;
+    label.font = [UIFont boldSystemFontOfSize:fontSize16];
+    label.textColor = kCOLOR_WHITE;
+    label.shadowColor = [kCOLOR_BLACK colorWithAlphaComponent:0.5];
+    label.shadowOffset = CGSizeMake(1.0, 1.0);
+    label.text = [self tableView:tableView titleForHeaderInSection:section];
+    return containerView;
 }
 
 @end

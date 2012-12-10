@@ -36,6 +36,7 @@
 "de" = "Deutsch";
 "%@ Uhr" = "%@ Uhr";
 "Keine Beschreibung vorhanden." = "Keine Beschreibung vorhanden.";
+"Beschreibung" = "Beschreibung";
 
 /* ScheduleSemanticNavigationController */
 

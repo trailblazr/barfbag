@@ -25,6 +25,8 @@
 
 - (AppDelegate*) appDelegate;
 
+- (UILabel*) cellTextLabelWithRect:(CGRect)rect;
+
 - (NSString*) stringDayForDate:(NSDate*)date;
 - (NSString*) stringShortDayForDate:(NSDate*)date;
 - (NSString*) stringTimeForDate:(NSDate*)date;
@@ -38,5 +40,7 @@
 - (UIColor*) brighterColor;
 - (UIColor*) darkColor;
 - (UIColor*) darkerColor;
+
+- (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;
 
 @end

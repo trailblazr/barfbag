@@ -51,6 +51,8 @@
         currentLabel.shadowColor = [[self darkColor] colorWithAlphaComponent:0.8];
         currentLabel.shadowOffset = CGSizeMake(1.0, 1.0);
     }
+    titleLabel.textColor = [self brightColor];
+    speakerLabel.textColor = [self themeColor];
 }
 
 - (void)didReceiveMemoryWarning {

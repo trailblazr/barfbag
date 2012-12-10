@@ -80,6 +80,10 @@
 
 #pragma mark - Table view data source
 
+- (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return LOC( @"Beschreibung" );
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -106,14 +110,7 @@
         [[cell.contentView.subviews lastObject] removeFromSuperview];
     }
     CGSize textSize = [self textSizeNeededForString:[self eventDescriptionText]];
-    self.cellTextLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5.0, 0.0, textSize.width, textSize.height-10)] autorelease];
-    cellTextLabel.font = [UIFont systemFontOfSize:16.0];
-    cellTextLabel.numberOfLines = 9999999999;
-    cellTextLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    cellTextLabel.backgroundColor = kCOLOR_BACK;
-    cellTextLabel.textColor = [self themeColor];
-    cellTextLabel.shadowColor = [[self darkerColor] colorWithAlphaComponent:0.6];
-    cellTextLabel.shadowOffset = CGSizeMake(1.0, 1.0);
+    self.cellTextLabel = [self cellTextLabelWithRect:CGRectMake(5.0, 0.0, textSize.width, textSize.height-10)];
     [cell.contentView addSubview:cellTextLabel];
     
     // Configure the cell...
