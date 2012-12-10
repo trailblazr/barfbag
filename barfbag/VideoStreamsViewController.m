@@ -59,7 +59,6 @@
     self.navigationItem.rightBarButtonItem = item;
 
     self.navigationItem.title = LOC( @"29C3 Livestreams" );
-    self.view.backgroundColor = [self themeColor];
     videoStreamsWebView.opaque = NO;
     videoStreamsWebView.backgroundColor = kCOLOR_CLEAR;
     [self actionRefreshStreamHtml];

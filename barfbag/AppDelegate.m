@@ -125,15 +125,33 @@
     [alert release];
 }
 
+- (UIColor*) backgroundColor {
+    return kCOLOR_BACK;
+}
+
 - (UIColor*) brightColor {
     CGFloat hue = [[self themeColor] hue];
     return [UIColor colorWithHue:hue saturation:0.025f brightness:1.0 alpha:1.0];
 }
 
+- (UIColor*) brighterColor {
+    CGFloat hue = [[self themeColor] hue];
+    CGFloat brightness = [[self themeColor] brightness];
+    return [UIColor colorWithHue:hue saturation:hue*0.3f brightness:brightness*1.15 alpha:1.0];
+}
+
+- (UIColor*) darkerColor {
+    CGFloat hue = [[self themeColor] hue];
+    CGFloat brightness = [[self themeColor] brightness];
+    CGFloat saturation = [[self themeColor] saturation];
+    return [UIColor colorWithHue:hue saturation:saturation brightness:brightness*0.8 alpha:1.0];
+}
+
 - (UIColor*) darkColor {
     CGFloat hue = [[self themeColor] hue];
     CGFloat brightness = [[self themeColor] brightness];
-    return [UIColor colorWithHue:hue saturation:1.0 brightness:brightness-0.2 alpha:1.0];
+    CGFloat saturation = [[self themeColor] saturation];
+    return [UIColor colorWithHue:hue saturation:saturation brightness:brightness*0.4f alpha:1.0];
 }
 
 - (BOOL) isConfigOnForKey:(NSString*)key defaultValue:(BOOL)isOn {
@@ -159,12 +177,16 @@
     
     // SWITCH
     UISwitch *proxySwitch = [UISwitch appearance];
-    proxySwitch.onTintColor = [self darkColor];
+    proxySwitch.onTintColor = [self darkerColor];
     
     // TABBAR
     UITabBar *proxyTabBar = [UITabBar appearance];
     proxyTabBar.tintColor = kCOLOR_BACK;
     proxyTabBar.selectedImageTintColor = [self themeColor];
+    
+    // SEARCHBAR
+    UISearchBar *proxySearchBar = [UISearchBar appearance];
+    proxySearchBar.tintColor = [self backgroundColor];
 }
 
 #pragma mark - Fetch Master Configuration

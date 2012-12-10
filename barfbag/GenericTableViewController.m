@@ -29,12 +29,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.backgroundColor = [self themeColor];
+    self.view.backgroundColor = [self backgroundColor];
     self.tableView.separatorColor = [self darkColor];
     self.tableView.backgroundView = nil;
-    if( self.searchDisplayController && self.searchDisplayController.searchBar ) {
-        self.searchDisplayController.searchBar.tintColor = [self themeColor];
-    }
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -130,24 +127,51 @@
     return (AppDelegate*)[UIApplication sharedApplication].delegate;
 }
 
+- (NSString*) stringDayForDate:(NSDate*)date withDayFormat:(NSString*)dayFormat {
+    if( !date ) return nil;
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.timeStyle = NSDateFormatterNoStyle;
+    df.dateStyle = NSDateFormatterMediumStyle;
+    df.dateFormat = [NSString stringWithFormat:@"%@, %@", dayFormat, df.dateFormat];
+    NSString *formattedDate = [df stringFromDate:date];
+    [df release];
+    return formattedDate;
+}
+
+- (NSString*) stringDayForDate:(NSDate*)date {
+    if( !date ) return nil;
+    return [self stringDayForDate:date withDayFormat:@"eeee"];
+}
+
+- (NSString*) stringShortDayForDate:(NSDate*)date {
+    if( !date ) return nil;
+    return [self stringDayForDate:date withDayFormat:@"eee"];
+}
+
+#pragma mark - Colors
+
+- (UIColor*) backgroundColor {
+    return [self appDelegate].backgroundColor;
+}
+
 - (UIColor*) themeColor {
     return [self appDelegate].themeColor;
 }
 
 - (UIColor*) brightColor {
-    CGFloat hue = [[self themeColor] hue];
-    return [UIColor colorWithHue:hue saturation:0.025f brightness:1.0 alpha:1.0];
+    return [self appDelegate].brightColor;
 }
 
 - (UIColor*) brighterColor {
-    CGFloat hue = [[self themeColor] hue];
-    return [UIColor colorWithHue:hue saturation:0.1f brightness:1.0 alpha:1.0];
+    return [self appDelegate].brighterColor;
 }
 
 - (UIColor*) darkColor {
-    CGFloat hue = [[self themeColor] hue];
-    CGFloat brightness = [[self themeColor] brightness];
-    return [UIColor colorWithHue:hue saturation:1.0 brightness:brightness-0.2 alpha:1.0];
+    return [self appDelegate].darkColor;
+}
+
+- (UIColor*) darkerColor {
+    return [self appDelegate].darkerColor;
 }
 
 - (UIImage*) imageGradientWithSize:(CGSize)imageSize color1:(UIColor*)color1 color2:(UIColor*)color2 {
@@ -165,7 +189,7 @@
 	CGGradientRef gradient;
 	CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
     
-    CGFloat locations[2] = { 0.0, 1.0 };
+    CGFloat locations[2] = { 0.97, 1.0 };
     
 	// step 3: define gradient with components
 	CGFloat colors[] = {

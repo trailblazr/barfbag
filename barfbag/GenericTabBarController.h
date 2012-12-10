@@ -24,8 +24,15 @@
 - (void) hideHud;
 
 - (AppDelegate*) appDelegate;
+
+- (NSString*) stringDayForDate:(NSDate*)date;
+- (NSString*) stringShortDayForDate:(NSDate*)date;
+
+- (UIColor*) backgroundColor;
 - (UIColor*) themeColor;
 - (UIColor*) brightColor;
+- (UIColor*) brighterColor;
 - (UIColor*) darkColor;
+- (UIColor*) darkerColor;
 
 @end

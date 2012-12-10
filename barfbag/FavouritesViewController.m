@@ -62,13 +62,15 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell.textLabel.textColor = [self brighterColor];
+        cell.detailTextLabel.textColor = [self themeColor];
         cell.textLabel.backgroundColor = kCOLOR_CLEAR;
         cell.detailTextLabel.backgroundColor = kCOLOR_CLEAR;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         UIView *backgroundView = [[[UIView alloc] initWithFrame:CGRectNull] autorelease];
-        backgroundView.backgroundColor = [self brightColor];
+        backgroundView.backgroundColor = [self backgroundColor];
         cell.backgroundView = backgroundView;
-        UIImage *gradientImage = [self imageGradientWithSize:cell.bounds.size color1:[self themeColor] color2:[self darkColor]];
+        UIImage *gradientImage = [self imageGradientWithSize:cell.bounds.size color1:[self themeColor] color2:[self darkerColor]];
         UIView *selectedBackgroundView = [[[UIImageView alloc] initWithImage:gradientImage] autorelease];
         selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         selectedBackgroundView.backgroundColor = [self darkColor];

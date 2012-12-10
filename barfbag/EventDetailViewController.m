@@ -12,6 +12,7 @@
 @implementation EventDetailViewController
 
 @synthesize event;
+@synthesize day;
 @synthesize titleLabel;
 @synthesize subtitleLabel;
 @synthesize timeStart;
@@ -21,11 +22,11 @@
 @synthesize languageLabel;
 @synthesize trackLabel;
 @synthesize speakerLabel;
-@synthesize cellTextView;
 @synthesize cellTextLabel;
 
 - (void) dealloc {
     self.event = nil;
+    self.day = nil;
     self.titleLabel = nil;
     self.subtitleLabel = nil;
     self.timeStart = nil;
@@ -35,7 +36,6 @@
     self.languageLabel = nil;
     self.trackLabel = nil;
     self.speakerLabel = nil;
-    self.cellTextView = nil;
     self.cellTextLabel = nil;
     [super dealloc];
 }
@@ -50,8 +50,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = [event.room capitalizedString];
+    self.navigationItem.title = [self stringShortDayForDate:day.date];
     self.tableView.tableHeaderView.backgroundColor = [self themeColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    // APPLY BACKGROUND
+    UIImage *gradientImage = [self imageGradientWithSize:self.tableView.tableHeaderView.bounds.size color1:[self darkerColor] color2:[self backgroundColor]];
+    UIImageView *selectedBackgroundView = [[[UIImageView alloc] initWithImage:gradientImage] autorelease];
+    [self.tableView.tableHeaderView insertSubview:selectedBackgroundView atIndex:0];
     titleLabel.text = event.title;
     titleLabel.adjustsFontSizeToFitWidth = YES;
     titleLabel.layer.masksToBounds = NO;
@@ -63,6 +68,15 @@
     languageLabel.text = event.localizedLanguageName;
     trackLabel.text = event.track;
     speakerLabel.text = event.speakerList;
+    
+    NSArray *labelArray = [NSArray arrayWithObjects:titleLabel,subtitleLabel,timeStart,timeDuration,roomLabel,dateLabel,languageLabel,trackLabel,speakerLabel,nil];
+    for( UILabel *currentLabel in labelArray ) {
+        currentLabel.textColor = [self brighterColor];
+        currentLabel.shadowColor = [[self darkColor] colorWithAlphaComponent:0.8];
+        currentLabel.shadowOffset = CGSizeMake(1.0, 1.0);
+    }
+
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -86,7 +100,7 @@
 }
 
 - (CGSize) textSize {
-    NSString* textToDisplay = event.descriptionText;
+    NSString* textToDisplay = [NSString placeHolder:LOC( @"Keine Beschreibung vorhanden." ) forEmptyString:event.descriptionText];
     CGSize sizeForText = [textToDisplay sizeWithFont:[UIFont systemFontOfSize:16.0] constrainedToSize:CGSizeMake(self.tableView.bounds.size.width-10.0, 999999999.0) lineBreakMode:NSLineBreakByWordWrapping];
     return CGSizeMake(sizeForText.width, sizeForText.height+50.0);
 }
@@ -104,6 +118,7 @@
         cell.contentView.backgroundColor = kCOLOR_BACK;
     }
     
+    // clean existing cell
     while( [cell.contentView.subviews count] > 0 ) {
         [[cell.contentView.subviews lastObject] removeFromSuperview];
     }
@@ -113,13 +128,13 @@
     cellTextLabel.numberOfLines = 9999999999;
     cellTextLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     cellTextLabel.backgroundColor = kCOLOR_BACK;
-    cellTextLabel.textColor = kCOLOR_WHITE;
+    cellTextLabel.textColor = [self themeColor];
+    cellTextLabel.shadowColor = [[self darkerColor] colorWithAlphaComponent:0.6];
+    cellTextLabel.shadowOffset = CGSizeMake(1.0, 1.0);
     [cell.contentView addSubview:cellTextLabel];
-
     
     // Configure the cell...
-    // cellTextView.text = event.descriptionText;
-    cellTextLabel.text = event.descriptionText;
+    cellTextLabel.text = [NSString placeHolder:LOC( @"Keine Beschreibung vorhanden." ) forEmptyString:event.descriptionText];
     return cell;
 }
 

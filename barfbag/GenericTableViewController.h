@@ -24,10 +24,17 @@
 - (void) hideHud;
 
 - (AppDelegate*) appDelegate;
+
+- (NSString*) stringDayForDate:(NSDate*)date;
+- (NSString*) stringShortDayForDate:(NSDate*)date;
+
+- (UIImage*) imageGradientWithSize:(CGSize)imageSize color1:(UIColor*)color1 color2:(UIColor*)color2;
+
+- (UIColor*) backgroundColor;
 - (UIColor*) themeColor;
 - (UIColor*) brightColor;
 - (UIColor*) brighterColor;
 - (UIColor*) darkColor;
-- (UIImage*) imageGradientWithSize:(CGSize)imageSize color1:(UIColor*)color1 color2:(UIColor*)color2;
+- (UIColor*) darkerColor;
 
 @end

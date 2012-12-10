@@ -28,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    self.view.backgroundColor = [self backgroundColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,19 +41,51 @@
     return (AppDelegate*)[UIApplication sharedApplication].delegate;
 }
 
+- (NSString*) stringDayForDate:(NSDate*)date withDayFormat:(NSString*)dayFormat {
+    if( !date ) return nil;
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.timeStyle = NSDateFormatterNoStyle;
+    df.dateStyle = NSDateFormatterMediumStyle;
+    df.dateFormat = [NSString stringWithFormat:@"%@, %@", dayFormat, df.dateFormat];
+    NSString *formattedDate = [df stringFromDate:date];
+    [df release];
+    return formattedDate;
+}
+
+- (NSString*) stringDayForDate:(NSDate*)date {
+    if( !date ) return nil;
+    return [self stringDayForDate:date withDayFormat:@"eeee"];
+}
+
+- (NSString*) stringShortDayForDate:(NSDate*)date {
+    if( !date ) return nil;
+    return [self stringDayForDate:date withDayFormat:@"eee"];
+}
+
+#pragma mark - Colors
+
+- (UIColor*) backgroundColor {
+    return [self appDelegate].backgroundColor;
+}
+
 - (UIColor*) themeColor {
     return [self appDelegate].themeColor;
 }
 
 - (UIColor*) brightColor {
-    CGFloat hue = [[self themeColor] hue];
-    return [UIColor colorWithHue:hue saturation:0.025f brightness:1.0 alpha:1.0];
+    return [self appDelegate].brightColor;
+}
+
+- (UIColor*) brighterColor {
+    return [self appDelegate].brighterColor;
 }
 
 - (UIColor*) darkColor {
-    CGFloat hue = [[self themeColor] hue];
-    CGFloat brightness = [[self themeColor] brightness];
-    return [UIColor colorWithHue:hue saturation:1.0 brightness:brightness-0.2 alpha:1.0];
+    return [self appDelegate].darkColor;
+}
+
+- (UIColor*) darkerColor {
+    return [self appDelegate].darkerColor;
 }
 
 - (void) alertWithTag:(NSInteger)tag title:(NSString*)title andMessage:(NSString*)message {

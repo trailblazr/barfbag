@@ -76,7 +76,7 @@
     CGRect containerRect = CGRectMake(0.0, 0.0, self.view.bounds.size.width, height20);
     UIView *containerView = [[[UIView alloc] initWithFrame:containerRect] autorelease];
     containerView.opaque = NO;
-    containerView.backgroundColor = [[self themeColor] colorWithAlphaComponent:0.9f];
+    containerView.backgroundColor = [[self darkerColor] colorWithAlphaComponent:0.9f];
     CGFloat offset = 10.0f;
     CGRect labelRect = CGRectMake(offset, 0.0, containerRect.size.width-(2*offset), containerRect.size.height);
     UILabel *label = [[[UILabel alloc] initWithFrame:labelRect] autorelease];
@@ -137,13 +137,15 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell.textLabel.textColor = [self brighterColor];
+        cell.detailTextLabel.textColor = [self themeColor];
         cell.textLabel.backgroundColor = kCOLOR_CLEAR;
         cell.detailTextLabel.backgroundColor = kCOLOR_CLEAR;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         UIView *backgroundView = [[[UIView alloc] initWithFrame:CGRectNull] autorelease];
-        backgroundView.backgroundColor = [self brightColor];
+        backgroundView.backgroundColor = [self backgroundColor];
         cell.backgroundView = backgroundView;
-        UIImage *gradientImage = [self imageGradientWithSize:cell.bounds.size color1:[self themeColor] color2:[self darkColor]];
+        UIImage *gradientImage = [self imageGradientWithSize:cell.bounds.size color1:[self themeColor] color2:[self darkerColor]];
         UIView *selectedBackgroundView = [[[UIImageView alloc] initWithImage:gradientImage] autorelease];
         selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         selectedBackgroundView.backgroundColor = [self darkColor];

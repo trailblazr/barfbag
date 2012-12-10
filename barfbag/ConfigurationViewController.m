@@ -91,7 +91,7 @@
     [buttonForceReconfiguration setTitleColor:[self darkColor] forState:UIControlStateNormal];
     [buttonForceReconfiguration setTitleColor:kCOLOR_WHITE forState:UIControlStateHighlighted];
     // MASK BUTTON
-    UIImage *gradientImage = [self imageGradientWithSize:buttonForceReconfiguration.bounds.size color1:[self themeColor] color2:[self darkColor]];
+    UIImage *gradientImage = [self imageGradientWithSize:buttonForceReconfiguration.bounds.size color1:[self themeColor] color2:[self darkerColor]];
     UIImageView *maskedImageView = [[UIImageView alloc] initWithImage:gradientImage];
     maskedImageView.layer.cornerRadius = 7.0;
     maskedImageView.layer.masksToBounds = YES;
@@ -108,7 +108,6 @@
     [super viewDidLoad];
     [self setupTableData];
     [self.tableView reloadData];
-    self.tableView.backgroundColor = [self brighterColor];
     self.navigationItem.title = LOC( @"Einstellungen" );
     
     // FOOTER
@@ -121,7 +120,7 @@
     creditsLabel.textAlignment = UITextAlignmentCenter;
     creditsLabel.text = LOC( @"created in 2012 by trailblazr\nwith some help & code of plaetzchen" );
     creditsLabel.font = [UIFont systemFontOfSize:12.0];
-    creditsLabel.textColor = kCOLOR_BLACK;
+    creditsLabel.textColor = [self brighterColor];
     [footerView addSubview:creditsLabel];
     creditsLabel.center = footerView.center;
     creditsLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -158,9 +157,7 @@
     sectionHeader.text = LOC( @"Optionen" );
     CGFloat fontSize17 = [[UIDevice currentDevice] isPad] ? 34.0 : 17.0;
     sectionHeader.font = [UIFont boldSystemFontOfSize:fontSize17];
-    sectionHeader.shadowColor = [kCOLOR_WHITE colorWithAlphaComponent:0.3];
-    sectionHeader.shadowOffset = CGSizeMake(1.0, 1.0);
-    sectionHeader.textColor = kCOLOR_BLACK;
+    sectionHeader.textColor = [self themeColor];
     [headerView addSubview:sectionHeader];
     sectionHeader.center = headerView.center;
     return headerView;

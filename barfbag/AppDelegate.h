@@ -58,4 +58,10 @@
 - (void) showHudWithCaption:(NSString*)caption hasActivity:(BOOL)hasActivity;
 - (void) hideHud;
 
+- (UIColor*) backgroundColor;
+- (UIColor*) brightColor;
+- (UIColor*) brighterColor;
+- (UIColor*) darkColor;
+- (UIColor*) darkerColor;
+
 @end

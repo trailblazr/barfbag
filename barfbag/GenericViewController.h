@@ -24,12 +24,19 @@
 - (void) hideHud;
 
 - (AppDelegate*) appDelegate;
-- (UIColor*) themeColor;
-- (UIColor*) brightColor;
-- (UIColor*) darkColor;
 - (void) alertWithTag:(NSInteger)tag title:(NSString*)title andMessage:(NSString*)message;
 - (void) showActivityIndicator;
 - (void) hideActivityIndicator;
+
+- (NSString*) stringDayForDate:(NSDate*)date;
+- (NSString*) stringShortDayForDate:(NSDate*)date;
+
+- (UIColor*) backgroundColor;
+- (UIColor*) themeColor;
+- (UIColor*) brightColor;
+- (UIColor*) brighterColor;
+- (UIColor*) darkColor;
+- (UIColor*) darkerColor;
 
 
 @end

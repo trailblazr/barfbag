@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GenericTableViewController.h"
 #import "Event.h"
+#import "Day.h"
 
 @interface EventDetailViewController : GenericTableViewController {
 
@@ -23,11 +24,12 @@
     IBOutlet UILabel* speakerLabel;
 
     Event *event;
-    UITextView *cellTextView;
+    Day *day;
     UILabel *cellTextLabel;
 }
 
 @property( nonatomic, retain ) Event *event;
+@property( nonatomic, retain ) Day *day;
 @property( nonatomic, retain ) UILabel* titleLabel;
 @property( nonatomic, retain ) UILabel* subtitleLabel;
 @property( nonatomic, retain ) UILabel* timeStart;
@@ -37,7 +39,6 @@
 @property( nonatomic, retain ) UILabel* languageLabel;
 @property( nonatomic, retain ) UILabel* trackLabel;
 @property( nonatomic, retain ) UILabel* speakerLabel;
-@property( nonatomic, retain ) UITextView *cellTextView;
 @property( nonatomic, retain ) UILabel *cellTextLabel;
 
 

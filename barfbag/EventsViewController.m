@@ -70,16 +70,6 @@
     }
 }
 
-- (NSString*) stringDayForDate:(NSDate*)date {
-    if( !date ) return nil;
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.timeStyle = NSDateFormatterNoStyle;
-    df.dateStyle = NSDateFormatterMediumStyle;
-    NSString *formattedDate = [df stringFromDate:date];
-    [df release];
-    return formattedDate;
-}
-
 - (Conference*) conference {
     return (Conference*)[[self appDelegate].scheduledConferences lastObject];
 }
@@ -111,6 +101,12 @@
     UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionRefreshData)] autorelease];
     self.navigationItem.rightBarButtonItem = item;
     [self updateNavigationTitle];
+    /*
+    UIImage *searchFieldBackgroundImage = [self imageGradientWithSize:self.searchDisplayController.searchBar.bounds.size color1:[self themeColor] color2:[self darkColor]];
+;
+    [self.searchDisplayController.searchBar setSearchFieldBackgroundImage:searchFieldBackgroundImage forState:UIControlStateNormal];
+    */
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -136,7 +132,7 @@
     CGRect containerRect = CGRectMake(0.0, 0.0, self.view.bounds.size.width, height20);
     UIView *containerView = [[[UIView alloc] initWithFrame:containerRect] autorelease];
     containerView.opaque = NO;
-    containerView.backgroundColor = [[self themeColor] colorWithAlphaComponent:0.9f];
+    containerView.backgroundColor = [[self darkerColor] colorWithAlphaComponent:0.9f];
     CGFloat offset = 10.0f;
     CGRect labelRect = CGRectMake(offset, 0.0, containerRect.size.width-(2*offset), containerRect.size.height);
     UILabel *label = [[[UILabel alloc] initWithFrame:labelRect] autorelease];
@@ -175,13 +171,15 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell.textLabel.textColor = [self brighterColor];
+        cell.detailTextLabel.textColor = [self themeColor];
         cell.textLabel.backgroundColor = kCOLOR_CLEAR;
         cell.detailTextLabel.backgroundColor = kCOLOR_CLEAR;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         UIView *backgroundView = [[[UIView alloc] initWithFrame:CGRectNull] autorelease];
-        backgroundView.backgroundColor = [self brightColor];
+        backgroundView.backgroundColor = [self backgroundColor];
         cell.backgroundView = backgroundView;
-        UIImage *gradientImage = [self imageGradientWithSize:cell.bounds.size color1:[self themeColor] color2:[self darkColor]];
+        UIImage *gradientImage = [self imageGradientWithSize:cell.bounds.size color1:[self themeColor] color2:[self darkerColor]];
         UIView *selectedBackgroundView = [[[UIImageView alloc] initWithImage:gradientImage] autorelease];
         selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         selectedBackgroundView.backgroundColor = [self darkColor];
@@ -246,6 +244,7 @@
     NSArray *days = [[self conference] days];
     Day *currentDay = [days objectAtIndex:indexPath.section];
     Event *currentEvent = [currentDay.events objectAtIndex:indexPath.row];
+    detailViewController.day = currentDay;
     detailViewController.event = currentEvent;
     [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
