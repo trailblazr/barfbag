@@ -19,6 +19,8 @@
 #import "JSONWorkshop.h"
 #import "JSONAssembly.h"
 
+#import "MKiCloudSync.h"
+
 @implementation FavouritesViewController
 
 @synthesize favouritesKeysArray;
@@ -70,6 +72,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self refreshData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:kMKiCloudSyncNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad {

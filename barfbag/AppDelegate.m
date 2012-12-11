@@ -33,6 +33,9 @@
 #import "JSONWorkshops.h"
 #import "JSONAssemblies.h"
 
+//iCloud Sync
+#import "MKiCloudSync.h"
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -735,6 +738,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.themeColor = [self randomColor];
+    
+    // START SYNC TO ICLOUD
+    
+    [MKiCloudSync start];
     
     // CONFIGURE CUSTOM UI APPEARANCE
     [self configureAppearance];

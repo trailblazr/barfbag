@@ -12,6 +12,8 @@
 #import "JSONAssembly.h"
 #import "JSONWorkshop.h"
 
+#import "MKiCloudSync.h"
+
 #define kITEM_TYPE_KEY_PREFIX @"itemType_"
 
 static FavouriteManager *sharedInstance = nil;
@@ -30,9 +32,15 @@ static FavouriteManager *sharedInstance = nil;
             sharedInstance = [[super allocWithZone:NULL] init];
             // CONFIGURE / SETUP
             [sharedInstance rebuildFavouriteCache];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rebuildFavouriteCache) name:kMKiCloudSyncNotification object:nil];
         }
     }
     return sharedInstance;
+}
+
+- (void)dealloc {
+    [super dealloc];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Favourite Managemenmt
@@ -44,12 +52,10 @@ static FavouriteManager *sharedInstance = nil;
 // READ PLIST
 - (NSArray*) readFavourites {
     
-    NSString *filePath = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_STORED_FAVOURITES];
-    
     if( DEBUG ) NSLog( @"FAVOURITES: READING..." );
     NSArray *arrayRead = nil;
     @try {
-        arrayRead = [NSKeyedUnarchiver unarchiveObjectWithData:[NSData dataWithContentsOfFile:filePath]];
+        arrayRead = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] dataForKey:@"favourites"]];
     }
     @catch (NSException *exception) {
         //
@@ -70,9 +76,7 @@ static FavouriteManager *sharedInstance = nil;
 
 // WRITE PLIST
 - (NSArray*) savedFavourites {
-    
-    NSString *filePath = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_STORED_FAVOURITES];
-    
+        
     NSArray *favouritesToWrite = favouriteCacheArray;
     
     if( DEBUG ) NSLog( @"FAVOURITES: WRITING..." );
@@ -80,7 +84,11 @@ static FavouriteManager *sharedInstance = nil;
     BOOL wasWritten = NO;
     @try {
         NSData *dataToWrite = [NSKeyedArchiver archivedDataWithRootObject:favouritesToWrite];
-        wasWritten = [dataToWrite writeToFile:filePath atomically:YES];
+//        wasWritten = [dataToWrite writeToFile:filePath atomically:YES];
+        [[NSUserDefaults standardUserDefaults] setObject:dataToWrite forKey:@"favourites"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        wasWritten = YES;
+        
     }
     @catch (NSException *exception) {
         //
