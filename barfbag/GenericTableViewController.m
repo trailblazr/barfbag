@@ -18,13 +18,26 @@
     [super dealloc];
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
     }
     return self;
+}
+
+- (void) colorizeViewInSubviews:(NSArray*)currentSubviews {
+    for( UIView *currentView in currentSubviews ) {
+        if( currentView.subviews && [currentView.subviews count] > 0 ) {
+            [self colorizeViewInSubviews:currentView.subviews];
+        }
+        else {
+            if( [currentView isKindOfClass:[UITextField class]] ) {
+                UITextField *textField = (UITextField*)currentView;
+                textField.borderStyle = UITextBorderStyleLine;
+            }
+        }
+    }
 }
 
 - (void)viewDidLoad {
@@ -33,6 +46,17 @@
     self.tableView.separatorColor = [self darkColor];
     self.tableView.backgroundView = nil;
 
+    // APPLY SOME NICE SEARCHBAR HACK
+    UISearchBar *sb = self.searchDisplayController.searchBar;
+    for (UIView *subview in sb.subviews) {
+        if ([subview isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
+            [subview removeFromSuperview];
+            break;
+        }
+    }
+
+    // [self colorizeViewInSubviews:sb.subviews];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

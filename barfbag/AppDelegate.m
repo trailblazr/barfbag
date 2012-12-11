@@ -186,7 +186,7 @@
     
     // SEARCHBAR
     UISearchBar *proxySearchBar = [UISearchBar appearance];
-    proxySearchBar.tintColor = [self backgroundColor];
+    proxySearchBar.tintColor = [self themeColor];
 }
 
 #pragma mark - Fetch Master Configuration

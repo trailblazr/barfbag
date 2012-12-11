@@ -105,6 +105,8 @@
     imageBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     imageBackgroundView.contentMode = UIViewContentModeScaleToFill;
     [self.view insertSubview:imageBackgroundView atIndex:0];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
