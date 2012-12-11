@@ -32,9 +32,14 @@
     return self;
 }
 
+- (IBAction) actionMultiActionButtonTapped:(UIBarButtonItem*)item {
+    [self presentActionSheetForObject:event fromBarButtonItem:item];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = [self stringShortDayForDate:day.date];
+    self.navigationItem.rightBarButtonItem = [self actionBarButtonItem];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     if( !detailHeaderViewController ) {

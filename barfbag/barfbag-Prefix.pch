@@ -31,7 +31,7 @@ typedef enum {
 typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in doubt ask!
     
     FavouriteItemTypeUndefined      = 0,
-    FavouriteTypeEvent              = 1,
+    FavouriteItemTypeEvent          = 1,
     FavouriteItemTypeAssembly       = 2,
     FavouriteItemTypeLocation       = 3,
     FavouriteItemTypeProject        = 4,
@@ -161,6 +161,8 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 #define kNOTIFICATION_MASTER_CONFIG_FINISHED    @"masterConfigFinished"
 #define kNOTIFICATION_MASTER_CONFIG_COMPLETED   @"masterConfigCompleted"
 
+// UIVIEW TAGS
 
+#define kACTION_SHEET_TAG_REMINDER 100
 
 

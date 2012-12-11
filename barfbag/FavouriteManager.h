@@ -23,8 +23,12 @@
 + (FavouriteManager*) sharedManager;
 
 - (NSArray*) favouritedItemsOfType:(FavouriteItemType)itemType;
-- (BOOL) hasStoredFavouriteForId:(NSNumber*)itemId forItemType:(FavouriteItemType)itemType;
-- (BOOL) favouriteAddedId:(NSNumber*)itemId forItemType:(FavouriteItemType)itemType name:(NSString*)favouriteName;
-- (BOOL) favouriteRemovedId:(NSNumber*)itemId forItemType:(FavouriteItemType)itemType;
+- (BOOL) hasStoredFavouriteForId:(NSString*)itemId forItemType:(FavouriteItemType)itemType;
+- (BOOL) favouriteAddedId:(NSString*)itemId forItemType:(FavouriteItemType)itemType name:(NSString*)favouriteName;
+- (BOOL) favouriteRemovedId:(NSString*)itemId forItemType:(FavouriteItemType)itemType;
+- (BOOL) favouriteAdded:(id)item;
+- (BOOL) favouriteRemoved:(id)item;
+- (BOOL) hasStoredFavourite:(id)item;
+- (NSString*) favouriteNameFromItem:(id)item;
 
 @end

@@ -57,6 +57,10 @@
 
 }
 
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return @"Favoriten";
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];

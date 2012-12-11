@@ -11,20 +11,20 @@
 @interface FavouriteItem : NSObject {
 
     NSString *favouriteName;
-    NSNumber* favouriteId;
+    NSString *favouriteId;
     FavouriteItemType type;
 
 }
 
-@property( nonatomic, retain ) NSString* favouriteName;
-@property( nonatomic, retain ) NSNumber* favouriteId;
+@property( nonatomic, retain ) NSString *favouriteName;
+@property( nonatomic, retain ) NSString *favouriteId;
 @property( nonatomic ) FavouriteItemType type;
 
-+ (FavouriteItem*) storedFavouriteWithId:(NSNumber*)_favouriteId andFavouriteType:(FavouriteItemType)_type;
++ (FavouriteItem*) storedFavouriteWithId:(NSString*)_favouriteId andFavouriteType:(FavouriteItemType)_type;
 + (NSArray*) storedFavouritesForType:(FavouriteItemType)_favouriteType fromArray:(NSArray*)favouritesArray;
 
 - (BOOL) hasType:(FavouriteItemType)itemType;
-- (BOOL) hasEqualId:(NSNumber*)_favouriteId;
+- (BOOL) hasEqualId:(NSString*)_favouriteId;
 
 @end
 

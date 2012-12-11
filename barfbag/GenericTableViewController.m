@@ -8,13 +8,17 @@
 
 #import "GenericTableViewController.h"
 #import "AppDelegate.h"
+#import "FavouriteManager.h"
+#import "FavouriteItem.h"
 
 @implementation GenericTableViewController
 
 @synthesize hud;
+@synthesize reminderObject;
 
 - (void) dealloc {
     self.hud = nil;
+    self.reminderObject = nil;
     [super dealloc];
 }
 
@@ -38,6 +42,62 @@
             }
         }
     }
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void) actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    switch( actionSheet.tag ) {
+        case kACTION_SHEET_TAG_REMINDER: {
+            if( !reminderObject ) return;
+            if( buttonIndex == actionSheet.cancelButtonIndex ) {
+                // do nothing
+            }
+            if( buttonIndex == actionSheet.destructiveButtonIndex ) {
+                // remove
+                BOOL removedSuccess = [[FavouriteManager sharedManager] favouriteRemoved:reminderObject];
+                NSLog( @"REMOVED: %@", removedSuccess ? @"YES" : @"NO" );
+            }
+            if( buttonIndex == actionSheet.firstOtherButtonIndex ) {
+                // add/remind me
+                BOOL addedSuccess = [[FavouriteManager sharedManager] favouriteAdded:reminderObject];
+                NSLog( @"ADDED: %@", addedSuccess ? @"YES" : @"NO" );
+            }
+            break;
+        }
+            
+        default:
+            break;
+    }
+}
+
+- (void) presentActionSheetForObject:(id)objectInProgress fromBarButtonItem:(UIBarButtonItem*)item {
+    self.reminderObject = objectInProgress;
+    BOOL hasAlreadyReminder = [[FavouriteManager sharedManager] hasStoredFavourite:reminderObject];
+    
+    NSString *titelString = nil;
+    if( hasAlreadyReminder ) {
+        titelString = [NSString stringWithFormat:@"Erinnerung für\n%@\nentfernen?", [[FavouriteManager sharedManager] favouriteNameFromItem:reminderObject]];
+    }
+    else {
+        titelString = [NSString stringWithFormat:@"Erinnerung für\n%@\nhinzufügen?", [[FavouriteManager sharedManager] favouriteNameFromItem:reminderObject]];    
+    }
+    NSString* destructionTitle = hasAlreadyReminder ? @"Entfernen" : nil;
+    NSString* reminderTitle = hasAlreadyReminder ? nil : @"Erinnern";
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:titelString delegate:self cancelButtonTitle:@"Abbrechen" destructiveButtonTitle:destructionTitle otherButtonTitles:reminderTitle, nil];
+    sheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+    sheet.tag = kACTION_SHEET_TAG_REMINDER;
+    [sheet showFromBarButtonItem:item animated:YES];
+    [sheet release];
+}
+
+- (IBAction) actionMultiActionButtonTapped:(id)sender {
+    
+}
+
+- (UIBarButtonItem*) actionBarButtonItem {
+    UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actionMultiActionButtonTapped:)] autorelease];
+    return item;
 }
 
 - (void)viewDidLoad {

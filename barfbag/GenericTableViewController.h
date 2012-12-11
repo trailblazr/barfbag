@@ -12,13 +12,14 @@
 
 @class AppDelegate;
 
-@interface GenericTableViewController : UITableViewController <ATMHudDelegate> {
+@interface GenericTableViewController : UITableViewController <ATMHudDelegate,UIActionSheetDelegate> {
 
     ATMHud *hud;
-
+    id reminderObject;
 }
 
 @property( nonatomic, retain ) ATMHud *hud;
+@property( nonatomic, retain ) id reminderObject;
 
 - (void) showHudWithCaption:(NSString*)caption hasActivity:(BOOL)hasActivity;
 - (void) hideHud;
@@ -42,5 +43,9 @@
 - (UIColor*) darkerColor;
 
 - (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;
+
+- (void) presentActionSheetForObject:(id)objectToOperate fromBarButtonItem:(UIBarButtonItem*)item;
+- (IBAction) actionMultiActionButtonTapped:(id)sender;
+- (UIBarButtonItem*) actionBarButtonItem;
 
 @end

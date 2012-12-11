@@ -8,6 +8,9 @@
 
 #import "FavouriteManager.h"
 #import "FavouriteItem.h"
+#import "Event.h"
+#import "JSONAssembly.h"
+#import "JSONWorkshop.h"
 
 #define kITEM_TYPE_KEY_PREFIX @"itemType_"
 
@@ -119,7 +122,7 @@ static FavouriteManager *sharedInstance = nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_FAVOURITE_CHANGED object:nil];
 }
 
-- (FavouriteItem*) storedFavouriteWithId:(NSNumber*)itemId andItemType:(FavouriteItemType)itemType {
+- (FavouriteItem*) storedFavouriteWithId:(NSString*)itemId andItemType:(FavouriteItemType)itemType {
     if( !itemId ) return nil;
     if( ![self hasStoredFavouriteForId:itemId forItemType:itemType] ) return nil;
     NSArray *storedFavourites = [FavouriteItem storedFavouritesForType:itemType fromArray:favouriteCacheArray];
@@ -131,7 +134,7 @@ static FavouriteManager *sharedInstance = nil;
     return nil;
 }
 
-- (BOOL) hasStoredFavouriteForId:(NSNumber*)itemId forItemType:(FavouriteItemType)itemType {
+- (BOOL) hasStoredFavouriteForId:(NSString*)itemId forItemType:(FavouriteItemType)itemType {
     if( !itemId ) return NO;
     NSArray *storedFavourites = [FavouriteItem storedFavouritesForType:itemType fromArray:favouriteCacheArray];
     for( FavouriteItem *currentFavourite in storedFavourites ) {
@@ -142,7 +145,7 @@ static FavouriteManager *sharedInstance = nil;
     return NO;
 }
 
-- (BOOL) favouriteAddedId:(NSNumber*)itemId forItemType:(FavouriteItemType)itemType name:(NSString*)favouriteName {
+- (BOOL) favouriteAddedId:(NSString*)itemId forItemType:(FavouriteItemType)itemType name:(NSString*)favouriteName {
     if( !itemId ) return NO;
     if( ![self hasStoredFavouriteForId:itemId forItemType:itemType] ) {
         FavouriteItem *freshFavourite = [FavouriteItem storedFavouriteWithId:itemId andFavouriteType:itemType];
@@ -157,7 +160,7 @@ static FavouriteManager *sharedInstance = nil;
     }
 }
 
-- (BOOL) favouriteRemovedId:(NSNumber*)itemId forItemType:(FavouriteItemType)itemType {
+- (BOOL) favouriteRemovedId:(NSString*)itemId forItemType:(FavouriteItemType)itemType {
     if( !itemId ) return NO;
     FavouriteItem *favouriteToRemove = [self storedFavouriteWithId:itemId andItemType:itemType];
     if( favouriteToRemove ) {
@@ -169,6 +172,57 @@ static FavouriteManager *sharedInstance = nil;
     else {
         return NO;
     }
+}
+
+- (NSString*) favouriteIdFromItem:(id)item {
+    if( [item isKindOfClass:[Event class]] ) {
+        return [NSString stringWithFormat:@"%i", [(Event*)item eventId]];
+    }
+    if( [item isKindOfClass:[JSONAssembly class]] ) {
+        return [[(JSONAssembly*)item label] normalizedString];
+    }
+    if( [item isKindOfClass:[JSONWorkshop class]] ) {
+        return [[(JSONWorkshop*)item label] normalizedString];
+    }
+    return nil;
+}
+
+- (NSString*) favouriteNameFromItem:(id)item {
+    if( [item isKindOfClass:[Event class]] ) {
+        return [(Event*)item title];
+    }
+    if( [item isKindOfClass:[JSONAssembly class]] ) {
+        return [(JSONAssembly*)item label];
+    }
+    if( [item isKindOfClass:[JSONWorkshop class]] ) {
+        return [(JSONWorkshop*)item label];
+    }
+    return nil;
+}
+
+- (FavouriteItemType) favouriteTypeForItem:(id)item {
+    if( [item isKindOfClass:[Event class]] ) {
+        return FavouriteItemTypeEvent;
+    }
+    if( [item isKindOfClass:[JSONAssembly class]] ) {
+        return FavouriteItemTypeAssembly;
+    }
+    if( [item isKindOfClass:[JSONWorkshop class]] ) {
+        return FavouriteItemTypeWorkshop;
+    }
+    return FavouriteItemTypeUndefined;
+}
+
+- (BOOL) hasStoredFavourite:(id)item {
+    return [self hasStoredFavouriteForId:[self favouriteIdFromItem:item] forItemType:[self favouriteTypeForItem:item]];
+}
+
+- (BOOL) favouriteAdded:(id)item {
+    return [self favouriteAddedId:[self favouriteIdFromItem:item] forItemType:[self favouriteTypeForItem:item] name:[self favouriteNameFromItem:item]];
+}
+
+- (BOOL) favouriteRemoved:(id)item {
+    return [self favouriteRemovedId:[self favouriteIdFromItem:item] forItemType:[self favouriteTypeForItem:item]];
 }
 
 @end

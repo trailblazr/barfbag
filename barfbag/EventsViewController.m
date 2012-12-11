@@ -95,9 +95,15 @@
     
 }
 
+- (IBAction) actionMultiActionButtonTapped:(id)sender {
+    NSLog( @"ACTION TAPPED." );
+    
+}
+
 - (void)viewDidLoad {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionUpdateDisplayAfterRefresh) name:kNOTIFICATION_PARSER_COMPLETED  object:nil];
     [super viewDidLoad];
+        
     if( [self tableView:self.tableView numberOfRowsInSection:0] == 0 ) {
         [[self appDelegate] barfBagLoadCached];
     }

@@ -37,6 +37,7 @@
     [super viewDidLoad];
 
     self.navigationItem.title = navigationTitle;
+    self.navigationItem.rightBarButtonItem = [self actionBarButtonItem];
     if( !detailHeaderViewController ) {
         self.detailHeaderViewController = [[[GenericDetailViewController alloc] initWithNibName:@"GenericDetailViewController" bundle:nil] autorelease];
     }

@@ -62,12 +62,12 @@
     return ( itemType == type );
 }
 
-- (BOOL) hasEqualId:(NSNumber*)_favouriteId {
+- (BOOL) hasEqualId:(NSString*)_favouriteId {
     if( !_favouriteId || !self.favouriteId ) return NO;
-    return [self.favouriteId isEqualToNumber:_favouriteId];
+    return [self.favouriteId isEqualToString:_favouriteId];
 }
 
-+ (FavouriteItem*) storedFavouriteWithId:(NSNumber*)_favouriteId andFavouriteType:(FavouriteItemType)_type {
++ (FavouriteItem*) storedFavouriteWithId:(NSString*)_favouriteId andFavouriteType:(FavouriteItemType)_type {
     FavouriteItem *favouriteItem = [[[FavouriteItem alloc] init] autorelease];
     favouriteItem.favouriteId = _favouriteId;
     favouriteItem.type = _type;
