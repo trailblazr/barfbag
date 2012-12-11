@@ -56,6 +56,8 @@
 - (void) videoStreamsRefresh;
 - (void) videoStreamsLoadCached;
 
+- (NSString*) barfBagCurrentDataVersion;
+
 - (void) showHudWithCaption:(NSString*)caption hasActivity:(BOOL)hasActivity;
 - (void) hideHud;
 

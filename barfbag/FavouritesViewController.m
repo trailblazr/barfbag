@@ -47,20 +47,20 @@
     
     currentFavourites = [[FavouriteManager sharedManager] favouritedItemsOfType:FavouriteItemTypeEvent];
     if( currentFavourites && [currentFavourites count] > 0 ) {
-        [favouritesStored setObject:currentFavourites forKey:@"events"];
+        [favouritesStored setObject:[NSMutableArray arrayWithArray:currentFavourites] forKey:@"events"];
         [neededKeys addObject:@"events"];
     }
     
     currentFavourites = [[FavouriteManager sharedManager] favouritedItemsOfType:FavouriteItemTypeWorkshop];
     if( currentFavourites && [currentFavourites count] > 0 ) {
-        [favouritesStored setObject:currentFavourites forKey:@"workshops"];
+        [favouritesStored setObject:[NSMutableArray arrayWithArray:currentFavourites] forKey:@"workshops"];
         [neededKeys addObject:@"workshops"];
     }
     
 
     currentFavourites = [[FavouriteManager sharedManager] favouritedItemsOfType:FavouriteItemTypeAssembly];
     if( currentFavourites && [currentFavourites count] > 0 ) {
-        [favouritesStored setObject:currentFavourites forKey:@"assemblies"];
+        [favouritesStored setObject:[NSMutableArray arrayWithArray:currentFavourites] forKey:@"assemblies"];
         [neededKeys addObject:@"assemblies"];
     }
     self.favouritesKeysArray = [NSArray arrayWithArray:neededKeys];
@@ -80,7 +80,7 @@
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.navigationItem.title = LOC( @"29C3 Favoriten" );
 }
 
@@ -139,44 +139,38 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
+        NSString* key = [favouritesKeysArray objectAtIndex:indexPath.section];
+        NSMutableArray *items = [favouritesStored objectForKey:key];
+        FavouriteItem *favouriteToDelete = [items objectAtIndex:indexPath.row];
+        BOOL removeSuccess = [[FavouriteManager sharedManager] favouriteRemovedId:favouriteToDelete.favouriteId forItemType:favouriteToDelete.type];
+        [tableView beginUpdates];
+        if( removeSuccess ) {
+            [items removeObject:favouriteToDelete];
+        }
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [tableView endUpdates];
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
 /*
-// Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
-*/
+ */
 
 #pragma mark - Table view delegate
 

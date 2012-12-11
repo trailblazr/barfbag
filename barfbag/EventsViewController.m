@@ -107,6 +107,25 @@
     UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionRefreshData)] autorelease];
     self.navigationItem.rightBarButtonItem = item;
     [self updateNavigationTitle];
+    
+    
+    
+    // FOOTER
+    CGFloat width = self.view.bounds.size.width;
+    UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 70.0)] autorelease];
+    footerView.backgroundColor = kCOLOR_CLEAR;
+    UILabel *versionLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, width-20.0f, 70.0)] autorelease];
+    versionLabel.backgroundColor = kCOLOR_CLEAR;
+    versionLabel.numberOfLines = 3;
+    versionLabel.textAlignment = UITextAlignmentCenter;
+    versionLabel.text = [NSString stringWithFormat:@"Fahrplan: %@", [self appDelegate].barfBagCurrentDataVersion];
+    versionLabel.font = [UIFont boldSystemFontOfSize:14.0];
+    versionLabel.textColor = [self brighterColor];
+    [footerView addSubview:versionLabel];
+    versionLabel.center = footerView.center;
+    versionLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.tableView.tableFooterView = footerView;
     /*
     UIImage *searchFieldBackgroundImage = [self imageGradientWithSize:self.searchDisplayController.searchBar.bounds.size color1:[self themeColor] color2:[self darkColor]];
 ;
@@ -164,11 +183,13 @@
         selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         selectedBackgroundView.backgroundColor = [self darkColor];
         cell.selectedBackgroundView = selectedBackgroundView;
+        /*
         UIButton *favButton = [UIButton buttonWithType:UIButtonTypeCustom];
         favButton.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
         [favButton setImage:[UIImage imageNamed:@"favourites.png"] forState:UIControlStateNormal];
         [favButton addTarget:self action:@selector(actionButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-        cell.accessoryView = favButton;
+         */
+        cell.accessoryView = nil;
     }
     
     // Configure the cell...
