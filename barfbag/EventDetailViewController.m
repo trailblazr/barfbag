@@ -94,6 +94,10 @@
     return [self textSizeNeededForString:[self eventDescriptionText]].height;
 }
 
+- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -108,10 +112,9 @@
         [[cell.contentView.subviews lastObject] removeFromSuperview];
     }
     CGSize textSize = [self textSizeNeededForString:[self eventDescriptionText]];
-    self.cellTextLabel = [self cellTextLabelWithRect:CGRectMake(5.0, 0.0, textSize.width, textSize.height-10)];
+    CGFloat offset5 = [[UIDevice currentDevice] isPad] ? 10.0f : 5.0f;
+    self.cellTextLabel = [self cellTextLabelWithRect:CGRectMake(offset5, 0.0, textSize.width-(2.0*offset5), textSize.height)];
     [cell.contentView addSubview:cellTextLabel];
-    
-    // Configure the cell...
     cellTextLabel.text = [self eventDescriptionText];
     return cell;
 }

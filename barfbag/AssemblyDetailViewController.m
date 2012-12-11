@@ -140,7 +140,8 @@
         [[cell.contentView.subviews lastObject] removeFromSuperview];
     }
     CGSize textSize = [self textSizeNeededForString:[self textToDisplayForIndexPath:indexPath]];
-    UILabel *cellTextLabel = [self cellTextLabelWithRect:CGRectMake(5.0, 0.0, textSize.width, textSize.height-10)];
+    CGFloat offset5 = [[UIDevice currentDevice] isPad] ? 10.0f : 5.0f;
+    UILabel *cellTextLabel = [self cellTextLabelWithRect:CGRectMake(offset5, 0.0, textSize.width-(2.0*offset5), textSize.height)];
     [cell.contentView addSubview:cellTextLabel];
     
     // Configure the cell...

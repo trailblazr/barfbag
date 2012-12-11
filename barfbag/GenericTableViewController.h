@@ -45,7 +45,9 @@
 
 - (Conference*) conference;
 
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 - (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;
+- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
 
 - (void) presentActionSheetForObject:(id)objectToOperate fromBarButtonItem:(UIBarButtonItem*)item;
 - (IBAction) actionMultiActionButtonTapped:(id)sender;

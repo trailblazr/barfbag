@@ -127,11 +127,6 @@
 
 #pragma mark - Table view data source
 
-- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    CGFloat height20 = [[UIDevice currentDevice] isPad] ? 40.0f : 20.0f;
-    return height20;
-}
-
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSArray *days = [[self conference] days];
     Day *currentDay = [days objectAtIndex:section];

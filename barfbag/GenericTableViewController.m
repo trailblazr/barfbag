@@ -251,18 +251,6 @@
     return [self stringDayForDate:date withDayFormat:@"eee"];
 }
 
-- (UILabel*) cellTextLabelWithRect:(CGRect)rect {
-    UILabel *label = [[[UILabel alloc] initWithFrame:rect] autorelease];
-    label.font = [UIFont systemFontOfSize:16.0];
-    label.numberOfLines = 9999999999;
-    label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    label.backgroundColor = kCOLOR_BACK;
-    label.textColor = [self themeColor];
-    label.shadowColor = [[self darkerColor] colorWithAlphaComponent:0.3];
-    label.shadowOffset = CGSizeMake(1.0, 1.0);
-    return label;
-}
-
 #pragma mark - Colors
 
 - (UIColor*) backgroundColor {
@@ -287,11 +275,6 @@
 
 - (UIColor*) darkerColor {
     return [self appDelegate].darkerColor;
-}
-
-- (CGSize) textSizeNeededForString:(NSString*)textToDisplay {
-    CGSize sizeForText = [textToDisplay sizeWithFont:[UIFont systemFontOfSize:16.0] constrainedToSize:CGSizeMake(self.tableView.bounds.size.width-10.0, 999999999.0) lineBreakMode:NSLineBreakByWordWrapping];
-    return CGSizeMake(sizeForText.width, sizeForText.height+50.0);
 }
 
 - (UIImage*) imageGradientWithSize:(CGSize)imageSize color1:(UIColor*)color1 color2:(UIColor*)color2 {
@@ -360,6 +343,40 @@
 	[_hud hide];
 }
 
+- (CGSize) textSizeNeededForString:(NSString*)textToDisplay {
+    CGFloat font16 = [[UIDevice currentDevice] isPad] ? 32.0f : 16.0f;
+    CGFloat offset10 = [[UIDevice currentDevice] isPad] ? 20.0f : 10.0f;
+    CGSize sizeForText = [textToDisplay sizeWithFont:[UIFont systemFontOfSize:font16] constrainedToSize:CGSizeMake(self.tableView.bounds.size.width-offset10, CGFLOAT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
+    return CGSizeMake(sizeForText.width, sizeForText.height+50.0);
+}
+
+- (UILabel*) cellTextLabelWithRect:(CGRect)rect {
+    CGFloat font16 = [[UIDevice currentDevice] isPad] ? 32.0f : 16.0f;
+    UILabel *label = [[[UILabel alloc] initWithFrame:rect] autorelease];
+    label.font = [UIFont systemFontOfSize:font16];
+    label.numberOfLines = 9999999999;
+    label.contentMode = UIViewContentModeTop;
+    label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    label.backgroundColor = kCOLOR_BACK;
+    label.textColor = [self themeColor];
+    label.shadowColor = [[self darkerColor] colorWithAlphaComponent:0.3];
+    label.shadowOffset = CGSizeMake(1.0, 1.0);
+    return label;
+}
+
+- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.contentView.contentMode = UIViewContentModeTop;
+    CGRect contentViewRect = cell.contentView.frame;
+    CGFloat offset5 = [[UIDevice currentDevice] isPad] ? 10.0f : 5.0f;
+    ((UIView*)[cell.contentView.subviews lastObject]).frame = CGRectMake(contentViewRect.origin.x+offset5, contentViewRect.origin.y, contentViewRect.size.width-(2.0*offset5), contentViewRect.size.height);
+    [cell setNeedsLayout];
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    CGFloat height20 = [[UIDevice currentDevice] isPad] ? 40.0f : 20.0f;
+    return height20;
+}
+
 - (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     CGFloat height20 = [[UIDevice currentDevice] isPad] ? 40.0f : 20.0f;
     CGFloat fontSize16 = [[UIDevice currentDevice] isPad] ? 32.0f : 16.0f;
@@ -367,8 +384,8 @@
     UIView *containerView = [[[UIView alloc] initWithFrame:containerRect] autorelease];
     containerView.opaque = NO;
     containerView.backgroundColor = [[self themeColor] colorWithAlphaComponent:0.9f];
-    CGFloat offset = 10.0f;
-    CGRect labelRect = CGRectMake(offset, 0.0, containerRect.size.width-(2*offset), containerRect.size.height);
+    CGFloat offset5 = [[UIDevice currentDevice] isPad] ? 10.0f : 5.0f;
+    CGRect labelRect = CGRectMake(offset5, 0.0, containerRect.size.width-(2*offset5), containerRect.size.height);
     UILabel *label = [[[UILabel alloc] initWithFrame:labelRect] autorelease];
     [containerView addSubview:label];
     label.backgroundColor = kCOLOR_CLEAR;
