@@ -61,6 +61,7 @@
 - (NSString*) stringForDate:(NSDate*)date;
 - (void) computeCachedProperties;
 
+- (NSArray*) allEvents;
 - (NSArray*) eventsWithProperty:(NSString*)property matchingValue:(NSString*)value;
 
 - (NSArray*) eventsForTrack:(NSString*)track;

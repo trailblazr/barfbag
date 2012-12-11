@@ -33,11 +33,10 @@
     return self;
 }
 
-/*
- @property (nonatomic, retain) NSNumber *objId;
- @property (nonatomic, copy) NSString *descriptionText;
- @property (nonatomic, copy) NSString *contactOrganizing;
- */
+- (IBAction) actionMultiActionButtonTapped:(UIBarButtonItem*)item {
+    [self presentActionSheetForObject:workshop fromBarButtonItem:item];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 

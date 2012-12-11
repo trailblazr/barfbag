@@ -30,5 +30,9 @@
 - (BOOL) favouriteRemoved:(id)item;
 - (BOOL) hasStoredFavourite:(id)item;
 - (NSString*) favouriteNameFromItem:(id)item;
+- (NSString*) favouriteIdFromItem:(id)item;
+- (FavouriteItemType) favouriteTypeForItem:(id)item;
+
+- (BOOL) isFavouriteIdFromItem:(id)item1 identicalToId:(NSString*)id2;
 
 @end

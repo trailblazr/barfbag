@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ATMHudDelegate.h"
 #import "ATMHud.h"
+#import "Conference.h"
 
 @class AppDelegate;
 
@@ -41,6 +42,8 @@
 - (UIColor*) brighterColor;
 - (UIColor*) darkColor;
 - (UIColor*) darkerColor;
+
+- (Conference*) conference;
 
 - (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;
 

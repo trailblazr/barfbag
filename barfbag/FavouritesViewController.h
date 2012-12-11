@@ -11,9 +11,11 @@
 
 @interface FavouritesViewController : GenericTableViewController {
     
-    NSMutableArray *favouritesArray;
+    NSArray *favouritesKeysArray;
+    NSMutableDictionary *favouritesStored;
 }
 
-@property( nonatomic, retain ) NSMutableArray *favouritesArray;
+@property( nonatomic, retain ) NSArray *favouritesKeysArray;
+@property( nonatomic, retain ) NSMutableDictionary *favouritesStored;
 
 @end

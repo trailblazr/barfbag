@@ -33,6 +33,10 @@
     return self;
 }
 
+- (IBAction) actionMultiActionButtonTapped:(UIBarButtonItem*)item {
+    [self presentActionSheetForObject:assembly fromBarButtonItem:item];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 

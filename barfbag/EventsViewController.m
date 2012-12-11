@@ -70,10 +70,6 @@
     }
 }
 
-- (Conference*) conference {
-    return (Conference*)[[self appDelegate].scheduledConferences lastObject];
-}
-
 #pragma mark - User Actions
 
 - (void) actionRefreshData {

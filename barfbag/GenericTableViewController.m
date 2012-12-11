@@ -211,6 +211,10 @@
     return (AppDelegate*)[UIApplication sharedApplication].delegate;
 }
 
+- (Conference*) conference {
+    return (Conference*)[[self appDelegate].scheduledConferences lastObject];
+}
+
 - (NSString*) stringForDate:(NSDate*)date withFormat:(NSString*)format {
     if( !date ) return nil;
     NSDateFormatter *df = [[NSDateFormatter alloc] init];

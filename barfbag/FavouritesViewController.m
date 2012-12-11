@@ -5,17 +5,28 @@
 //  Created by Lincoln Six Echo on 07.12.12.
 //  Copyright (c) 2012 appdoctors. All rights reserved.
 //
-
+#import "AppDelegate.h"
 #import "FavouritesViewController.h"
 #import "FavouriteManager.h"
 #import "FavouriteItem.h"
 
+#import "EventDetailViewController.h"
+#import "AssemblyDetailViewController.h"
+#import "WorkshopDetailViewController.h"
+
+#import "Conference.h"
+#import "Event.h"
+#import "JSONWorkshop.h"
+#import "JSONAssembly.h"
+
 @implementation FavouritesViewController
 
-@synthesize favouritesArray;
+@synthesize favouritesKeysArray;
+@synthesize favouritesStored;
 
 - (void) dealloc {
-    self.favouritesArray = nil;
+    self.favouritesKeysArray = nil;
+    self.favouritesStored = nil;
     [super dealloc];
 }
 
@@ -27,9 +38,44 @@
     return self;
 }
 
+- (void) refreshData {
+    self.favouritesKeysArray = nil;
+    self.favouritesStored = [NSMutableDictionary dictionary];
+    
+    NSArray *currentFavourites = nil;
+    NSMutableArray *neededKeys = [NSMutableArray array];
+    
+    currentFavourites = [[FavouriteManager sharedManager] favouritedItemsOfType:FavouriteItemTypeEvent];
+    if( currentFavourites && [currentFavourites count] > 0 ) {
+        [favouritesStored setObject:currentFavourites forKey:@"events"];
+        [neededKeys addObject:@"events"];
+    }
+    
+    currentFavourites = [[FavouriteManager sharedManager] favouritedItemsOfType:FavouriteItemTypeWorkshop];
+    if( currentFavourites && [currentFavourites count] > 0 ) {
+        [favouritesStored setObject:currentFavourites forKey:@"workshops"];
+        [neededKeys addObject:@"workshops"];
+    }
+    
+
+    currentFavourites = [[FavouriteManager sharedManager] favouritedItemsOfType:FavouriteItemTypeAssembly];
+    if( currentFavourites && [currentFavourites count] > 0 ) {
+        [favouritesStored setObject:currentFavourites forKey:@"assemblies"];
+        [neededKeys addObject:@"assemblies"];
+    }
+    self.favouritesKeysArray = [NSArray arrayWithArray:neededKeys];
+    
+    [self.tableView reloadData];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self refreshData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self refreshData];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -46,11 +92,13 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return [favouritesKeysArray count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[FavouriteManager sharedManager] favouriteCacheArray] count];
+    NSString* key = [favouritesKeysArray objectAtIndex:section];
+    NSArray *items = [favouritesStored objectForKey:key];
+    return [items count];
 }
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -58,7 +106,8 @@
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"Favoriten";
+    NSString* key = [favouritesKeysArray objectAtIndex:section];
+    return LOC( key );
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -81,9 +130,12 @@
         cell.selectedBackgroundView = selectedBackgroundView;
     }
     
+    NSString* key = [favouritesKeysArray objectAtIndex:indexPath.section];
+    NSArray *items = [favouritesStored objectForKey:key];
+    FavouriteItem *currentFavourite = [items objectAtIndex:indexPath.row];
+
     // Configure the cell...
-    FavouriteItem *currentItem = [[[FavouriteManager sharedManager] favouriteCacheArray] objectAtIndex:indexPath.row];
-    
+    cell.textLabel.text = currentFavourite.favouriteName;
     return cell;
 }
 
@@ -128,16 +180,67 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString* key = [favouritesKeysArray objectAtIndex:indexPath.section];
+    NSArray *items = [favouritesStored objectForKey:key];
+    FavouriteItem *currentFavourite = [items objectAtIndex:indexPath.row];
+    
+    switch( currentFavourite.type ) {
+
+        case FavouriteItemTypeEvent: {
+            NSArray *events = [[self conference] allEvents];
+            Event *eventToDisplay = nil;
+            for( Event* currentEvent in events ) {
+                if( [[FavouriteManager sharedManager] isFavouriteIdFromItem:currentEvent identicalToId:currentFavourite.favouriteId] ) {
+                    eventToDisplay = currentEvent;
+                    break;
+                }
+            }
+            EventDetailViewController *detailViewController = [[EventDetailViewController alloc] initWithNibName:@"EventDetailViewController" bundle:nil];
+            detailViewController.day = nil;
+            detailViewController.event = eventToDisplay;
+            [self.navigationController pushViewController:detailViewController animated:YES];
+            [detailViewController release];
+            break;
+        }
+
+        case FavouriteItemTypeWorkshop: {
+            NSArray *workshops = [self appDelegate].semanticWikiWorkshops;
+            JSONWorkshop *workshopToDisplay = nil;
+            for( JSONWorkshop *currentWorkshop in workshops ) {
+                if( [[FavouriteManager sharedManager] isFavouriteIdFromItem:currentWorkshop identicalToId:currentFavourite.favouriteId] ) {
+                    workshopToDisplay = currentWorkshop;
+                    break;
+                }
+            }            
+            WorkshopDetailViewController *detailViewController = [[WorkshopDetailViewController alloc] initWithNibName:@"AssemblyDetailViewController" bundle:nil];
+            detailViewController.workshop = workshopToDisplay;
+            detailViewController.navigationTitle = [NSString stringWithFormat:LOC( @"Workshop #%i" ), indexPath.row+1];
+            [self.navigationController pushViewController:detailViewController animated:YES];
+            [detailViewController release];
+            break;
+        }
+
+        case FavouriteItemTypeAssembly: {
+            NSArray *assemblies = [self appDelegate].semanticWikiAssemblies;
+            JSONAssembly *assemblyToDisplay = nil;
+            for( JSONAssembly *currentAssembly in assemblies ) {
+                if( [[FavouriteManager sharedManager] isFavouriteIdFromItem:currentAssembly identicalToId:currentFavourite.favouriteId] ) {
+                    assemblyToDisplay = currentAssembly;
+                    break;
+                }
+            }
+            AssemblyDetailViewController *detailViewController = [[AssemblyDetailViewController alloc] initWithNibName:@"AssemblyDetailViewController" bundle:nil];
+            detailViewController.navigationTitle = [NSString stringWithFormat:LOC( @"Assembly #%i" ), indexPath.row+1];
+            detailViewController.assembly = assemblyToDisplay;
+            [self.navigationController pushViewController:detailViewController animated:YES];
+            [detailViewController release];
+            break;
+        }
+
+        default:
+            break;
+    }
 }
 
 @end

@@ -14,6 +14,7 @@
 
 @class ATMHud;
 @class GenericTabBarController;
+@class Conference;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate,BarfBagParserDelegate,ATMHudDelegate,BBJSONConnectOperationDelegate> {
 
@@ -63,5 +64,7 @@
 - (UIColor*) brighterColor;
 - (UIColor*) darkColor;
 - (UIColor*) darkerColor;
+
+- (Conference*) conference;
 
 @end

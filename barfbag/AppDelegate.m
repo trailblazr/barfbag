@@ -118,6 +118,10 @@
 	
 }
 
+- (Conference*) conference {
+    return (Conference*)[scheduledConferences lastObject];
+}
+
 - (void) alertWithTag:(NSInteger)tag title:(NSString*)title andMessage:(NSString*)message {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
     alert.tag = tag;

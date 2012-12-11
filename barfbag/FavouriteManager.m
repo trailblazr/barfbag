@@ -213,6 +213,11 @@ static FavouriteManager *sharedInstance = nil;
     return FavouriteItemTypeUndefined;
 }
 
+- (BOOL) isFavouriteIdFromItem:(id)item1 identicalToId:(NSString*)id2 {
+    NSString *id1 = [self favouriteIdFromItem:item1];
+    return [id1 isEqualToString:id2];
+}
+
 - (BOOL) hasStoredFavourite:(id)item {
     return [self hasStoredFavouriteForId:[self favouriteIdFromItem:item] forItemType:[self favouriteTypeForItem:item]];
 }
