@@ -55,13 +55,6 @@
     detailHeaderViewController.trackLabel.text = event.track;
     detailHeaderViewController.speakerLabel.text = event.speakerList;
 
-    // APPLY BACKGROUND
-    UIImage *gradientImage = [self imageGradientWithSize:self.tableView.tableHeaderView.bounds.size color1:[self darkerColor] color2:[self backgroundColor]];
-    UIImageView *selectedBackgroundView = [[[UIImageView alloc] initWithImage:gradientImage] autorelease];
-    selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    selectedBackgroundView.contentMode = UIViewContentModeScaleToFill;
-    [self.tableView.tableHeaderView insertSubview:selectedBackgroundView atIndex:0];
-
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

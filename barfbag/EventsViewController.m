@@ -87,6 +87,10 @@
     self.navigationItem.rightBarButtonItem.enabled = YES;
 }
 
+- (IBAction) actionButtonTapped:(id)sender {
+    NSLog( @"BUTTON TAPPED." );
+}
+
 - (IBAction) actionSearch:(id)sender {
     
 }
@@ -129,7 +133,7 @@
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSArray *days = [[self conference] days];
     Day *currentDay = [days objectAtIndex:section];
-    return [NSString stringWithFormat:@"%@",[self stringDayForDate:currentDay.date]];
+    return [NSString stringWithFormat:LOC( @"%@  –  %i Events" ),[self stringShortDayForDate:currentDay.date], [currentDay.events count]];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -155,7 +159,6 @@
         cell.detailTextLabel.textColor = [self themeColor];
         cell.textLabel.backgroundColor = kCOLOR_CLEAR;
         cell.detailTextLabel.backgroundColor = kCOLOR_CLEAR;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         UIView *backgroundView = [[[UIView alloc] initWithFrame:CGRectNull] autorelease];
         backgroundView.backgroundColor = [self backgroundColor];
         cell.backgroundView = backgroundView;
@@ -164,6 +167,11 @@
         selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         selectedBackgroundView.backgroundColor = [self darkColor];
         cell.selectedBackgroundView = selectedBackgroundView;
+        UIButton *favButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        favButton.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
+        [favButton setImage:[UIImage imageNamed:@"favourites.png"] forState:UIControlStateNormal];
+        [favButton addTarget:self action:@selector(actionButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        cell.accessoryView = favButton;
     }
     
     // Configure the cell...

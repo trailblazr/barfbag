@@ -29,6 +29,7 @@
 "Ereignisse" = "Ereignisse";
 "Fahrplan" = "Fahrplan";
 "29C3 Fahrplan" = "29C3 Fahrplan";
+"%@  –  %i Events" = "%@    (%i Einträge)";
 
 /* EventDetailViewController */
 
