@@ -751,8 +751,9 @@
     
     // CONFIGURE APP
     [MasterConfig sharedConfiguration].delegate = self;
-    [[MasterConfig sharedConfiguration] initialize]; // WILL REFRESH CONFIG FROM CACHE/BUNDLE
-    [[MasterConfig sharedConfiguration] mothershipRelayDateLastUpdated];
+    // WILL REFRESH CONFIG FROM CACHE/BUNDLE
+    [[MasterConfig sharedConfiguration] initialize];
+    
     // START SYNC TO ICLOUD
     [MKiCloudSync start];
     

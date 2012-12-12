@@ -142,14 +142,15 @@
         [self addKey:currentEvent.slug toArray:cachedAvailableSlugs];
     }
     
-    NSLog( @"tracks = %@", cachedAvailableTracks );
-    NSLog( @"types = %@", cachedAvailableTypes );
-    NSLog( @"languages = %@", cachedAvailableLanguages );
-    NSLog( @"rooms = %@", cachedAvailableRooms );
-    NSLog( @"slugs = %@", cachedAvailableSlugs );
-    
-    NSLog( @"events in room 'saal 1': %@", [self eventsForRoom:@"saal 1"] );
-    
+    if( DEBUG ) {
+        NSLog( @"tracks = %@", cachedAvailableTracks );
+        NSLog( @"types = %@", cachedAvailableTypes );
+        NSLog( @"languages = %@", cachedAvailableLanguages );
+        NSLog( @"rooms = %@", cachedAvailableRooms );
+        NSLog( @"slugs = %@", cachedAvailableSlugs );
+        
+        NSLog( @"events in room 'saal 1': %@", [self eventsForRoom:@"saal 1"] );
+    }
 }
 
 - (NSArray*) eventsWithProperty:(NSString*)propertyName matchingValue:(NSString*)value {

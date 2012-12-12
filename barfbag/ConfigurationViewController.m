@@ -17,6 +17,7 @@
 @synthesize sectionsArray;
 
 - (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.sectionsArray = nil;
     [super dealloc];
 }
@@ -60,6 +61,11 @@
     return screenshot;
 }
 
+- (void) refreshAllDataAfterForceReconfig {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[self appDelegate] allDataRefresh];
+}
+
 #pragma mark - User Actions
 
 - (IBAction) actionSwitchChanged:(UISwitch*)theSwitch {
@@ -71,6 +77,7 @@
 }
 
 - (IBAction) actionForceReconfigureClient {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAllDataAfterForceReconfig) name:kNOTIFICATION_MASTER_CONFIG_COMPLETED object:nil];
     [[MasterConfig sharedConfiguration] refreshFromMothership];
 }
 

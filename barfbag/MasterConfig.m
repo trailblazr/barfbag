@@ -137,8 +137,7 @@ static MasterConfig *sharedInstance = nil;
             urlString = kURL_DATA_28C3_IMAGE_PATH;
         }
     }
-    
-    NSLog( @"MASTERCONFIG: Accessing %@ (%@) url[%@]: %@", isMothership ? @"mothership" : @"mothership_relay", langCode, key, urlString  );
+    // NSLog( @"MASTERCONFIG: Accessing %@ (%@) url[%@]: %@", isMothership ? @"mothership" : @"mothership_relay", langCode, key, urlString  );
     return urlString;
 }
 
