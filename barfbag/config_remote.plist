@@ -42,9 +42,7 @@
 		<key>mothership_relay</key>
 		<dict>
 			<key>relay_base_url</key>
-			<string>http://localhost/29c3/</string>
-			<key>cache_status</key>
-			<string>cachestatus.json</string>
+			<string>http://localhost/29c3</string>
 			<key>port_de</key>
 			<dict>
 				<key>fahrplan</key>
@@ -57,6 +55,8 @@
 				<string>assemblies.json</string>
 				<key>livestreams</key>
 				<string>streams_de_remote.html</string>
+				<key>cache_status</key>
+				<string>cachestatus.json</string>
 			</dict>
 			<key>port_en</key>
 			<dict>
@@ -70,6 +70,8 @@
 				<string>assemblies.json</string>
 				<key>livestreams</key>
 				<string>streams_en_remote.html</string>
+				<key>cache_status</key>
+				<string>cachestatus.json</string>
 			</dict>
 		</dict>
 	</dict>
