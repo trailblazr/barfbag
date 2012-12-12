@@ -77,6 +77,8 @@
 }
 
 - (IBAction) actionForceReconfigureClient {
+    // TO DO: delete ALL existing config/cached files in Documents folder (favourites are stored in user defaults yay!!!)
+    // TO DO: then reconfigure master config, THEN refresh everything
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAllDataAfterForceReconfig) name:kNOTIFICATION_MASTER_CONFIG_COMPLETED object:nil];
     [[MasterConfig sharedConfiguration] refreshFromMothership];
 }
