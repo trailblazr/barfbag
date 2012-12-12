@@ -8,6 +8,7 @@
 
 #import "ConfigurationViewController.h"
 #import "AppDelegate.h"
+#import "MasterConfig.h"
 
 #define kTABLE_SECTION_HEADER_HEIGHT 50.0f
 
@@ -70,7 +71,7 @@
 }
 
 - (IBAction) actionForceReconfigureClient {
-    [[self appDelegate] configRefresh];
+    [[MasterConfig sharedConfiguration] refreshFromMothership];
 }
 
 - (void) setupTableData {

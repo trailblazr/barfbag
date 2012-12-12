@@ -8,6 +8,7 @@
 
 #import "Event.h"
 #import "RegexKitLite.h"
+#import "MasterConfig.h"
 
 @implementation Event
 
@@ -57,7 +58,7 @@
 
 - (NSString*) pngIconHref {
     NSString *imageName = [NSString stringWithFormat:@"event-%i-128x128.png", eventId];
-    return [NSString stringWithFormat:@"%@/%@", kURL_DATA_IMAGE_PATH, imageName];
+    return [NSString stringWithFormat:@"%@/%@", [[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_IMAGES], imageName];
 }
 
 

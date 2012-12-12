@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+
+#import "MasterConfig.h"
+
 #import "ATMHud.h"
 #import "ATMHudQueueItem.h"
 #import "SinaURLConnection.h"
@@ -278,12 +281,13 @@
 -(void) configFillCached:(BOOL)isCachedContent {
     NSString *pathToStoredFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_MASTER_CONFIG];
     @try {
-        self.masterConfiguration = [NSString stringWithContentsOfFile:pathToStoredFile encoding:NSUTF8StringEncoding error:nil];
+        self.masterConfiguration = [NSDictionary dictionaryWithContentsOfFile:pathToStoredFile];
     }
     @catch (NSException *exception) {
         // Not interested, sorry!
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_MASTER_CONFIG_COMPLETED object:self];
+    [self masterConfigFetchCompleted];
 }
 
 - (void) configLoadCached {
@@ -295,13 +299,19 @@
     }
     else {
         // TRY TO UPDATE DATA IMMEDIATELY
-        [self configRefresh];
+        [[MasterConfig sharedConfiguration] refreshFromMothership];
     }
 }
 
-- (void) configRefresh {
+#pragma mark - Master Config Delegate
+
+- (void) masterConfigFetchRemoteConfig:(MasterConfig*)config fromUrl:(NSString*)urlString {
     [self showHudWithCaption:LOC( @"Aktualisiere Master Configuration" ) hasActivity:YES];
-    [self configFetchContentWithUrlString:kURL_MASTER_CONFIG_29C3];
+    [self configFetchContentWithUrlString:urlString];    
+}
+
+- (void) masterConfigFetchCompleted {
+    [[MasterConfig sharedConfiguration] initialize];
 }
 
 #pragma mark - Fetching & Caching of HTML (videostreams)
@@ -406,7 +416,7 @@
 
 - (void) videoStreamsRefresh {
     [self showHudWithCaption:LOC( @"Aktualisiere Videostreams" ) hasActivity:YES];
-    [self videoStreamsFetchContentWithUrlString:kURL_DATA_29C3_STREAMS_EN];
+    [self videoStreamsFetchContentWithUrlString:[[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_STREAMS]];
 }
 
 #pragma mark - Fetching, Caching & Parsing of XML (semantic wiki)
@@ -435,7 +445,7 @@
 - (BOOL) semanticWikiFetchAssemblies {
     [self showHudWithCaption:LOC( @"Aktualisiere Assemblies" ) hasActivity:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_STARTED object:self];
-    NSURL *connectionUrl = [NSURL URLWithString:kURL_DATA_29C3_ASSEMBLIES];
+    NSURL *connectionUrl = [NSURL URLWithString:[[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_ASSEMBLIES]];
     BBJSONConnectOperation *operation = [BBJSONConnectOperation operationWithConnectUrl:connectionUrl andPathComponent:nil delegate:self selFail:@selector(operationFailedAssemblies:) selInvalid:@selector(operationInvalidAssemblies:) selSuccess:@selector(operationSuccessAssemblies:)];
     operation.jsonObjectClass = [JSONAssemblies class];
     operation.jsonMappingDictionary = [JSONAssemblies objectMapping];
@@ -486,7 +496,7 @@
 - (BOOL) semanticWikiFetchWorkshops {
     [self showHudWithCaption:LOC( @"Aktualisiere Workshops" ) hasActivity:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_STARTED object:self];
-    NSURL *connectionUrl = [NSURL URLWithString:kURL_DATA_29C3_WORKSHOPS];
+    NSURL *connectionUrl = [NSURL URLWithString:[[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_WORKSHOPS]];
     BBJSONConnectOperation *operation = [BBJSONConnectOperation operationWithConnectUrl:connectionUrl andPathComponent:nil delegate:self selFail:@selector(operationFailedWorkshops:) selInvalid:@selector(operationInvalidWorkshops:) selSuccess:@selector(operationSuccessWorkshops:)];
     operation.jsonObjectClass = [JSONWorkshops class];
     operation.jsonMappingDictionary = [JSONWorkshops objectMapping];
@@ -711,7 +721,7 @@
 
 - (void) barfBagRefresh {
     [self showHudWithCaption:LOC( @"Aktualisiere Fahrplan" ) hasActivity:YES];
-    [self barfBagFetchContentWithUrlString:kURL_DATA_FAHRPLAN_EN];
+    [self barfBagFetchContentWithUrlString:[[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_FAHRPLAN]];
 }
 
 #pragma mark - Manage Full Auto Update Run & Master Configuration
@@ -739,8 +749,11 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.themeColor = [self randomColor];
     
+    // CONFIGURE APP
+    [MasterConfig sharedConfiguration].delegate = self;
+    [[MasterConfig sharedConfiguration] initialize]; // WILL REFRESH CONFIG FROM CACHE/BUNDLE
+    [[MasterConfig sharedConfiguration] mothershipRelayDateLastUpdated];
     // START SYNC TO ICLOUD
-    
     [MKiCloudSync start];
     
     // CONFIGURE CUSTOM UI APPEARANCE

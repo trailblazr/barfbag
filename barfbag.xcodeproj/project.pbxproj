@@ -136,6 +136,9 @@
 		8FF92202167024A5005A1C55 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF921F5167024A5005A1C55 /* SBJsonTokeniser.m */; };
 		8FF92203167024A5005A1C55 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF921F7167024A5005A1C55 /* SBJsonUTF8Stream.m */; };
 		8FF92204167024A5005A1C55 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF921F9167024A5005A1C55 /* SBJsonWriter.m */; };
+		E8E5D8191678B5DF00590612 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E5D8171678B5DF00590612 /* JSONKit.m */; };
+		E8E5D8231678B9AC00590612 /* config_remote.plist in Resources */ = {isa = PBXBuildFile; fileRef = E8E5D8221678B9AC00590612 /* config_remote.plist */; };
+		E8F0F5561678C8E70081A972 /* MasterConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F0F5551678C8E70081A972 /* MasterConfig.m */; };
 		FD1B947D16774BAD0021A58A /* MKiCloudSync.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1B947C16774BAD0021A58A /* MKiCloudSync.m */; };
 /* End PBXBuildFile section */
 
@@ -357,6 +360,15 @@
 		8FF921F7167024A5005A1C55 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		8FF921F8167024A5005A1C55 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		8FF921F9167024A5005A1C55 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		E8E5D8161678B5DF00590612 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		E8E5D8171678B5DF00590612 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		E8E5D8181678B5DF00590612 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		E8E5D8221678B9AC00590612 /* config_remote.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config_remote.plist; sourceTree = "<group>"; };
+		E8F0F54F1678C5D00081A972 /* cachestatus.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cachestatus.json; sourceTree = "<group>"; };
+		E8F0F5521678C5D80081A972 /* schedule.de.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = schedule.de.xml; sourceTree = "<group>"; };
+		E8F0F5531678C5D80081A972 /* schedule.en.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = schedule.en.xml; sourceTree = "<group>"; };
+		E8F0F5541678C8E70081A972 /* MasterConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterConfig.h; sourceTree = "<group>"; };
+		E8F0F5551678C8E70081A972 /* MasterConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterConfig.m; sourceTree = "<group>"; };
 		FD1B947B16774BAD0021A58A /* MKiCloudSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKiCloudSync.h; sourceTree = "<group>"; };
 		FD1B947C16774BAD0021A58A /* MKiCloudSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKiCloudSync.m; sourceTree = "<group>"; };
 		FD1B947E16774C050021A58A /* barfbag.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = barfbag.entitlements; sourceTree = "<group>"; };
@@ -395,6 +407,7 @@
 		8F09CCAB16703022008F8D26 /* Third Party Code */ = {
 			isa = PBXGroup;
 			children = (
+				E8E5D8151678B5DF00590612 /* JSONKit */,
 				FD1B947916774B3F0021A58A /* MKiCloudSync */,
 				8FF921B116701904005A1C55 /* allseeing */,
 				8FF9219C166FFD89005A1C55 /* JASTOR */,
@@ -547,11 +560,13 @@
 		8F356533166B937C00814549 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E8E5D8221678B9AC00590612 /* config_remote.plist */,
 				8F356534166B937C00814549 /* barfbag-Info.plist */,
 				8F356535166B937C00814549 /* InfoPlist.strings */,
 				8F356538166B937C00814549 /* main.m */,
 				8F00603616715330001E77E5 /* Localizable.strings */,
 				8FF921DF16702352005A1C55 /* json */,
+				E8F0F5511678C5D80081A972 /* xml */,
 				8F1663C21673C906003347EA /* js */,
 				8F754BCA166EBDEF00F74DBB /* html */,
 				8F754AE2166C1E5F00F74DBB /* fonts */,
@@ -611,6 +626,8 @@
 				8F09CCAB16703022008F8D26 /* Third Party Code */,
 				8F1663C9167504D7003347EA /* Data Processing */,
 				8F754B9D166EA95900F74DBB /* Generic Controllers */,
+				E8F0F5541678C8E70081A972 /* MasterConfig.h */,
+				E8F0F5551678C8E70081A972 /* MasterConfig.m */,
 				8F35653B166B937C00814549 /* AppDelegate.h */,
 				8F35653C166B937C00814549 /* AppDelegate.m */,
 				8F1663C8167504A0003347EA /* Welcome */,
@@ -844,6 +861,7 @@
 		8FF921DF16702352005A1C55 /* json */ = {
 			isa = PBXGroup;
 			children = (
+				E8F0F54F1678C5D00081A972 /* cachestatus.json */,
 				8FF921E016702352005A1C55 /* assemblies.json */,
 				8FF921E116702352005A1C55 /* workshops.json */,
 			);
@@ -878,6 +896,25 @@
 				8FF921F9167024A5005A1C55 /* SBJsonWriter.m */,
 			);
 			path = SBJSON;
+			sourceTree = "<group>";
+		};
+		E8E5D8151678B5DF00590612 /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				E8E5D8161678B5DF00590612 /* JSONKit.h */,
+				E8E5D8171678B5DF00590612 /* JSONKit.m */,
+				E8E5D8181678B5DF00590612 /* README.md */,
+			);
+			path = JSONKit;
+			sourceTree = "<group>";
+		};
+		E8F0F5511678C5D80081A972 /* xml */ = {
+			isa = PBXGroup;
+			children = (
+				E8F0F5521678C5D80081A972 /* schedule.de.xml */,
+				E8F0F5531678C5D80081A972 /* schedule.en.xml */,
+			);
+			path = xml;
 			sourceTree = "<group>";
 		};
 		FD1B947916774B3F0021A58A /* MKiCloudSync */ = {
@@ -988,6 +1025,7 @@
 				8F1663D4167505AE003347EA /* AssemblyDetailViewController.xib in Resources */,
 				8F1663DA167505C5003347EA /* WorkshopDetailViewController.xib in Resources */,
 				8F96FCFE1676853600EE0D5B /* GenericDetailViewController.xib in Resources */,
+				E8E5D8231678B9AC00590612 /* config_remote.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1071,6 +1109,8 @@
 				8F1663D9167505C5003347EA /* WorkshopDetailViewController.m in Sources */,
 				8F96FCFD1676853600EE0D5B /* GenericDetailViewController.m in Sources */,
 				FD1B947D16774BAD0021A58A /* MKiCloudSync.m in Sources */,
+				E8E5D8191678B5DF00590612 /* JSONKit.m in Sources */,
+				E8F0F5561678C8E70081A972 /* MasterConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

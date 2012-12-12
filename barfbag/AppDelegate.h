@@ -11,12 +11,13 @@
 #import "ATMHudDelegate.h"
 #import "BBJSONConnectOperation.h"
 #import "BBJSONConnector.h"
+#import "MasterConfig.h"
 
 @class ATMHud;
 @class GenericTabBarController;
 @class Conference;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate,BarfBagParserDelegate,ATMHudDelegate,BBJSONConnectOperationDelegate> {
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate,BarfBagParserDelegate,ATMHudDelegate,BBJSONConnectOperationDelegate,MasterConfigDelegate> {
 
     UIWindow *window;
     GenericTabBarController *tabBarController;
@@ -26,7 +27,7 @@
     NSArray *semanticWikiAssemblies;
     NSArray *semanticWikiWorkshops;
     NSString *videoStreamsHtml;
-    NSArray *masterConfiguration;
+    NSDictionary *masterConfiguration;
 }
 
 @property( strong, nonatomic ) UIWindow *window;
@@ -36,14 +37,13 @@
 @property( retain, nonatomic ) NSArray *semanticWikiAssemblies;
 @property( retain, nonatomic ) NSArray *semanticWikiWorkshops;
 @property( retain, nonatomic ) NSString *videoStreamsHtml;
-@property( retain, nonatomic ) NSArray *masterConfiguration;
+@property( retain, nonatomic ) NSDictionary *masterConfiguration;
 
 @property( nonatomic, retain ) ATMHud *hud;
 
 - (BOOL) isConfigOnForKey:(NSString*)key defaultValue:(BOOL)isOn;
 - (UIFont*) fontWithType:(CustomFontType)fontType andPointSize:(CGFloat)pointSize;
 
-- (void) configRefresh;
 - (void) configLoadCached;
 
 - (void) allDataRefresh;
