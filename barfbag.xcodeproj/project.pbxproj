@@ -276,6 +276,9 @@
 		8F96FCFA1676853600EE0D5B /* GenericDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericDetailViewController.h; sourceTree = "<group>"; };
 		8F96FCFB1676853600EE0D5B /* GenericDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericDetailViewController.m; sourceTree = "<group>"; };
 		8F96FCFC1676853600EE0D5B /* GenericDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GenericDetailViewController.xib; sourceTree = "<group>"; };
+		8F9711AB1679505C00E6A74A /* config.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = config.sh; sourceTree = "<group>"; };
+		8F9711AC1679505C00E6A74A /* update_events.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = update_events.sh; sourceTree = "<group>"; };
+		8F9711AD1679505C00E6A74A /* update_images.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = update_images.sh; sourceTree = "<group>"; };
 		8FF92164166FFD47005A1C55 /* BBJSONConnectOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBJSONConnectOperation.h; sourceTree = "<group>"; };
 		8FF92165166FFD47005A1C55 /* BBJSONConnectOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBJSONConnectOperation.m; sourceTree = "<group>"; };
 		8FF92166166FFD47005A1C55 /* BBJSONConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBJSONConnector.h; sourceTree = "<group>"; };
@@ -560,6 +563,7 @@
 				8F356535166B937C00814549 /* InfoPlist.strings */,
 				8F356538166B937C00814549 /* main.m */,
 				8F00603616715330001E77E5 /* Localizable.strings */,
+				8F9711AA1679505C00E6A74A /* failover */,
 				8FF921DF16702352005A1C55 /* json */,
 				E8F0F5511678C5D80081A972 /* xml */,
 				8F1663C21673C906003347EA /* js */,
@@ -748,6 +752,16 @@
 				8F1663A81672B1B6003347EA /* streams_en.html */,
 			);
 			path = html;
+			sourceTree = SOURCE_ROOT;
+		};
+		8F9711AA1679505C00E6A74A /* failover */ = {
+			isa = PBXGroup;
+			children = (
+				8F9711AB1679505C00E6A74A /* config.sh */,
+				8F9711AC1679505C00E6A74A /* update_events.sh */,
+				8F9711AD1679505C00E6A74A /* update_images.sh */,
+			);
+			path = failover;
 			sourceTree = SOURCE_ROOT;
 		};
 		8FF92163166FFD47005A1C55 /* Semantic Wiki JSON */ = {
@@ -1158,7 +1172,7 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Helge Staedtler";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1167,6 +1181,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "98EFE9AB-10D4-4030-ABF2-5287A41AC37E";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
