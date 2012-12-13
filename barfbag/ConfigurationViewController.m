@@ -71,15 +71,28 @@
 - (IBAction) actionSwitchChanged:(UISwitch*)theSwitch {
     for( NSDictionary *currentDict in sectionsArray ) {
         if( [currentDict objectForKey:@"switchAutoUpdate"] == theSwitch ) {
-            [self updateDefaultsForKey:kUSERDEFAULT_KEY_BOOL_AUTOUPDATE withValue:theSwitch.isOn];        
+            [self updateDefaultsForKey:kUSERDEFAULT_KEY_BOOL_AUTOUPDATE withValue:theSwitch.isOn];
+        }
+        if( [currentDict objectForKey:@"switchFailover"] == theSwitch ) {
+            [self updateDefaultsForKey:kUSERDEFAULT_KEY_BOOL_FAILOVER withValue:theSwitch.isOn];
         }
     }
 }
 
 - (IBAction) actionForceReconfigureClient {
-    // TO DO: delete ALL existing config/cached files in Documents folder (favourites are stored in user defaults yay!!!)
+    UISwitch *currentSwitch = nil;
+    for( NSDictionary *currentDict in sectionsArray ) {
+        currentSwitch = (UISwitch*)[currentDict objectForKey:@"switchAutoUpdate"];
+        if( currentSwitch ) {
+            [currentSwitch setOn:YES animated:YES];
+        }
+        currentSwitch = (UISwitch*)[currentDict objectForKey:@"switchFailover"];
+        if( currentSwitch ) {
+            [currentSwitch setOn:NO animated:YES];
+        }
+    }
+    [self.tableView reloadData];
     [[self appDelegate] emptyAllFilesFromFolder:kFOLDER_DOCUMENTS];
-    // TO DO: then reconfigure master config, THEN refresh everything
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAllDataAfterForceReconfig) name:kNOTIFICATION_MASTER_CONFIG_COMPLETED object:nil];
     [[MasterConfig sharedConfiguration] refreshFromMothership];
 }
@@ -88,13 +101,20 @@
     self.sectionsArray = [NSMutableArray array];
     NSDictionary *itemEntry = nil;    
     
-    // SWITCH
+    // SWITCH AUTOUPDATE
     UISwitch *switchRefreshDataOnStartup = [[[UISwitch alloc] init] autorelease];
     switchRefreshDataOnStartup.on = [[self appDelegate] isConfigOnForKey:kUSERDEFAULT_KEY_BOOL_AUTOUPDATE defaultValue:YES];
     [switchRefreshDataOnStartup addTarget:self action:@selector(actionSwitchChanged:) forControlEvents:UIControlEventValueChanged];
     itemEntry = [NSDictionary dictionaryWithObject:switchRefreshDataOnStartup forKey:@"switchAutoUpdate"];
     [sectionsArray addObject:itemEntry];
-    
+
+    // SWITCH PERMANENT FAILOVER
+    UISwitch *switchUseFailoverPermanent = [[[UISwitch alloc] init] autorelease];
+    switchUseFailoverPermanent.on = [[self appDelegate] isConfigOnForKey:kUSERDEFAULT_KEY_BOOL_FAILOVER defaultValue:NO];
+    [switchUseFailoverPermanent addTarget:self action:@selector(actionSwitchChanged:) forControlEvents:UIControlEventValueChanged];
+    itemEntry = [NSDictionary dictionaryWithObject:switchUseFailoverPermanent forKey:@"switchFailover"];
+    [sectionsArray addObject:itemEntry];
+
     // BUTTON
     UIButton *buttonForceReconfiguration = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     buttonForceReconfiguration.frame = CGRectMake(0.0, 0.0, 85.0, 30.0);
@@ -215,7 +235,15 @@
             break;
         }
 
-        case 1:
+        case 1: {
+            uiElement = [currentDict objectForKey:@"switchFailover"];
+            cell.textLabel.text = LOC( @"Failover" );
+            cell.detailTextLabel.text = LOC( @"Backup-Server aktivieren" );
+            cell.accessoryView = uiElement;
+            break;
+        }
+
+        case 2:
             uiElement = [currentDict objectForKey:@"buttonForceReconfig"];
             cell.textLabel.text = LOC( @"Force Reconfigure" );
             cell.detailTextLabel.text = LOC( @"Basiskonfiguration resetten" );

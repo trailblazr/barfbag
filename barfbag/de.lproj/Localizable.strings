@@ -102,7 +102,11 @@
 "Optionen" = "Not my department";
 "Autoupdate" = "Aktualisierung";
 "Aktualisiere alle Daten beim Start" = "Aktualisiere alle 30 Minuten";
-"created in 2012 by trailblazr\nwith some help & code of plaetzchen" = "erstellt in 2012 von trailblazr\nmit hilfe & code von plaetzchen";
+"created in 2012 by trailblazr\nwith some help & code of plaetzchen" = "erstellt in 2012 von trailblazr\nmit hilfe & code von plaetzchen\nund server & unix hack' von bithopper";
 "Reconfig" = "Reset";
 "Force Reconfigure" = "Werkseinstellungen";
 "Basiskonfiguration resetten" = "Reset (Favoriten werden behalten!)";
+"Failover" = "Failover";
+"Backup-Server aktivieren" = "Backup-Server permanent verwenden";
+
+

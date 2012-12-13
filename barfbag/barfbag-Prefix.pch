@@ -127,6 +127,7 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 #define kUSERDEFAULT_KEY_DATA_VERSION_CURRENT   @"barf_data_version_current"
 #define kUSERDEFAULT_KEY_DATA_VERSION_UPDATED   @"barf_data_version_updated"
 #define kUSERDEFAULT_KEY_BOOL_AUTOUPDATE        @"boolAutoUpdateData"
+#define kUSERDEFAULT_KEY_BOOL_FAILOVER          @"boolFailoverActive"
 
 // NOTIFICATIONS
 #define kNOTIFICATION_PARSER_STARTED        @"xmlParserStarted"
