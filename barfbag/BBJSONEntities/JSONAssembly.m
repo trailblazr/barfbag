@@ -81,6 +81,14 @@ nil];
     }
 }
 
+- (NSString*) stringRepresentationMail {
+    return nil;
+}
+
+- (NSString*) stringRepresentationTwitter {
+    return nil;
+}
+
 - (NSString*) description {
     NSMutableString *string = [NSMutableString string];
     [string appendFormat:@"id = %@\n", objId];

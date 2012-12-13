@@ -83,6 +83,14 @@
     return listString;
 }
 
+- (NSString*) stringRepresentationMail {
+    return nil;
+}
+
+- (NSString*) stringRepresentationTwitter {
+    return nil;
+}
+
 - (NSString*) description {
 	NSMutableString *stringRepresentation = [NSMutableString string];
 	[stringRepresentation appendFormat:@"EVENT (%i)\n", eventId];

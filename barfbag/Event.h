@@ -60,4 +60,7 @@
 - (void) takeDurationFromString:(NSString*)durationString;
 - (void) takeStartDateTimeFromString:(NSString*)dateString;
 
+- (NSString*) stringRepresentationMail;
+- (NSString*) stringRepresentationTwitter;
+
 @end

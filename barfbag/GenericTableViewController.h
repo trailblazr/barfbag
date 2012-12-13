@@ -50,7 +50,10 @@
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
 
 - (void) presentActionSheetForObject:(id)objectToOperate fromBarButtonItem:(UIBarButtonItem*)item;
+- (void) presentActionSheetSharinOnlyForObject:(id)objectInProgress fromBarButtonItem:(UIBarButtonItem*)item;
 - (IBAction) actionMultiActionButtonTapped:(id)sender;
+- (IBAction) actionMultiActionSharingOnlyButtonTapped:(id)sender;
 - (UIBarButtonItem*) actionBarButtonItem;
+- (UIBarButtonItem*) actionBarButtonItemSharingOnly;
 
 @end

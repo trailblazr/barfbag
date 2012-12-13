@@ -28,4 +28,7 @@
 - (NSDate*) startTime;
 - (NSDate*) endTime;
 
+- (NSString*) stringRepresentationMail;
+- (NSString*) stringRepresentationTwitter;
+
 @end

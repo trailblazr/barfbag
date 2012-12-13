@@ -205,6 +205,9 @@ static FavouriteManager *sharedInstance = nil;
     if( [item isKindOfClass:[JSONWorkshop class]] ) {
         return [(JSONWorkshop*)item label];
     }
+    if( [item isKindOfClass:[NSDictionary class]] || [item isKindOfClass:[NSMutableDictionary class]] ) {
+        return LOC( @"Favoritenliste" );
+    }
     return nil;
 }
 

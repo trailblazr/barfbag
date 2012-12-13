@@ -10,6 +10,9 @@
 #import "AppDelegate.h"
 #import "FavouriteManager.h"
 #import "FavouriteItem.h"
+#import "Event.h"
+#import "JSONAssembly.h"
+#import "JSONWorkshop.h"
 
 @implementation GenericTableViewController
 
@@ -46,6 +49,73 @@
 
 #pragma mark - UIActionSheetDelegate
 
+- (NSString*) stringRepresentationMailFor:(id)item {
+    NSMutableString *stringRep = [NSMutableString string];
+    if( [item isKindOfClass:[Event class]] ) {
+        Event *event = (Event*)item;
+        [stringRep appendString:[event stringRepresentationMail]];
+    }
+    if( [item isKindOfClass:[JSONAssembly class]] ) {
+        JSONAssembly* assembly = (JSONAssembly*)item;
+        [stringRep appendString:[assembly stringRepresentationMail]];
+    }
+    if( [item isKindOfClass:[JSONWorkshop class]] ) {
+        JSONWorkshop* workshop = (JSONWorkshop*)item;
+        [stringRep appendString:[workshop stringRepresentationMail]];
+    }
+    if( [item isKindOfClass:[NSDictionary class]] || [item isKindOfClass:[NSMutableDictionary class]] ) {
+        NSDictionary *dictionary = (NSDictionary*)item;
+        NSArray *allEntries = [dictionary allValues];
+        for( NSArray* sectionItems in allEntries ) {
+            [stringRep appendFormat:@"\n\n"];
+            for( id currentItem in sectionItems ) {
+                // TO DO: APPEND STRING REPRESENTATIONS OF ITEMS
+                [stringRep appendString:[self stringRepresentationMailFor:currentItem]]; // WARNING: RECURSIVE
+            }
+        }
+    }
+    return stringRep;
+}
+
+- (NSString*) stringRepresentationTwitterFor:(id)item {
+    NSMutableString *stringRep = [NSMutableString string];
+    if( [item isKindOfClass:[Event class]] ) {
+        Event *event = (Event*)item;
+        [stringRep appendString:[event stringRepresentationTwitter]];
+    }
+    if( [item isKindOfClass:[JSONAssembly class]] ) {
+        JSONAssembly* assembly = (JSONAssembly*)item;
+        [stringRep appendString:[assembly stringRepresentationTwitter]];
+    }
+    if( [item isKindOfClass:[JSONWorkshop class]] ) {
+        JSONWorkshop* workshop = (JSONWorkshop*)item;
+        [stringRep appendString:[workshop stringRepresentationTwitter]];
+    }
+    if( [item isKindOfClass:[NSDictionary class]] || [item isKindOfClass:[NSMutableDictionary class]] ) {
+        NSDictionary *dictionary = (NSDictionary*)item;
+        NSArray *allEntries = [dictionary allValues];
+        for( NSArray* sectionItems in allEntries ) {
+            [stringRep appendFormat:@"\n\n"];
+            for( id currentItem in sectionItems ) {
+                // TO DO: APPEND STRING REPRESENTATIONS OF ITEMS
+                [stringRep appendString:[self stringRepresentationTwitter:currentItem]]; // WARNING: RECURSIVE
+            }
+        }
+    }
+    return stringRep;
+}
+
+
+- (void) actionShareObjectViaMail:(id)objectToShare {
+    NSLog( @"SHARE VIA MAIL");
+    
+}
+
+- (void) actionShareObjectViaTwitter:(id)objectToShare {
+    NSLog( @"SHARE VIA TWITTER");
+    
+}
+
 - (void) actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     switch( actionSheet.tag ) {
         case kACTION_SHEET_TAG_REMINDER: {
@@ -58,17 +128,47 @@
                 BOOL removedSuccess = [[FavouriteManager sharedManager] favouriteRemoved:reminderObject];
                 NSLog( @"REMOVED: %@", removedSuccess ? @"YES" : @"NO" );
             }
-            if( buttonIndex == actionSheet.firstOtherButtonIndex ) {
+            if( buttonIndex == actionSheet.firstOtherButtonIndex ) { // MAIL
+                [self actionShareObjectViaMail:reminderObject];
+            }
+            if( buttonIndex == actionSheet.firstOtherButtonIndex+1 ) { // TWEET
+                [self actionShareObjectViaTwitter:reminderObject];
+            }
+            if( buttonIndex == actionSheet.firstOtherButtonIndex+2 ) {
                 // add/remind me
                 BOOL addedSuccess = [[FavouriteManager sharedManager] favouriteAdded:reminderObject];
                 NSLog( @"ADDED: %@", addedSuccess ? @"YES" : @"NO" );
             }
             break;
         }
-            
+
+        case kACTION_SHEET_TAG_SHARING: {
+            if( !reminderObject ) return;
+            if( buttonIndex == actionSheet.cancelButtonIndex ) {
+                // do nothing
+            }
+            if( buttonIndex == actionSheet.firstOtherButtonIndex ) { // MAIL
+                [self actionShareObjectViaMail:reminderObject];
+            }
+            if( buttonIndex == actionSheet.firstOtherButtonIndex+1 ) { // TWEET
+                [self actionShareObjectViaTwitter:reminderObject];
+            }
+            break;
+        }
+
         default:
             break;
     }
+}
+
+- (void) presentActionSheetSharinOnlyForObject:(id)objectInProgress fromBarButtonItem:(UIBarButtonItem*)item {
+    self.reminderObject = objectInProgress;
+    NSString *titelString = [NSString stringWithFormat:@"Information für\n%@\nweitersagen?", [[FavouriteManager sharedManager] favouriteNameFromItem:reminderObject]];
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:titelString delegate:self cancelButtonTitle:LOC( @"Abbrechen" ) destructiveButtonTitle:nil otherButtonTitles:LOC( @"E-Mail" ),LOC( @"Twitter" ), nil];
+    sheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+    sheet.tag = kACTION_SHEET_TAG_SHARING;
+    [sheet showFromBarButtonItem:item animated:YES];
+    [sheet release];
 }
 
 - (void) presentActionSheetForObject:(id)objectInProgress fromBarButtonItem:(UIBarButtonItem*)item {
@@ -82,9 +182,11 @@
     else {
         titelString = [NSString stringWithFormat:@"Erinnerung für\n%@\nhinzufügen?", [[FavouriteManager sharedManager] favouriteNameFromItem:reminderObject]];    
     }
-    NSString* destructionTitle = hasAlreadyReminder ? @"Entfernen" : nil;
-    NSString* reminderTitle = hasAlreadyReminder ? nil : @"Erinnern";
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:titelString delegate:self cancelButtonTitle:@"Abbrechen" destructiveButtonTitle:destructionTitle otherButtonTitles:reminderTitle, nil];
+    NSString* destructionTitle = hasAlreadyReminder ? LOC( @"Entfernen" ) : nil;
+    NSString* reminderTitle = hasAlreadyReminder ? nil : LOC( @"Erinnern" );
+    NSString* sharingMail = LOC( @"E-Mailen" );
+    NSString* sharingTwitter = LOC( @"Twittern" );
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:titelString delegate:self cancelButtonTitle:LOC( @"Abbrechen" ) destructiveButtonTitle:destructionTitle otherButtonTitles:sharingMail,sharingTwitter,reminderTitle, nil];
     sheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     sheet.tag = kACTION_SHEET_TAG_REMINDER;
     [sheet showFromBarButtonItem:item animated:YES];
@@ -93,6 +195,15 @@
 
 - (IBAction) actionMultiActionButtonTapped:(id)sender {
     
+}
+
+- (IBAction) actionMultiActionSharingOnlyButtonTapped:(id)sender {
+    
+}
+
+- (UIBarButtonItem*) actionBarButtonItemSharingOnly {
+    UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actionMultiActionSharingOnlyButtonTapped:)] autorelease];
+    return item;
 }
 
 - (UIBarButtonItem*) actionBarButtonItem {

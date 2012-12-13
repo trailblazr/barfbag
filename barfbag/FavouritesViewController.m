@@ -79,16 +79,20 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (IBAction) actionMultiActionSharingOnlyButtonTapped:(UIBarButtonItem*)item {
+    [self presentActionSheetSharinOnlyForObject:favouritesStored fromBarButtonItem:item];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self refreshData];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
     self.navigationItem.title = LOC( @"29C3 Favoriten" );
+    self.navigationItem.rightBarButtonItem = [self actionBarButtonItemSharingOnly];
 }
 
 - (void)didReceiveMemoryWarning {

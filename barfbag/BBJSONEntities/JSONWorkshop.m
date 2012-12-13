@@ -114,6 +114,14 @@
  [NSDate mappingWithKey:@"dateTimeEnd" dateFormatString:@"yyyy-MM-dd hh:mm:ssZ"], @"end_time",
  */
 
+- (NSString*) stringRepresentationMail {
+    return nil;
+}
+
+- (NSString*) stringRepresentationTwitter {
+    return nil;
+}
+
 - (NSString*) description {
     NSMutableString *string = [NSMutableString string];
     [string appendFormat:@"id = %@\n", objId];

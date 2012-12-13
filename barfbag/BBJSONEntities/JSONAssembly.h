@@ -28,5 +28,7 @@
 
 - (NSInteger) numLectureSeats;
 - (NSString*)abstract;
+- (NSString*) stringRepresentationMail;
+- (NSString*) stringRepresentationTwitter;
 
 @end
