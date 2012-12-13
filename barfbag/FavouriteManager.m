@@ -32,7 +32,7 @@ static FavouriteManager *sharedInstance = nil;
             sharedInstance = [[super allocWithZone:NULL] init];
             // CONFIGURE / SETUP
             [sharedInstance rebuildFavouriteCache];
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(rebuildFavouriteCache) name:kMKiCloudSyncNotification object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:sharedInstance selector:@selector(rebuildFavouriteCache) name:kMKiCloudSyncNotification object:nil];
         }
     }
     return sharedInstance;
