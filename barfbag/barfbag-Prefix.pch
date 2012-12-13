@@ -97,7 +97,7 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 #define kCONNECTION_TIMEOUT         60.0f
 
 // 29C3 URL MASTER CONFIGURATION (WILL OVERRIDE ALL URLS SEEN BELOW, STORES TO kFILE_CACHED_MASTER_CONFIG)
-#define kURL_MASTER_CONFIG_29C3         @"http://29c3.postcapitalism.org/29c3/config_remote.plist"
+#define kURL_MASTER_CONFIG_29C3         @"http://29c3.postcapitalism.org/config_remote.plist"
 
 // 29C3 KEYS CONFIGURATION
 #define kURL_KEY_29C3_RELAY_BASE        @"relay_base_url"

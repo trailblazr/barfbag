@@ -100,11 +100,11 @@
 "Einstellungen" = "Settings";
 "Optionen" = "Not my department";
 "Autoupdate" = "Autoupdate";
-"Aktualisiere alle Daten beim Start" = "Refresh all data on startup";
+"Aktualisiere alle Daten beim Start" = "Refresh data every 30 minutes";
 "created in 2012 by trailblazr\nwith some help & code of plaetzchen" = "created in 2012 by trailblazr\nwith some help & code of plaetzchen";
 "Reconfig" = "Reset";
 "Force Reconfigure" = "Factory Settings";
-"Basiskonfiguration resetten" = "Reset & configure all settings";
+"Basiskonfiguration resetten" = "Reset all (Favourites are kept!)";
 
 
 

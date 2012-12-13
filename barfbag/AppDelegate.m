@@ -124,6 +124,32 @@
 	
 }
 
+- (void) emptyAllFilesFromFolder:(NSString*)folderPath {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSError *error = nil;
+    NSArray *listOfFiles = nil;
+    @try {
+        listOfFiles = [fm contentsOfDirectoryAtPath:folderPath error:&error];
+        if( listOfFiles && [listOfFiles count] > 0 ) {
+            if( DEBUG ) NSLog( @"CLEANUP: CLEANING DIRECTORY... %@ (%i ITEMS)", folderPath, [listOfFiles count] );
+            for( NSString* currentFilePath in listOfFiles ) {
+                if( [fm fileExistsAtPath:currentFilePath] ) {
+                    error = nil;
+                    if( DEBUG ) NSLog( @"CLEANUP: DELETING... %@", currentFilePath );
+                    BOOL successDelete = [fm removeItemAtPath:currentFilePath error:&error];
+                    if( !successDelete || error ) {
+                        if( DEBUG ) NSLog( @"CLEANUP: ERROR DELETING... %@", currentFilePath );
+                    }
+                }
+            }
+        }
+    }
+    @catch (NSException *exception) {
+        if( DEBUG ) NSLog( @"CLEANUP: ERROR CLEANING DIRECTORY... %@", folderPath );
+    }
+    
+}
+
 - (Conference*) conference {
     return (Conference*)[scheduledConferences lastObject];
 }

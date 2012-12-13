@@ -101,8 +101,8 @@
 "Einstellungen" = "Optionen";
 "Optionen" = "Not my department";
 "Autoupdate" = "Aktualisierung";
-"Aktualisiere alle Daten beim Start" = "Aktualisiere alle Daten beim Start";
+"Aktualisiere alle Daten beim Start" = "Aktualisiere alle 30 Minuten";
 "created in 2012 by trailblazr\nwith some help & code of plaetzchen" = "erstellt in 2012 von trailblazr\nmit hilfe & code von plaetzchen";
 "Reconfig" = "Reset";
 "Force Reconfigure" = "Werkseinstellungen";
-"Basiskonfiguration resetten" = "Alle Einstellungen zurücksetzen";
+"Basiskonfiguration resetten" = "Reset (Favoriten werden behalten!)";

@@ -45,6 +45,7 @@
 - (UIFont*) fontWithType:(CustomFontType)fontType andPointSize:(CGFloat)pointSize;
 
 - (void) configLoadCached;
+- (void) emptyAllFilesFromFolder:(NSString*)folderPath;
 
 - (void) allDataRefresh;
 - (void) allDataLoadCached;
