@@ -100,14 +100,15 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 #define kURL_MASTER_CONFIG_29C3         @"http://29c3.postcapitalism.org/config_remote.plist"
 
 // 29C3 KEYS CONFIGURATION
-#define kURL_KEY_29C3_RELAY_BASE        @"relay_base_url"
+#define kURL_KEY_29C3_RELAY_BASE            @"relay_base_url"
 
-#define kURL_KEY_29C3_RELAY_STATUS      @"cache_status"
-#define kURL_KEY_29C3_FAHRPLAN          @"fahrplan"
-#define kURL_KEY_29C3_IMAGES            @"fahrplan_images"
-#define kURL_KEY_29C3_WORKSHOPS         @"workshops"
-#define kURL_KEY_29C3_ASSEMBLIES        @"assemblies"
-#define kURL_KEY_29C3_STREAMS           @"livestreams"
+#define kURL_KEY_29C3_RELAY_STATUS_IMAGES   @"status_images"
+#define kURL_KEY_29C3_RELAY_STATUS_EVENTS   @"status_events"
+#define kURL_KEY_29C3_FAHRPLAN              @"fahrplan"
+#define kURL_KEY_29C3_IMAGES                @"fahrplan_images"
+#define kURL_KEY_29C3_WORKSHOPS             @"workshops"
+#define kURL_KEY_29C3_ASSEMBLIES            @"assemblies"
+#define kURL_KEY_29C3_STREAMS               @"livestreams"
 
 // 29C3 URLS FAHRPLAN
 #define kURL_DATA_29C3_FAHRPLAN_EN      @"http://events.ccc.de/congress/2012/Fahrplan/schedule.en.xml"

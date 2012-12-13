@@ -10,6 +10,7 @@
 #import "SinaURLConnection.h"
 #import "NSObject+SBJson.h"
 #import "JTISO8601DateFormatter.h"
+#import "AppDelegate.h"
 
 @implementation MasterConfig
 
@@ -39,6 +40,10 @@ static MasterConfig *sharedInstance = nil;
     [super dealloc];
 }
 
+- (AppDelegate*) appDelegate {
+    return (AppDelegate*)[UIApplication sharedApplication].delegate;
+}
+
 - (void) useMothershipRelay {
     sharedInstance.mothershipType = MothershipTypeHome;
 }
@@ -48,7 +53,7 @@ static MasterConfig *sharedInstance = nil;
 }
 
 - (NSURL*) mothershipRelayCacheStatusUrl {
-    NSString* stringUrl = [self urlStringForKey:kURL_KEY_29C3_RELAY_STATUS isMothership:NO];
+    NSString* stringUrl = [self urlStringForKey:kURL_KEY_29C3_RELAY_STATUS_EVENTS isMothership:NO];
     return [NSURL URLWithString:stringUrl];
 }
 
@@ -118,7 +123,7 @@ static MasterConfig *sharedInstance = nil;
     else {
         // WE GET PATHS FOR SOME KEYS
         NSString *urlStringRelayFromDictionary = [shipDictionary objectForKey:kURL_KEY_29C3_RELAY_BASE];
-        // NSString *pathRelayCache = [shipDictionary objectForKey:kURL_KEY_29C3_RELAY_STATUS];
+        // NSString *pathRelayCache = [shipDictionary objectForKey:kURL_KEY_29C3_RELAY_STATUS_EVENTS];
         NSString *pathFromDictionary = [languageDictionary objectForKey:key];
         urlString = [NSString stringWithFormat:@"%@/%@", urlStringRelayFromDictionary, pathFromDictionary];
     }
@@ -152,6 +157,10 @@ static MasterConfig *sharedInstance = nil;
 - (NSString*) urlStringForKey:(NSString*)key { // DEFAULT MOTHERSHIP CONNECT
     MasterConfigLanguage language = MasterConfigLanguageEn;
     BOOL isMothership = ( mothershipType = MothershipTypeHome );
+    // OVERRIDE PERMANENTLY ON USER'S DEMAND
+    if( [[self appDelegate] isConfigOnForKey:kUSERDEFAULT_KEY_BOOL_FAILOVER defaultValue:NO] ) {
+        isMothership = NO; // USES BACKUP SERVER
+    }
     return [self urlStringForKey:key isMothership:isMothership language:language];
 }
 

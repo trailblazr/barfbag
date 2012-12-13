@@ -68,6 +68,10 @@
 
 #pragma mark - User Actions
 
+- (IBAction) actionRefreshAllData {
+    [[self appDelegate] allDataRefresh];
+}
+
 - (IBAction) actionSwitchChanged:(UISwitch*)theSwitch {
     for( NSDictionary *currentDict in sectionsArray ) {
         if( [currentDict objectForKey:@"switchAutoUpdate"] == theSwitch ) {
@@ -85,13 +89,14 @@
         currentSwitch = (UISwitch*)[currentDict objectForKey:@"switchAutoUpdate"];
         if( currentSwitch ) {
             [currentSwitch setOn:YES animated:YES];
+            [self updateDefaultsForKey:kUSERDEFAULT_KEY_BOOL_AUTOUPDATE withValue:YES];
         }
         currentSwitch = (UISwitch*)[currentDict objectForKey:@"switchFailover"];
         if( currentSwitch ) {
             [currentSwitch setOn:NO animated:YES];
+            [self updateDefaultsForKey:kUSERDEFAULT_KEY_BOOL_FAILOVER withValue:NO];
         }
     }
-    [self.tableView reloadData];
     [[self appDelegate] emptyAllFilesFromFolder:kFOLDER_DOCUMENTS];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAllDataAfterForceReconfig) name:kNOTIFICATION_MASTER_CONFIG_COMPLETED object:nil];
     [[MasterConfig sharedConfiguration] refreshFromMothership];
@@ -115,7 +120,7 @@
     itemEntry = [NSDictionary dictionaryWithObject:switchUseFailoverPermanent forKey:@"switchFailover"];
     [sectionsArray addObject:itemEntry];
 
-    // BUTTON
+    // BUTTON RESET
     UIButton *buttonForceReconfiguration = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     buttonForceReconfiguration.frame = CGRectMake(0.0, 0.0, 85.0, 30.0);
     [buttonForceReconfiguration setTitle:LOC( @"Reconfig" ) forState:UIControlStateNormal];
@@ -123,7 +128,7 @@
     [buttonForceReconfiguration setTitleColor:kCOLOR_WHITE forState:UIControlStateHighlighted];
     // MASK BUTTON
     UIImage *gradientImage = [self imageGradientWithSize:buttonForceReconfiguration.bounds.size color1:[self themeColor] color2:[self darkerColor]];
-    UIImageView *maskedImageView = [[UIImageView alloc] initWithImage:gradientImage];
+    UIImageView *maskedImageView = [[[UIImageView alloc] initWithImage:gradientImage] autorelease];
     maskedImageView.layer.cornerRadius = 7.0;
     maskedImageView.layer.masksToBounds = YES;
     gradientImage = [self imageFromView:maskedImageView];
@@ -131,7 +136,25 @@
     [buttonForceReconfiguration addTarget:self action:@selector(actionForceReconfigureClient) forControlEvents:UIControlEventTouchUpInside];
     itemEntry = [NSDictionary dictionaryWithObject:buttonForceReconfiguration forKey:@"buttonForceReconfig"];
     [sectionsArray addObject:itemEntry];
+
     
+    // BUTTON RESET
+    UIButton *buttonUpdateAllData = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    buttonUpdateAllData.frame = CGRectMake(10.0, 7.0, 280.0, 30.0);
+    buttonUpdateAllData.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    [buttonUpdateAllData setTitle:LOC( @"Update All Data" ) forState:UIControlStateNormal];
+    [buttonUpdateAllData setTitleColor:[self darkColor] forState:UIControlStateNormal];
+    [buttonUpdateAllData setTitleColor:kCOLOR_WHITE forState:UIControlStateHighlighted];
+    // MASK BUTTON
+    gradientImage = [self imageGradientWithSize:buttonUpdateAllData.bounds.size color1:[self themeColor] color2:[self darkerColor]];
+    maskedImageView = [[[UIImageView alloc] initWithImage:gradientImage] autorelease];
+    maskedImageView.layer.cornerRadius = 7.0;
+    maskedImageView.layer.masksToBounds = YES;
+    gradientImage = [self imageFromView:maskedImageView];
+    [buttonUpdateAllData setBackgroundImage:gradientImage forState:UIControlStateHighlighted];
+    [buttonUpdateAllData addTarget:self action:@selector(actionRefreshAllData) forControlEvents:UIControlEventTouchUpInside];
+    itemEntry = [NSDictionary dictionaryWithObject:buttonUpdateAllData forKey:@"buttonRefreshAllData"];
+    [sectionsArray addObject:itemEntry];
     
 }
 
@@ -210,6 +233,11 @@
 }
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if( indexPath.row == 3 ) {
+        NSDictionary *currentDict = [sectionsArray objectAtIndex:indexPath.row];
+        id uiElement = [currentDict objectForKey:@"buttonRefreshAllData"];
+        ((UIView*)uiElement).center = cell.contentView.center;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -248,6 +276,16 @@
             cell.textLabel.text = LOC( @"Force Reconfigure" );
             cell.detailTextLabel.text = LOC( @"Basiskonfiguration resetten" );
             cell.accessoryView = uiElement;
+            break;
+
+        case 3:
+            uiElement = [currentDict objectForKey:@"buttonRefreshAllData"];
+            cell.textLabel.text = nil;
+            cell.detailTextLabel.text = nil;
+            cell.accessoryView = nil;
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.contentView.contentMode = UIViewContentModeCenter;
+            [cell.contentView addSubview:uiElement];
             break;
 
         default:

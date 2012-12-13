@@ -105,8 +105,8 @@
 "Reconfig" = "Reset";
 "Force Reconfigure" = "Factory Settings";
 "Basiskonfiguration resetten" = "Reset all (Favourites are kept!)";
-"Failover" = "Failover";
-"Backup-Server aktivieren" = "Use Backup-Server permanently";
-
+"Failover" = "Datasource";
+"Backup-Server aktivieren" = "Use Backupserver permanently";
+"Update All Data" = "Refresh all data now...";
 
 

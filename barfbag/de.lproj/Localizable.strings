@@ -106,7 +106,7 @@
 "Reconfig" = "Reset";
 "Force Reconfigure" = "Werkseinstellungen";
 "Basiskonfiguration resetten" = "Reset (Favoriten werden behalten!)";
-"Failover" = "Failover";
-"Backup-Server aktivieren" = "Backup-Server permanent verwenden";
-
+"Failover" = "Datenquelle";
+"Backup-Server aktivieren" = "Backupserver permanent verwenden";
+"Update All Data" = "Alle Daten jetzt aktualisieren...";
 

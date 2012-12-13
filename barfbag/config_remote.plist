@@ -42,7 +42,7 @@
 		<key>mothership_relay</key>
 		<dict>
 			<key>relay_base_url</key>
-			<string>http://29c3.postcapitalism.org</string>
+			<string>http://29c3.postcapitalism.org/data</string>
 			<key>port_de</key>
 			<dict>
 				<key>fahrplan</key>
