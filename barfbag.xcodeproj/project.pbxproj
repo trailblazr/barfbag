@@ -136,6 +136,9 @@
 		8FF92202167024A5005A1C55 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF921F5167024A5005A1C55 /* SBJsonTokeniser.m */; };
 		8FF92203167024A5005A1C55 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF921F7167024A5005A1C55 /* SBJsonUTF8Stream.m */; };
 		8FF92204167024A5005A1C55 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF921F9167024A5005A1C55 /* SBJsonWriter.m */; };
+		E8A5B491167A1E6000225247 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A5B490167A1E6000225247 /* Twitter.framework */; };
+		E8A5B494167A1E6500225247 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A5B493167A1E6500225247 /* Accounts.framework */; };
+		E8A5B496167A20C300225247 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A5B495167A20C300225247 /* MessageUI.framework */; };
 		E8E5D8231678B9AC00590612 /* config_remote.plist in Resources */ = {isa = PBXBuildFile; fileRef = E8E5D8221678B9AC00590612 /* config_remote.plist */; };
 		E8F0F5561678C8E70081A972 /* MasterConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F0F5551678C8E70081A972 /* MasterConfig.m */; };
 		FD1B947D16774BAD0021A58A /* MKiCloudSync.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1B947C16774BAD0021A58A /* MKiCloudSync.m */; };
@@ -362,6 +365,9 @@
 		8FF921F7167024A5005A1C55 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		8FF921F8167024A5005A1C55 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		8FF921F9167024A5005A1C55 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		E8A5B490167A1E6000225247 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		E8A5B493167A1E6500225247 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		E8A5B495167A20C300225247 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		E8E5D8221678B9AC00590612 /* config_remote.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config_remote.plist; sourceTree = "<group>"; };
 		E8F0F54F1678C5D00081A972 /* cachestatus.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cachestatus.json; sourceTree = "<group>"; };
 		E8F0F5521678C5D80081A972 /* schedule.de.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = schedule.de.xml; sourceTree = "<group>"; };
@@ -378,9 +384,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FF921D5167019BF005A1C55 /* libz.dylib in Frameworks */,
+				E8A5B496167A20C300225247 /* MessageUI.framework in Frameworks */,
+				E8A5B494167A1E6500225247 /* Accounts.framework in Frameworks */,
+				E8A5B491167A1E6000225247 /* Twitter.framework in Frameworks */,
 				8FF921D3167019AD005A1C55 /* CFNetwork.framework in Frameworks */,
-				8F754B79166D7B4200F74DBB /* libicucore.dylib in Frameworks */,
 				8F754B51166D5D6B00F74DBB /* SystemConfiguration.framework in Frameworks */,
 				8F754B4F166D5D5500F74DBB /* MobileCoreServices.framework in Frameworks */,
 				8F35652D166B937C00814549 /* UIKit.framework in Frameworks */,
@@ -388,6 +395,8 @@
 				8F356531166B937C00814549 /* CoreGraphics.framework in Frameworks */,
 				8F754BBC166EADA600F74DBB /* AudioToolbox.framework in Frameworks */,
 				8F754B92166EA46A00F74DBB /* QuartzCore.framework in Frameworks */,
+				8F754B79166D7B4200F74DBB /* libicucore.dylib in Frameworks */,
+				8FF921D5167019BF005A1C55 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,6 +547,9 @@
 				8F35652E166B937C00814549 /* Foundation.framework */,
 				8F356530166B937C00814549 /* CoreGraphics.framework */,
 				8F754BBB166EADA600F74DBB /* AudioToolbox.framework */,
+				E8A5B493167A1E6500225247 /* Accounts.framework */,
+				E8A5B490167A1E6000225247 /* Twitter.framework */,
+				E8A5B495167A20C300225247 /* MessageUI.framework */,
 				8FF921D4167019BE005A1C55 /* libz.dylib */,
 				8F754B78166D7B4100F74DBB /* libicucore.dylib */,
 			);

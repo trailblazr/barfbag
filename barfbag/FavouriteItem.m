@@ -84,5 +84,9 @@
     return foundStoredFavourites;
 }
 
+- (NSString*) stringRepresentationMail {
+    return [NSString stringWithFormat:@"<b>%@</b><br>(ID = %@)", [NSString placeHolder:@"(Kein Titel)" forEmptyString:favouriteName], [NSString placeHolder:@"(Keine ID)" forEmptyString:favouriteId]];
+}
+
 @end
 

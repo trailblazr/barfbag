@@ -25,6 +25,7 @@
 
 - (BOOL) hasType:(FavouriteItemType)itemType;
 - (BOOL) hasEqualId:(NSString*)_favouriteId;
+- (NSString*) stringRepresentationMail;
 
 @end
 

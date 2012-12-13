@@ -115,7 +115,7 @@
  */
 
 - (NSString*) stringRepresentationMail {
-    return nil;
+    return [NSString stringWithFormat:@"<b>%@</b><br>%@<br>%@", [NSString placeHolder:@"(Kein Titel)" forEmptyString:[self singlePropertyFromObject:label]],[self startTime],[NSString placeHolder:@"(Kein Ort)" forEmptyString:[self singlePropertyFromObject:location]]];
 }
 
 - (NSString*) stringRepresentationTwitter {

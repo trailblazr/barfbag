@@ -50,6 +50,7 @@
 #pragma mark - UIActionSheetDelegate
 
 - (NSString*) stringRepresentationMailFor:(id)item {
+    if( !item ) return nil;
     NSMutableString *stringRep = [NSMutableString string];
     if( [item isKindOfClass:[Event class]] ) {
         Event *event = (Event*)item;
@@ -63,18 +64,31 @@
         JSONWorkshop* workshop = (JSONWorkshop*)item;
         [stringRep appendString:[workshop stringRepresentationMail]];
     }
+    if( [item isKindOfClass:[FavouriteItem class]] ) {
+        FavouriteItem* favourite = (FavouriteItem*)item;
+        [stringRep appendString:[favourite stringRepresentationMail]];
+    }
     if( [item isKindOfClass:[NSDictionary class]] || [item isKindOfClass:[NSMutableDictionary class]] ) {
         NSDictionary *dictionary = (NSDictionary*)item;
-        NSArray *allEntries = [dictionary allValues];
-        for( NSArray* sectionItems in allEntries ) {
-            [stringRep appendFormat:@"\n\n"];
+        NSArray *allKeys = [dictionary allKeys];
+        NSArray *sectionItems = nil;
+        for( NSString* currentKey in allKeys ) {
+            sectionItems = [dictionary objectForKey:currentKey];
+            [stringRep appendFormat:@"<h2>%@</h2><ul>", [currentKey uppercaseString]];
             for( id currentItem in sectionItems ) {
                 // TO DO: APPEND STRING REPRESENTATIONS OF ITEMS
-                [stringRep appendString:[self stringRepresentationMailFor:currentItem]]; // WARNING: RECURSIVE
+            [stringRep appendFormat:@"<li>"];
+            [stringRep appendString:[self stringRepresentationMailFor:currentItem]]; // WARNING: RECURSIVE
+            [stringRep appendFormat:@"</li>"];
             }
+            [stringRep appendFormat:@"</ul>"];
         }
     }
     return stringRep;
+}
+
+- (BOOL) willExceed140CharsForString:(NSString*)strExists whenAddingString:(NSString*)strToAdd {
+    return( [strExists length] + [strToAdd length] > 140 );
 }
 
 - (NSString*) stringRepresentationTwitterFor:(id)item {
@@ -98,23 +112,135 @@
             [stringRep appendFormat:@"\n\n"];
             for( id currentItem in sectionItems ) {
                 // TO DO: APPEND STRING REPRESENTATIONS OF ITEMS
-                [stringRep appendString:[self stringRepresentationTwitter:currentItem]]; // WARNING: RECURSIVE
+                [stringRep appendString:[self stringRepresentationTwitterFor:currentItem]]; // WARNING: RECURSIVE
             }
         }
     }
     return stringRep;
 }
 
+#pragma mark - Create Twitter Tweet
 
-- (void) actionShareObjectViaMail:(id)objectToShare {
-    NSLog( @"SHARE VIA MAIL");
+- (void) actionTweetShortenedString:(NSString*)shortenedString {
+    NSMutableString *tweetText = [NSMutableString string];
+    NSString *currentString = nil;
     
+    [tweetText appendString:currentString];
+    TWTweetComposeViewController *tweetComposeViewController = [[TWTweetComposeViewController alloc] init];
+    [tweetComposeViewController setInitialText:tweetText];
+    [tweetComposeViewController setCompletionHandler:^(TWTweetComposeViewControllerResult result){
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self dismissModalViewControllerAnimated:YES];
+            if (result == TWTweetComposeViewControllerResultDone) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Twitter" message:@"Tweet erfolgreich abgesendet." delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
+                [alert show];
+                [alert release];
+            }
+        });
+    }];
+    [self presentViewController:tweetComposeViewController
+                       animated:YES
+                     completion:^{
+                         
+                         // do cleanup
+                         
+                     }];
+    [tweetComposeViewController release];
 }
 
 - (void) actionShareObjectViaTwitter:(id)objectToShare {
     NSLog( @"SHARE VIA TWITTER");
-    
+    if( ![TWTweetComposeViewController canSendTweet] ) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString( @"Twitter", nil ) message:NSLocalizedString(@"Kein Twitter Account konfiguriert.", nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+        [alert show];
+        [alert release];
+        return;
+    }
+    else {
+        // TO DO: ensure short string limited to 140 chars
+        [self actionTweetShortenedString:[NSString placeHolder:LOC( @"Keine Info." ) forEmptyString:[self stringRepresentationTwitterFor:objectToShare]]];
+    }
 }
+
+#pragma mark - Create Mail Message
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+	// [self becomeFirstResponder];
+	[controller setDelegate:nil];
+	[[self navigationController] dismissModalViewControllerAnimated:YES];
+	switch (result) {
+		case MFMailComposeResultCancelled: {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"E-Mail" message:@"Versenden der E-Mail wurde unterbrochen/abgebrochen!" delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
+            [alert show];
+            [alert release];
+			break;
+        }
+            
+		case MFMailComposeResultSaved: {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"E-Mail" message:@"Mail wurde für späteren Versand gespeichert!" delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
+            [alert show];
+            [alert release];
+			break;
+        }
+		case MFMailComposeResultSent: {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"E-Mail" message:@"Mail wurde versendet!" delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
+            [alert show];
+            [alert release];
+			break;
+        }
+            
+		case MFMailComposeResultFailed: {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"E-Mail" message:@"Versand fehlgeschlagen!" delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
+            [alert show];
+            [alert release];
+			break;
+        }
+            
+		default:
+			break;
+	}
+}
+
+- (NSString*) htmlMailBodyForObject:(id)object {
+    NSMutableString *htmlString = [NSMutableString string];
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateStyle = NSDateFormatterMediumStyle;
+    df.timeStyle = NSDateFormatterShortStyle;
+    
+    [htmlString appendFormat:@"<html><body>"];
+    [htmlString appendFormat:@"<p><strong>29c3 Favorit(en):</strong></p>"];
+    [htmlString appendString:@"<p>"];
+    
+    [htmlString appendString:[NSString placeHolder:LOC( @"Keine Informtion" ) forEmptyString:[self stringRepresentationMailFor:object]]];
+
+    [htmlString appendString:@"</p>"];
+    [htmlString appendString:@"</body></html>"];
+    [df release];
+    return htmlString;
+}
+
+- (void) actionShareObjectViaMail:(id)objectToShare {
+    NSLog( @"SHARE VIA MAIL");
+    if ( ![MFMailComposeViewController canSendMail] ) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"E-Mail" message:@"Sie haben derzeit keinen E-Mail-Account auf ihrem Gerät konfiguriert. Bitte zunächst das Mail App in Betrieb nehmen!" delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
+        [alert show];
+        [alert release];
+        return;
+    }
+    NSArray* toRecipients = [NSArray array];
+    MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
+    [controller setMailComposeDelegate:self];
+    [controller setToRecipients:toRecipients];
+    [controller setSubject:LOC(@"29c3 Veranstaltungstipp")];
+    NSString *message = [self htmlMailBodyForObject:objectToShare];
+    [controller setMessageBody:message isHTML:YES];
+    [[self navigationController] presentModalViewController:controller animated:YES];
+    [controller.navigationBar setTintColor:kCOLOR_BACK];
+    [controller release];
+}
+
+#pragma mark - Action Sheet Handling
 
 - (void) actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     switch( actionSheet.tag ) {

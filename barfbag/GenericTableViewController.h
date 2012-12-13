@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Twitter/Twitter.h>
+#import <MessageUI/MessageUI.h>
 #import "ATMHudDelegate.h"
 #import "ATMHud.h"
 #import "Conference.h"
 
 @class AppDelegate;
 
-@interface GenericTableViewController : UITableViewController <ATMHudDelegate,UIActionSheetDelegate> {
+@interface GenericTableViewController : UITableViewController <ATMHudDelegate,UIActionSheetDelegate,MFMailComposeViewControllerDelegate> {
 
     ATMHud *hud;
     id reminderObject;

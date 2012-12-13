@@ -223,6 +223,13 @@
     // SEARCHBAR
     UISearchBar *proxySearchBar = [UISearchBar appearance];
     proxySearchBar.tintColor = [self themeColor];
+
+    // TOOLBARS I.E. MAIL TOOLBAR
+    UINavigationBar *proxyNavigationBarMail = [UINavigationBar appearanceWhenContainedIn:[MFMailComposeViewController class], nil];
+    [proxyNavigationBarMail setTintColor:kCOLOR_BACK];
+    
+    UIToolbar *proxyToolbarBarMail = [UIToolbar appearanceWhenContainedIn:[MFMailComposeViewController class], nil];
+    [proxyToolbarBarMail setTintColor:kCOLOR_BACK];
 }
 
 #pragma mark - Fetch Master Configuration

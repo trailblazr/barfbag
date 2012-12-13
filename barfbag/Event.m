@@ -84,7 +84,7 @@
 }
 
 - (NSString*) stringRepresentationMail {
-    return nil;
+    return [NSString stringWithFormat:@"<b>%@</b><br>%@", [NSString placeHolder:@"(Kein Titel)" forEmptyString:title], [NSString placeHolder:@"(Kein Untertitel)" forEmptyString:subtitle]];
 }
 
 - (NSString*) stringRepresentationTwitter {

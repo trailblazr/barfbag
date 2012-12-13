@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 #import "BarfBagParser.h"
 #import "ATMHudDelegate.h"
 #import "BBJSONConnectOperation.h"
