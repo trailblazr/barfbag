@@ -109,6 +109,7 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 #define kURL_KEY_29C3_WORKSHOPS             @"workshops"
 #define kURL_KEY_29C3_ASSEMBLIES            @"assemblies"
 #define kURL_KEY_29C3_STREAMS               @"livestreams"
+#define kURL_KEY_29C3_WIKI_BASE             @"wikibaseurl"
 
 // 29C3 URLS FAHRPLAN
 #define kURL_DATA_29C3_FAHRPLAN_EN      @"http://events.ccc.de/congress/2012/Fahrplan/schedule.en.xml"

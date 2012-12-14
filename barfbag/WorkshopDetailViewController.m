@@ -7,6 +7,8 @@
 //
 
 #import "WorkshopDetailViewController.h"
+#import "MasterConfig.h"
+#import "JSONWorkshop.h"
 
 @implementation WorkshopDetailViewController
 
@@ -37,6 +39,31 @@
     [self presentActionSheetForObject:workshop fromBarButtonItem:item];
 }
 
+- (IBAction) actionOpenWikiPage:(id)sender {
+    [self actionOpenInWiki:workshop.itemTitle];
+}
+
+- (void) actionOpenInWiki:(NSString*)wikiPath {
+    NSString* urlString = [self urlStringWikiPageWithPath:wikiPath];
+    NSURL *url = [NSURL URLWithString:urlString];
+    [self loadSimpleWebViewWithURL:url shouldScaleToFit:YES];
+}
+
+- (void) setupTableViewFooter {
+    CGFloat width = self.tableView.frame.size.width;
+    UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 70.0)] autorelease];
+    footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    footerView.backgroundColor = [self themeColor];
+    UIButton *buttonOpenWiki = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 250.0, 40.0)];
+    [buttonOpenWiki addTarget:self action:@selector(actionOpenWikiPage:) forControlEvents:UIControlEventTouchUpInside];
+    [footerView addSubview:buttonOpenWiki];
+    [buttonOpenWiki setTitle:LOC( @"Wikiseite öffnen" ) forState:UIControlStateNormal];
+    [buttonOpenWiki.titleLabel setFont:[UIFont boldSystemFontOfSize:buttonOpenWiki.titleLabel.font.pointSize]];
+    [buttonOpenWiki setTitleColor:kCOLOR_WHITE forState:UIControlStateNormal];
+    buttonOpenWiki.center = footerView.center;
+    self.tableView.tableFooterView = footerView;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -46,7 +73,6 @@
         self.detailHeaderViewController = [[[GenericDetailViewController alloc] initWithNibName:@"GenericDetailViewController" bundle:nil] autorelease];
     }
     self.tableView.tableHeaderView = detailHeaderViewController.view;
-    
     detailHeaderViewController.titleLabel.text = workshop.label;
     detailHeaderViewController.subtitleLabel.text = [workshop singlePropertyFromObject:workshop.location];
     detailHeaderViewController.timeStart.text = [self stringTimeForDate:workshop.startTime];
@@ -56,6 +82,8 @@
     detailHeaderViewController.languageLabel.text = @"";
     detailHeaderViewController.trackLabel.text = [self stringTimeForDate:workshop.endTime];
     detailHeaderViewController.speakerLabel.text = [workshop singlePropertyFromObject:workshop.personOrganizing];
+    
+    [self setupTableViewFooter];
     
     
     // SETUP SECTION ORDER
@@ -197,13 +225,16 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if( [[sectionKeys objectAtIndex:indexPath.section] isEqualToString:@"contactOrganizing"] ) {
         NSLog( @"TOUCHED MAILTO" );
     }
     if( [[sectionKeys objectAtIndex:indexPath.section] isEqualToString:@"personOrganizing"] ) {
-        NSLog( @"TOUCHED MAILTO" );
+        NSLog( @"TOUCHED WIKI USR PAGE" );
+        NSString *userName = [self textToDisplayForIndexPath:indexPath];
+        NSString *wikiUrl = [self urlStringWikiPageWithPath:userName];
+        NSURL *url = [NSURL URLWithString:[wikiUrl httpUrlString]];
+        [self loadSimpleWebViewWithURL:url shouldScaleToFit:YES];
     }
 
     /*

@@ -54,6 +54,16 @@
     }
 }
 
+#pragma mark - C-FUNCTIONS
+
+NSString* newEncodeToPercentEscapeString(NSString *string) {
+    return (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef) string,NULL,(CFStringRef) @"!*'();:@&=+$,/?%#[]",kCFStringEncodingUTF8);
+}
+
+NSString* newDecodeFromPercentEscapeString(NSString *string) {
+    return (NSString *) CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,(CFStringRef) string, CFSTR(""), kCFStringEncodingUTF8);
+}
+
 #pragma mark - UIActionSheetDelegate
 
 - (NSString*) stringRepresentationMailFor:(id)item {
@@ -582,6 +592,17 @@
     
     UIGraphicsEndImageContext();
     return image;
+}
+
+#pragma mark - Wiki URLS
+
+- (NSString*) urlStringWikiPageWithPath:(NSString*)wikiPath {
+    if( !wikiPath || [wikiPath length] == 0 ) return nil;
+    NSString *percentEscaped = newEncodeToPercentEscapeString(wikiPath);
+    NSString *path = [NSString stringWithFormat:@"%@/%@", [[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_WIKI_BASE], percentEscaped];
+    [percentEscaped release];
+    path =  [path httpUrlString];
+    return path;
 }
 
 #pragma mark - Headup Display Management

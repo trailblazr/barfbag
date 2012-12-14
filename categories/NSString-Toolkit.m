@@ -32,11 +32,11 @@
     NSString* cleanTrailingSpaces = [self trimmedString];
     BOOL isHttp = [cleanTrailingSpaces containsString:@"http://" ignoringCase:YES];
     BOOL isHttps = [cleanTrailingSpaces containsString:@"https://" ignoringCase:YES];
-    if( !isHttp && !isHttps && cleanTrailingSpaces && [cleanTrailingSpaces length] > 0 ) {
+    if( ( !isHttp && !isHttps ) && ( cleanTrailingSpaces && [cleanTrailingSpaces length] > 0 ) ) {
         return [NSString stringWithFormat:@"http://%@", cleanTrailingSpaces];
     }
     else {
-        return cleanTrailingSpaces;
+        return self;
     }
 }
 

@@ -70,7 +70,8 @@
 /* WorkshopDetailViewController */
 
 "contactOrganizing" = "Contact";
-"personOrganizing" = "Organizing person";
+"personOrganizing" = "Organizer (more on the wiki)";
+"Wikiseite öffnen" = "Open wikipage";
 
 /* FavouritesNavigationController */
 

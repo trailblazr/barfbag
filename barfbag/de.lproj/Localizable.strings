@@ -71,7 +71,8 @@
 /* WorkshopDetailViewController */
 
 "contactOrganizing" = "Ansprechpartner";
-"personOrganizing" = "Organisator";
+"personOrganizing" = "Organisator (mehr im Wiki)";
+"Wikiseite öffnen" = "Wikiseite öffnen";
 
 /* FavouritesNavigationController */
 

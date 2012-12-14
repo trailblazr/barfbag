@@ -21,7 +21,7 @@
 }
 
 @property( nonatomic, retain ) GenericDetailViewController *detailHeaderViewController;
-@property( nonatomic, retain ) JSONAssembly *assembly;
+@property( nonatomic, strong ) JSONAssembly *assembly;
 @property( nonatomic, retain ) NSArray *sectionKeys;
 @property( nonatomic, retain ) NSMutableDictionary *sectionArrays;
 @property( nonatomic, retain ) NSString *navigationTitle;

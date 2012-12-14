@@ -140,14 +140,14 @@
 // SEARCHABLE ITEM
 
 - (NSString*) itemTitle {
-    return label;
+    return [self singlePropertyFromObject:label];
 }
 
 - (NSString*) itemSubtitle {
-    return location;
+    return [self singlePropertyFromObject:location];
 }
 - (NSString*) itemAbstract {
-    return descriptionText;
+    return [self singlePropertyFromObject:descriptionText];
 }
 
 - (NSString*) itemPerson {

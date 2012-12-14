@@ -115,14 +115,14 @@ nil];
 // SEARCHABLE ITEM
 
 - (NSString*) itemTitle {
-    return label;
+    return [self singlePropertyFromObject:label];
 }
 
 - (NSString*) itemSubtitle {
-    return plannedWorkshops;
+    return [self singlePropertyFromObject:plannedWorkshops];
 }
 - (NSString*) itemAbstract {
-    return descriptionText;
+    return [self singlePropertyFromObject:descriptionText];
 }
 
 - (NSString*) itemPerson {

@@ -217,7 +217,7 @@
     // Navigation logic may go here. Create and push another view controller.
     if( indexPath.section == 0 ) {
         JSONWorkshop *workshop = [[self appDelegate].semanticWikiWorkshops objectAtIndex:indexPath.row];
-        WorkshopDetailViewController *detailViewController = [[WorkshopDetailViewController alloc] initWithNibName:@"AssemblyDetailViewController" bundle:nil];
+        WorkshopDetailViewController *detailViewController = [[WorkshopDetailViewController alloc] initWithNibName:@"WorkshopDetailViewController" bundle:nil];
         detailViewController.workshop = workshop;
         detailViewController.navigationTitle = [NSString stringWithFormat:LOC( @"Workshop #%i" ), indexPath.row+1];
         [self.navigationController pushViewController:detailViewController animated:YES];

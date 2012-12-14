@@ -37,6 +37,31 @@
     [self presentActionSheetForObject:assembly fromBarButtonItem:item];
 }
 
+- (IBAction) actionOpenWikiPage:(id)sender {
+    [self actionOpenInWiki:assembly.itemTitle];
+}
+
+- (void) actionOpenInWiki:(NSString*)wikiPath {
+    NSString* urlString = [self urlStringWikiPageWithPath:wikiPath];
+    NSURL *url = [NSURL URLWithString:urlString];
+    [self loadSimpleWebViewWithURL:url shouldScaleToFit:YES];
+}
+
+- (void) setupTableViewFooter {
+    CGFloat width = self.tableView.frame.size.width;
+    UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 70.0)] autorelease];
+    footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    footerView.backgroundColor = [self themeColor];
+    UIButton *buttonOpenWiki = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 250.0, 40.0)];
+    [buttonOpenWiki addTarget:self action:@selector(actionOpenWikiPage:) forControlEvents:UIControlEventTouchUpInside];
+    [footerView addSubview:buttonOpenWiki];
+    [buttonOpenWiki setTitle:LOC( @"Wikiseite öffnen" ) forState:UIControlStateNormal];
+    [buttonOpenWiki.titleLabel setFont:[UIFont boldSystemFontOfSize:buttonOpenWiki.titleLabel.font.pointSize]];
+    [buttonOpenWiki setTitleColor:kCOLOR_WHITE forState:UIControlStateNormal];
+    buttonOpenWiki.center = footerView.center;
+    self.tableView.tableFooterView = footerView;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -56,7 +81,8 @@
     detailHeaderViewController.languageLabel.text = @"";
     detailHeaderViewController.trackLabel.text = [NSString stringWithFormat:@"%i Plätze", assembly.numLectureSeats];
     detailHeaderViewController.speakerLabel.text = assembly.personOrganizing;
-    
+
+    [self setupTableViewFooter];
     
     // SETUP SECTION ORDER
     self.sectionKeys = [NSArray arrayWithObjects:

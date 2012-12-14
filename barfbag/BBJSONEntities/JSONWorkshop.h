@@ -32,4 +32,5 @@
 - (NSString*) stringRepresentationMail;
 - (NSString*) stringRepresentationTwitter;
 
+
 @end
