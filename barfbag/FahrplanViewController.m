@@ -268,7 +268,8 @@
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@",[currentEvent.track placeHolderWhenEmpty:@"<track>"], [currentEvent.subtitle placeHolderWhenEmpty:@"<subtitle>"]];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         // CHECK FAVOURITE
-        cell.accessoryType = [currentEvent isFavourite] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryView = [currentEvent isFavourite] ? [ColoredAccessoryView checkmarkViewWithColor:[self themeColor]] : [ColoredAccessoryView disclosureIndicatorViewWithColor:[self themeColor]];
+    
     }
     else if( [sectionKey isEqualToString:@"links"] ) {
         Link *currentLink = (Link*)[sectionItems objectAtIndex:indexPath.row];

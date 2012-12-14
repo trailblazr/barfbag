@@ -136,6 +136,7 @@
     }
 
     cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.accessoryView = nil;
     // clean existing cell
     while( [cell.contentView.subviews count] > 0 ) {
         [[cell.contentView.subviews lastObject] removeFromSuperview];
@@ -147,10 +148,10 @@
     
     // Configure the cell...
     if( [[sectionKeys objectAtIndex:indexPath.section] isEqualToString:@"webLinks"] ) {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryView = [ColoredAccessoryView disclosureIndicatorViewWithColor:[self themeColor]];
     }
     if( [[sectionKeys objectAtIndex:indexPath.section] isEqualToString:@"orgaContact"] ) {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryView = [ColoredAccessoryView disclosureIndicatorViewWithColor:[self themeColor]];
     }
     cellTextLabel.text = [self textToDisplayForIndexPath:indexPath];
     return cell;

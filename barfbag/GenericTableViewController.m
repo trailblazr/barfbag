@@ -14,6 +14,7 @@
 #import "Event.h"
 #import "JSONAssembly.h"
 #import "JSONWorkshop.h"
+#import "ColoredAccessoryView.h"
 
 @implementation GenericTableViewController
 

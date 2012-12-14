@@ -13,6 +13,7 @@
 #import "ATMHudDelegate.h"
 #import "ATMHud.h"
 #import "Conference.h"
+#import "ColoredAccessoryView.h"
 
 @class AppDelegate;
 

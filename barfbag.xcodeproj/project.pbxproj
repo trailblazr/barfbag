@@ -108,6 +108,7 @@
 		8FBB5974167AD06A0016E638 /* arrow_left_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FBB5970167AD06A0016E638 /* arrow_left_white@2x.png */; };
 		8FBB5975167AD06A0016E638 /* arrow_right_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FBB5971167AD06A0016E638 /* arrow_right_white.png */; };
 		8FBB5976167AD06A0016E638 /* arrow_right_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FBB5972167AD06A0016E638 /* arrow_right_white@2x.png */; };
+		8FBB5979167B984A0016E638 /* ColoredAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FBB5978167B984A0016E638 /* ColoredAccessoryView.m */; };
 		8FF9216D166FFD47005A1C55 /* BBJSONConnectOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF92165166FFD47005A1C55 /* BBJSONConnectOperation.m */; };
 		8FF9216E166FFD47005A1C55 /* BBJSONConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF92167166FFD47005A1C55 /* BBJSONConnector.m */; };
 		8FF9216F166FFD47005A1C55 /* BBJSONStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF92169166FFD47005A1C55 /* BBJSONStatusView.m */; };
@@ -310,6 +311,8 @@
 		8FBB5970167AD06A0016E638 /* arrow_left_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow_left_white@2x.png"; path = "images/arrow_left_white@2x.png"; sourceTree = SOURCE_ROOT; };
 		8FBB5971167AD06A0016E638 /* arrow_right_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow_right_white.png; path = images/arrow_right_white.png; sourceTree = SOURCE_ROOT; };
 		8FBB5972167AD06A0016E638 /* arrow_right_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow_right_white@2x.png"; path = "images/arrow_right_white@2x.png"; sourceTree = SOURCE_ROOT; };
+		8FBB5977167B984A0016E638 /* ColoredAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredAccessoryView.h; sourceTree = "<group>"; };
+		8FBB5978167B984A0016E638 /* ColoredAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColoredAccessoryView.m; sourceTree = "<group>"; };
 		8FF92164166FFD47005A1C55 /* BBJSONConnectOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBJSONConnectOperation.h; sourceTree = "<group>"; };
 		8FF92165166FFD47005A1C55 /* BBJSONConnectOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBJSONConnectOperation.m; sourceTree = "<group>"; };
 		8FF92166166FFD47005A1C55 /* BBJSONConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBJSONConnector.h; sourceTree = "<group>"; };
@@ -450,6 +453,8 @@
 				8F09CCA916703001008F8D26 /* RegexKitLite */,
 				8F754BA7166EAB5D00F74DBB /* ATMHud */,
 				8F754B37166D556500F74DBB /* SinaURLConnection */,
+				8FBB5977167B984A0016E638 /* ColoredAccessoryView.h */,
+				8FBB5978167B984A0016E638 /* ColoredAccessoryView.m */,
 			);
 			name = "Third Party Code";
 			sourceTree = "<group>";
@@ -1185,6 +1190,7 @@
 				E8F0F5561678C8E70081A972 /* MasterConfig.m in Sources */,
 				8FBB594F167AA9910016E638 /* SearchableItem.m in Sources */,
 				8FBB595C167ABB630016E638 /* WebbrowserViewController.m in Sources */,
+				8FBB5979167B984A0016E638 /* ColoredAccessoryView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,13 @@
 
 @synthesize personId;
 @synthesize personName;
+@synthesize imageInMemory;
+
+- (void) dealloc {
+    self.personName = nil;
+    self.imageInMemory = nil;
+    [super dealloc];
+}
 
 - (NSString*) description {
 	NSMutableString *stringRepresentation = [NSMutableString string];
@@ -76,15 +83,14 @@
 }
 
 - (UIImage*) cachedImage {
-    UIImage *imageFetched = nil;
     NSString *imageFilePath = [NSString stringWithFormat:@"%@/%@", kFOLDER_DOCUMENTS ,[self imageName]];
     @try {
-        imageFetched = [UIImage imageWithData:[NSData dataWithContentsOfFile:imageFilePath]];
+        self.imageInMemory = [UIImage imageWithData:[NSData dataWithContentsOfFile:imageFilePath]];
     }
     @catch (NSException *exception) {
         // do nothing
     }
-    return imageFetched;
+    return imageInMemory;
 }
 
 @end

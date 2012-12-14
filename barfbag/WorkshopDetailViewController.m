@@ -136,6 +136,7 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
     
     // clean existing cell
+    cell.accessoryView = nil;
     while( [cell.contentView.subviews count] > 0 ) {
         [[cell.contentView.subviews lastObject] removeFromSuperview];
     }
@@ -146,10 +147,10 @@
     
     // Configure the cell...
     if( [[sectionKeys objectAtIndex:indexPath.section] isEqualToString:@"contactOrganizing"] ) {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryView = [ColoredAccessoryView disclosureIndicatorViewWithColor:[self themeColor]];
     }
     if( [[sectionKeys objectAtIndex:indexPath.section] isEqualToString:@"personOrganizing"] ) {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryView = [ColoredAccessoryView disclosureIndicatorViewWithColor:[self themeColor]];
     }
     cellTextLabel.text = [self textToDisplayForIndexPath:indexPath];
     return cell;
