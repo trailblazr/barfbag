@@ -74,41 +74,56 @@
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    switch (section) {
-        case 0:
-            return [NSString stringWithFormat:LOC( @"%i Workshops" ), [[self appDelegate].semanticWikiWorkshops count]];
-            break;
-
-        case 1:
-            return [NSString stringWithFormat:LOC( @"%i Assemblies" ), [[self appDelegate].semanticWikiAssemblies count]];
-            break;
-            
-        default:
-            break;
+    if( isSearching ) {
+        return [NSString stringWithFormat:LOC( @"%i Treffer" ), [searchItemsFiltered count] ];
     }
-    return nil;
+    else {
+        switch (section) {
+            case 0:
+                return [NSString stringWithFormat:LOC( @"%i Workshops" ), [[self appDelegate].semanticWikiWorkshops count]];
+                break;
+                
+            case 1:
+                return [NSString stringWithFormat:LOC( @"%i Assemblies" ), [[self appDelegate].semanticWikiAssemblies count]];
+                break;
+                
+            default:
+                break;
+        }
+        return nil;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 2;
+    if( isSearching ) {
+        return 1;
+    }
+    else {
+        return 2;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    switch (section) {
-            
-        case 0:
-            return [[self appDelegate].semanticWikiWorkshops count];
-            break;
-
-        case 1:
-            return [[self appDelegate].semanticWikiAssemblies count];
-            break;
-
-        default:
-            break;
+    if( isSearching ) {
+        return [searchItemsFiltered count];
     }
-    return 0;
+    else {
+        switch (section) {
+                
+            case 0:
+                return [[self appDelegate].semanticWikiWorkshops count];
+                break;
+                
+            case 1:
+                return [[self appDelegate].semanticWikiAssemblies count];
+                break;
+                
+            default:
+                break;
+        }
+        return 0;
+    }
 }
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -138,35 +153,48 @@
     // Configure the cell...
     cell.accessoryView = nil;
     cell.accessoryType = UITableViewCellAccessoryNone;
-   switch( indexPath.section ) {
-            
-        case 0: {
-            NSArray *workshops = [self appDelegate].semanticWikiWorkshops;
-            JSONWorkshop *currentWorkshop = [workshops objectAtIndex:indexPath.row];
-            NSLog( @"WORKSHOP: %@", currentWorkshop );
-            NSDateFormatter *df = [[NSDateFormatter alloc] init];
-            df.dateFormat = @"HH:mm";
-            NSString *startTimeString = [df stringFromDate:currentWorkshop.startTime];
-            [df release];
-            cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",[NSString placeHolder:@"<start>" forEmptyString:startTimeString], [NSString placeHolder:@"<title>"forEmptyString:currentWorkshop.label]];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@", [NSString placeHolder:@"<location>" forEmptyString:currentWorkshop.eventLocation], [NSString placeHolder:@"<description>" forEmptyString:currentWorkshop.abstract]];
-            // CHECK FAVOURITE
-            cell.accessoryView = [currentWorkshop isFavourite] ? [ColoredAccessoryView checkmarkViewWithColor:[self themeColor]] : [ColoredAccessoryView disclosureIndicatorViewWithColor:[self themeColor]];
-            break;
+    if (isSearching) {
+        SearchableItem *currentItem = [searchItemsFiltered objectAtIndex:indexPath.row];
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+        df.dateFormat = @"HH:mm";
+        NSString *startTimeString = [df stringFromDate:currentItem.itemDateStart];
+        [df release];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",[NSString placeHolder:@"<start>" forEmptyString:startTimeString], [NSString placeHolder:@"<title>"forEmptyString:currentItem.itemTitle]];
+        cell.detailTextLabel.text = [NSString placeHolder:@"<description>" forEmptyString:currentItem.itemSubtitle];
+        // CHECK FAVOURITE
+        cell.accessoryView = [currentItem isFavourite] ? [ColoredAccessoryView checkmarkViewWithColor:[self themeColor]] : [ColoredAccessoryView disclosureIndicatorViewWithColor:[self themeColor]];
+    }
+    else {
+        switch( indexPath.section ) {
+                
+            case 0: {
+                NSArray *workshops = [self appDelegate].semanticWikiWorkshops;
+                JSONWorkshop *currentWorkshop = [workshops objectAtIndex:indexPath.row];
+                NSLog( @"WORKSHOP: %@", currentWorkshop );
+                NSDateFormatter *df = [[NSDateFormatter alloc] init];
+                df.dateFormat = @"HH:mm";
+                NSString *startTimeString = [df stringFromDate:currentWorkshop.startTime];
+                [df release];
+                cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",[NSString placeHolder:@"<start>" forEmptyString:startTimeString], [NSString placeHolder:@"<title>"forEmptyString:currentWorkshop.label]];
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@", [NSString placeHolder:@"<location>" forEmptyString:currentWorkshop.eventLocation], [NSString placeHolder:@"<description>" forEmptyString:currentWorkshop.abstract]];
+                // CHECK FAVOURITE
+                cell.accessoryView = [currentWorkshop isFavourite] ? [ColoredAccessoryView checkmarkViewWithColor:[self themeColor]] : [ColoredAccessoryView disclosureIndicatorViewWithColor:[self themeColor]];
+                break;
+            }
+                
+            case 1: {
+                NSArray *assemblies = [self appDelegate].semanticWikiAssemblies;
+                JSONAssembly *currentAssembly = [assemblies objectAtIndex:indexPath.row];
+                NSLog( @"ASSEMBLY: %@", currentAssembly );
+                cell.textLabel.text = [NSString stringWithFormat:@"%@",[currentAssembly.label placeHolderWhenEmpty:@"<title>"]];
+                cell.detailTextLabel.text = [NSString stringWithFormat:LOC( @"%i Plätze: %@" ), currentAssembly.numLectureSeats, [NSString placeHolder:@"<description>" forEmptyString:currentAssembly.abstract]];
+                cell.accessoryView = [currentAssembly isFavourite] ? [ColoredAccessoryView checkmarkViewWithColor:[self themeColor]] : [ColoredAccessoryView disclosureIndicatorViewWithColor:[self themeColor]];
+                break;
+            }
+                
+            default:
+                break;
         }
-
-        case 1: {
-            NSArray *assemblies = [self appDelegate].semanticWikiAssemblies;
-            JSONAssembly *currentAssembly = [assemblies objectAtIndex:indexPath.row];
-            NSLog( @"ASSEMBLY: %@", currentAssembly );
-            cell.textLabel.text = [NSString stringWithFormat:@"%@",[currentAssembly.label placeHolderWhenEmpty:@"<title>"]];
-            cell.detailTextLabel.text = [NSString stringWithFormat:LOC( @"%i Plätze: %@" ), currentAssembly.numLectureSeats, [NSString placeHolder:@"<description>" forEmptyString:currentAssembly.abstract]];
-            cell.accessoryView = [currentAssembly isFavourite] ? [ColoredAccessoryView checkmarkViewWithColor:[self themeColor]] : [ColoredAccessoryView disclosureIndicatorViewWithColor:[self themeColor]];
-            break;
-        }
-
-        default:
-            break;
     }
     return cell;
 }
@@ -231,6 +259,18 @@
         [self.navigationController pushViewController:detailViewController animated:YES];
         [detailViewController release];
     }
+}
+
+
+#pragma mark - UISearchBarDelegate
+
+- (NSArray*) allSearchableItems {
+    // ATTN: NEEDS TO BE OVERRIDDEN IN SUBCLASS TO HAVE SEARCH WORKING
+    NSMutableSet *set = [NSMutableSet setWithArray:[self appDelegate].semanticWikiAssemblies];
+    [set addObjectsFromArray:[self appDelegate].semanticWikiWorkshops];
+    
+    NSArray *array = [set allObjects];
+    return array;
 }
 
 @end

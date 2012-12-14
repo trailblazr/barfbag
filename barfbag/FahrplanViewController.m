@@ -369,6 +369,7 @@
         } else if ( [sectionKey isEqualToString:@"persons"] ) {
             // Person *currentPerson = (Person*)[sectionItems objectAtIndex:indexPath.row];
             // do nothing;
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
         }
     }
 }

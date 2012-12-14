@@ -386,6 +386,9 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
             break;
         }
     }
+    
+    [self.searchDisplayController.searchResultsTableView setBackgroundColor:[self backgroundColor]];
+    [self.searchDisplayController.searchResultsTableView setSeparatorColor:[self darkerColor]];
 
     // [self colorizeViewInSubviews:sb.subviews];
     
@@ -688,13 +691,15 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
 }
 
 - (BOOL) searchBarShouldBeginEditing:(UISearchBar *)searchBar {
-    return NO;
+    [self.searchDisplayController.searchResultsTableView setBackgroundColor:[self backgroundColor]];
+    [self.searchDisplayController.searchResultsTableView setSeparatorColor:[self darkerColor]];
+    return YES;
 }
 
 - (void) searchBarTextDidBeginEditing:(UISearchBar *)theSearchBar {
-    self.isSearching = YES;
-    self.isUserAllowedToSelectRow = NO;
-    self.tableView.scrollEnabled = NO;
+    //self.isSearching = YES;
+    //self.isUserAllowedToSelectRow = NO;
+    //self.tableView.scrollEnabled = NO;
 }
 
 - (void) searchBar:(UISearchBar *)theSearchBar textDidChange:(NSString *)searchText {
@@ -758,6 +763,7 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     [self.tableView reloadData];
 }
+
 
 - (void) loadSimpleWebViewWithURL:(NSURL*)url shouldScaleToFit:(BOOL)shouldScaleToFit {
     // LOAD WEBVIEW

@@ -152,12 +152,19 @@
 
 - (NSString*) itemPerson {
     NSMutableString *personsString = [NSMutableString string];
-    if( personOrganizing ) [personsString appendString:personOrganizing];
-    if( contactOrganizing ) {
+    if (personOrganizing && [personOrganizing isKindOfClass:[NSString class]]) [personsString appendString:personOrganizing];
+    else if( personOrganizing && [personOrganizing isKindOfClass:[NSArray class]]) [personsString appendString:[personOrganizing objectAtIndex:0]];
+    if( contactOrganizing && [contactOrganizing isKindOfClass:[NSString class]] ) {
         if( [personsString length] > 0 ) {
             [personsString appendString:@","];
         }
         [personsString appendString:contactOrganizing];
+    }
+    if( contactOrganizing && [contactOrganizing isKindOfClass:[NSArray class]] ) {
+        if( [personsString length] > 0 ) {
+            [personsString appendString:@","];
+        }
+        [personsString appendString:[contactOrganizing objectAtIndex:0]];
     }
     return personsString;
 }
