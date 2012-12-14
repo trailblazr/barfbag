@@ -80,6 +80,9 @@
         if( [currentDict objectForKey:@"switchFailover"] == theSwitch ) {
             [self updateDefaultsForKey:kUSERDEFAULT_KEY_BOOL_FAILOVER withValue:theSwitch.isOn];
         }
+        if( [currentDict objectForKey:@"switchImageUpdates"] == theSwitch ) {
+            [self updateDefaultsForKey:kUSERDEFAULT_KEY_BOOL_IMAGEUPDATE withValue:theSwitch.isOn];
+        }
     }
 }
 
@@ -96,6 +99,11 @@
             [currentSwitch setOn:NO animated:YES];
             [self updateDefaultsForKey:kUSERDEFAULT_KEY_BOOL_FAILOVER withValue:NO];
         }
+        currentSwitch = (UISwitch*)[currentDict objectForKey:@"switchImageUpdates"];
+        if( currentSwitch ) {
+            [currentSwitch setOn:YES animated:YES];
+            [self updateDefaultsForKey:kUSERDEFAULT_KEY_BOOL_IMAGEUPDATE withValue:YES];
+        }
     }
     [[self appDelegate] emptyAllFilesFromFolder:kFOLDER_DOCUMENTS];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAllDataAfterForceReconfig) name:kNOTIFICATION_MASTER_CONFIG_COMPLETED object:nil];
@@ -111,6 +119,13 @@
     switchRefreshDataOnStartup.on = [[self appDelegate] isConfigOnForKey:kUSERDEFAULT_KEY_BOOL_AUTOUPDATE defaultValue:YES];
     [switchRefreshDataOnStartup addTarget:self action:@selector(actionSwitchChanged:) forControlEvents:UIControlEventValueChanged];
     itemEntry = [NSDictionary dictionaryWithObject:switchRefreshDataOnStartup forKey:@"switchAutoUpdate"];
+    [sectionsArray addObject:itemEntry];
+
+    // SWITCH UPDATE IMAGES
+    UISwitch *switchUpdateImagesOnStartup = [[[UISwitch alloc] init] autorelease];
+    switchUpdateImagesOnStartup.on = [[self appDelegate] isConfigOnForKey:kUSERDEFAULT_KEY_BOOL_IMAGEUPDATE defaultValue:YES];
+    [switchUpdateImagesOnStartup addTarget:self action:@selector(actionSwitchChanged:) forControlEvents:UIControlEventValueChanged];
+    itemEntry = [NSDictionary dictionaryWithObject:switchUpdateImagesOnStartup forKey:@"switchImageUpdates"];
     [sectionsArray addObject:itemEntry];
 
     // SWITCH PERMANENT FAILOVER
@@ -264,6 +279,14 @@
         }
 
         case 1: {
+            uiElement = [currentDict objectForKey:@"switchImageUpdates"];
+            cell.textLabel.text = LOC( @"Bilderupdate" );
+            cell.detailTextLabel.text = LOC( @"Aktualisiere auch alle Bilder" );
+            cell.accessoryView = uiElement;
+            break;
+        }
+
+        case 2: {
             uiElement = [currentDict objectForKey:@"switchFailover"];
             cell.textLabel.text = LOC( @"Failover" );
             cell.detailTextLabel.text = LOC( @"Backup-Server aktivieren" );
@@ -271,14 +294,14 @@
             break;
         }
 
-        case 2:
+        case 3:
             uiElement = [currentDict objectForKey:@"buttonForceReconfig"];
             cell.textLabel.text = LOC( @"Force Reconfigure" );
             cell.detailTextLabel.text = LOC( @"Basiskonfiguration resetten" );
             cell.accessoryView = uiElement;
             break;
 
-        case 3:
+        case 4:
             uiElement = [currentDict objectForKey:@"buttonRefreshAllData"];
             cell.textLabel.text = nil;
             cell.detailTextLabel.text = nil;

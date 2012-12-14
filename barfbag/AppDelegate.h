@@ -51,6 +51,7 @@
 - (void) allDataRefresh;
 - (void) allDataLoadCached;
 
+- (void) barfBagImagesRefresh;
 - (void) barfBagRefresh;
 - (void) barfBagLoadCached;
 - (void) semanticWikiRefresh;

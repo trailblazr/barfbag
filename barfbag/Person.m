@@ -84,9 +84,6 @@
     @catch (NSException *exception) {
         // do nothing
     }
-    if( !imageFetched ) {
-        [self fetchCachedImage];
-    }
     return imageFetched;
 }
 

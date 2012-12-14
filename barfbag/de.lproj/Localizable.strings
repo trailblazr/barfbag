@@ -115,4 +115,6 @@
 "Failover" = "Datenquelle";
 "Backup-Server aktivieren" = "Backupserver permanent verwenden";
 "Update All Data" = "Alle Daten jetzt aktualisieren...";
+"Bilderupdate" = "Bilder";
+"Aktualisiere auch alle Bilder" = "Aktualisiere auch alle Bilder";
 

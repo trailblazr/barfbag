@@ -452,7 +452,7 @@
     [self videoStreamsFetchContentWithUrlString:[[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_STREAMS]];
 }
 
-#pragma mark - Fetching, Caching & Parsing of XML (semantic wiki)
+#pragma mark - Fetching, Caching & Parsing of JSON (semantic wiki)
 
 -(void) semanticWikiFillCached:(BOOL)isCachedContent {
     NSFileManager *fm = [NSFileManager defaultManager];
@@ -599,6 +599,19 @@
     [self semanticWikiFetchAllData];
 }
 
+#pragma mark - Fetching & Caching of Images (pentabarf data)
+
+- (void) barfBagImagesRefresh {
+    [self showHudWithCaption:LOC( @"Aktualisiere Bilder" ) hasActivity:YES];
+    NSArray *allPersons = [self conference].allPersons;
+    if( allPersons && [allPersons count] > 0 ) {
+        for( Person *currentPerson in allPersons ) {
+            [currentPerson fetchCachedImage];
+        }
+    }
+    [self hideHud];
+}
+
 #pragma mark - Fetching, Caching & Parsing of XML (pentabarf data)
 
 // BarfBagParserDelegate
@@ -651,6 +664,11 @@
     if( DEBUG ) NSLog( @"BARFBAG: PARSING COMPLETED." );
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_PARSER_COMPLETED object:self];
     [self hideHud];
+
+    // FETCH IMAGES IF USER CHOSE TO
+    if( [self isConfigOnForKey:kUSERDEFAULT_KEY_BOOL_IMAGEUPDATE defaultValue:YES] ) {
+        [self barfBagImagesRefresh];
+    }
 }
 
 - (NSString*) barfBagCurrentDataVersion {

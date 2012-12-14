@@ -21,5 +21,6 @@
 - (NSString*) pngIconHref;
 - (NSString*) personIdKey;
 - (UIImage*) cachedImage;
+- (void) fetchCachedImage;
 
 @end

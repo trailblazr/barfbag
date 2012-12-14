@@ -114,5 +114,7 @@
 "Failover" = "Datasource";
 "Backup-Server aktivieren" = "Use Backupserver permanently";
 "Update All Data" = "Refresh all data now...";
+"Bilderupdate" = "Images";
+"Aktualisiere auch alle Bilder" = "Refresh also images of persons";
 
 
