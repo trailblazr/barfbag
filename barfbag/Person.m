@@ -68,6 +68,13 @@
                 }
                 else {
                     if( DEBUG ) NSLog( @"PERSON IMAGE: BINARY SAVING SUCCEEDED." );
+                    @try {
+                        NSString *imageFilePath = [NSString stringWithFormat:@"%@/%@", kFOLDER_DOCUMENTS ,[self imageName]];
+                        self.imageInMemory = [UIImage imageWithData:[NSData dataWithContentsOfFile:imageFilePath]];
+                    }
+                    @catch (NSException *exception) {
+                        // do nothing
+                    }
                 }
             }
         }
@@ -83,8 +90,9 @@
 }
 
 - (UIImage*) cachedImage {
-    NSString *imageFilePath = [NSString stringWithFormat:@"%@/%@", kFOLDER_DOCUMENTS ,[self imageName]];
+    if( imageInMemory ) return imageInMemory;
     @try {
+        NSString *imageFilePath = [NSString stringWithFormat:@"%@/%@", kFOLDER_DOCUMENTS ,[self imageName]];
         self.imageInMemory = [UIImage imageWithData:[NSData dataWithContentsOfFile:imageFilePath]];
     }
     @catch (NSException *exception) {
