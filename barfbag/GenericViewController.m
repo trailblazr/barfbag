@@ -96,6 +96,8 @@
 }
 
 - (void) showActivityIndicator {
+    [[self appDelegate] showHudWithCaption:LOC( @"Laden..." ) hasActivity:YES];
+    /*
     UIActivityIndicatorView *spinner = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
     CGFloat height = self.navigationController.navigationBar.bounds.size.height;
     UIView *containerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 50.0, height)] autorelease];
@@ -110,14 +112,18 @@
     } completion:^(BOOL finished) {
         //
     }];
+     */
 }
 
 - (void) hideActivityIndicator {
+    [[self appDelegate] hideHud];
+    /*
     [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.navigationItem.leftBarButtonItem = nil;
     } completion:^(BOOL finished) {
         //
     }];
+     */
 }
 
 #pragma mark - Headup Display Management

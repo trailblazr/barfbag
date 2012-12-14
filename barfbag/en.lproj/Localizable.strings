@@ -102,7 +102,7 @@
 "Optionen" = "Not my department";
 "Autoupdate" = "Autoupdate";
 "Aktualisiere alle Daten beim Start" = "Refresh data every 30 minutes";
-"created in 2012 by trailblazr\nwith some help & code of plaetzchen" = "created in 2012 by trailblazr\nwith some help & code of plaetzchen\nand server & unix hack's by bithopper";
+"created in 2012 by trailblazr\nwith some help & code of plaetzchen" = "App created in 2012 by trailblazr\nwith some help & code of plaetzchen\nand server & unix hack's by bithopper";
 "Reconfig" = "Reset";
 "Force Reconfigure" = "Factory Settings";
 "Basiskonfiguration resetten" = "Reset all (Favourites are kept!)";

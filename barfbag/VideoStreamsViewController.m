@@ -39,10 +39,12 @@
 - (void) actionUpdateDisplayAfterRefresh {
     [self actionRefreshStreamHtml];
     self.navigationItem.rightBarButtonItem.enabled = YES;
+    self.navigationItem.leftBarButtonItem.enabled = videoStreamsWebView.canGoBack;
 }
 
 - (void) actionRefreshStreamHtml {
     self.navigationItem.rightBarButtonItem.enabled = NO;
+    self.navigationItem.leftBarButtonItem.enabled = videoStreamsWebView.canGoBack;
     NSString *cachedRemoteHtml = [self appDelegate].videoStreamsHtml;
     if( cachedRemoteHtml && [cachedRemoteHtml length] > 0 ) {
         videoStreamsWebView.scalesPageToFit = NO;
@@ -59,6 +61,10 @@
     [super viewDidLoad];
     UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionRefreshData)] autorelease];
     self.navigationItem.rightBarButtonItem = item;
+
+    UIBarButtonItem *itemBack = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"arrow_left_white.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(actionRefreshStreamHtml)] autorelease];
+    self.navigationItem.leftBarButtonItem = itemBack;
+    self.navigationItem.leftBarButtonItem.enabled = videoStreamsWebView.canGoBack;
 
     self.navigationItem.title = LOC( @"29C3 Livestreams" );
     videoStreamsWebView.opaque = NO;
@@ -81,15 +87,17 @@
 
 - (void) webViewDidFinishLoad:(UIWebView *)webView {
     self.navigationItem.rightBarButtonItem.enabled = YES;
+    self.navigationItem.leftBarButtonItem.enabled = videoStreamsWebView.canGoBack;
     [self hideActivityIndicator];
 }
 
 - (void) webViewDidStartLoad:(UIWebView *)webView {
     [self showActivityIndicator];
+    self.navigationItem.leftBarButtonItem.enabled = videoStreamsWebView.canGoBack;
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    [self hideActivityIndicator];
+    self.navigationItem.leftBarButtonItem.enabled = videoStreamsWebView.canGoBack;
     BOOL shouldShowAlert = NO;
     NSString *errorString = nil;
     if( error ) {
@@ -106,6 +114,7 @@
         NSString *message = [NSString stringWithFormat:LOC( @"Videostreams konnten nicht erfolgreich geladen werden. %@" ), errorString];
         [self alertWithTag:0 title:LOC( @"Problem" ) andMessage:message];
     }
+    [self hideActivityIndicator];
 }
 
 @end

@@ -179,9 +179,12 @@
 	[[self navigationController] dismissModalViewControllerAnimated:YES];
 	switch (result) {
 		case MFMailComposeResultCancelled: {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"E-Mail" message:@"Versenden der E-Mail wurde unterbrochen/abgebrochen!" delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
-            [alert show];
-            [alert release];
+            BOOL shouldSHowAlert = NO;
+            if( shouldSHowAlert ) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"E-Mail" message:@"Versenden der E-Mail wurde unterbrochen/abgebrochen!" delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
+                [alert show];
+                [alert release];
+            }
 			break;
         }
             
