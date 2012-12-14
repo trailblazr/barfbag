@@ -62,6 +62,8 @@
 - (void) computeCachedProperties;
 
 - (NSArray*) allEvents;
+- (NSArray*) allPersons;
+- (NSArray*) allLinks;
 - (NSArray*) eventsWithProperty:(NSString*)property matchingValue:(NSString*)value;
 
 - (NSArray*) eventsForTrack:(NSString*)track;

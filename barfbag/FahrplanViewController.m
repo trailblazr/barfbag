@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 appdoctors. All rights reserved.
 //
 
-#import "EventsViewController.h"
+#import "FahrplanViewController.h"
 #import "AppDelegate.h"
 #import "Conference.h"
 #import "Day.h"
@@ -14,9 +14,14 @@
 #import "AppDelegate.h"
 #import "EventDetailViewController.h"
 
-@implementation EventsViewController
+@implementation FahrplanViewController
+
+@synthesize sectionKeys;
+@synthesize sectionArrays;
 
 - (void) dealloc {
+    self.sectionKeys = nil;
+    self.sectionArrays = nil;
     [super dealloc];
 }
 
@@ -76,6 +81,33 @@
 }
 
 - (void) actionUpdateDisplayAfterRefresh {
+    // SETUP DATA
+    self.sectionArrays = [NSMutableDictionary dictionary];
+    NSMutableArray *neededSectionKeys = [NSMutableArray array];
+    
+    NSArray *days = [[self conference] days];
+    NSInteger indexDay = 0;
+    NSString *currentDayKey = nil;
+    for( Day *currentDay in days ) {
+        currentDayKey = [NSString stringWithFormat:@"day%i", indexDay];
+        [neededSectionKeys addObject:currentDayKey];
+        [sectionArrays setObject:currentDay.events forKey:currentDayKey];
+        indexDay++;
+    }
+    
+    if( [[self conference].allLinks count] > 0 ) {
+        [neededSectionKeys addObject:@"links"];
+        [sectionArrays setObject:[self conference].allLinks forKey:@"links"];
+    }
+
+    if( [[self conference].allPersons count] > 0 ) {
+        [neededSectionKeys addObject:@"persons"];
+        [sectionArrays setObject:[self conference].allPersons forKey:@"persons"];
+    }
+
+    self.sectionKeys = [NSArray arrayWithArray:neededSectionKeys];
+
+    
     [self.tableView reloadData];
     [self updateNavigationTitle];
     self.navigationItem.rightBarButtonItem.enabled = YES;
@@ -124,6 +156,8 @@
     versionLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.tableView.tableFooterView = footerView;
+    
+    [self actionUpdateDisplayAfterRefresh];
     /*
     UIImage *searchFieldBackgroundImage = [self imageGradientWithSize:self.searchDisplayController.searchBar.bounds.size color1:[self themeColor] color2:[self darkColor]];
 ;
@@ -149,9 +183,19 @@
         return [NSString stringWithFormat:LOC( @"%i Treffer" ), [searchItemsFiltered count] ];
     }
     else {
-        NSArray *days = [[self conference] days];
-        Day *currentDay = [days objectAtIndex:section];
-        return [NSString stringWithFormat:LOC( @"%@  –  %i Events" ),[self stringShortDayForDate:currentDay.date], [currentDay.events count]];
+        NSString *sectionKey = [sectionKeys objectAtIndex:section];
+        NSArray *itemArray = [sectionArrays objectForKey:sectionKey];
+        if( [sectionKey isEqualToString:@"links"] ) {
+            return [NSString stringWithFormat:LOC( @"%i Links" ), [itemArray count]];
+        }
+        else if([sectionKey isEqualToString:@"persons"] ) {
+            return [NSString stringWithFormat:LOC( @"%i Persons" ), [itemArray count]];
+        }
+        else { // day1, day2
+            NSArray *days = [[self conference] days];
+            Day *currentDay = [days objectAtIndex:section];
+            return [NSString stringWithFormat:LOC( @"%@  –  %i Events" ),[self stringShortDayForDate:currentDay.date], [itemArray count]];
+        }
     }
 }
 
@@ -160,7 +204,7 @@
         return 1;
     }
     else {
-        return [[[self conference] days] count];
+        return [sectionKeys count];
     }
 }
 
@@ -169,14 +213,12 @@
         return [searchItemsFiltered count];
     }
     else {
-        NSArray *days = [[self conference] days];
-        Day *currentDay = [days objectAtIndex:section];
-        return [[currentDay events] count];
+        NSString *sectionKey = [sectionKeys objectAtIndex:section];
+        return [[sectionArrays objectForKey:sectionKey] count];
     }
 }
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -204,20 +246,45 @@
          */
         cell.accessoryView = nil;
     }
-    
+    cell.accessoryView = nil;
     // Configure the cell...
-    Event *currentEvent = nil;
-    if( isSearching ) {
-        currentEvent = [searchItemsFiltered objectAtIndex:indexPath.row];
+    NSString *sectionKey = [sectionKeys objectAtIndex:indexPath.section];
+    NSArray *sectionItems = [sectionArrays objectForKey:sectionKey];
+
+    if( [sectionKey containsString:@"day"] ) {
+        Event *currentEvent = nil;
+        if( isSearching ) {
+            currentEvent = [searchItemsFiltered objectAtIndex:indexPath.row];
+        }
+        else {
+            currentEvent = (Event*)[sectionItems objectAtIndex:indexPath.row];
+        }
+        // NSLog( @"EVENT: %@", currentEvent );
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",[currentEvent.start placeHolderWhenEmpty:@"<start>"], [currentEvent.title placeHolderWhenEmpty:@"<title>"]];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@",[currentEvent.track placeHolderWhenEmpty:@"<track>"], [currentEvent.subtitle placeHolderWhenEmpty:@"<subtitle>"]];
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
-    else {
-        NSArray *days = [[self conference] days];
-        Day *currentDay = [days objectAtIndex:indexPath.section];
-        currentEvent = [currentDay.events objectAtIndex:indexPath.row];
+    else if( [sectionKey isEqualToString:@"links"] ) {
+        Link *currentLink = (Link*)[sectionItems objectAtIndex:indexPath.row];
+        cell.textLabel.text = [NSString placeHolder:@"" forEmptyString:currentLink.title];
+        cell.detailTextLabel.text = [NSString placeHolder:@"" forEmptyString:currentLink.href];
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
-    // NSLog( @"EVENT: %@", currentEvent );
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",[currentEvent.start placeHolderWhenEmpty:@"<start>"], [currentEvent.title placeHolderWhenEmpty:@"<title>"]];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@",[currentEvent.track placeHolderWhenEmpty:@"<track>"], [currentEvent.subtitle placeHolderWhenEmpty:@"<subtitle>"]];
+    else if( [sectionKey isEqualToString:@"persons"] ) {
+        Person *currentPerson = (Person*)[sectionItems objectAtIndex:indexPath.row];
+        cell.textLabel.text = [NSString placeHolder:@"" forEmptyString:currentPerson.personName];
+        cell.detailTextLabel.text = [NSString placeHolder:@"" forEmptyString:currentPerson.personIdKey];
+        UIImageView *personImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 40.0, 40.0)];
+        personImageView.backgroundColor = [self darkColor];
+        personImageView.image = [currentPerson cachedImage];
+        personImageView.contentMode = UIViewContentModeScaleAspectFill;
+        personImageView.layer.cornerRadius = 7.0;
+        personImageView.layer.masksToBounds = YES;
+        personImageView.layer.borderColor = [[self darkerColor] colorWithAlphaComponent:0.3].CGColor;
+        personImageView.layer.borderWidth = 1.0;
+        cell.accessoryView = personImageView;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
     
     return cell;
 }
@@ -264,22 +331,39 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    EventDetailViewController *detailViewController = [[EventDetailViewController alloc] initWithNibName:@"EventDetailViewController" bundle:nil];
+    NSString *sectionKey = [sectionKeys objectAtIndex:indexPath.section];
+    NSArray *sectionItems = [sectionArrays objectForKey:sectionKey];
+
     if( isSearching ) {
+        EventDetailViewController *detailViewController = [[EventDetailViewController alloc] initWithNibName:@"EventDetailViewController" bundle:nil];
         Event *currentEvent = [searchItemsFiltered objectAtIndex:indexPath.row];
         Day *currentDay = currentEvent.day;
         detailViewController.day = currentDay;
         detailViewController.event = currentEvent;
+        [self.navigationController pushViewController:detailViewController animated:YES];
+        [detailViewController release];
     }
     else {
-        NSArray *days = [[self conference] days];
-        Day *currentDay = [days objectAtIndex:indexPath.section];
-        Event *currentEvent = [currentDay.events objectAtIndex:indexPath.row];
-        detailViewController.day = currentDay;
-        detailViewController.event = currentEvent;
+        if( [sectionKey containsString:@"day"] ) {
+            EventDetailViewController *detailViewController = [[EventDetailViewController alloc] initWithNibName:@"EventDetailViewController" bundle:nil];
+            NSArray *days = [[self conference] days];
+            Day *currentDay = [days objectAtIndex:indexPath.section];
+            Event *currentEvent = [currentDay.events objectAtIndex:indexPath.row];
+            detailViewController.day = currentDay;
+            detailViewController.event = currentEvent;
+            [self.navigationController pushViewController:detailViewController animated:YES];
+            [detailViewController release];
+        } else if ( [sectionKey isEqualToString:@"links"] ) {
+            Link *currentLink = (Link*)[sectionItems objectAtIndex:indexPath.row];
+            if( currentLink.href ) {
+                NSURL *linkUrl = [NSURL URLWithString:[currentLink.href httpUrlString]];
+                [self loadSimpleWebViewWithURL:linkUrl shouldScaleToFit:YES];
+            }
+        } else if ( [sectionKey isEqualToString:@"persons"] ) {
+            // Person *currentPerson = (Person*)[sectionItems objectAtIndex:indexPath.row];
+            // do nothing;
+        }
     }
-    [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
 }
 
 #pragma mark - UISearchBarDelegate

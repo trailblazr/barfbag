@@ -121,6 +121,34 @@
     return [NSArray arrayWithArray:allEvents];
 }
 
+- (NSArray*) allPersons {
+    NSMutableArray *allPersons = [NSMutableArray array];
+    NSArray *events = [self allEvents];
+    for( Event* currentEvent in events ) {
+        [allPersons addObjectsFromArray:currentEvent.persons];
+    }
+    NSMutableDictionary *personsUniqueDictionary = [NSMutableDictionary dictionary];
+    for( Person* currentPerson in allPersons ) {
+        [personsUniqueDictionary setObject:currentPerson forKey:currentPerson.personIdKey];
+    }
+    return [NSArray arrayWithArray:[personsUniqueDictionary allValues]];
+}
+
+- (NSArray*) allLinks {
+    NSMutableArray *allLinks = [NSMutableArray array];
+    NSArray *events = [self allEvents];
+    for( Event* currentEvent in events ) {
+        [allLinks addObjectsFromArray:currentEvent.links];
+    }
+    NSMutableDictionary *linksUniqueDictionary = [NSMutableDictionary dictionary];
+    for( Link* currentLink in allLinks ) {
+        if( currentLink.href && [currentLink.href length] > 0 ) {
+            [linksUniqueDictionary setObject:currentLink forKey:currentLink.href];
+        }
+    }
+    return [NSArray arrayWithArray:[linksUniqueDictionary allValues]];
+}
+
 - (void) computeCachedProperties {
 
     self.cachedAvailableTracks = [NSMutableArray array];

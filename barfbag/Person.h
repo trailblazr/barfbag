@@ -19,5 +19,7 @@
 @property(nonatomic, retain) NSString *personName; //       <person id="5">Alien8</person>
 
 - (NSString*) pngIconHref;
+- (NSString*) personIdKey;
+- (UIImage*) cachedImage;
 
 @end

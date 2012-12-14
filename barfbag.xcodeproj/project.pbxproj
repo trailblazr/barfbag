@@ -59,8 +59,8 @@
 		8F754B07166C221600F74DBB /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B03166C221600F74DBB /* settings@2x.png */; };
 		8F754B0B166C22A100F74DBB /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B09166C22A100F74DBB /* WelcomeViewController.m */; };
 		8F754B0C166C22A100F74DBB /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B0A166C22A100F74DBB /* WelcomeViewController.xib */; };
-		8F754B14166C279800F74DBB /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B12166C279800F74DBB /* EventsViewController.m */; };
-		8F754B15166C279800F74DBB /* EventsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B13166C279800F74DBB /* EventsViewController.xib */; };
+		8F754B14166C279800F74DBB /* FahrplanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B12166C279800F74DBB /* FahrplanViewController.m */; };
+		8F754B15166C279800F74DBB /* FahrplanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B13166C279800F74DBB /* FahrplanViewController.xib */; };
 		8F754B1B166C2B5C00F74DBB /* ConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B19166C2B5C00F74DBB /* ConfigurationViewController.m */; };
 		8F754B1C166C2B5C00F74DBB /* ConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754B1A166C2B5C00F74DBB /* ConfigurationViewController.xib */; };
 		8F754B24166C2F0800F74DBB /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F754B23166C2F0800F74DBB /* UIColor-Expanded.m */; };
@@ -230,9 +230,9 @@
 		8F754B08166C22A100F74DBB /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		8F754B09166C22A100F74DBB /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		8F754B0A166C22A100F74DBB /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
-		8F754B11166C279800F74DBB /* EventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsViewController.h; sourceTree = "<group>"; };
-		8F754B12166C279800F74DBB /* EventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsViewController.m; sourceTree = "<group>"; };
-		8F754B13166C279800F74DBB /* EventsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsViewController.xib; sourceTree = "<group>"; };
+		8F754B11166C279800F74DBB /* FahrplanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FahrplanViewController.h; sourceTree = "<group>"; };
+		8F754B12166C279800F74DBB /* FahrplanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FahrplanViewController.m; sourceTree = "<group>"; };
+		8F754B13166C279800F74DBB /* FahrplanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FahrplanViewController.xib; sourceTree = "<group>"; };
 		8F754B18166C2B5C00F74DBB /* ConfigurationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationViewController.h; sourceTree = "<group>"; };
 		8F754B19166C2B5C00F74DBB /* ConfigurationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurationViewController.m; sourceTree = "<group>"; };
 		8F754B1A166C2B5C00F74DBB /* ConfigurationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigurationViewController.xib; sourceTree = "<group>"; };
@@ -698,9 +698,9 @@
 				8F1663CF16750566003347EA /* Event Detail */,
 				8F754AF6166C1F4300F74DBB /* ScheduleNavigationController.h */,
 				8F754AF7166C1F4300F74DBB /* ScheduleNavigationController.m */,
-				8F754B11166C279800F74DBB /* EventsViewController.h */,
-				8F754B12166C279800F74DBB /* EventsViewController.m */,
-				8F754B13166C279800F74DBB /* EventsViewController.xib */,
+				8F754B11166C279800F74DBB /* FahrplanViewController.h */,
+				8F754B12166C279800F74DBB /* FahrplanViewController.m */,
+				8F754B13166C279800F74DBB /* FahrplanViewController.xib */,
 			);
 			name = Fahrplan;
 			sourceTree = "<group>";
@@ -1060,7 +1060,7 @@
 				8F754B06166C221600F74DBB /* settings.png in Resources */,
 				8F754B07166C221600F74DBB /* settings@2x.png in Resources */,
 				8F754B0C166C22A100F74DBB /* WelcomeViewController.xib in Resources */,
-				8F754B15166C279800F74DBB /* EventsViewController.xib in Resources */,
+				8F754B15166C279800F74DBB /* FahrplanViewController.xib in Resources */,
 				8F754B1C166C2B5C00F74DBB /* ConfigurationViewController.xib in Resources */,
 				8F754BC5166EB28C00F74DBB /* VideoStreamsViewController.xib in Resources */,
 				8F754BC8166EB47200F74DBB /* video.png in Resources */,
@@ -1114,7 +1114,7 @@
 				8F754AF9166C1F4300F74DBB /* ScheduleNavigationController.m in Sources */,
 				8F754AFE166C1F6D00F74DBB /* ConfigurationNavigationController.m in Sources */,
 				8F754B0B166C22A100F74DBB /* WelcomeViewController.m in Sources */,
-				8F754B14166C279800F74DBB /* EventsViewController.m in Sources */,
+				8F754B14166C279800F74DBB /* FahrplanViewController.m in Sources */,
 				8F754B1B166C2B5C00F74DBB /* ConfigurationViewController.m in Sources */,
 				8F754B24166C2F0800F74DBB /* UIColor-Expanded.m in Sources */,
 				8F754B2B166C36A100F74DBB /* GenericViewController.m in Sources */,

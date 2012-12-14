@@ -7,7 +7,7 @@
 //
 
 #import "ScheduleNavigationController.h"
-#import "EventsViewController.h"
+#import "FahrplanViewController.h"
 
 @implementation ScheduleNavigationController
 
@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    EventsViewController *controller = [[EventsViewController alloc] initWithNibName:@"EventsViewController" bundle:nil];
+    FahrplanViewController *controller = [[FahrplanViewController alloc] initWithNibName:@"FahrplanViewController" bundle:nil];
     [self pushViewController:controller animated:NO];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:LOC( @"Zurück" ) style:UIBarButtonItemStylePlain target:nil action:nil];
 }
