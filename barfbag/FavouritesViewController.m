@@ -148,6 +148,7 @@
 
     // Configure the cell...
     cell.textLabel.text = currentFavourite.favouriteName;
+    cell.accessoryView = [ColoredAccessoryView disclosureIndicatorViewWithColor:[self themeColor]];
     return cell;
 }
 

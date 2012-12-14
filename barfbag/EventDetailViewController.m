@@ -190,7 +190,7 @@
         cell.textLabel.text = currentLink.title;
         cell.detailTextLabel.text = [currentLink.href httpUrlString];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryView = [ColoredAccessoryView disclosureIndicatorViewWithColor:[self themeColor]];
     }
     return cell;
 }
