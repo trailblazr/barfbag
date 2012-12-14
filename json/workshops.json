@@ -3,95 +3,275 @@
 		"description" : { "valueType": "text" },
 		"start_time" : { "valueType": "date" },
 		"end_time" : { "valueType": "date" },
-		"entry_location" : { "valueType": "text" }
+		"entry_location" : { "valueType": "text" },
+		"person_organizing" : { "valueType": "text" },
+		"orga_contact" : { "valueType": "text" },
+		"duration" : { "valueType": "number" }
 	},
 	"items": [
 		{
+			"label": "Hotel Door Unlocking Kit Assembly",
+			"description": ["In August 2012 Cody Brocious released information on a flaw with Onity HT Hotel Room lock. He described the software and hardware needed to trigger the door to open.\nSee here for the slides:\nhttp:\/\/demoseen.com\/bhtalk2.pdf\n\nThe locks, cards and programmer all contain encryption and formerly secret protocols. We will discuss these and try to improve on the public information available.\nThe workshop will consist of an overview of how the locking system works, followed by soldering a simple kit that enables instant opening of any flawed door.\n\nThere will also be a working lock brought along with valid room cards. We can also look at the software and encryption and discuss further tests and possible flaws and fixes."],
+			"start_time": ["2012-12-28 16:00:00"],
+			"end_time": ["2012-12-28 18:00:00"],
+			"entry_location": ["Hardware Hacking Area"],
+			"person_organizing": ["User:HexF"],
+			"orga_contact": ["HexF@gmx.com"],
+			"duration": [120]
+		},
+		{
+			"label": "Hotel door unlocking",
+			"description": ["HexF  \nCan I move my hotel door unlocking to Hall 13th instead of the hardware hacking area, at the same time (28 December 2012 16:00:00) \nI attempted to edit the calendar for Hall 13 but could not. Thanks in advance"],
+			"start_time": ["2012-12-28 16:00:00"],
+			"end_time": ["2012-12-28 18:00:00"],
+			"entry_location": ["Hall 13"],
+			"person_organizing": ["HexF"],
+			"orga_contact": ["hexf@gmx.com"],
+			"duration": [120]
+		},
+		{
+			"label": "How exactly are we changing the world?",
+			"description": ["We're confident mass collaboration projects can change the world and are actually doing it. But How exactly? This is the question we want to discuss in this panel."],
+			"start_time": ["2012-12-30 13:00:00"],
+			"end_time": ["2012-12-30 14:00:00"],
+			"entry_location": ["Mass collaboration"],
+			"person_organizing": ["User:Lydia Pintscher"],
+			"orga_contact": ["lydia.pintscher@wikimedia.de"],
+			"duration": [60]
+		},
+		{
+			"label": "Knitting Hidden Images",
+			"description": ["A special but simple knitting process effectuates stunning images if viewed from an angle. Looking directly at the illusion knitting you only notice secret stripes.\nAny garment from wristwarmers, scarfs, headwear or pad covers, mobile socks etc. can be designed with a hidden image. You can even \"write\" an 'encrypted' message on a scarf, i.e. \nLearn how to design and knit your own motive."],
+			"start_time": ["2012-12-28 19:30:00"],
+			"end_time": ["2012-12-28 22:30:00"],
+			"entry_location": ["CCC Freiburg"],
+			"person_organizing": ["User:Medusa"],
+			"orga_contact": ["ccc_knittingmessages@gmx.de"],
+			"duration": [180]
+		},
+		{
+			"label": "Mass collaboration and recruiting",
+			"description": ["This is an invitation to other projects to exchange experiences regarding \"community building\": How do you keep contributors motivated? What do you do to recruit new ones? What problems do you encounter? Do other projects have solutions or ideas? Do you target special persons or groups to win them as contributors? How many face-to-face meetings exist in your projects and what's their benefit? Your questions for discussion here...\n\nPlease put notify us if you would like to participate in the discussion!"],
+			"start_time": ["2012-12-28 14:00:00"],
+			"end_time": ["2012-12-28 15:00:00"],
+			"entry_location": ["Mass collaboration"],
+			"person_organizing": ["User:Lydia Pintscher"],
+			"orga_contact": ["lydia.pintscher@wikimedia.de"],
+			"duration": [60]
+		},
+		{
+			"label": "OpenBTS workshop",
+			"description": ["What is OpenBTS and how to run it. More details to be added later."],
+			"start_time": ["2012-12-29 16:00:00"],
+			"end_time": ["2012-12-29 19:00:00"],
+			"entry_location": ["Hall 13"],
+			"person_organizing": ["User:Ipse"],
+			"orga_contact": ["Alexander.Chemeris@gmail.com"],
+			"duration": [180]
+		},
+		{
+			"label": "Podcaster Workshop",
+			"description": ["In diesem Workshop soll es um die aktuellen Entwicklungen bei der Produktion, der Publikation und der Distribution von Podcasts gehen. Als Co-Referent wird Tim Pritlove das Podlove-Projekt vorstellen."],
+			"start_time": ["2012-12-29 15:00:00"],
+			"end_time": ["2012-12-29 17:00:00"],
+			"entry_location": ["Hall 14"],
+			"person_organizing": ["Tim Pritlove und Alexander Waschkau"],
+			"orga_contact": ["info@hoaxilla.de"],
+			"duration": [120]
+		},
+		{
+			"label": "Probiotic kefir making",
+			"description": ["Introduction to concept of probiotics and hands on workshop on how to make your own lovely and healthy kefir!"],
+			"start_time": ["2012-12-27 14:00:00"],
+			"end_time": ["2012-12-27 16:00:00"],
+			"entry_location": ["Hall 12"],
+			"person_organizing": ["User:Algoldor"],
+			"orga_contact": ["algoldor@yahoo.com"],
+			"duration": [120]
+		},
+		{
+			"label": "RIPE Atlas probe for hackerspaces",
+			"description": ["I am a Community Builder for RIPE Atlas and organiser of '''hacker spaces exchange''' workshop at 29c3.\n\nMy goal is to have one RIPE Atlas probe installed in every hackerspace -- combining work and pleasure\nIf you want a RIPE Atlas probe, come see me, and have a chat with other people who have the same interests.\nhttps:\/\/atlas.ripe.net"],
+			"start_time": ["2012-12-27 18:30:00"],
+			"end_time": ["2012-12-27 19:00:00"],
+			"entry_location": ["Hall 13"],
+			"person_organizing": ["User:Becha"],
+			"orga_contact": ["becha@xs4all.nl"],
+			"duration": [30]
+		},
+		{
+			"label": "Reading and using German Health Cards",
+			"description": ["Data structures of German health cards. How to find social security status and chonic disease information on healthcards. Current and future applications of health cards. How to act if obliged to use a health card. \n\nHaving a simple chip card reader is a plus."],
+			"start_time": ["2012-12-29 20:00:00"],
+			"end_time": ["2012-12-29 21:00:00"],
+			"entry_location": ["Hall 13"],
+			"person_organizing": ["User:Novider"],
+			"orga_contact": ["kuhlmann@kuhlsite.de"],
+			"duration": [60]
+		},
+		{
+			"label": "SMT soldering workshop",
+			"description": ["Learn how SMT soldering can be done at your hackerspace with *very* little effort"],
+			"start_time": ["2012-12-27 15:00:00"],
+			"end_time": ["2012-12-27 17:00:00"],
+			"entry_location": ["Hall 13"],
+			"person_organizing": ["User:Overflo"],
+			"orga_contact": ["29C3@hackerspaceshop.com"],
+			"duration": [120]
+		},
+		{
 			"label": "SMT soldering workshop day2",
 			"description": ["Learn how SMT soldering can be done at your hackerspace with *very* little effort"],
-			"start_time": ["2012-12-28 18:00:00"],
-			"end_time": ["2012-12-28 19:30:00"],
-			"entry_location": ["Hardware Hacking Area"]
+			"start_time": ["2012-12-28 15:00:00"],
+			"end_time": ["2012-12-28 17:00:00"],
+			"entry_location": ["Hall 13"],
+			"person_organizing": ["User:Overflo"],
+			"orga_contact": ["29C3@hackerspaceshop.com"],
+			"duration": [120]
 		},
 		{
 			"label": "SQL Injection Workshop - Basics",
 			"description": ["Ziel des Workshops ist es die Teilnehmer hinsichtilich Verwundbarkeit von Webapplikationen zu sensibilisieren"],
 			"start_time": ["2012-12-27 14:00:00"],
 			"end_time": ["2012-12-27 17:00:00"],
-			"entry_location": ["Hall 14"]
+			"entry_location": ["Hall 14"],
+			"person_organizing": ["User:Nieda"],
+			"orga_contact": ["dirty_fighting@gmx.at"],
+			"duration": [180]
 		},
 		{
 			"label": "Sexuelle Beziehungen in Phantasie und Praxis - Vergewaltigung, eine Übung",
 			"description": ["Begriffe richtig deuten: Angesichts der Dikussion um die Klot\u00fcr in der c-base soll der Begriff der \"rape culture\" dem der \"Vergewaltigung\" gegen\u00fcber gestellt werden. Zudem werden Fakten aus der Soziologie und der sexualp\u00e4dagogischen Praxis geliefert. Danach evtl. Ideologiekritik und (troll)feministische Debatte."],
 			"start_time": ["2012-12-28 17:00:00"],
 			"end_time": ["2012-12-28 18:30:00"],
-			"entry_location": ["Speakers Corner"]
+			"entry_location": ["Speakers Corner"],
+			"person_organizing": ["Julia Seeliger"],
+			"duration": [90]
+		},
+		{
+			"label": "SolarRoboFlower workshop",
+			"description": ["Build your SolarRoboFlower with us"],
+			"start_time": ["2012-12-29 15:00:00"],
+			"end_time": ["2012-12-29 17:00:00"],
+			"entry_location": ["Hardware Hacking Area"],
+			"person_organizing": ["User:Overflo"],
+			"orga_contact": ["29C3@hackerspaceshop.com"],
+			"duration": [120]
 		},
 		{
 			"label": "Solder Workshop day1",
 			"description": ["''Learn to solder and make cool things!''&lt;br \/&gt;''All ages, all skill levels, all welcome.''"],
 			"start_time": ["2012-12-27 12:00:00"],
 			"end_time": ["2012-12-27 23:59:00"],
-			"entry_location": ["Hardware Hacking Area"]
+			"entry_location": ["Hardware Hacking Area"],
+			"person_organizing": ["User:Maltman23"],
+			"orga_contact": ["29C3@hackerspaceshop.com"],
+			"duration": [719]
 		},
 		{
 			"label": "Solder Workshop day2",
 			"description": ["''Learn to solder and make cool things!''&lt;br \/&gt;''All ages, all skill levels, all welcome.''"],
 			"start_time": ["2012-12-28 00:00:00"],
 			"end_time": ["2012-12-28 23:59:00"],
-			"entry_location": ["Hardware Hacking Area"]
+			"entry_location": ["Hardware Hacking Area"],
+			"person_organizing": ["User:Maltman23"],
+			"orga_contact": ["29C3@hackerspaceshop.com"],
+			"duration": [1439]
 		},
 		{
 			"label": "Solder Workshop day3",
 			"description": ["''Learn to solder and make cool things!''&lt;br \/&gt;''All ages, all skill levels, all welcome.''"],
 			"start_time": ["2012-12-29 00:00:00"],
 			"end_time": ["2012-12-29 23:59:00"],
-			"entry_location": ["Hardware Hacking Area"]
+			"entry_location": ["Hardware Hacking Area"],
+			"person_organizing": ["User:Maltman23"],
+			"orga_contact": ["29C3@hackerspaceshop.com"],
+			"duration": [1439]
 		},
 		{
 			"label": "Solder Workshop day4",
 			"description": ["''Learn to solder and make cool things!''&lt;br \/&gt;''All ages, all skill levels, all welcome.''"],
 			"start_time": ["2012-12-30 00:00:00"],
 			"end_time": ["2012-12-30 16:00:00"],
-			"entry_location": ["Hardware Hacking Area"]
+			"entry_location": ["Hardware Hacking Area"],
+			"person_organizing": ["User:Maltman23"],
+			"orga_contact": ["29C3@hackerspaceshop.com"],
+			"duration": [960]
+		},
+		{
+			"label": "Tell us about your project",
+			"description": ["People from different projects will introduce their projects, what they're all about and how you can help."],
+			"start_time": ["2012-12-27 17:00:00"],
+			"end_time": ["2012-12-27 18:00:00"],
+			"entry_location": ["Mass collaboration"],
+			"person_organizing": ["User:Lydia Pintscher"],
+			"orga_contact": ["lydia.pintscher@wikimedia.de"],
+			"duration": [60]
+		},
+		{
+			"label": "Tell us about your project 2",
+			"description": ["People from different projects will introduce their projects, what they're all about and how you can help."],
+			"start_time": ["2012-12-29 13:00:00"],
+			"end_time": ["2012-12-29 14:00:00"],
+			"entry_location": ["Mass collaboration"],
+			"person_organizing": ["User:Lydia Pintscher"],
+			"orga_contact": ["lydia.pintscher@wikimedia.de"],
+			"duration": [60]
 		},
 		{
 			"label": "The Power of Names",
 			"description": ["An exploration of identity both online and offline, and suggestions on how to improve on systems such as Google. If time permits, we might also work together to construct an \"ideal identity system.\""],
 			"start_time": ["2012-12-28 17:00:00"],
 			"end_time": ["2012-12-28 18:30:00"],
-			"entry_location": ["Milliways"]
+			"entry_location": ["Milliways"],
+			"person_organizing": ["User:Aestetix"],
+			"orga_contact": ["aestetix@aestetix.com"],
+			"duration": [90]
 		},
 		{
 			"label": "User Credential Handling in Web Applications done right",
+			"description": ["In my daily work, I see the same mistakes done over and over again, when it comes to handling user credentials in web applications. This is a talk about how to handle your users passwords securely using properly salted hashes and key derivation functions. This talk was held first on the #nextweb2012 barcamp in Salzburg. The slides can be found on the link below, but they will get some enhancements until 29c3."],
 			"start_time": ["2012-12-28 16:00:00"],
 			"end_time": ["2012-12-28 17:00:00"],
-			"entry_location": ["Chaostreff Salzburg"]
+			"entry_location": ["Chaostreff Salzburg"],
+			"person_organizing": ["User:Tla"],
+			"duration": [60]
 		},
 		{
 			"label": "Whisky!",
-			"description": ["Second time - let's make this a tradition.\nFor the Whisky (or Whiskey, if you wish) loving nerds, we would like to form a get-together and enjoy some fine specimen in front of a virtual Kaminfeuer (chimney fire) and\/or a stream from one of the talks. If someone wants to give a talk on whisky, thats awesome, too."]
+			"description": ["Second time - let's make this a tradition.\nFor the Whisky (or Whiskey, if you wish) loving nerds, we would like to form a get-together and enjoy some fine specimen in front of a virtual Kaminfeuer (chimney fire) and\/or a stream from one of the talks. If someone wants to give a talk on whisky, thats awesome, too."],
+			"person_organizing": ["User:Blackspear"],
+			"orga_contact": ["martin@blackspear.de"]
 		},
 		{
 			"label": "Young hacker",
 			"description": ["day 3 will be a day with special program for younger hackers. this slot will be a part of it, and will be divided in different talks later. There will be also some workshops at the same time, see assembly."],
 			"start_time": ["2012-12-29 12:00:00"],
 			"end_time": ["2012-12-29 18:00:00"],
-			"entry_location": ["Hall 12"]
+			"entry_location": ["Hall 12"],
+			"person_organizing": ["User:Hauro"],
+			"orga_contact": ["schule@ccc.de"],
+			"duration": [360]
 		},
 		{
 			"label": "Young hacker workshops",
 			"description": ["day 3 will be a day with special program for younger hackers. this slot will be a part of it, and will be divided in different talks later. There will be also some workshops at the same time, see assembly."],
 			"start_time": ["2012-12-29 12:00:00"],
 			"end_time": ["2012-12-29 18:00:00"],
-			"entry_location": ["Speakers Corner"]
+			"entry_location": ["Speakers Corner"],
+			"person_organizing": ["User:Hauro"],
+			"orga_contact": ["schule@ccc.de"],
+			"duration": [360]
 		},
 		{
 			"label": "~friendica",
 			"description": ["bAvatar and heluecht will give a short introduction of ~friendica with a Q'n'A afterwards."],
 			"start_time": ["2012-12-28 16:00:00"],
 			"end_time": ["2012-12-28 17:00:00"],
-			"entry_location": ["Hall 14"]
+			"entry_location": ["Hall 14"],
+			"person_organizing": ["User:BAvatar"],
+			"orga_contact": ["kobayashimaru@quantentunnel.de"],
+			"duration": [60]
 		}
 	]
 }

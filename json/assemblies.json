@@ -2,334 +2,565 @@
 	"properties": {
 		"description" : { "valueType": "text" },
 		"lecture_seats" : { "valueType": "number" },
-		"area" : { "valueType": "text" }
+		"name_of_location" : { "valueType": "text" },
+		"weblink" : { "valueType": "text" },
+		"orga_contact" : { "valueType": "text" },
+		"location_opened_at" : { "valueType": "text" },
+		"planned_workshops" : { "valueType": "text" },
+		"planning_notes" : { "valueType": "text" },
+		"brings_stuff" : { "valueType": "text" },
+		"person_organizing" : { "valueType": "text" }
 	},
 	"items": [
 		{
+			"label": "CCC Ossendorf",
+			"description": ["VIP area for CCCO premium members"],
+			"lecture_seats": [42],
+			"weblink": ["http:\/\/ccc-ossendorf.de"]
+		},
+		{
 			"label": "CCCFFM",
 			"description": ["We are nerds from Chaos Computer Club in Frankfurt and the associated hackquarter."],
-			"lecture_seats": [0]
+			"lecture_seats": [0],
+			"weblink": ["http:\/\/www.ccc-ffm.de"],
+			"brings_stuff": ["nothing out of the ordinary."]
+		},
+		{
+			"label": "Chaos Darmstadt",
+			"description": ["Chaos Darmstadt members and affiliated"],
+			"lecture_seats": [0],
+			"weblink": ["http:\/\/chaos-darmstadt.de\/"],
+			"brings_stuff": ["small things - nothing special"]
 		},
 		{
 			"label": "Chaos macht Schule",
 			"description": ["Workshop-Bereich des \u201eChaos macht Schule\u201c-Projekts"],
-			"lecture_seats": [20]
+			"lecture_seats": [20],
+			"weblink": ["https:\/\/ccc.de\/schule"],
+			"planned_workshops": ["'''Workshops:''' Alarmanlage, Pentabug, Wasserraketen; '''Vortr\u00e4ge:''' noch unklar, 2-4 St\u00fcck je 45 Minuten"],
+			"planning_notes": ["Wir planen, dass aktive CmS-Gruppen ihre Assemblies an einem Platz haben, in den der CmS-Workshop integriert werden kann. Derzeit sind das der C3D2 (Dresden) und der Chaospott (Essen)."],
+			"brings_stuff": ["Mehrere L\u00f6tkolben und anderes Bastelmaterial"]
 		},
 		{
 			"label": "Chaosdorf / CCC Düsseldorf",
 			"description": ["D\u00fcsseldorfer Erfa Kreis. Die n\u00f6rdliche Chaos-Hochburg am Rhein, Ritter des Kampfes gegen die Netzzensur und tolerante Altbiertrinker, trifft sich jeden Freitag ab 18 Uhr in der H\u00fcttenstr. 25 in D\u00fcsseldorf."],
-			"lecture_seats": [25]
+			"lecture_seats": [25],
+			"weblink": ["www.chaosdorf.de"],
+			"planned_workshops": ["Noch in Planung. Wir erwarten 2-3 Workshops a 1-2 Stunden realisieren zu k\u00f6nnen."],
+			"planning_notes": ["Nach M\u00f6glichkeit mit Wand im Nacken f\u00fcr Pesth\u00f6rnchenflage(n) und so ein Zeug. 2x1 Gigabit Uplink zum Kongressnetz, gern mit Routing und\/oder Spanningtree."],
+			"brings_stuff": ["AVR-Programmieradapter,OwnBeer,Matelade,Dev Alpha Devices,Blinkdings1,chaosdoor,Freifunk,diverse Router,LED-Cube,LED-Foo,LED-Bar,Sub-Etha,TinyRGB,Elektronik,Gebetsbox,Hei\u00dfluftl\u00f6tstation,Label Printer,Labornetzteil,Projector\/Beamer,Raspberry Pi,DECT-Telefone(viele),PA-Equipment,DSLRs,LED-Lichtleiste,USB-LED-Lichter,Hyperion(Server),Visualizer(Server),Datania(Server),diverse Notebooks, diverse Tablets, diverse Telefone"]
 		},
 		{
 			"label": "Chaospott",
 			"description": ["Assembly of CCC, Ruhrpott Edition"],
-			"lecture_seats": [10]
+			"lecture_seats": [10],
+			"weblink": ["http:\/\/chaospott.de\/"],
+			"planning_notes": ["Wir sind Teil der \u201eChaos macht Schule\u201c-Assemblies. Der letzte mir (Hauro) bekannte Plan war, dass wir in der N\u00e4he vom CCC Dresden platziert werden sollen, oder an\/in der N\u00e4he der CmS-Workshop-Area. Wir brauchen 15 Pl\u00e4tze, von denen wir einige f\u00fcr die CmS-Workshops r\u00e4umen k\u00f6nnen. (Von der Orga wei\u00df Sva Bescheid, setzt euch ansonsten mit mir (Hauro) in Verbindung.)\n\nDer Platzwunsch des Assemblies ist unser Wunsch, falls das mit der CmS-Planung nicht kollidiert."],
+			"brings_stuff": ["Hackersofa (https:\/\/wiki.die-foobar.org\/wiki\/Hackersofa), Flaggen (1,5x1,5m, 2 St\u00fcck), die \u00fcbliche Hardware"]
 		},
 		{
 			"label": "Chaostreff Dortmund",
 			"description": ["A Hackerspace from Dortmund, Germany"],
-			"lecture_seats": [10]
+			"lecture_seats": [10],
+			"weblink": ["http:\/\/chaostreff-dortmund.de"],
+			"planning_notes": ["am besten nen tisch im erdgeschoss, irgendwo, wo nicht ALLE leute vorbeigeschleust werden"],
+			"brings_stuff": ["many laptops, dmx-led-light-foo and maybe a laser-projector; more to come"]
 		},
 		{
 			"label": "Chaostreff Salzburg",
 			"description": ["Assembly for the local Chaostreff group Salzburg"],
-			"lecture_seats": [10]
+			"lecture_seats": [10],
+			"weblink": ["sbg.chaostreff.at"],
+			"planned_workshops": ["SQL injection workshop for beginners, more workshops tba"]
 		},
 		{
 			"label": "Chaoswelle",
 			"description": ["29C3 Representation of IG Chaoswelle, aka DARC e.V. OV \"Freunde des CCC\", aka D23"],
-			"lecture_seats": [15]
+			"lecture_seats": [15],
+			"weblink": ["www.chaoswelle.de"],
+			"brings_stuff": ["Transceivers, Antennae"]
 		},
 		{
 			"label": "Chaotikum",
 			"description": ["Registered association for setting up a hackerspace in L\u00fcbeck, Germany."],
-			"lecture_seats": [0]
+			"lecture_seats": [0],
+			"weblink": ["www.chaotikum.org","www.metameute.de"]
 		},
 		{
 			"label": "CryptoDotIs",
 			"description": ["Crypto.is is an organization designed to assist and encourage anonymity and encryption research, development, and use.  As part of this goal, we seek to revitalize the Cypherpunk movement and provide better software, security, and anonymity to individuals worldwide."],
-			"lecture_seats": [10]
+			"lecture_seats": [10],
+			"weblink": ["https:\/\/crypto.is\/"],
+			"planned_workshops": ["Maybe not a workshop, but auditing software for bugs? Coding on our codereview system. Discussing various Tor related subjects."],
+			"planning_notes": ["Somewhere where we could have a decent conversation without needing to shout! This would be wonderful."],
+			"brings_stuff": ["Stickers!"]
 		},
 		{
 			"label": "Cryptoparty",
 			"description": ["What is CryptoParty? Interested parties with computers, devices, and the desire to learn to use the most basic crypto programs and the fundamental concepts of their operation! CryptoParties are free to attend, public, and are commercially and politically non-aligned."],
-			"lecture_seats": [10]
+			"lecture_seats": [10],
+			"weblink": ["https:\/\/cryptoparty.org\/","https:\/\/encrypteverything.ca\/"],
+			"planned_workshops": ["Cryptoparty Best Practices\nCryptographic algorithms, protocols and applications, LUKS (Linux Unified Key Setup), TOR (The Onion Router), I2P (Invisible Internet Project), Bitcoin (The Crypto Currency), Redphone (Secure Calls), ..."],
+			"planning_notes": ["Would be great to place us next to CryptoDotIs, Cypherpunk.at and Hackeriet."]
 		},
 		{
 			"label": "Cypherpunk.at",
 			"description": ["We are a loose pack of IT and Internet enthusiasts in Lower Austria. We discuss and do projects related to security and privacy, but not limited do."],
-			"lecture_seats": [2]
+			"lecture_seats": [2],
+			"weblink": ["http:\/\/www.cypherpunk.at\/"],
+			"planned_workshops": ["OnionCat -- Installation\/Usage\/Debugging,\nOSM Data Analysis with Smrender,\nMulti-threaded Programming,\nHacking Android Apps"],
+			"brings_stuff": ["Beamer, notebooks, posters, (not well defined yet)"]
 		},
 		{
 			"label": "DFRI",
 			"description": ["DFRI is a nonprofit organisation working for digital rights."],
-			"lecture_seats": [0]
+			"lecture_seats": [0],
+			"weblink": ["https:\/\/dfri.se\/index.en\/"],
+			"brings_stuff": ["Mostly laptops."]
 		},
 		{
 			"label": "Das Labor",
 			"description": ["Members of the Hackerspace Das Labor"],
-			"lecture_seats": [15]
+			"weblink": ["http:\/\/www.das-labor.org"],
+			"brings_stuff": ["Borgs (https:\/\/www.das-labor.org\/wiki\/Blinken_Borgs), Tesla Coils, Tools"]
 		},
 		{
 			"label": "Debian",
 			"description": ["A home for the Debianistas at 29C3."],
-			"lecture_seats": [30]
+			"lecture_seats": [30],
+			"weblink": ["http:\/\/www.debian.org\/"],
+			"planned_workshops": ["\u00a0\n* Debian packaging for beginners (N.N.)\n* Backporting (N.N.)\n* frab (h01ger)"],
+			"planning_notes": ["We expect people to turn up with laptops and hack on Debian, with occasional introductions into packaging given in between, so the ideal space has tables and is in an area that isn't too noisy to explain things to five people at a time.\n\nInfo is still preliminary, probably more people will volunteer for workshops."],
+			"brings_stuff": ["lots of laptops for local hacking."]
 		},
 		{
 			"label": "Django",
 			"description": ["We are some people who like to hack on Django or on other Python related projects."],
-			"lecture_seats": [6]
+			"lecture_seats": [6],
+			"weblink": ["http:\/\/djangoproject.com","http:\/\/python.org"]
 		},
 		{
 			"label": "Dn42",
 			"description": ["dn42 is the reboot of DIAC24. We are a big dynamic VPN with Internet services as BGP, OSPF, DNS, etc. We put emphasis on self-organization and sort the information in our Wiki. Each participant has a direct connection to at least on other (via GRE, OpenVPN, see Tunnelprotocols). This is where all the routes of the VPN are being exchanged via BGP."],
-			"lecture_seats": [0]
+			"lecture_seats": [0],
+			"weblink": ["https:\/\/dn42.net"],
+			"brings_stuff": ["Lowpower network equipment"]
 		},
 		{
 			"label": "Dystopia",
 			"description": ["A small gathering of hackers from all over the world."],
-			"lecture_seats": [0]
+			"lecture_seats": [0],
+			"planning_notes": ["We'd like to have a place where virtually no-one comes by and we're pretty much alone in the dark (e.g. 1e). We'd also appreciate not to be seated near any Flausch\/Pony\/Feminism\/Blogger\/Politics groups. We'd like a very technical environment."],
+			"brings_stuff": ["Nothing exceptional. We're the guys bringing the NetApp to congress, but that will be somewhere else."]
 		},
 		{
 			"label": "Entropia",
-			"description": ["CCC Karlsruhe"]
+			"description": ["CCC Karlsruhe"],
+			"weblink": ["https:\/\/entropia.de\/"],
+			"planning_notes": ["eine etwas ruhige Ecke"],
+			"brings_stuff": ["Vaporlight (our shiny computer-controllable rgb led modules)"]
 		},
 		{
 			"label": "EveryCook",
 			"description": ["Our aim is:\n'Better food trough information'\nWe want to collect all data about food, make it available as interactive buying\/cooking help and for all kinds of cooking devices."],
-			"lecture_seats": [20]
+			"lecture_seats": [20],
+			"weblink": ["http:\/\/everycook.org"],
+			"planned_workshops": ["Lecture:\nDay\t Day 2 2012-12-28\nStart time\t11:30:00\nDuration 1 hour\t\nRoom\t Saal 6\n\nWorkshop:\nThere will be a digital cooking workshop after the lecture\nIt will start at 12:45 - 15:45"],
+			"planning_notes": ["Let's hack and cook recipes!"],
+			"brings_stuff": ["EveryCook machines"]
+		},
+		{
+			"label": "FIfF",
+			"lecture_seats": [0],
+			"weblink": ["www.fiff.de"],
+			"brings_stuff": ["Flyers, papers, magazines, books, stickers, t-shirts, roll-ups, ...\nhey,\nwenn ich es in Tischbreite beschreiben k\u00f6nnte, so w\u00e4ren zwei\nSIGINT\/CCC-Berlin Tische von der L\u00e4nge Okay.\nAnsonsten haben wir noch Aufsteller - so Rollleinwand\/Prospekthalter  je\nca. 50 cm breit von dem einer Platz neben den Tischen\nhaben sollte. Ansonsten w\u00e4re eine Steckdose und Kabel Internet cool.\ngr\u00fcsse Sylvia"]
 		},
 		{
 			"label": "Fail0verflow",
 			"description": ["Console and embedded device hackers."],
-			"lecture_seats": [0]
+			"lecture_seats": [0],
+			"weblink": ["http:\/\/fail0verflow.com"],
+			"planning_notes": ["We need power and networking, and we prefer to be seated around one big table if possible :)"],
+			"brings_stuff": ["Game consoles.\nTV screens.\nSoldering stations, misc parts, and tools.\nOscilloscopes, logic analyzers, power supplies, JTAG adapters, other test gear, FPGA boards, bizarre device hacking setups, ...\nWe may have a beamer too."]
 		},
 		{
 			"label": "Flauscheria",
-			"description": ["Small workshops about D.I.Y. stuff like podcasting and information about projects like \"Hardware f\u00fcr Alle\"."]
+			"description": ["Small workshops about D.I.Y. stuff like podcasting and information about projects like \"Hardware f\u00fcr Alle\"."],
+			"weblink": ["http:\/\/flauscheria.soup.io\/"],
+			"planned_workshops": ["Spontaneous workshops on D.I.Y. podcasting with a minimum of technical knowledge and equipment. Also: cocktails, knitting, cooking and other useful things for every day life."],
+			"planning_notes": ["A somewhat \"quiet\" corner would be great for the assembly, because we want to record podcasts."],
+			"brings_stuff": ["Enough equipment for spontanious podcast recordings: microphones, notebooks, cables and stuff."]
 		},
 		{
 			"label": "Flying Objects Assembly",
 			"description": ["flying objects ( multikopter and stuff )"],
-			"lecture_seats": [10]
+			"lecture_seats": [10],
+			"planned_workshops": ["still planning, but will do some public flying ( everyone can fly ) with this app https:\/\/github.com\/ligi\/SpaceAR.Drone"],
+			"brings_stuff": ["flying objects"]
 		},
 		{
 			"label": "Food Hacking Base",
 			"description": ["Our goal is clear. We are going to create a food hacking&amp;brewing paradis and you should join or at least come by!"],
-			"lecture_seats": [10]
+			"lecture_seats": [10],
+			"weblink": ["https:\/\/events.ccc.de\/congress\/2012\/wiki\/Food_Hacking_Base"],
+			"planned_workshops": ["Kefir making (Frantisek Algoldor Apfelbeck); introduction to brewing makgeolli - traditional Korean alcoholic rice beverage (Frantisek Algoldor Apfelbeck); brewing non alcoholic probiotic beverages - ginger beer, hibisus cooler etc (Frantisek Algoldor Apfelbeck); culturing your own natt\u014d(Frantisek Algoldor Apfelbeck); there will be approximately 3-6 workshops per day (it ca be more)"],
+			"planning_notes": ["Hi everyone. Summary - We need place for foodhacking\/brewing, to present our activities, to sit down and chat and socialize and run smaller scale workshops (below 15 people), all in one spot if possible, up to 20 people max at most busy periods, as close as possible to 29c3 angels kitchen, running water and sink would be super! This project is about making\/hacking food and beverages as was the case on last three CCC events (http:\/\/events.ccc.de\/camp\/2011\/wiki\/Food_Hacking_Base camp, http:\/\/events.ccc.de\/congress\/2011\/wiki\/Food_hacking_base 28c3). We need to have place to gather, share our products as tasters promoting what is this about and be able to run workshops (on the spot if possible for smaller events, bigger workshops will be signed separately as workshops). Also it would be good to have this time more place to sit down and just chat. Last two years we had a small spot to ourselves which allowed us to present and keep some staff but we need something bigger during whole event, we have grown. I'm in touch with some ccc folk already included Kamiwolf (food archangel). If possible we should be located close to the ccc kitchen(heaven) because we hope to cooperate with the folk there (I was in charge of the night shift food preparations for angels at 28c3 and I hope to do the same this year). Honestly most of the people will sign in for the smaller scale lectures and workshops again one or two weeks before if not few days before the event and I need to make sure that they will have a decent location to do what they want. You have seen it happening before well it is here again :-)"],
+			"brings_stuff": ["general kitchen equipment and tools (no open fire, gas or other), electric stoves, water cattle, food processor (or at least blender), fridge, coffee machine, chafing dishes, cutting boards, pots, knifes and around a million of other thinks for food hacking brewing and workshops"]
 		},
 		{
 			"label": "Formula Student",
 			"description": ["We're trying to assemble several FSAE teams to bring their racecars to the 29c3 and hack our Electronics."],
-			"lecture_seats": [0]
+			"lecture_seats": [0],
+			"weblink": ["http:\/\/www.fsae.com\/","http:\/\/www.formulastudent.de\/","http:\/\/www.highspeed-karlsruhe.de\/"],
+			"planning_notes": ["It needs to be at ground level or a cargo lifter to transport the racecars.\n\nIt would be cool if we could occasionally start the engines for tests. So access to the outside would be appreciated."],
+			"brings_stuff": ["Racecars"]
 		},
 		{
 			"label": "Freitagsrunde TU-Berlin",
 			"description": ["we are a students initiative from the Berlin Institute of Technology.\nsee more about us at freitagsrunde.org (german)"],
-			"lecture_seats": [0]
+			"lecture_seats": [0],
+			"weblink": ["freitagsrunde.org"],
+			"planned_workshops": ["none"],
+			"planning_notes": ["if its possible we would like to be near the assembly 'Phlausch Operation Center', as there is an overlap in our people."],
+			"brings_stuff": ["we are around 8 people with normal stuff, no furniture.\nwe'd like to present things on a laptop. maybe a few extra monitors."]
 		},
 		{
 			"label": "FuWaR",
 			"description": ["We are a bunch of techies from the University of Furtwangen in the heart of the Black Forest in Germany. We share a common interrest in *nix, soldering, fun with LEDs + mcs and a special focus in network security.\nWe also had our Village at the Camp 2011 where you might have met us.\n\nhttp:\/\/events.ccc.de\/camp\/2011\/wiki\/FuWaR"],
-			"lecture_seats": [5]
+			"lecture_seats": [5],
+			"weblink": ["http:\/\/www.unfuck.eu\/","http:\/\/www.unfug.org\/"],
+			"planned_workshops": ["We are planning on some things, most of them are on a come-by-and-talk-to-us basis:\n* network security\n* ipv6\n* voip\n* Field telephony\n* Field telephones with Voip over ipv6"]
 		},
 		{
 			"label": "G3r4ff3l v1ll4g3",
 			"description": ["a bunch of Veteran Nerds with about 666 years of experience within the realms of hacking, forensick and voodoo."],
-			"lecture_seats": [23]
+			"lecture_seats": [23],
+			"weblink": ["http:\/\/events.ccc.de\/camp\/2011\/wiki\/Geraffelvillage"],
+			"planned_workshops": ["antiforensics in the 23rd century"],
+			"planning_notes": ["toraffel"],
+			"brings_stuff": ["working on it. \npossibly:\nReplicator, Lasercutter, MagCardPrinter, USRPs, The Fog (tm), The Bar (c), The Noise (better not), some racks full of sick stuff"]
 		},
 		{
 			"label": "GSM",
 			"description": ["We are the Osmocom and OpenBTS projects. Visit us in Room 11!"],
-			"lecture_seats": [0]
+			"lecture_seats": [0],
+			"weblink": ["http:\/\/osmocom.org\/"],
+			"brings_stuff": ["GSM networks! (Yes, plural! :)"]
 		},
 		{
 			"label": "Geheimorganisation",
 			"description": ["The Geheimorganisation is a secret organisation of secret conspiracy."],
-			"lecture_seats": [0]
+			"lecture_seats": [0],
+			"weblink": ["http:\/\/geheimorganisation.org\/"],
+			"planning_notes": ["It would be great if we could have a desk with daylight!\n\nLast year we were cool enough to sit in a cold draught. No one got an eye inflammation or had serious headaches."],
+			"brings_stuff": ["Banner, Low Power Network equipment, Laptops, Smartphones, Pure Caffeine"]
 		},
 		{
 			"label": "Gentoo Linux",
 			"description": ["Gentoo Linux users and developers joint table"],
-			"lecture_seats": [6]
+			"lecture_seats": [6],
+			"weblink": ["http:\/\/www.gentoo.org\/"],
+			"planned_workshops": ["Not at the assembly.  Check Hall 13 on 29th for the Gentoo e.V. members meeting, though."],
+			"brings_stuff": ["Potentially some merchandise and a standing banner (stay tuned)"]
 		},
 		{
 			"label": "Go@29C3",
 			"description": ["We want to provide the opportunity to play Go - or learn the rules of the game. Go is an ancient board game. Easy to learn (only 3 rules), quick to grasp (first game after only 10min introduction - promise!)  but providing complex gameplay and fun."],
-			"lecture_seats": [10]
+			"lecture_seats": [10],
+			"weblink": ["http:\/\/en.wikipedia.org\/wiki\/Go_%28game%29"],
+			"planned_workshops": ["I will hang around the boards and give introductions into the game and provide advice for beginners and the opportunity for games"],
+			"planning_notes": ["we need a sort of table with the layers facing each other over the board. A board takes up around 60x60cm. The table(s) does not have to be full sized - a low one with cushions to sit on is also fine and looks more relaxed. We need some light - it does not have to be very bright, but steady (no quick changing in intensity or color) in order to be able to concentrate on the stones. Maybe table lamps? or soft indirect light?"],
+			"brings_stuff": ["4 full sized (19x19) Go boards and 2 small boards (9x9) plus bowls with black and white stones"]
 		},
 		{
 			"label": "GodObject Assembly",
 			"description": ["Usergroup of open-source Ruby\/Rails programmers."],
-			"lecture_seats": [6]
+			"lecture_seats": [6],
+			"weblink": ["https:\/\/www.godobject.net\/"],
+			"planning_notes": ["1x wired ethernet access would be great."],
+			"brings_stuff": ["Bunch of ruby nerds"]
 		},
 		{
 			"label": "Hackademics",
 			"description": ["The Hackademics CTF Team was founded by students in 2011. It is a independant team of students, representing the 'University of Applied Sciences Offenburg' (Germany)."],
-			"lecture_seats": [0]
+			"lecture_seats": [0],
+			"weblink": ["https:\/\/hackademics.eu"]
 		},
 		{
 			"label": "Hackeriet",
-			"lecture_seats": [23]
+			"lecture_seats": [23],
+			"weblink": ["http:\/\/hackeriet.no"],
+			"planned_workshops": ["opsec, microcontrollers, lua, programs to save your life"],
+			"planning_notes": ["scn ctp krav and comotion will be holding workshop raffles"],
+			"brings_stuff": ["basic infrastructure"]
 		},
 		{
 			"label": "Hardware Hacking Area",
 			"description": ["The main Hardware Hacking Area"],
-			"lecture_seats": [50]
+			"lecture_seats": [50],
+			"planned_workshops": ["Soldering, SMD soldering, Reflow Introductio"],
+			"brings_stuff": ["3D-printer (maybe)\nLots of kits from mitch altman\nLots of kits from overflo\nBlinky goodness\nSMD kits for beginners"]
 		},
 		{
 			"label": "Hgg",
 			"description": ["hackerspace global grid"],
-			"lecture_seats": [5]
+			"weblink": ["http:\/\/hgg.aero\/"],
+			"planning_notes": ["Would like to be located on one of the top floors next to a window so we can mount a small antenna to the window"],
+			"brings_stuff": ["scopes, soldering iron, PCBs, laptops"]
 		},
 		{
 			"label": "HoloVersum",
 			"description": ["The HoloVersum is a Hamburg group of galactical hackers, musicians, DJs and holistic workers mainly consisting of Universum All Ton A, Dr. med Hans-Peter Greb aka Doc GoDo and HoloClaus. We are setting up several holograms and 3D Prints, a pseudo holographic projection system, will do other installations on the congress as well as a HoloDeck with 3D items, Holography Books, spontaneous workshops and more. At the end of the Congress HoloVersum with Universum All Ton A are doing the after Party at a very special location ;-)"],
-			"lecture_seats": [10]
+			"lecture_seats": [10],
+			"planned_workshops": ["Introduction into Holography and related techniques; also possible: a GoDo workshop with Doc GoDo aka Dr. med Hans-Peter Greb; at the end HoloVersum with Universum All Ton A are doing the after Party at a very special location ;-)"],
+			"planning_notes": ["It is planned to place the HoloVersum together with the Wau Holland Stiftung assembly at Garderobenfoyer 1."],
+			"brings_stuff": ["Holograms and 3D Prints, a pseudo holographic projection system, a lot of 3D stuff, literature and more.."]
 		},
 		{
 			"label": "Information Etudes",
-			"description": ["In order to develop new tools for information-based advocacy, we will study fundamental properties of how information is shared, sought, and contextualized in various formats.\n\nWe will focus on the economy of information, archives, trends, cultural wisdom, effective communication, language barriers, perception, clich\u00e9s, story sharing, search engines, and community curation."]
+			"description": ["In order to develop new tools for information-based advocacy, we will study fundamental properties of how information is shared, sought, and contextualized in various formats.\n\nWe will focus on the economy of information, archives, trends, cultural wisdom, effective communication, language barriers, perception, clich\u00e9s, story sharing, search engines, and community curation."],
+			"planning_notes": ["next to the awesome cryptodotis guys\/girls :)"]
 		},
 		{
 			"label": "Integral domain",
 			"description": ["We have been around the congress for years, and we have, at times, felt that there's a large gap between hackers and the math they need. Wherever possible, we'd like to close that gap and in the remaining cases, at least we'd like to help understand why it's not that simple."],
-			"lecture_seats": [10]
+			"lecture_seats": [10],
+			"weblink": ["ccc.nullteilerfrei.de"],
+			"planned_workshops": ["Depending on the demand, we want to offer lectures on topics of mathematics. We are 4 guys that studied math for their whole conscious lives (some of us even have a degree) and want to make this knowledge available for all the hackers. So the topics will depend on the participants."],
+			"planning_notes": ["We want to give lectures on mathematics and for this, we need a place to write something down for the audience. We don't know how many people are interested, but we plan to have an audience of like 10 people for which a whiteboard whould be awesome, but a flipchart would do. Can you provide a whiteboard? If not, we either need a flipchart or a free spot of wall to pin some paper to."],
+			"brings_stuff": ["Flipchart paper and stuff to fix them on the walls."]
 		},
 		{
 			"label": "KoFfeIn - Karlsruher organisieren Freiraum für erleuchtete Individuen",
-			"description": ["Ein Platz f\u00fcr alle Nerds, Hacker, Ponies, Eichh\u00f6rnchen, ... aus Karlsruhe und dem Umland!"]
+			"description": ["Ein Platz f\u00fcr alle Nerds, Hacker, Ponies, Eichh\u00f6rnchen, ... aus Karlsruhe und dem Umland!"],
+			"weblink": ["http:\/\/www.koffein-ev.de","http:\/\/www.hska.info"],
+			"planned_workshops": ["evtl ein git-workshop"],
+			"planning_notes": ["Wir werden zwischen 15 und 20 Leute sein."],
+			"brings_stuff": ["Das \u00dcbliche: Laptops, Switche, ... Und ein bisschen Kram: Lichter, Mikrocontroller (evtl), ..."]
+		},
+		{
+			"label": "Kölner Kreis",
+			"description": ["German Group of IT Security Enthusiasts, Homebase in Cologne. Our current Topics are:\nCapture the Flag - Environment build up - Challange Development\nDumpster Diving \nPentest Visualisation \/ Web 2.0 Evaluation Tool Improvement"],
+			"lecture_seats": [0],
+			"weblink": ["www.koelnerkreis.de"],
+			"brings_stuff": ["No funiture."]
 		},
 		{
 			"label": "LSE",
 			"description": ["We are a small student lab from EPITA (a CS school near Paris) with interests in systems programming, computer security, etc. About 6-8 of us will be present at 29c3."],
-			"lecture_seats": [0]
+			"lecture_seats": [0],
+			"weblink": ["http:\/\/blog.lse.epita.fr\/","http:\/\/git.lse.epita.fr\/"],
+			"brings_stuff": ["Most likely a Wii, a WiiU, maybe a screen, 6-8 laptops, some dev boards, small servo motors."]
 		},
 		{
 			"label": "La Quadrature du Net",
 			"description": ["La Quadrature du Net is an advocacy group defending the rights and freedoms of citizens on the Internet."],
-			"lecture_seats": [15]
+			"lecture_seats": [15],
+			"weblink": ["http:\/\/laquadrature.net"],
+			"planned_workshops": ["Rebuild copyright, Political Memory, PiPhone, Net Neutrality"],
+			"brings_stuff": ["Datalove"]
 		},
 		{
 			"label": "Linux-Call-Router",
 			"description": ["Provisioning of voice and telephony services"],
-			"lecture_seats": [6]
+			"weblink": ["http:\/\/www.linux-call-router.de"],
+			"planned_workshops": ["TBD"],
+			"planning_notes": ["TBD"],
+			"brings_stuff": ["ISDN equipment, TTY, OsmocomBB-Equipment"]
 		},
 		{
 			"label": "Lockpicking Area",
-			"description": ["We\u00b4ll provide Informations about non destructive entry methods (NDE) in general. There are always members at the table to answer questions and show basic lockpicking techniques. \nEvery day there will be a special workshop with a main focus on methods like: impressioning, e-picking, special tools etc."]
+			"description": ["We\u00b4ll provide Informations about non destructive entry methods (NDE) in general. There are always members at the table to answer questions and show basic lockpicking techniques. \nEvery day there will be a special workshop with a main focus on methods like: impressioning, e-picking, special tools etc."],
+			"weblink": ["http:\/\/www.lockpicking.org\/"],
+			"planning_notes": ["We need tables and chairs for up to 20 people plus a nice spot for the shop."],
+			"brings_stuff": ["A few notebooks plus monitores, beamer, maybe a canvas if there is no space to point the beamer to a near wall, a few show doors to demonstrate opening techniques and some stuff for decoration, nothing really big!\n\nAn area which is closed on at least one side is perfect to create a closed area for the shop and the cashier!"]
 		},
 		{
 			"label": "Mass collaboration",
 			"description": ["Good things happen when a lot of people come together on the internet and decide to create something together. We'd like to showcase and talk about some of them."],
-			"lecture_seats": [15]
+			"lecture_seats": [15],
+			"planning_notes": ["It'd be great if we could have a wall where we can project pictures and animations."],
+			"brings_stuff": ["posters, projector"]
 		},
 		{
 			"label": "Metalab",
-			"description": ["Vienna's first &amp; most awesome hackerspace"]
+			"description": ["Vienna's first &amp; most awesome hackerspace"],
+			"weblink": ["https:\/\/metalab.at\/"],
+			"planned_workshops": ["Workshops @ Hardware Hacking Area &amp; MetaFunk Amateur Radio"],
+			"planning_notes": ["There will be 20+ members of Viennese hackerspace Metalab present at 29C3 and it would be very nice to have some space to ourselves to present our hackerspace and its projects. It would be even AWESOMER if we could have a space with natural light (like area 2d)!!"],
+			"brings_stuff": ["- 3D printer (maybe)&lt;br \/&gt;\n- lots of electronics kits by overflo&lt;br \/&gt;\n- blinky goodness"]
 		},
 		{
 			"label": "Milliways",
 			"description": ["You know milliways? The restaurant at the end of the universe? We just are it..."],
-			"lecture_seats": [0]
+			"lecture_seats": [0],
+			"weblink": ["https:\/\/wiki.milliways.info\/wiki\/"],
+			"planned_workshops": ["There are some plans for own Talks (not Workshops, so we most likely would need chairs but no extra tables for it).\n\nWe will provide lectures or talks on presented projects like\n* ChaosVPN\n* Code Hero\n* ...\n\nOther assemblies are welcome in using our lecture space for talks on request."],
+			"planning_notes": ["We will bring some decoration (basically lights and stuff). So it would be nice, to have a place with not that much abient light or daylight. We would gladly take the rangfoyer Saal 1 as originally discussed."],
+			"brings_stuff": ["Beamer, audio, decoration"]
 		},
 		{
 			"label": "Muccc",
 			"description": ["The local chapter of the CCC in munich. Best known for ACAB and r0ket."],
-			"lecture_seats": [10]
+			"lecture_seats": [10],
+			"weblink": ["http:\/\/wiki.muc.ccc.de"],
+			"brings_stuff": ["ourselves, ACAB, Key Clone Machine, Flipdot-Displays, TBD"]
 		},
 		{
 			"label": "Mw",
-			"description": ["In Bremen, Germany, some people are sharing their apartment and call it mw\/Milliways. The Milliways also is some kind of hacker community."]
+			"description": ["In Bremen, Germany, some people are sharing their apartment and call it mw\/Milliways. The Milliways also is some kind of hacker community."],
+			"weblink": ["https:\/\/mw.vc"],
+			"planning_notes": ["We do engelsystem support and development. To be next to heaven is important!\nWe're planning at https:\/\/planetcyborg.de\/pads\/p\/congress2012"]
 		},
 		{
 			"label": "Nerdlicht",
-			"description": ["lights &amp; bits"]
+			"description": ["lights &amp; bits"],
+			"weblink": ["labor23.org","ned2nerd.org"],
+			"planned_workshops": ["maybe"],
+			"brings_stuff": ["people &amp; bits &amp; lights &amp; hardware"]
 		},
 		{
-			"label": "OpenStreetMap"
+			"label": "OpenStreetMap",
+			"description": ["OpenStreetMap (OSM) is a collaborative project to create a free editable map of the world."],
+			"weblink": ["http:\/\/openstreetmap.de\/"],
+			"planning_notes": ["the mass collective project and our project please close together"],
+			"brings_stuff": ["Maps"]
+		},
+		{
+			"label": "P2P Hackers",
+			"description": ["GNUnet, PSYC, SecuShare, Crossbear"],
+			"lecture_seats": [0],
+			"weblink": ["http:\/\/gnunet.org","http:\/\/secushare.org","https:\/\/pki.net.in.tum.de\/taxonomy\/term\/3"],
+			"brings_stuff": ["laptops"]
 		},
 		{
 			"label": "Phlausch Operation Center",
-			"description": ["Social circle around some people mostly from Berlin, Erlangen and Vienna."]
+			"description": ["Social circle around some people mostly from Berlin, Erlangen and Vienna."],
+			"planning_notes": ["An area in a quieter corner or at the side, if possible"],
+			"brings_stuff": ["maybe an air mattress (ca 2x2 m)"]
 		},
 		{
 			"label": "Pyneo",
-			"lecture_seats": [6]
+			"lecture_seats": [6],
+			"weblink": ["http:\/\/pyneo.org\/"],
+			"planned_workshops": ["Discussion on features and architecture of mobile devices."],
+			"brings_stuff": ["Notebooks, phones, pads, all kind of mobile devices"]
 		},
 		{
 			"label": "RFID hacking",
 			"description": ["We have RFID hardware and software to read nearly all the cards you have in your pocket. So we can at least determine the typ of the card and can say something about its security. Depending on the type we also can readout or change the content. We also will have a zapper for disabling your RFID cards."],
-			"lecture_seats": [2]
+			"lecture_seats": [2],
+			"planned_workshops": ["we could talk about the security of RFID systems. show people how to read, write and physically disable their cards."],
+			"planning_notes": ["we need 2 tables with 6 seats for our group and one additional table with 2 seats for people coming to play with our RFID setup."],
+			"brings_stuff": ["a setup to read and write RFID cards.\na zapper to destroy RFID cards."]
 		},
 		{
 			"label": "RTL-SDR",
 			"description": ["The RTL-SDR project develops software for using DVB-T sticks based on the Realtek RTL2832U as cheap Software Defined Radios."],
-			"lecture_seats": [0]
+			"lecture_seats": [0],
+			"weblink": ["http:\/\/sdr.osmocom.org\/trac\/wiki\/rtl-sdr"],
+			"brings_stuff": ["Laptops, some antennas."]
 		},
 		{
 			"label": "RaumZeitLabor",
 			"description": ["The mobile version of our Hackerspace \"RaumZeitLabor\" in Mannheim.\nWe move a lot of our Tools and Equipment to 29C3 for the fun of it.\n\nMore sugar than you can imagine"],
-			"lecture_seats": [8]
+			"lecture_seats": [8],
+			"weblink": ["https:\/\/raumzeitlabor.de\/"],
+			"planned_workshops": ["Some Workshops we will try to hold:\n\n* How to design files for a laser cutter\n\n* How to design your own embroidery stuff\n\n* How to eat Popcorn &amp; Candy floss\n\n* How to get even more sugar\n\n* Design your own shirt (or jeans...)\n\n* Designing Animations for the Hacklace\n\nand many more."],
+			"planning_notes": ["* possibility to vent the laser fumes outside would be nice (we do have active charcoal filtering, but it would still be better to be close to a door or window to the outside\n\n* somewhere near the angel kitchen would be nice...\n\n* as every assembly seems to exaggerate their needed seats by factor 3-5, we've also used such a made up number. In reality, we expect many friends and know of about 20 RZL-Members who will come to 29C3, so some seats would be nice..."],
+			"brings_stuff": ["3D Printer Ultimaker (400W), T-shirt press (1 kW), Lasercutter \"The FaZzZ0r\"+supplies(1 kW), Embroidery machine(300W), softice machine (belongs to muCCC, 1,5 kW), Popcorn machine (1,5 kW), Slushie machine (800 W), candyfloss machine (800 W), some welding equipment (~800 W)"]
 		},
 		{
 			"label": "Retrogaming",
 			"description": ["We are a small group of people who gathered old videogameconsoles and games. The assembly will provide space to people to play with the old consoles and computers. There will be a lecture about the Intellivision console."],
-			"lecture_seats": [20]
+			"lecture_seats": [20],
+			"planned_workshops": ["The Intellivision - A technical overview"],
+			"planning_notes": ["We would need a place where three TVs and two tables for the computers fit in. Futhermore there will be two couches."],
+			"brings_stuff": ["3 TVs\nTV Stands\nVarious consoles and computer including: 1x N64, 1x Gamecube, 1-2x Intellivision, 2x C64 and more."]
 		},
 		{
 			"label": "Schweizer Chaos",
-			"description": ["Swiss chaos with the (hopefully) newborn ccc-ch. An association of the swiss erfas, hackerspaces and chaostreffs."]
+			"description": ["Swiss chaos with the (hopefully) newborn ccc-ch. An association of the swiss erfas, hackerspaces and chaostreffs."],
+			"weblink": ["chaostreff.ch"],
+			"planning_notes": ["We will be 30-40 people from the different swiss erfas and chaostreffs. Many of our projects are software or microcontroller related but there could also be some soldering. We also plan to sell remaining easterhegg T-Shirts. There will also be an organisational gathering for ccc-ch and other swiss-related stuff. A not so crowded place would be great."],
+			"brings_stuff": ["tbd"]
 		},
 		{
 			"label": "Shackspace",
 			"description": ["the stuttgart hackerspace"],
-			"lecture_seats": [15]
+			"weblink": ["http:\/\/shackspace.de"],
+			"planning_notes": ["would like to be near, ideally next to, the hgg assembly."],
+			"brings_stuff": ["tbd"]
 		},
 		{
 			"label": "Sigrok",
 			"description": ["Portable, GPL'd software suite for logic analyzers, MSOs, oscilloscopes, DMMs..."],
-			"lecture_seats": [6]
+			"lecture_seats": [6],
+			"weblink": ["http:\/\/sigrok.org"],
+			"brings_stuff": ["Lots of test&amp;measurement gear, incluing logic analyzers, oscilloscopes, multimeters, function generators, etc. etc. It would be nice to have a really large table for us and the laptops and the gear (or two tables, or such)."]
 		},
 		{
 			"label": "Stratum 0",
 			"description": ["Hackerspace Braunschweig"],
-			"lecture_seats": [0]
+			"lecture_seats": [0],
+			"weblink": ["http:\/\/stratum0.org"],
+			"planning_notes": ["Wir werden mit ca. 10 Personen anreisen, davon werden 5-6 Hardware hacken wollen. Mehr Sitzpl\u00e4tze k\u00f6nnen nicht schaden, da zus\u00e4tzlich noch ca. 20 Studenten der TU Braunschweig erwartet werden."],
+			"brings_stuff": ["Nothing special, quadrocopter, probably our RepRap"]
 		},
 		{
 			"label": "Sublab / c3le",
 			"description": ["sublab is a hackerspace in leipzig. Chaostreff Leipzig, Freifunk Leipzig and other projects are located here."],
-			"lecture_seats": [8]
+			"lecture_seats": [8],
+			"weblink": ["http:\/\/sublab.org"]
 		},
 		{
 			"label": "Swedish House Maffia",
 			"description": ["Local gathering spot for the usual suspects from sweden that usually gather at CCC."],
-			"lecture_seats": [10]
+			"lecture_seats": [10],
+			"planned_workshops": ["non at this point."],
+			"brings_stuff": ["laptops and some minor electronic stuff."]
 		},
 		{
 			"label": "Tetalab",
 			"description": ["Toulouse Hackerspace"],
-			"lecture_seats": [4]
+			"lecture_seats": [4],
+			"weblink": ["http:\/\/tetalab.org"]
 		},
 		{
 			"label": "The (un)employed schemers & lispers guild",
 			"description": ["Lisp and scheme hackers all over the world gather and discuss the state of the union. We welcome beginners and interested people and will direct flamewars to the \/dev\/null room.\n\nThere will also be workshops, and we are always open to helping newcomers get up to speed"],
-			"lecture_seats": [10]
+			"lecture_seats": [10],
+			"weblink": ["http:\/\/www.call-cc.org","http:\/\/cliki.net","http:\/\/schemers.org"],
+			"planned_workshops": ["* Introduction to (chicken) scheme (C-Keen)\n* something interesting by DerGuteMoritz\n* Scheme GUI Toolkits and how to live with them (C-Keen)\n* something cool (certainty)\n* ..."],
+			"planning_notes": ["We would need network connectivity of some sort."],
+			"brings_stuff": ["laptops, routers, power chord extensions, banner, flyers"]
 		},
 		{
 			"label": "UAVP-NG",
 			"description": ["This is a community-driven open source project to build a modern autonomously flying Multicopter."],
-			"lecture_seats": [8]
+			"lecture_seats": [8],
+			"weblink": ["http:\/\/ng.uavp.ch"],
+			"planned_workshops": ["\u00a0\n* An introduction to UAVP-NG (dracos)\n* An introduction to the NGOS (amir)\n* Build your own NGOS controller (amir)"],
+			"planning_notes": ["We will try to give short introductions to the given topics."],
+			"brings_stuff": ["UAVP-NG Hardware, UAVP-NG Copters, UAVP-NG Museum, Laptops, Banner, Flag, solder irons"]
 		},
 		{
 			"label": "Wau Holland Stiftung",
 			"description": ["The Wau Holland Foundation would like to inform about it's activities, projects supported by the foundation and also discuss possibilities for funding of additional projects within the scope of the foundation. If technically possible we will also show small movies about Wau Holland and his ideas transformed into the foundation."],
-			"lecture_seats": [5]
+			"lecture_seats": [5],
+			"weblink": ["http:\/\/www.wauland.de\/"],
+			"planned_workshops": ["depending on the space available we could show small videos about Wau and make a daily presentation at a fixed time to explain the activities of the foundation and possiblity to fund projects. For this it would be nice (but is not strictly necessary) to have 10-15 extra seats (2-3 seat rows for 5 people each?)."],
+			"planning_notes": ["Minimum requirement would be 1-2 desks and chairs for 5 people, wall to present-on with beamer would be nice."],
+			"brings_stuff": ["Beamer, Brochures, Presentation Material"]
 		},
 		{
 			"label": "Wireless",
 			"description": ["This is the assembly traditionally known as \"Wireless Corner\" with people from freifunk.net, OpenWRT and surrounding projects."],
-			"lecture_seats": [0]
+			"lecture_seats": [0],
+			"weblink": ["http:\/\/openwrt.org","http:\/\/freifunk.net"],
+			"planned_workshops": ["maybe"],
+			"planning_notes": ["Near smoking area. Nice view over hanseatic, urban scenery."],
+			"brings_stuff": ["We hopefully bring 230V power distribution, enough switches and lots of routers and wireless devices (with the radio switched off for sure ;))"]
 		}
 	]
 }

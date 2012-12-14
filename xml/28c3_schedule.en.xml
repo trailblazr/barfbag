@@ -8,7 +8,7 @@
     <start>2012-12-27</start>
     <end>2012-12-30</end>
     <days>4</days>
-    <release>Version 0.3alpha</release>
+    <release>Version 0.2alpha</release>
     <day_change>04:00</day_change>
     <timeslot_duration>00:15</timeslot_duration>
   </conference>
@@ -20,20 +20,12 @@
         <room>Saal 1</room>
         <slug>nougatbytes10</slug>
         <title>Nougatbytes 10</title>
-        <subtitle>Gebilde(r)ter Hirnsalat &#8211; die rhekkc&#252;&#1071; der Bilderr&#228;tsel</subtitle>
+        <subtitle>Gebilde(r)ter Hirnsalat &#8211; die rhekkc&#252;&#1071;  der Bilderr&#228;tsel</subtitle>
         <track></track>
         <type>contest</type>
         <language>de</language>
-        <abstract>Gut gereift und mit verbesserter Rezeptur.
-
-Aber immer noch:
-Zwei sich auf Couchen fl&#228;zende Teams gehirnwinden, spitzfinden und assoziieren gegeneinander an, um Bilderr&#228;tsel aus den Gefilden IT, Netzgesellschaft und Informatik zu entwirren.
-(Hashtag: #Nougatbytes)</abstract>
-        <description>F&#252;r die zwei Runden *NOUGAT*BYTES werden ingesamt vier Teams ben&#246;tigt. Die zwei der ersten Runde wollen wir im Voraus anheuern. Wenn Ihr also Lust versp&#252;rt, Eure Zellen mit uns zu teilen und das Publikum in Lachhaft zu nehmen, dann sammelt Euch zu ganzzahligen Gruppen von 3-5 Menschen und schickt Eure Bewerbung an
-
-&lt;Nougatbytes@laryllian.de&gt;
-
-Die Deadline ist in 10 Minuten. ;)</description>
+        <abstract>Zwei Teams aus dem Publikum treten gegeneinander an, um Bilderr&#228;tsel aus den Bereichen Netzwerk, Betriebssysteme, Netzsph&#228;re usw. zu l&#246;sen.</abstract>
+        <description>Kriegen sie es nicht hin, darf sich das Publikum versuchen. Es gibt mehrere Runden und verschiedene Kategorien; zu gewinnen gibt es Mateflaschen und handgezeichnete Bilder der R&#228;tsel. Wir haben aus dem letzten Mal gelernt, MUAHAHAAAAA!</description>
         <persons>
           <person id="3064">Ben</person>
           <person id="2234">Rainer</person>
@@ -109,7 +101,7 @@ Die Deadline ist in 10 Minuten. ;)</description>
         <subtitle>1.5 Jahre FragDenStaat.de</subtitle>
         <track></track>
         <type>lecture</type>
-        <language></language>
+        <language>de</language>
         <abstract>Seit anderthalb Jahren begleitet FragDenStaat.de die deutsche Informationsfreiheit in der Praxis und dokumentiert die Korrespondenz zwischen Anfragestellenden und Beh&#246;rden. Welche Informationen gibt der Staat preis, und gegen welche Ver&#246;ffentlichungen k&#228;mpft er sogar bis vor Gericht? Die interessantesten F&#228;lle werden genauer beleuchtet und eine Bewertung zur Lage der staatlichen Information in Deutschland abgegeben.</abstract>
         <description>FragDenStaat.de hat auch im letzten Jahr die Informationsfreiheitspraxis in Deutschland begleitet und dokumentiert. Anfragen zu Ackermann-Abendessen, ACTA und anderen Akten sollen in diesem Vortrag genauer beleuchtet werden. Die negativen und positiven Trends in der Praxis werden beschrieben und die Lage der Informationsfreiheit in Deutschland bewertet.
 Initiativen wie das Hamburger Transparenzgesetz verbessern den Informationszugang in der Theorie deutlich, doch nur eine aktiv gelebte Praxis kann den Staat wirklich transparenter machen: ein Aufruf zum Nutzen dieses wichtigen demokratischen Werkzeugs.
@@ -130,7 +122,7 @@ Initiativen wie das Hamburger Transparenzgesetz verbessern den Informationszugan
         <subtitle>A latest battle report by some key actors from Brussels</subtitle>
         <track></track>
         <type>lecture</type>
-        <language>en</language>
+        <language></language>
         <abstract>The current European data protection directive is from 1995, which was when the internet had not hit Brussels' decision-makers yet. Now, 17 years later, it is being completely re-writen. Will it meet the challenges of the age of big data? Will it have any effect on non-EU data hoarders? How will it deal with user-generated consent? What is this strange new "right to be forgotten"? And what about privacy by design?</abstract>
         <description>The presentation will give you the latest insight into the substance and state of play, and a first glance of the upcoming political battles in Brussels. The presenters are working directly at the core of the reform, both in the European Parliament and in the European digital rights community.</description>
         <persons>
@@ -140,30 +132,6 @@ Initiativen wie das Hamburger Transparenzgesetz verbessern den Informationszugan
         </persons>
         <links>
           <link href="http://ec.europa.eu/justice/newsroom/data-protection/news/120125_en.htm">EU Commission: documents and info on the data protection reform</link>
-        </links>
-      </event>
-      <event id="5338">
-        <start>20:30</start>
-        <duration>02:15</duration>
-        <room>Saal 1</room>
-        <slug>enemies_of_the _state</slug>
-        <title>Enemies of the State: What Happens When Telling the Truth about Secret US Government Power Becomes a Crime</title>
-        <subtitle>Blowing the Whistle on Spying, Lying &amp; Illegalities in the Digital Era</subtitle>
-        <track></track>
-        <type>podium</type>
-        <language>en</language>
-        <abstract>With the post 9/11 rise of the leviathan national security state, the rule of law in the United States under the Constitution is increasingly rule by secrecy, surveillance and executive fiat.</abstract>
-        <description>Under the guise and veil of "national security" and "protecting" America through enabling act legislation and state "privilege," the United States government embarked on an unparalleled expansion of secret government power after 9/11, operating largely in the dark, while using extra-judicial executive authority for justifying its policies, including secret spying on its own citizens in violation of the Constitution.
-
-Speakers Radack, Drake and Binney will highlight their searing experiences with the Department of Justice and the National Security Agency, when they were marked as criminal targets of the US government due to their whistleblower disclosures involving rendition/torture, national security, multi-billion fraud, pervasive institutional corruption, violations of the 1st and 4th Amendments, civil and human rights, illegal surveillance on a vast scale and other unlawful secret government conduct and wrongdoing.
-
-They will also discuss the serious and compelling implications resulting from their excruciating ordeals centered on the nexus of secrecy, transparency, technology, privacy, anonymity, Internet and the law as well as actions people can take to deal with the reality of the growing surveillance state and its direct threats to human rights, liberty and freedom around the world in both our off- and on-line lives.</description>
-        <persons>
-          <person id="3971">Jesselyn Radack</person>
-          <person id="3969">Thomas Drake</person>
-          <person id="3970">William Binney</person>
-        </persons>
-        <links>
         </links>
       </event>
     </room>
@@ -177,7 +145,7 @@ They will also discuss the serious and compelling implications resulting from th
         <subtitle>Wie man (spa&#223;orientiert) mehr als 5% seines Googleverm&#246;gens trainiert</subtitle>
         <track></track>
         <type>contest</type>
-        <language>de</language>
+        <language></language>
         <abstract>Beim Googlequiz treten Teams gegeneinander an, die *ohne Internet* Aufgaben zu Googlesuchen und Suchergebnissen raten.</abstract>
         <description>Vorbild ist das britische Pub-Quiz: Konkurrierende Teams sitzen je an einem Tisch und trinken Kaltgetr&#228;nke. Vorne stellt ein Quizmaster Fragen/Aufgaben, die die Teams auf Papier (!) beantworten. Dann werden die Antworten vorne verglichen und Punkte vergeben. Es gibt mehrere Runden mit verschiedenartigen Aufgaben. Am Ende werden die Punkte zusammengerechnet.
 Beim Googlequiz geht es um Aufgaben rund um Googleanfragen und -ergebnisse. Wichtig: Die TeilnehmerInnen d&#252;rfen w&#228;hrend des Quiz nicht das Internet benutzen! Das Spiel findet im Kopf und auf Papier statt. Google liefert die Aufl&#246;sung, deswegen darf nur der Quizmaster Google benutzen. 
@@ -384,7 +352,7 @@ Let's get things moving forward! </description>
         <subtitle>A Historical Analysis</subtitle>
         <track></track>
         <type>lecture</type>
-        <language>en</language>
+        <language></language>
         <abstract>In the world of digital activism, distributed denial of service attacks present relatively low barriers to popular participation, have a high potential for attracting large numbers of first-time and repeat participants, and can attract large amounts of media attention.  But though such actions popular, are they ethical? In this talk I will be presenting an ethical framework for the analysis of activist DDOS actions. The framework is grounded in a historical analysis of various activist DDOS actions, such as the IGC attacks in Spain in the late 90s, Electronic Disturbance Theater actions in the early 2000s, and the Anonymous-led Operation Payback attacks in 2010.  Each historical case study presents a unique confluence of technological, political, legal and operational factors allowing for a full spectrum of ethical analysis.</abstract>
         <description>Though DDOS actions are only one aspect of digital activism, the tactic crystalizes many issues that are central to the development of the internet as a field of political action. Property rights, free speech, public versus private spaces online, participant responsibility, and the legal consequences of protest are all issues central to the validity of both DDOS actions and digital activism overall. How do changes in technology, such as the use of botnets (volunteer or otherwise), traffic amplifiers, or exploits, affect the ethical validity of a DDOS action? What about so-called "wildcat" DDOS actions, which are instigated by a single individual through the use of a botnet or exploit (making it a DOS action)?  What does the overwhelmingly privatized nature of the internet mean for the ethical validity of disruptive tactics like DDOS?  How do the legal penalties, which are based in a criminal understanding of such attacks, affect the ethical responsibilities of the organizers of such actions? What are the ethical responsibilities activists bear towards the network itself? Are disruptive tactics like DDOS actions effective, and in what ways are they effective?  In examining these questions, I will be looking at how DDOS actions fit into the landscape of digital activism and what they mean for the development of civil disobedience tactics online.
 
@@ -404,7 +372,7 @@ I am a second-year Masters student at MIT, studying digital activism at the Cent
         <subtitle>Mitigating Timing Side Channels on the Web</subtitle>
         <track></track>
         <type>lecture</type>
-        <language>en</language>
+        <language></language>
         <abstract>In this year&#8217;s talk, I tie on my 28c3 talk and present timing side channels from a defending viewpoint: How can one mitigate timing side channels? Aren&#8217;t random delays sufficient to prevent timing side channels in practice? What is the minimum size of random delays to be effective? Are there other delay strategies besides random delays that are more effective and efficient?</abstract>
         <description>Timing side channels are vulnerabilities in software applications that leak sensitive information about secret values such as cryptographic keys. They differ from common intrusive vulnerabilities such as Buffer Overflows or SQL-Injection because the attacker sends normally looking requests to the server and infers secret information just from the time it took to process the request. Timing attacks are getting increasingly well understood by day-to-day penetration testers and in academia, breaking Web standards such as XML Encryption [1], or helping to fingerprint Web Application Firewalls [2]. At 28c3, I gave the talk &#8220;Time is on my Side&#8221; [3], which gave an overview of timing attacks, introduced a set of tools for timing attacks and explained practical timing attacks against real applications.
 
@@ -433,7 +401,7 @@ I am going to present the state-of-the-art of timing side channel mitigation. Fu
         <subtitle>provisioning behind the scenes</subtitle>
         <track></track>
         <type>lecture</type>
-        <language>en</language>
+        <language></language>
         <abstract>This talk is aimed to give an insight into CPE WAN Management Protocol (CWMP) and its GPLv2 implementations that were developed in the past year.</abstract>
         <description>CWMP (often called only TR-069) enables ISP to remotely configure, manage, upgrade and troubleshoot Customer Premises Equipment (CPE) aka your home DSL router. It is a vendor agnostic standard used to manage at least one device per customer. The protocol, used on more then half a billion devices, will be discussed in detail.
 
@@ -619,23 +587,23 @@ Releases:
 - 3.2            Modbus overview
 - 3.3            S7 overview
 - 3.4            Modbus/S7 SCADA/PLC fingerprint (release mbpatrol - free tool for PLC fingerprint) 
-- 4. Who is mister PLC?
-- 4.1. Typical PLC architecture
-- 4.2. Security and configuration issues
-- 4.3. Coordinated disclosure of vulnerabilities in several PLC
-- 5. DEMO. Owning plant with ftp and telnet. During demo, I will demonstrate how several vulnerabilities and configuration issues of PLC can be used to get root access to the device, install rootkit and manipulate something in real world.
-- 6. Miss SCADA
-- 6.1. Place of OS and DB in security of SCADA infrastructure
-- 6.2. Simatic WinCC default configuration issues 
-- 6.3. Ways to abuse OS and DB vulnerabilities 
-- 6.4. Coordinated disclosure of several OS/DB WinCC vulnerabilities
-- 6.5. Simatic WinCC security checklist 
-- 6.6. Simatic WinCC postexploitation/forensic
-- 7. Heavy weapon
-- 7.1. SCADA/HMI application architecture (based on Simatic WinCC)
-- 7.2. Clients-side in SCADA network? (release of client-site fingerprint tool for HMI software) 
-- 7.3. Coordinated disclosure of vulnerabilities in Siemens Simatic WinCC 7.0 used in exploit. 
-- 8. Architecture of exploit 
+- 5. Who is mister PLC?
+- 5.1. Typical PLC architecture
+- 5.2. Security and configuration issues
+- 5.3. Coordinated disclosure of vulnerabilities in several PLC
+- 6. DEMO. Owning plant with ftp and telnet. During demo, I will demonstrate how several vulnerabilities and configuration issues of PLC can be used to get root access to the device, install rootkit and manipulate something in real world.
+- 7. Miss SCADA
+- 7.1. Place of OS and DB in security of SCADA infrastructure
+- 7.2. Simatic WinCC default configuration issues 
+- 7.3. Ways to abuse OS and DB vulnerabilities 
+- 7.4. Coordinated disclosure of several OS/DB WinCC vulnerabilities
+- 7.5. Simatic WinCC security checklist 
+- 7.6. Simatic WinCC postexploitation/forensic
+- 8. Heavy weapon
+- 8.1. SCADA/HMI application architecture (based on Simatic WinCC)
+- 8.2. Clients-side in SCADA network? (release of client-site fingerprint tool for HMI software) 
+- 8.3. Coordinated disclosure of vulnerabilities in Siemens Simatic WinCC 7.0 used in exploit. 
+- 4. Architecture of exploit 
 - 9. DEMO. Owning plant with browser. Exploit scenario. Several 0-day (but responsible disclosed) vulnerabilities in Siemens Simatic WinCC 7.0 used to:
 -  Fingerprint presence of WinCC client software
 - Obtain access password to WinCC WebNavigator interface
@@ -676,17 +644,19 @@ Releases:
         <subtitle>Will the EU Succeed in Regulating HTTPS? </subtitle>
         <track></track>
         <type>lecture</type>
-        <language></language>
-        <abstract>Hypertext Transfer Protocol Secure (HTTPS) has evolved into the de facto standard for secure web browsing. But in the security community, it has long been known that HTTPS is fundamentally broken, and this has been confirmed by alarming hacks and security breaches at several Certificate Authorities (CAs). To tackle the global collapse of trust in these central mediators of HTTPS communications and to augment HTTPS security, the EU has launched a proposal for strict regulation. Will these efforts succeed?</abstract>
-        <description>Through the certificate-based authentication protocol that is HTTPS, web services and internet users protect valuable communications and transactions against interception and alteration by cybercriminals, governments and business. In only one decade, it has facilitated trust in a thriving global E-Commerce economy, while every internet user has come to depend on HTTPS for social, political and economic activities on the internet.
+        <language>en</language>
+        <abstract>Hypertext Transfer Protocol Secure (HTTPS) has evolved into the de facto standard for secure web browsing. But in the security community, it has long been known that HTTPS is fundamentally broken. Recent hacks and security breaches at several Certificate Authorities (CAs) have led to a global collapse of trust in these central mediators of HTTPS communications.</abstract>
+        <description>Given our dependence on secure web browsing, the security of HTTPS has become a top priority in telecommunications policy. In June 2012, the European Commission proposed a new Regulation on eSignatures. As the HTTPS ecosystem is by and large unregulated across the world, the proposal presents a paradigm shift in the governance of HTTPS. Moreover, taking the form of a Regulation, the EU proposal will become law in 27 Member States directly upon adoption in Brussels. In other words, this is the one to watch.
+
+The presentation addresses the question if, and if so, how the EU should address the systemic vulnerabilities of the HTTPS ecosystem. The hack at Dutch CA Diginotar and other security breaches at CAs are discussed from which the systemic vulnerabilities of HTTPS emerge. It then analyses the EU eSignatures Regulation and abstracts from the EU proposal in search of general insights for information security governance. 
+
+Through the certificate-based authentication protocol, web services and internet users protect valuable communications and transactions against interception and alteration by cybercriminals, governments and business. In only one decade, it has facilitated trust in a thriving global E-Commerce economy, while every internet user has come to depend on HTTPS for social, political and economic activities on the internet.
 
 Recent breaches and malpractices at several Certificate Authorities (CAs) have led to a collapse of trust in these central mediators of HTTPS communications as they revealed fundamental weaknesses in the design of HTTPS. In particular, the breach at Dutch CA Diginotar shows how a successful attack on one of the 650 Certificate Authorities across 54 jurisdictions enables attackers to create false SSL-certificates for any given website or service. Moreover, Diginotar kept the breach silent. So for 90 days, web browsers continued to trust Diginotar certificates, enabling attackers to intercept the communications of 300.000 Iranians. In its aftermath, Dutch public authorities overtook operations at Diginotar and convinced Microsoft to delay updates to its market-leading web browser to ensure &#8216;the continuity of the internet&#8217;. These bold interventions lacked a legitimate basis.
 
-Given our dependence on secure web browsing, the security of HTTPS has become a top priority in telecommunications policy. In June 2012, the European Commission proposed a new Regulation on eSignatures. As the HTTPS ecosystem is by and large unregulated across the world, the proposal presents a paradigm shift in the governance of HTTPS. Moreover, taking the form of a Regulation, the EU proposal will become law in 27 Member States directly upon adoption in Brussels. In other words, this is the one to watch.
+While serving as the de facto standard for secure web browsing, in many ways the security of HTTPS is broken. Given our dependence on secure web browsing, the security of HTTPS has become a top priority in telecommunications policy. In June 2012, the European Commission proposed a new Regulation on eSignatures. As the HTTPS ecosystem is by and large unregulated across the world, the proposal presents a paradigm shift in the governance of HTTPS. Moreover, taking the form of a Regulation, the EU proposal will become law in 27 Member States directly upon adoption in Brussels. In other words, this is the one to watch.
 
-The presentation addresses the question if, and if so, how the EU should address the systemic vulnerabilities of the HTTPS ecosystem. The hack at Dutch CA Diginotar and other security breaches at CAs are discussed from which the systemic vulnerabilities of HTTPS emerge. It then analyses the EU eSignatures Regulation and abstracts from the EU proposal in search of general insights for communications security governance. 
-
-The presentation and paper are part of a PhD project on communications security governance and have been presented in September 2012 at the Berkman Center of Harvard University and the Telecommunications Policy Research Conference in Washington D.C. </description>
+The presentation discusses the question if, and if so, how the European regulatory framework should legitimately address the systemic vulnerabilities of the HTTPS ecosystem. It discusses the EU eSignatures Regulation and abstracts from the EU proposal in search of general insights for information security governance. The ongoing research is part of a PhD project and presented earlier this year at the Berkman Center of Harvard University and the Telecommunications Policy Research Conference.</description>
         <persons>
           <person id="3930">axelarnbak</person>
         </persons>
@@ -704,7 +674,7 @@ The presentation and paper are part of a PhD project on communications security 
         <subtitle></subtitle>
         <track></track>
         <type>lecture</type>
-        <language></language>
+        <language>de</language>
         <abstract>Weltbilder der Informatik sind in mancher Hinsicht denen in der Hacker- und Hackerinnen-Community nicht un&#228;hnlich.</abstract>
         <description>Was ist?
 
@@ -731,7 +701,7 @@ Aus den o. g. Beispielen ergibt sich zwangsl&#228;ufig ihr Sinn: Gender Studies 
         <subtitle>Harm Reduction Methodology</subtitle>
         <track></track>
         <type>lecture</type>
-        <language></language>
+        <language>en</language>
         <abstract>Hackers are a high-risk population. This talk will provide hackers with tools to reduce the risk to themselves and their communities using harm reduction methodology.</abstract>
         <description>Hacktivism, social networks, hacking&#8217;s learning opportunities, grey area use of communication tools by revolutionaries and countermovements, information transparency opportunities, privacy and security abuse and user risk situations all share one central tension: resolving ethical decisions around potentially harmful behavior. 
 
@@ -767,7 +737,7 @@ It is with all this work that I see the lens with which the HR methods can serio
         <subtitle>RSA factorization in the real world</subtitle>
         <track></track>
         <type>lecture</type>
-        <language></language>
+        <language>en</language>
         <abstract>RSA is the dominant public-key cryptosystem on the Internet. This talk will explain the state of the art in techniques for the attacker to figure out your secret RSA keys.</abstract>
         <description>A typical 1024-bit RSA public key is a product of two secret 512-bit
 primes. The security of the cryptosystem relies on an attacker being
@@ -844,7 +814,7 @@ This lecture will present first how this organization was born from a discussion
         <subtitle>Zahlenraten f&#252;r Geeks</subtitle>
         <track></track>
         <type>contest</type>
-        <language>de</language>
+        <language></language>
         <abstract></abstract>
         <description></description>
         <persons>
@@ -1041,7 +1011,7 @@ Canape is a network protocol analysis tool which takes the existing paradigm of 
         <subtitle>Cooking gets digital </subtitle>
         <track></track>
         <type>lecture</type>
-        <language>en</language>
+        <language></language>
         <abstract>We know, that cooking is an art. Selecting the ingredients, carefully washing, pealing
 and cutting them before you put them into the right dish at the right time with the right heat.
 Watching the food change his color, form and consistency, seasoning it to develop it's
@@ -1154,7 +1124,7 @@ database. We will try to add more nutritional value data as soon as possible.
         <subtitle></subtitle>
         <track></track>
         <type>lecture</type>
-        <language>en</language>
+        <language></language>
         <abstract>Recently, several research papers in the area of computer security were published that may or may not be considered unethical. Looking at these borderline cases is relevant as today&#8217;s research papers will influence how young researchers conduct their research. In our talk we address various cases and papers and highlight emerging issues for ethic committees, internal review boards (IRBs) and senior researchers to evaluate research proposals and to finally decide where they see a line that should not be crossed.</abstract>
         <description>For researchers in computer security the recent success of papers such as [KKL+09] are an incentive to follow along a line of research where ethical questions become an issue. In our talk at the conference we will address various cases and papers and provide possible guidelines for ethic committees, internal review boards (IRBs) and senior researchers to evaluate research proposals and to finally decide where they see a line that should not be crossed. While some actions might not be illegal they still may seem unethical. 
 
@@ -1224,36 +1194,6 @@ Both live 30 miles from Aberporth, the largest drone test site in Europe, on the
           <link href="http://www.aber.ac.uk/en/english/staff/rcm/">Prof Richard Marggraf Turley Home page</link>
         </links>
       </event>
-      <event id="5390">
-        <start>14:00</start>
-        <duration>00:30</duration>
-        <room>Saal 6</room>
-        <slug>tacticaltech</slug>
-        <title>Tactical Tech - Bridging the Gap</title>
-        <subtitle></subtitle>
-        <track></track>
-        <type>lecture</type>
-        <language></language>
-        <abstract>Don't call us if your campaign does not work! And worse, everyone's been harassed or arrested.</abstract>
-        <description>In 30 minutes we will try to convene that &#8211; one good hack, one good infographic, one good video, one good march &#8211; in fact anything singular would never change anything &#8211; unless it has a power of a giant asteroid (some things do).
-
-So what is needed? Why hackers should work with designers, why designers should work with campaigners, why activists should learn coding? And if they finally manage somehow (it happens!), why it can be so easily destroyed if they do not give a damn about security and privacy? Come and listen and then talk to us, we have some experience to share.
-
-During a 30 minute talk we'd like to introduce our work to the wider CCC community, discuss some of the problems we face in bridging the gap between the communities of people who develop open source pro-privacy tools on the one and people who need those tools on the other hand. We work with people in many different places of the world whose work and well-being depends on online security. At 29c3 we'd like to start building stronger ties with people who want to help us provide, find, choose or audit the necessary tools.
-
-Tactical Tech is an international NGO working to enable the effective use of information for progressive social change. Among other things we provide information, material and trainings to help activists, human rights advocates, journalists and members of communities at risk to communicate safely online.</description>
-        <persons>
-          <person id="2218">Anne Roth</person>
-          <person id="4008">Marek Tuszynski</person>
-        </persons>
-        <links>
-          <link href="http://www.tacticaltech.org">http://www.tacticaltech.org</link>
-          <link href="http://protect.tacticaltech.org/">http://protect.tacticaltech.org/</link>
-          <link href="http://security.ngoinabox.org/">http://security.ngoinabox.org/</link>
-          <link href="http://www.onorobot.org/">http://www.onorobot.org/</link>
-          <link href="http://myshadow.org/">http://myshadow.org/</link>
-        </links>
-      </event>
       <event id="5203">
         <start>14:30</start>
         <duration>00:30</duration>
@@ -1291,7 +1231,7 @@ I would like to talk how we got here, and how we (the Coalition for Open Educati
         <subtitle>Stand gestern, heute und morgen  </subtitle>
         <track></track>
         <type>lecture</type>
-        <language></language>
+        <language>de</language>
         <abstract>Der Betrieb von WLAN-Funk-Netzen und auch von offenen oder freien Netzen ist heute weit verbreitet und Teil der Diskussion um die "Cultures of Sharing". Der Vortrag soll die Grundlagen der Haftung f&#252;r offene Netze und die Entwicklung der Rechtsprechung vom Landgericht Hamburg ("gestern") zum BGH-Urteil "Sommer unseres Lebens" und den Einfluss aktueller Rechtsprechung des Europ&#228;ischen Gerichtshofs, des Bundesgerichtshofs und der Instanzgerichte darstellen ("heute"). Ein Ausblick auf die Folgen dieser neuen, teilweise abweichenden Rechtsprechung und auf die Gesetzesinitiativen der SPD und der Linken ("morgen") soll den Vortrag abrunden.</abstract>
         <description>Der Betrieb von WLAN-Funk-Netzen ist heute Realit&#228;t in praktisch jedem Haushalt. Ein sich fr&#252;h zeigendes Ph&#228;nomen davon sind sogenannte freie oder offene Netze, bei denen der Zugang zum Netz und zum Internet geteilt wird. Dabei spielten unterschiedliche Motivationen eine Rolle. Immer wichtiger geworden ist aber der Gesichtpunkts des Teilens der Zugangs. "Sharing Access" oder die &#220;berwindung des "Digital Divide" sind daher Schlagworte, die in der aktuellen Diskussion &#252;ber die "Cultures of Sharing" immer wichtiger werden.
 
@@ -1352,7 +1292,7 @@ which ones need love and how you can help.</description>
         <subtitle>Chief surveillance tool on the Internet</subtitle>
         <track></track>
         <type>lecture</type>
-        <language></language>
+        <language>en</language>
         <abstract>In our talk, we discuss various aspects of Deep Packet Inspection. We begin by its significance, short history, technical issues, and application fields. Then, we focus on the secrecy created around this technology, because it threatens our privacy, and ways to deal with this problem. To make it concrete, we examine case studies of two DPI companies: Phorm that uses DPI for targeted advertisement and Verint that uses it for surveillance. Phorm has recently came to Turkey to work with the Turkish telecom monopoly TTNET, and we have launched a petition campaign against Phorm at enphormasyon.org.</abstract>
         <description>In our talk, we discuss various aspects of Deep Packet Inspection. We begin by its significance, short history, technical issues, and application fields. Then, we focus on the secrecy created around this technology, because it threatens our privacy, and ways to deal with this problem. To make it concrete, we examine case studies of two DPI companies: Phorm that uses DPI for targeted advertisement and Verint that uses it for surveillance. Phorm has recently came to Turkey to work with the Turkish telecom monopoly TTNET, and we have launched a petition campaign against Phorm at enphormasyon.org. 
 
@@ -1419,7 +1359,7 @@ The importance of the DPI technology stems from the fact that it has the potenti
         <subtitle>Hijacking client software for fuzz and profit</subtitle>
         <track></track>
         <type>lecture</type>
-        <language>en</language>
+        <language></language>
         <abstract>An approach to the problem of fuzzing proprietary protocols will be shown, focusing on network protocols and native software. In the course of this talk I will combine several methods in order to force the client software to work as a &#8220;double agent&#8221; against the server.</abstract>
         <description>An interesting approach to the problem of fuzzing proprietary protocols will be presented. Since the method is applicable to several kinds of software and in order to keep an example in mind through all the talk, I will be focusing on network protocols and native software.
 
@@ -1589,7 +1529,7 @@ E. The Exploits
         <subtitle>Offene Quellen zum B&#246;sen und Guten: von downloadbaren Handschellenschl&#252;sseln zu sicheren elektronischen Schl&#246;ssern</subtitle>
         <track></track>
         <type>lecture</type>
-        <language></language>
+        <language>de</language>
         <abstract>Was bedeutet das Zeitalter offener Designs f&#252;r die Sicherheit von Schl&#246;ssern? Zum Beispiel solchen, die auf eine geringe Verbreitung eines Schl&#252;ssels setzen? Ein Beispiel sind die sogenannten Hochsicherheitsversionen von Polizeihandschellen. Der Talk zeigt was (und wie) sich in diesem Bereich mit Lasercuttern und 3D Druckern erreichen l&#228;sst - sowie welche komplexeren Angriffsziele noch warten. Als Ausweg aus der Problematik kopierbarer Schl&#252;ssel gelten digitale Schl&#246;sser, aber sie kranken anders an offenen Quellen: sie haben keine! Im Rahmen eines Open Source Lock Projektes haben wir uns daher ein reflashbares Vorh&#228;ngeschloss angesehen, doch noch ehe wir den Programmieradapter angeschlossen hatten fanden wir eine Schwachstelle der Hardware... Leider kein Einzelfall!</abstract>
         <description>Wie vertr&#228;gt sich das Open Source Konzept mit Sicherheitstechnik in der realen Welt? Eigentlich ist es einfach: man m&#246;chte seine Schl&#252;ssel geheim halten, seine Schl&#246;sser aber kennen und verstehen k&#246;nnen. Was in der virtuellen Welt l&#228;ngst etabliert ist, funktioniert im "real life" leider auf beiden Ebenen nicht. Der Vortrag gibt eine kurze Einf&#252;hrung samt &#220;berblick &#252;ber den Stand der Technik und erkl&#228;rt dann im Detail, was unseren Recherchen zum Opfer fiel.
 
@@ -1719,32 +1659,11 @@ The speaker led the application security program for a 2012 US presidential camp
         <subtitle>5 Minutes of Fame</subtitle>
         <track></track>
         <type>other</type>
-        <language></language>
+        <language>en</language>
         <abstract></abstract>
         <description></description>
         <persons>
           <person id="1476">Nick Farr</person>
-        </persons>
-        <links>
-        </links>
-      </event>
-      <event id="5101">
-        <start>16:00</start>
-        <duration>01:00</duration>
-        <room>Saal 4</room>
-        <slug>privatisierung_der_rechtsdurchsetzung</slug>
-        <title>Privatisierung der Rechtsdurchsetzung</title>
-        <subtitle>Von ACTA, IPRED und Freunden</subtitle>
-        <track></track>
-        <type>lecture</type>
-        <language>de</language>
-        <abstract>ACTA war das beherrschende Thema des zweiten Halbjahres. Mit ACTA sollte der Weg einer Privatisierung der Rechtsdurchsetzung weiter gegangen werden. Was das konkret bedeutet, k&#246;nnen wir bereits im Ausland sehen: Netzsperren, 3-Strikes-Systeme und eine Echtzeit-&#220;berwachung des Datenverkehrs zur Bek&#228;mpfung von Urheberrechtsverletzungen. Existierende Modelle in anderen europ&#228;ischen Staaten zeigen, dass diese Ma&#223;nahmen erhebliche grund- und datenschutzrechtliche Probleme aufwerfen. </abstract>
-        <description>Aber auch in Deutschland haben wir die Debatte &#252;ber die m&#246;gliche Einf&#252;hrung einer Warnmodell-2-Strikes-Infrastruktur als ersten Schritt in diese Richtung. Das Problem: Internetanbieter und Hoster werden damit gleichzeitig zu Richtern und Hilfspolizisten in Personalunion gemacht. Diese Ma&#223;nahme durchbricht ein ehernes Prinzip: Der Internetanbieter ist nicht f&#252;r die transportierten Inhalte haftbar und soll sich ausdr&#252;cklich nicht um diese k&#252;mmern.
-
-Der Vortrag will einen &#220;berblick bieten, was in welchen Staaten wie bereits l&#228;uft. Der Vortrag will gleichzeitig Einblick geben, wer die Lobbies dahinter sind und welche Ideen sie vertreten. Und es gibt einen Ausblick auf die kommenden K&#228;mpfe auf EU- und internationaler Ebene durch IPRED2 und TPP sowie die Nebenschaupl&#228;tze wie Clean IT und CEO-Koalition.</description>
-        <persons>
-          <person id="3926">Kirsten Fiedler</person>
-          <person id="1755">Markus Beckedahl</person>
         </persons>
         <links>
         </links>
@@ -1758,7 +1677,7 @@ Der Vortrag will einen &#220;berblick bieten, was in welchen Staaten wie bereits
         <subtitle></subtitle>
         <track></track>
         <type>lecture</type>
-        <language>de</language>
+        <language></language>
         <abstract>Green-IT kennen wir inzwischen zur Gen&#252;ge. Computer k&#246;nnen aber nicht nur nicht "green" sein, sondern auch unfair und unsozial, von der Rohstoffgewinnung bis zur Verschrottung. Unfair spart n&#228;mlich Geld. Der Gedanke, faire Produkte anzubieten und zu kaufen, ist inzwischen weit verbreitet, allerdings eher bei Kaffee oder Kleidung. Ein Angebot an fairer IT fehlt. Die Industrie hat sich noch nicht auf den Weg gemacht, faire Computer herzustellen. Wir Nutzer haben kaum die Wahl &#8211; ver&#228;ndern k&#246;nnen wir aber durchaus etwas. Der Vortrag erkl&#228;rt, was und wie.</abstract>
         <description>Der Vortrag berichtet (auf Basis allgemein zug&#228;nglicher Informationsquellen, meist investigative Berichte diverser Nichtregierungsorganisationen) vom Stand der Entwicklung fairer Informationstechnologie. Dabei wollen wir kein "Apple ist b&#246;se und Samsung sowieso" wiederholen, sondern schauen, wie es in Zukunft zu einem Angebot fairer IT kommen k&#246;nnte.
 
@@ -1859,7 +1778,7 @@ Then I describe in details three main families of attacks:
         <subtitle></subtitle>
         <track></track>
         <type>lecture</type>
-        <language>en</language>
+        <language></language>
         <abstract>At 28C3, Klink and Waelde showed that a number of technologies (PHP, ASP.NET,
 Ruby, Java, Python, etc.) were vulnerable to the decade-old hash-flooding DoS
 attacks. The vulnerability was then often fixed by adopting stronger hash
@@ -1875,7 +1794,6 @@ competitive in performance with the weak hashes, and already adopted in OpenDNS,
 Perl 5, Ruby, and in the Rust language.</abstract>
         <description></description>
         <persons>
-          <person id="3908">djb</person>
           <person id="3770">Jean-Philippe Aumasson</person>
           <person id="3995">Martin Bo&#223;let</person>
         </persons>
@@ -1895,7 +1813,7 @@ Perl 5, Ruby, and in the Rust language.</abstract>
         <subtitle>Einblicke in die Weizenz&#252;chtung</subtitle>
         <track></track>
         <type>lecture</type>
-        <language>de</language>
+        <language></language>
         <abstract>Der Vortrag handelt &#252;ber Getreidez&#252;chtung. Am Beispiel von Weizen soll der langj&#228;hrige Prozess beschrieben werden, den es ben&#246;tigt, um  eine neue Sorte auf den Markt zu bringen. Es sollen die biologischen Grundlagen sowie die ben&#246;tigte Technik vorgestellt werden. Au&#223;erdem wird auf die Problematik eingegangen, die die Konzentration des Marktes auf wenige gro&#223;e Konzerne mit sich bringt.</abstract>
         <description>Nach einem kurzen Abriss &#252;ber die Herkunft des Weizens und seine Bedeutung f&#252;r die Landwirtschaft soll die Entwicklung einer neuen Sorte beschrieben werden. Dazu muss zuerst auf die Genetik eingegangen werden. Die Besonderheiten bei Selbstbefruchtern, Homozygotie versus Heterozygotie und das Hardy-Weinberggesetz werden besprochen. Hieraus wird schon deutlich, da&#223; es mindestens zehn Jahre dauert, bis eine neue Sorte auf den Markt gebracht werden kann. Der Z&#252;chter muss schon am Beginn der Entwicklung entscheiden, welche Zuchtziele er erreichen m&#246;chte und welche Pflanzen als Eltern f&#252;r die Kreuzzung zu w&#228;hlen sind.
 
@@ -1921,7 +1839,7 @@ Anchlie&#223;end an die eigentliche z&#252;chterische T&#228;tigkeit kommt dann 
         <subtitle>Informationsfreiheit in Deutschland. Ein Sachstand.</subtitle>
         <track></track>
         <type>lecture</type>
-        <language></language>
+        <language>de</language>
         <abstract>Sechs Jahre nach seinem Inkrafttreten wurde das Informationsfreiheitsgesetz (IFG) des Bundes f&#252;r den Deutschen Bundestag evaluiert. Auch aus einzelnen Bundesl&#228;ndern liegen zwischenzeitlich wissenschaftlich untermauerte Erkenntnisse zum Stand oder Nichtstand der Informationsfreiheit in Deutschland vor.</abstract>
         <description>Der Vortrag geht auch anhand der Rechtsprechung und an Beispielen aus der Praxis auf notwendige Ver&#228;nderungen der Gesetzeslage ein. Der Referent war als Bundestagsabgeordneter (1994-2009) "Vater" des Bundes-IFG und Kl&#228;ger in Sachen Einblick in den Mautvertrag gegen die Bundesrepublik Deutschland.</description>
         <persons>
@@ -1963,7 +1881,7 @@ Ich m&#246;chte die Geschichte und Verwendung der beiden Begriffe in meinem Vort
         <subtitle></subtitle>
         <track></track>
         <type>lecture</type>
-        <language>de</language>
+        <language></language>
         <abstract>Hardware-basierte Festplattenvollverschl&#252;sselungen in Form sogenannter SEDs (Self-Encrypting Drives) werden gemeinhin als sichere und performante Alternative zu Software-basierter Verschl&#252;sselung wie BitLocker und TrueCrypt gesehen. W&#228;hrend der Performance-Gewinn und die Benutzerfreundlichkeit von SEDs, bspw. Intel's SSD 320 bzw. SSD 520, au&#223;er Frage stehen, ist der Sicherheits-Gewinn deutlich geringer als bisher angenommen. Teilweise sind Systeme die auf SEDs basieren gar schw&#228;cher als vergleichbare Systeme die auf Software-Verschl&#252;sselung basieren.</abstract>
         <description>Wir haben handels&#252;bliche SEDs einer Sicherheitsanalyse unterzogen, indem wir sie allen Angriffen ausgesetzt hab
 en die bekannterma&#223;en gegen Software-basierte Festplattenverschl&#252;sselungen erfolgen. Dazu z&#228;hlen "Cold-Boot Angriffe", "DMA/FireWire Angriffe" sowie "Evil-Maid Angriffe". F&#252;r jeden dieser Angriffe konnten wir zeigen, dass sie in vielen praktischen Szenarien auch gegen SEDs erfolgreich sind.
@@ -1987,7 +1905,7 @@ Insgesamt f&#252;hren Warm-Replug Angriffe dazu, dass viele SED-basierte Systeme
         <subtitle></subtitle>
         <track></track>
         <type>lecture</type>
-        <language>en</language>
+        <language></language>
         <abstract>The Security Assertion Markup Language (SAML) is a widely adopted language for making security statements about subjects. It is a critical component for the development of federated identity deployments and Single Sign-On scenarios. In order to protect integrity and authenticity of the exchanged SAML assertions, the XML Signature standard is applied. However, the signature verification algorithm is much more complex than in traditional signature formats like PKCS#7. The integrity protection can thus be successfully circumvented by application of different XML Signature specific attacks, under a weak adversarial model.</abstract>
         <description>In this presentation we describe an in-depth analysis of 14 major SAML frameworks and show that 11 of them, including Salesforce, Shibboleth, and IBM XS40, have critical XML Signature wrapping (XSW) vulnerabilities. Based on our analysis, we developed an automated penetration testing tool for XSW in SAML frameworks. Its feasibility was proven by additional discovery of a new XSW variant. We propose the first framework to analyze such attacks, which is based on the information flow between two components of the Relying Party. Surprisingly, this analysis also yields efficient and practical countermeasures.
 
@@ -2007,7 +1925,7 @@ Our research was presented at USENIX Security Symposium 2012, Bellevue, WA. For 
         <subtitle>Reverse engineering on Android platforms</subtitle>
         <track></track>
         <type>lecture</type>
-        <language>en</language>
+        <language></language>
         <abstract>The lecture would address topics related to reverse engineering for mobile platforms, especially from the Android point of view. The main aspects of the presentation is a new approach to reverse engineering side effects problem: some low footprint inspection techniques that grant analysts with the ability to access the program memory without altering its behavior. One technique is presented in particular - Android service injection - and is demonstrated.</abstract>
         <description>Reverse engineering and motivations
 ===================================
@@ -2126,7 +2044,6 @@ address the following topics:
     target applications and the Android introspection client (as well as
     a DDMS-like plugin if ready soon enough).</description>
         <persons>
-          <person id="4007">Damien Cauquil</person>
           <person id="3830">Pierre Jaury</person>
         </persons>
         <links>
@@ -2141,7 +2058,7 @@ address the following topics:
         <subtitle>DNSSEC, DNSCurve and Namecoin</subtitle>
         <track></track>
         <type>lecture</type>
-        <language></language>
+        <language>en</language>
         <abstract>There's about 100 top-level domains signed with DNSSEC and .nl recently hit 1M second-level domains. At this occasion, we take a look at the goods and the bads of DNSSEC deployment, including amplification attacks, Zensursula-like DNS redirects, China DNS injection and NASA key rollover mistakes. We will find out what DNSCurve and Namecoin promise to make better and what Zooko's triangle has all to do with this.</abstract>
         <description>DNSSEC uses public-key cryptography to sign (not encrypt) public data in the Domain Name System. With knowledge of the root public key resolvers (DNS clients) can verify names along a chain of trust. A new type of resource records allows for secure denial of existence of mistyped names.
 
@@ -2175,7 +2092,7 @@ Namecoin is an experimental adoption of the Bitcoin concept to domain names. Min
         <subtitle></subtitle>
         <track></track>
         <type>lecture</type>
-        <language>en</language>
+        <language></language>
         <abstract>We're winning!  The future looks like network politics!
 
 Wait, what the hell are network politics and how do they work?  Is that like the Pirate Party, or the IETF, or Anonymous?</abstract>
@@ -2183,6 +2100,33 @@ Wait, what the hell are network politics and how do they work?  Is that like the
         <persons>
           <person id="2672">Eleanor Saitta</person>
           <person id="4001">Sm&#225;ri McCarthy</person>
+        </persons>
+        <links>
+        </links>
+      </event>
+      <event id="5392">
+        <start>18:30</start>
+        <duration>01:00</duration>
+        <room>Saal 6</room>
+        <slug>digipass_instrumentation</slug>
+        <title>Practical exploitation of rounding vulnerabilities in internet banking applications</title>
+        <subtitle>The Master of Puppets</subtitle>
+        <track></track>
+        <type>lecture</type>
+        <language>en</language>
+        <abstract>Rounding attacks are very popular these days against Internet Banking applications. Mostly because these attacks *are* legal and they permit a malicious person to gain a nice amount of money out of 'nothing' by exploiting the rounding made by the application. Those who work in banks (should) know better.
+
+Most of the banks are aware of the rounding mechanism but they think that the digipass (second factor authenticator) protects them against automation of Internet Banking transactions. This talk shows a method of instrumenting a digipass device in order to automate the challenge typing - response reading process. This is done using a physical machine that demolishes the myth which says that digipasses can be used only manually.</abstract>
+        <description>Several Internet Banking applications are vulnerable to the so called &#8216;rounding attacks&#8217;. This is a well known type of attack which takes advantage of automatic rounding made by some applications when a user performs currency exchange transactions. When performing lots of micro-transactions, a user is able to exchange money at a much better exchange rate than the official one.
+
+However, the banks seem to be aware of the issue but they consider it non-risky mainly because a user must approve a transaction with the digipass (manually enter a challenge code and input the response into the Internet Banking app) and doing lots of transactions in a short time is not feasible.
+
+In this presentation I show a method of automating the challenge typing and response reading from a digipass that can be used for automating internet banking transactions. I present a machine (mechanics + electronics + software) that is controlled by the computer and is able to automatically press digipass buttons (enter challenge code) and read the response as image (using a web cam) and interpret it in order to extract response digits.
+
+In the second part of the presentation I will make a demo of the machine. 
+</description>
+        <persons>
+          <person id="3980">Adrian Furtuna</person>
         </persons>
         <links>
         </links>
@@ -2214,7 +2158,7 @@ Wait, what the hell are network politics and how do they work?  Is that like the
         <subtitle>RFID-Studierendenkarten mit Fehlern</subtitle>
         <track></track>
         <type>lecture</type>
-        <language></language>
+        <language>de</language>
         <abstract>Unsichere Studierenden- und Mensakarten. Eine wissenschaftliche Auswertung.</abstract>
         <description>Wie sicher sind eigentlich Studierendenkarten? Mit denen kann man nicht nur sein Mensaessen bezahlen, sondern auch kopieren und (s)einen Schrank auf- und zusperren. Da sollte der Laptop auch noch drin stehen, wenn man zum Schrank zur&#252;ck kommt.
 
@@ -2261,37 +2205,6 @@ We will also expose the methodology to generate contextualized communications ba
   </day>
   <day date="2012-12-30" index="4">
     <room name="Saal 1">
-      <event id="5299">
-        <start>11:30</start>
-        <duration>01:00</duration>
-        <room>Saal 1</room>
-        <slug>best_of_verfassungsschutz</slug>
-        <title>Best of ... Verfassungsschutz</title>
-        <subtitle>Der Verfassungsschutz sch&#252;tzt die Verfassung so wie Zitronenfalter Zitronen falten.</subtitle>
-        <track></track>
-        <type>lecture</type>
-        <language>de</language>
-        <abstract>Verfassungsschutzskandale gibt es nicht erst seit der Entdeckung des NSU vor einem Jahr. Vorgestellt werden: sie Affaire Traube, der Schm&#252;cker-Prozess, das Celler Loch, die Vulkan-Affaire, der Anschlagsversuch auf das J&#252;dische Gemeindehaus West-Berlin, vier Jahrzehnte Beobachtung von Rolf G&#246;ssner. 
-
-Vielleicht sind aber gar nicht die Pannen der Skandal, sondern vielmehr der ganz gew&#246;hnliche Alltag des Verfassungsschutzes.</abstract>
-        <description>Dazu geh&#246;ren die Berufsverbote in den 70er und 80er Jahren in Westdeutschland (so einzigartig, dass "Le Berufsverbot" auch in der franz&#246;sischen Sprache existiert), dazu geh&#246;rt vor allem die teils jahrelange &#220;berwachung von Personen, Gruppen und Netzwerken mit falscher Gesinnung oder auch nur Kontakten zu welchen, denen dies unterstellt wird. Dazu geh&#246;rt seit einigen Jahren politische Bildung an Schulen durch..? Den Verfassungsschutz.
-
-Der Verfassungsschutz soll die Verfassung sch&#252;tzen, agiert aber vollkommen undemokratisch: geheime Methoden, geheime Strukturen, keine nennenswerte Kontrolle. Und zwar von Anfang an. Eine parlamentarische Kontrolle gibt es erst seit 1978, und von tats&#228;chlicher Kontrolle kann kaum gesprochen werden, wenn die handverlesenen Kontrollierenden mit niemandem &#252;ber das sprechen d&#252;rfen, was sie im geheimen Gremium erfahren. Es geht also auch um die Entstehungsgeschichte des deutschen Inlandsgeheimdienstes und wie das daraus geworden ist, was er heute ist. 
-
-"Der Verfassungsschutz ist dazu da, die Verfassung zu sch&#252;tzen, nicht die Regierung." &#8211; Burkhard Hirsch, ehemaliger Innenminister von Nordrhein-Westfalen
-</description>
-        <persons>
-          <person id="2218">Anne Roth</person>
-        </persons>
-        <links>
-          <link href="http://http://www.sueddeutsche.de/politik/ns-vergangenheit-und-verfassungsschutz-ueber-die-seilschaften-der-altnazis-1.1150775">S&#252;ddeutsche, 28.9.11: &#220;ber die Seilschaften der Altnazis</link>
-          <link href="http://http://www.spiegel.de/spiegel/print/d-40941938.html">Der Spiegel 10/77: Der Minister und die Wanze</link>
-          <link href="http://www.zeit.de/2012/05/Verfassungsschutz">Uwe Wesel, Zeit Online, 28. 01.2012: Spitzel, Wanzen, Bomben</link>
-          <link href="http://http://www.ddr89.de/ddr89/texte/brief2.html">Offener Brief von B&#252;rgerrechtsorganisationen beider deutscher Staaten "&#196;mter f&#252;r Verfassungsschutz aufl&#246;sen", 31.5.1991</link>
-          <link href="http://www.woz.ch/125/deutschlands-verfassungsschutz/wer-bitte-wird-denn-hier-geschuetzt">Raul Zelik: Wer, bitte, wird denn hier gesch&#252;tzt? WOZ - Die Wochenzeitung, 2.2.2012</link>
-          <link href="http://www.flickr.com/photos/31518826@N00/">Bild: Das Schaf von bildpilot, CC-BY-NC-SA-Lizenz</link>
-        </links>
-      </event>
       <event id="5333">
         <start>12:45</start>
         <duration>01:00</duration>
@@ -2323,7 +2236,7 @@ We will go on to show various statistics that we collect from the network while 
         <subtitle>&#220;bersicht &#252;ber aktuelle Zensurumgehungssoftware</subtitle>
         <track></track>
         <type>lecture</type>
-        <language></language>
+        <language>de</language>
         <abstract>Zensur im Internet betrifft immer mehr Nutzer. Wir kennen Tools wie Proxies, VPNs oder Tor Bridges. Doch welche weiteren Werkzeuge unterst&#252;tzen die Nutzer vor Ort? Wo sind die St&#228;rken und Schw&#228;chen? Der Vortrag stellt einige von diesen vor und zeigt die St&#228;rken und Schw&#228;chen.</abstract>
         <description>Der Vortrag versucht, einen &#220;berblick &#252;ber die &#246;ffentlich verf&#252;gbaren Zensurumgehungswerkzeuge zu geben und diese zu bewerten. Zu Anfang werden kurz m&#246;gliche, eher nichttechnische Wege angesprochen. Dann folgt eine Betrachtung von Haystack und Ultrasurf. Insbesondere gehe ich auf die spezifischen Fehler dieser Projekte ein. Einen &#228;hnlichen Ansatz wie die beiden anderen Projekte verfolgt Psiphon. Die verschiedenen Versionen der Software werden kurz vorgestellt.
 
@@ -2345,7 +2258,7 @@ Der Vortrag stellt die Funktionsweise der diversen Dienste vor und erkl&#228;rt,
         <subtitle>Wie Roboterinstrumente zum Musik machen benutzt werden k&#246;nnen</subtitle>
         <track></track>
         <type>lecture</type>
-        <language></language>
+        <language>de</language>
         <abstract>Autonomer Drumroboter, robotisches Glockenspiel oder klingende Installation: Musikinstrumente zu modifizieren und selbstzubauen bietet musik- und technikaffinen Geeks die M&#246;glichkeit, vorgefertigten Klang-Setups etwas eigenst&#228;ndiges entgegenzusetzen. Drumroboter und Klanginstallationen &#252;ben dabei sowohl physisch als auch optisch einen besonderen Reiz aus: die Quelle des Klangs wird entdeckt.</abstract>
         <description>Ich habe mich in den letzten zwei Jahren mit der Entwicklung und dem Bau des mechanischen Drumroboters MR-808 besch&#228;ftigt [3]. Die Installation MR-808 ist die mechanische Replik des ber&#252;hmten Drumcomputers TR-808 (1981, Roland). Hierbei wurden 11 der urspr&#252;nglich 14 elektronisch erzeugten Sounds durch mechanische Klangerzeuger ersetzt. 
 
@@ -2382,7 +2295,7 @@ Weiterhin erl&#228;utere ich oft verwendete Techniken am Beispiel des Drumcomput
         <subtitle>Damit Sie auch morgen schlecht von Ihrem Computer tr&#228;umen.</subtitle>
         <track></track>
         <type>lecture</type>
-        <language></language>
+        <language>de</language>
         <abstract>Was hat sich im letzten Jahr im Bereich IT-Sicherheit getan? Welche neuen Entwicklungen haben sich ergeben? Welche neuen Buzzwords und Trends waren zu sehen?</abstract>
         <description>Wie immer wagen wir den IT-Security-Alptraum-Ausblick auf das Jahr 2013 und dar&#252;berhinaus, denn was wir wirklich wissen wollen, ist ja schlie&#223;lich: Was kriecht, krabbelt und fliegt in Zukunft auf uns zu? Im Zuge von allgemeiner Transparenz, Erfolgskontrolle und Selbstoptimierung werden wir au&#223;erdem fr&#252;here Voraussagen hinsichtlich des Eintreffens unserer Weissagungen pr&#252;fen.</description>
         <persons>
@@ -2401,9 +2314,9 @@ Weiterhin erl&#228;utere ich oft verwendete Techniken am Beispiel des Drumcomput
         <subtitle></subtitle>
         <track></track>
         <type>lecture</type>
-        <language></language>
-        <abstract>Some facts and stats about Congress, plus stories and legends.</abstract>
-        <description>Good-bye and have a safe trip home!</description>
+        <language>en</language>
+        <abstract></abstract>
+        <description></description>
         <persons>
           <person id="1340">bios</person>
         </persons>
@@ -2507,7 +2420,7 @@ Every address a program issues, calls, or jumps to is an illusion or even a comp
         <subtitle>On the way to free(ing) education</subtitle>
         <track></track>
         <type>lecture</type>
-        <language></language>
+        <language>en</language>
         <abstract>Massive open online courses are the vogue of the season when it comes to discussing the future of university-level education. But we&#8217;re only starting to see what education at this scope means and how it can be supported best, in terms of both didactics and technology. This talk is an inside report by two instructors who have delved into the experience of teaching large audiences online. We share the lessons that we have learned: how to spark student interest, how to put intuition before formal theories, how to streamline production and much more. And we point out what needs to be done to truly democratize education from the viewpoint of both the students and the instructors.</abstract>
         <description>Teaching, in particular at university level, hasn't really changed much for hundreds of years. There's a teacher lecturing to a room full of students, but very few of them being engaged. The past few years have seen a number of initiatives that try to bring education online, usually even free of charge, through online videos and mostly also through interactive elements. Prominent examples include Khan Academy, Udacity, Coursera, and edX. Well-known in the US, the former two have also had a massive echo in the German press.
 
@@ -2551,7 +2464,7 @@ Ultimately, if this format catches on, it is bound to lead to a new level of ope
         <subtitle></subtitle>
         <track></track>
         <type>lecture</type>
-        <language>en</language>
+        <language></language>
         <abstract>The Role of Technology in Post-Revolution Tunisia &amp; Egypt: Internet activists have embarked on many online projects to empower citizens with necessary information about their elected officials.</abstract>
         <description>There are four axes on which Internet activists work on: Informing, participating, monitoring and documenting.</description>
         <persons>
@@ -2569,7 +2482,7 @@ Ultimately, if this format catches on, it is bound to lead to a new level of ope
         <subtitle>Everything about a Yugoslavian microcomputer halfway between a TRS-80 and a ZX 80</subtitle>
         <track></track>
         <type>lecture</type>
-        <language></language>
+        <language>en</language>
         <abstract>Galaksija was to be in Yugoslavia what Commodore and Sinclair were in the west. Whether it succeeded or not, its deceptively simple design can still teach us a lot of interesting tricks on how to make a usable computer and operating system with as few transistors and bits as possible.</abstract>
         <description>Galaksija was a Yugoslavian home microcomputer popular in the local DIY community throughout the 1980s. It was meant as an alternative to illegally bought contemporary Sinclair and Commodore computers. It is a fascinating product of the time of severely limited availability of electronic components and a widespread disregard for copyright.
 
@@ -2597,23 +2510,24 @@ I'm an electronic engineer and this talk is based on my university diploma thesi
         <subtitle>Digitale M&#252;ndigkeit, Technikpaternalismus und warum wir Netzphilosophie brauchen</subtitle>
         <track></track>
         <type>lecture</type>
-        <language>de</language>
+        <language></language>
         <abstract>Wir sehen in der digitalen Technik gro&#223;es Potential zur Demokratisierung und Befreiung der Menschen. Doch machen wir uns nichts vor. Technik kann genausogut der Entm&#252;ndigung von Menschen dienen. Je komplexer sie wird, desto mehr sind wir von Vereinfachung abh&#228;ngig und desto weniger Einfluss k&#246;nnen wir selber auf die Technik nehmen.</abstract>
         <description>Hacken und Philosophie haben eine gro&#223;e Gemeinsamkeit: ein &#228;sthetisches Wohlbefinden, beim Erkennen oder Finden einer eleganten L&#246;sung (was ja auch die Herkunft des Wortes "hack" ist). Doch bisher hat diese grundlegende Gemeinsamkeit noch wenig Gemeinsamkeiten produziert.
 
-Auf dem Treffen der UN-Fernmeldeunion in Dubai fordern Politiker, Experten (was auch immer das sein mag) und Lobbyisten neue Regeln f&#252;r das Internet.
-Was das bedeutet, wenn derartige Forderungen laut werden, ist uns ja schon klar: noch mehr Einschr&#228;nkungen sollen kommen und wir m&#252;ssen in absehbarer Zeit wieder auf die Stra&#223;e gehen und protestieren.
+Da w&#228;re zwar die Technikphilosophie, doch die besch&#228;ftigt sich mit Fragen wie: "Ist es in Ordnung Stammzellen zu nutzen, um Leben zu retten? D&#252;rfen wir M&#252;ll produzieren, der auch in tausend Jahren noch atomar strahlen wird?" und so weiter. Dabei verweilt sie im "Gutenberguniversum" und verschl&#228;ft die "digitale Revolution". Und dabei g&#228;be es so spannende netzphilosophische Fragen:
 
-Dabei ist es gar nicht so falsch, dass wir neue, zeitgem&#228;&#223;e (moralische) Regeln brauchen, die auf das Internet angepasst sind. Dies hat n&#228;mlich unsere Gesellschaft derart umgest&#252;lpt, dass kaum ein Lebensbereich davon unber&#252;hrt bleibt. Gerade unbedarftere Netzteilnehmende tappen immer wieder in b&#246;se Fallen, die h&#228;tten vermieden werden k&#246;nnen. Und die Reaktion darauf sind regelm&#228;&#223;ig Forderung nach mehr Beschr&#228;nkungen.
-Neue ethische Regeln k&#246;nnten dem vorbeugen.
+- Ist es moralisch legitim, meine digitale M&#252;ndigkeit aufzugeben?
+- Wie soll die Welt im digitalen Zeitalter aussehen?
+- Wie muss digitale Technik gestaltet werden, damit sie Menschen voranbringt? 
 
-Denn wieder einmal macht die Philosophie ihren Lieblingsfehler: Sie braucht zu lange, um sich mit neuen Themen zu besch&#228;ftigen. Das Sprichwort mit dem Berg und dem Propheten legt nahe, dass wir den Philosophen mal ein wenig entgegen kommen sollten. 
-Wie k&#246;nnten sinnvolle moralische Regeln aussehen? Wie muss unsere Technik gestaltet werden, damit sie unsere Freiheit bewahrt und nicht mehr und mehr und mehr einschr&#228;nkt? 
-Ist ja nicht so, dass wir ganz bei Null anfangen m&#252;ssten. Die Technikphilosophie hat da einiges vorgelegt. Wir k&#246;nnen uns "Technikpaternalismus" vornehmen. Denn dar&#252;ber k&#246;nnen wir erfahren, welche Technik f&#252;r unsere "digitale M&#252;ndigkeit" ganz sicher gef&#228;hrlich wird und welche eher nicht.
-Netzethiken und Thesen gibt es zu Hauf. Was wir brauchen, ist etwas Allgemeing&#252;ltiges, das auch der letzte DAU verinnerlichen kann.
-</description>
+Derzeit entscheidet sich, ob Technik "gut" ist, meist ausschlie&#223;lich anhand ihres &#246;konomischen Erfolgs. Die philosophische Frage danach, wie Technik beschaffen sein muss, damit sie den Menschen nutzt, wird in Bezug auf die digital vernetzte Welt meist gar nicht gestellt.
+
+Vielleicht m&#252;ssen wir deshalb st&#228;ndig wieder auf die "Censilias" dieser Welt reagieren, um Schlimmes zu verhindern, anstatt uns mit coolen Sachen besch&#228;ftigen zu k&#246;nnen. Denn einen allgemeing&#252;ltigen ethischen Katalog haben wir nicht. Nicht nur bei Netz-Muggeln f&#252;hrt das dazu, dass sie "dem Internet" entweder mit zu wenig oder mit zu viel Vorsicht begegnen. Auch die, die heute wegweisende Entscheidungen treffen m&#252;ssen, haben keine gemeinsame Basis, auf der sie etwas anderes als Gr&#252;tze produzieren k&#246;nnen.
+
+Auch nach &#252;ber zehn Jahren digitaler Alltagsvernetzung sind wir weiterhin prim&#228;r auf unsere Intuition angewiesen, wenn wir uns die Frage stellen, wie wir die (digital vernetzte) Zukunft gestalten wollen. Dabei liefert uns die Philosophie hervorragendes Werkzeug. Nun. Wenn (die ollen) Philosophen sich nicht mit dem Netz besch&#228;ftigen wollen, dann m&#252;ssen wir uns eben der Philosophie widmen.
+
+Kernthema des Vortrags ist die Gegen&#252;berstellung von Technikpaternalismus und digitaler M&#252;ndigkeit. Beide Begriffe werden definiert und erkl&#228;rt. Probleme werden aufgeworfen und L&#246;sungsans&#228;tze skizziert (das sagt man im Wissenschaftlichen so :).</description>
         <persons>
-          <person id="3872">Leena Simon</person>
         </persons>
         <links>
           <link href="http://netzphilosophie.org">Netzphilosopie.org</link>
@@ -2628,7 +2542,7 @@ Netzethiken und Thesen gibt es zu Hauf. Was wir brauchen, ist etwas Allgemeing&#
         <subtitle>Mehr Transparenz und Teilhabe im Gesetzgebungsprozess</subtitle>
         <track></track>
         <type>lecture</type>
-        <language></language>
+        <language>de</language>
         <abstract>Wir brauchen ein maschinenlesbares und -schreibbares Gesetzgebungsverfahren, in dem jede &#196;nderung transparent diskutiert und beschlossen wird. Der Bundestag &#246;ffnet und digitalisiert sich eher langsam und widerwillig, dennoch kann man schon heute anfangen, die Werkzeuge der parlamentarischen Zukunft in Deutschland zu gestalten und auszuprobieren. Dazu stellen wir die Projekte OffenesParlament.de und das Bundes-Git vor und zeigen, wie es in Zukunft weitergehen k&#246;nnte.
 </abstract>
         <description>OffenesParlament ist eine digitale Aussichtsplattform f&#252;r den Bundestag (aber ohne die Sicherheitscontainer). Von hier aus kann man die Plenardebatten nachlesen, bekommt endlich eine vern&#252;nftige Suche f&#252;r Anfragen und Gesetzgebungsvorg&#228;nge und kann nachvollziehen, womit sich der eigene Abgeordnete besch&#228;ftigt. Mit der Abo-Funktion wird man bei neuen Ereignissen in einem Politikfeld automatisch benachrichtigt. Eine API bietet den Zugriff auf strukturierte Daten der Reden, Vorg&#228;nge und zu einzelnen Personen. 
