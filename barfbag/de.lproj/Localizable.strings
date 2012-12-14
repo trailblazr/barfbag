@@ -24,12 +24,14 @@
 "Fahrplan" = "Fahrplan";
 "Zurück" = "Zurück";
 
-/* EventsViewController */
+/* FahrplanViewController */
 
 "Ereignisse" = "Ereignisse";
 "Fahrplan" = "Fahrplan";
 "29C3 Fahrplan" = "29C3 Fahrplan";
 "%@  –  %i Events" = "%@    (%i Einträge)";
+"Links (%i Einträge)" = "Links (%i Einträge)";
+"Persons (%i Einträge)" = "Personen (%i Einträge)";
 
 /* EventDetailViewController */
 
@@ -38,6 +40,9 @@
 "%@ Uhr" = "%@ Uhr";
 "Keine Beschreibung vorhanden." = "Keine Beschreibung vorhanden.";
 "Beschreibung" = "Beschreibung";
+"descriptionText" = "Beschreibung";
+"persons" = "Sprecher";
+"links" = "Links";
 
 /* ScheduleSemanticNavigationController */
 

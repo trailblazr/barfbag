@@ -15,12 +15,16 @@
 @synthesize day;
 @synthesize cellTextLabel;
 @synthesize detailHeaderViewController;
+@synthesize sectionKeys;
+@synthesize sectionArrays;
 
 - (void) dealloc {
     self.event = nil;
     self.day = nil;
     self.cellTextLabel = nil;
-    self.detailHeaderViewController =nil;
+    self.detailHeaderViewController = nil;
+    self.sectionKeys = nil;
+    self.sectionArrays = nil;
     [super dealloc];
 }
 
@@ -60,6 +64,33 @@
     detailHeaderViewController.trackLabel.text = event.track;
     detailHeaderViewController.speakerLabel.text = event.speakerList;
 
+    // SETUP SECTION ORDER
+    self.sectionKeys = [NSArray arrayWithObjects:
+                        @"descriptionText",
+                        @"persons",
+                        @"links",
+                        nil];
+    
+    // SETUP DATA
+    self.sectionArrays = [NSMutableDictionary dictionary];
+    NSMutableArray *neededSectionKeys = [NSMutableArray array];
+    
+    // DESCRIPTION
+    [neededSectionKeys addObject:@"descriptionText"];
+    [sectionArrays setObject:[NSArray arrayWithObject:[self eventDescriptionText]] forKey:@"descriptionText"];
+    // PERSONS
+    if( event.persons && [event.persons count] > 0 ) {
+        [neededSectionKeys addObject:@"persons"];
+        [sectionArrays setObject:[NSArray arrayWithArray:event.persons] forKey:@"persons"];
+    }
+    // LINKS
+    if( event.links && [event.links count] > 0 ) {
+        [neededSectionKeys addObject:@"links"];
+        [sectionArrays setObject:[NSArray arrayWithArray:event.links] forKey:@"links"];
+    }
+
+    self.sectionKeys = [NSArray arrayWithArray:neededSectionKeys];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -79,19 +110,29 @@
 #pragma mark - Table view data source
 
 - (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return LOC( @"Beschreibung" );
+    NSString *sectionKey = [sectionKeys objectAtIndex:section];
+    return LOC( sectionKey );
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return [sectionKeys count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    NSString *sectionKey = [sectionKeys objectAtIndex:section];
+    return [[sectionArrays objectForKey:sectionKey] count];
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self textSizeNeededForString:[self eventDescriptionText]].height;
+    switch( indexPath.section ) {
+        case 0:
+            return [self textSizeNeededForString:[self eventDescriptionText]].height;
+            break;
+            
+        default:
+            break;
+    }
+    return 50.0;
 }
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -102,20 +143,55 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.contentView.backgroundColor = kCOLOR_BACK;
+        cell.textLabel.textColor = [self brighterColor];
+        cell.detailTextLabel.textColor = [self themeColor];
+        cell.textLabel.backgroundColor = kCOLOR_CLEAR;
+        cell.detailTextLabel.backgroundColor = kCOLOR_CLEAR;
     }
     
+    NSString *sectionKey = [sectionKeys objectAtIndex:indexPath.section];
+    NSArray *items = [sectionArrays objectForKey:sectionKey];
+
     // clean existing cell
     while( [cell.contentView.subviews count] > 0 ) {
         [[cell.contentView.subviews lastObject] removeFromSuperview];
     }
-    CGSize textSize = [self textSizeNeededForString:[self eventDescriptionText]];
-    CGFloat offset5 = [[UIDevice currentDevice] isPad] ? 10.0f : 5.0f;
-    self.cellTextLabel = [self cellTextLabelWithRect:CGRectMake(offset5, 0.0, textSize.width-(2.0*offset5), textSize.height)];
-    [cell.contentView addSubview:cellTextLabel];
-    cellTextLabel.text = [self eventDescriptionText];
+    cell.accessoryView = nil;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+
+    if( [sectionKey isEqualToString:@"descriptionText"] ) {
+        CGSize textSize = [self textSizeNeededForString:[self eventDescriptionText]];
+        CGFloat offset5 = [[UIDevice currentDevice] isPad] ? 10.0f : 5.0f;
+        self.cellTextLabel = [self cellTextLabelWithRect:CGRectMake(offset5, 0.0, textSize.width-(2.0*offset5), textSize.height)];
+        [cell.contentView addSubview:cellTextLabel];
+        cellTextLabel.text = [self eventDescriptionText];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    else if( [sectionKey isEqualToString:@"persons"] ) {
+        Person *currentPerson = (Person*)[items objectAtIndex:indexPath.row];
+        cell.textLabel.text = currentPerson.personName;
+        cell.detailTextLabel.text = currentPerson.personIdKey;
+        UIImageView *personImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 40.0, 40.0)];
+        personImageView.backgroundColor = [self darkColor];
+        personImageView.image = [currentPerson cachedImage];
+        personImageView.contentMode = UIViewContentModeScaleAspectFill;
+        personImageView.layer.cornerRadius = 7.0;
+        personImageView.layer.masksToBounds = YES;
+        personImageView.layer.borderColor = [[self darkerColor] colorWithAlphaComponent:0.3].CGColor;
+        personImageView.layer.borderWidth = 1.0;
+        cell.accessoryView = personImageView;
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    }
+    else if( [sectionKey isEqualToString:@"links"] ) {
+        Link *currentLink = (Link*)[items objectAtIndex:indexPath.row];
+        cell.textLabel.text = currentLink.title;
+        cell.detailTextLabel.text = [currentLink.href httpUrlString];
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     return cell;
 }
 
@@ -160,9 +236,18 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if( [[sectionKeys objectAtIndex:indexPath.section] isEqualToString:@"persons"] ) {
+        NSLog( @"TOUCHED PERSON" );
+    }
+    if( [[sectionKeys objectAtIndex:indexPath.section] isEqualToString:@"links"] ) {
+        NSLog( @"TOUCHED LINK" );
+        NSString *sectionKey = [sectionKeys objectAtIndex:indexPath.section];
+        Link *currentLink = (Link*)[[sectionArrays objectForKey:sectionKey] objectAtIndex:indexPath.row];
+        NSURL *url = [NSURL URLWithString:[currentLink.href httpUrlString]];
+        [self loadSimpleWebViewWithURL:url shouldScaleToFit:YES];
+    }
+
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
      // ...

@@ -81,6 +81,7 @@
 }
 
 - (void) actionUpdateDisplayAfterRefresh {
+    [self updateTableFooter];
     // SETUP DATA
     self.sectionArrays = [NSMutableDictionary dictionary];
     NSMutableArray *neededSectionKeys = [NSMutableArray array];
@@ -111,6 +112,7 @@
     [self.tableView reloadData];
     [self updateNavigationTitle];
     self.navigationItem.rightBarButtonItem.enabled = YES;
+    
 }
 
 - (IBAction) actionButtonTapped:(id)sender {
@@ -126,20 +128,7 @@
     
 }
 
-- (void)viewDidLoad {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionUpdateDisplayAfterRefresh) name:kNOTIFICATION_PARSER_COMPLETED  object:nil];
-    [super viewDidLoad];
-        
-    if( [self tableView:self.tableView numberOfRowsInSection:0] == 0 ) {
-        [[self appDelegate] barfBagLoadCached];
-    }
-    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:LOC( @"Zurück" ) style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
-    UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionRefreshData)] autorelease];
-    self.navigationItem.rightBarButtonItem = item;
-    [self updateNavigationTitle];
-    
-    
-    
+- (void) updateTableFooter {
     // FOOTER
     CGFloat width = self.view.bounds.size.width;
     UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 70.0)] autorelease];
@@ -156,6 +145,20 @@
     versionLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.tableView.tableFooterView = footerView;
+}
+
+- (void)viewDidLoad {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionUpdateDisplayAfterRefresh) name:kNOTIFICATION_PARSER_COMPLETED  object:nil];
+    [super viewDidLoad];
+        
+    if( [self tableView:self.tableView numberOfRowsInSection:0] == 0 ) {
+        [[self appDelegate] barfBagLoadCached];
+    }
+    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:LOC( @"Zurück" ) style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
+    UIBarButtonItem *item = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(actionRefreshData)] autorelease];
+    self.navigationItem.rightBarButtonItem = item;
+    [self updateNavigationTitle];
+    [self updateTableFooter];
     
     [self actionUpdateDisplayAfterRefresh];
     /*
@@ -186,10 +189,10 @@
         NSString *sectionKey = [sectionKeys objectAtIndex:section];
         NSArray *itemArray = [sectionArrays objectForKey:sectionKey];
         if( [sectionKey isEqualToString:@"links"] ) {
-            return [NSString stringWithFormat:LOC( @"%i Links" ), [itemArray count]];
+            return [NSString stringWithFormat:LOC( @"Links (%i Einträge)" ), [itemArray count]];
         }
         else if([sectionKey isEqualToString:@"persons"] ) {
-            return [NSString stringWithFormat:LOC( @"%i Persons" ), [itemArray count]];
+            return [NSString stringWithFormat:LOC( @"Persons (%i Einträge)" ), [itemArray count]];
         }
         else { // day1, day2
             NSArray *days = [[self conference] days];

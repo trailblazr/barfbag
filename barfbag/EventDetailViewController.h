@@ -18,12 +18,16 @@
     Day *day;
     UILabel *cellTextLabel;
     GenericDetailViewController *detailHeaderViewController;
+    NSArray *sectionKeys;
+    NSMutableDictionary *sectionArrays;
 }
 
 @property( nonatomic, retain ) Event *event;
 @property( nonatomic, retain ) Day *day;
 @property( nonatomic, retain ) UILabel *cellTextLabel;
 @property( nonatomic, retain ) GenericDetailViewController *detailHeaderViewController;
+@property( nonatomic, retain ) NSArray *sectionKeys;
+@property( nonatomic, retain ) NSMutableDictionary *sectionArrays;
 
 
 @end
