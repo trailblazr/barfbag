@@ -606,7 +606,8 @@
     NSArray *allPersons = [self conference].allPersons;
     if( allPersons && [allPersons count] > 0 ) {
         for( Person *currentPerson in allPersons ) {
-            [currentPerson fetchCachedImage];
+            NSTimeInterval randomDelay = [self randomFloatBetweenLow:0.0 andHigh:30.0];
+            [currentPerson performSelector:@selector(fetchCachedImage) withObject:nil afterDelay:randomDelay];
         }
     }
     [self hideHud];
@@ -663,11 +664,12 @@
     }
     if( DEBUG ) NSLog( @"BARFBAG: PARSING COMPLETED." );
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_PARSER_COMPLETED object:self];
-    [self hideHud];
-
     // FETCH IMAGES IF USER CHOSE TO
     if( [self isConfigOnForKey:kUSERDEFAULT_KEY_BOOL_IMAGEUPDATE defaultValue:YES] ) {
         [self barfBagImagesRefresh];
+    }
+    else {
+        [self hideHud];    
     }
 }
 
@@ -898,7 +900,7 @@
 }
 
 - (void) hideHud {
-    [hud hide];
+    [hud hideAfter:1.0];
 }
 
 - (void) userDidTapHud:(ATMHud *)_hud {
