@@ -119,7 +119,7 @@
 }
 
 - (NSString*) stringRepresentationTwitter {
-    return nil;
+    return [NSString stringWithFormat:@"\"%@\"", [NSString placeHolder:@"(Kein Titel)" forEmptyString:[self singlePropertyFromObject:label]]];
 }
 
 - (NSString*) description {
@@ -135,5 +135,39 @@
     [string appendFormat:@"contactOrganizing = %@\n", contactOrganizing];
     return string;
 }
+
+// SEARCHABLE ITEM
+
+- (NSString*) itemTitle {
+    return label;
+}
+
+- (NSString*) itemSubtitle {
+    return location;
+}
+- (NSString*) itemAbstract {
+    return descriptionText;
+}
+
+- (NSString*) itemPerson {
+    NSMutableString *personsString = [NSMutableString string];
+    if( personOrganizing ) [personsString appendString:personOrganizing];
+    if( contactOrganizing ) {
+        if( [personsString length] > 0 ) {
+            [personsString appendString:@","];
+        }
+        [personsString appendString:contactOrganizing];
+    }
+    return personsString;
+}
+
+- (NSDate*) itemDateStart {
+    return [self startTime];
+}
+
+- (NSDate*) itemDateEnd {
+    return [self endTime];
+}
+
 
 @end

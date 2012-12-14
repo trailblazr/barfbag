@@ -62,6 +62,7 @@
     self.sectionKeys = [NSArray arrayWithObjects:
                         @"descriptionText",
                         @"contactOrganizing",
+                        @"personOrganizing",
                         nil];
     
     // SETUP DATA
@@ -132,6 +133,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.contentView.backgroundColor = kCOLOR_BACK;
     }
+    cell.accessoryType = UITableViewCellAccessoryNone;
     
     // clean existing cell
     while( [cell.contentView.subviews count] > 0 ) {
@@ -143,6 +145,12 @@
     [cell.contentView addSubview:cellTextLabel];
     
     // Configure the cell...
+    if( [[sectionKeys objectAtIndex:indexPath.section] isEqualToString:@"contactOrganizing"] ) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    if( [[sectionKeys objectAtIndex:indexPath.section] isEqualToString:@"personOrganizing"] ) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     cellTextLabel.text = [self textToDisplayForIndexPath:indexPath];
     return cell;
 }
@@ -190,7 +198,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
+    if( [[sectionKeys objectAtIndex:indexPath.section] isEqualToString:@"contactOrganizing"] ) {
+        NSLog( @"TOUCHED MAILTO" );
+    }
+    if( [[sectionKeys objectAtIndex:indexPath.section] isEqualToString:@"personOrganizing"] ) {
+        NSLog( @"TOUCHED MAILTO" );
+    }
+
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
      // ...

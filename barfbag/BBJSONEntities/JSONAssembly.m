@@ -86,7 +86,12 @@ nil];
 }
 
 - (NSString*) stringRepresentationTwitter {
-    return nil;
+    NSString *firstLink = nil;
+    if( webLinks && [webLinks count] > 0 ) {
+        firstLink = [webLinks objectAtIndex:0];
+    }
+    NSString *linkHref = [firstLink httpUrlString];
+    return [NSString stringWithFormat:@"\"%@\" %@", [NSString placeHolder:@"(Kein Titel)" forEmptyString:[self singlePropertyFromObject:label]], [NSString placeHolder:@"" forEmptyString:linkHref]];
 }
 
 - (NSString*) description {
@@ -105,5 +110,41 @@ nil];
     [string appendFormat:@"personOrganizing = %@\n", personOrganizing];
     return string;
 }
+
+// SEARCHABLE ITEM
+
+- (NSString*) itemTitle {
+    return label;
+}
+
+- (NSString*) itemSubtitle {
+    return plannedWorkshops;
+}
+- (NSString*) itemAbstract {
+    return descriptionText;
+}
+
+- (NSString*) itemPerson {
+    NSMutableString *personsString = [NSMutableString string];
+    if( orgaContact ) [personsString appendString:orgaContact];
+    if( personOrganizing ) {
+        if( [personsString length] > 0 ) {
+            [personsString appendString:@","];
+        }
+        [personsString appendString:personOrganizing];
+    }
+    return personsString;
+}
+
+/*
+ // NO DATES AVAILABLE FOR ASSEMBLIES
+- (NSDate*) itemDateStart {
+    return [self startTime];
+}
+
+- (NSDate*) itemDateEnd {
+    return [self endTime];
+}
+*/
 
 @end

@@ -16,5 +16,6 @@
 - (BOOL) containsString:(NSString *)stringValue;
 - (BOOL) containsString:(NSString *)stringValue ignoringCase:(BOOL)flag;
 - (BOOL) containsLettersFromString:(NSString*)lettersNeeded withoutLettersOfString:(NSString*)lettersDisallowed;
+- (NSString*) httpUrlString;
 
 @end

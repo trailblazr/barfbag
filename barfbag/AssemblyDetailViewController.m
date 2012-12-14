@@ -131,10 +131,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.contentView.backgroundColor = kCOLOR_BACK;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    
+
+    cell.accessoryType = UITableViewCellAccessoryNone;
     // clean existing cell
     while( [cell.contentView.subviews count] > 0 ) {
         [[cell.contentView.subviews lastObject] removeFromSuperview];
@@ -145,6 +146,12 @@
     [cell.contentView addSubview:cellTextLabel];
     
     // Configure the cell...
+    if( [[sectionKeys objectAtIndex:indexPath.section] isEqualToString:@"webLinks"] ) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    if( [[sectionKeys objectAtIndex:indexPath.section] isEqualToString:@"orgaContact"] ) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     cellTextLabel.text = [self textToDisplayForIndexPath:indexPath];
     return cell;
 }
@@ -197,9 +204,15 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if( [[sectionKeys objectAtIndex:indexPath.section] isEqualToString:@"webLinks"] ) {
+        NSLog( @"TOUCHED LINK" );
+        NSURL *url = [NSURL URLWithString:[[self textToDisplayForIndexPath:indexPath] httpUrlString]];
+        [self loadSimpleWebViewWithURL:url shouldScaleToFit:YES];
+    }
+    if( [[sectionKeys objectAtIndex:indexPath.section] isEqualToString:@"orgaContact"] ) {
+        NSLog( @"TOUCHED MAILTO" );
+    }
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
      // ...

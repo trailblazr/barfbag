@@ -66,6 +66,7 @@
 /* WorkshopDetailViewController */
 
 "contactOrganizing" = "Ansprechpartner";
+"personOrganizing" = "Organisator";
 
 /* FavouritesNavigationController */
 

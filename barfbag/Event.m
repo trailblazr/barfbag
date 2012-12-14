@@ -9,6 +9,7 @@
 #import "Event.h"
 #import "RegexKitLite.h"
 #import "MasterConfig.h"
+#import "NSString-Toolkit.h"
 
 @implementation Event
 
@@ -27,7 +28,8 @@
 @synthesize abstract;
 @synthesize descriptionText;
 @synthesize persons;
-@synthesize links;	
+@synthesize links;
+@synthesize day;
 
 
 - (void) dealloc {
@@ -42,6 +44,7 @@
 	[descriptionText release];
 	[persons release];
 	[links release];
+    self.day = nil;
 	[super dealloc];
 }
 
@@ -88,7 +91,12 @@
 }
 
 - (NSString*) stringRepresentationTwitter {
-    return nil;
+    Link *firstLink = nil;
+    if( links && [links count] > 0 ) {
+        firstLink = [links objectAtIndex:0];
+    }
+    NSString *linkHref = [firstLink.href httpUrlString];
+    return [NSString stringWithFormat:@"\"%@\" %@", [NSString placeHolder:@"(Kein Titel)" forEmptyString:title], [NSString placeHolder:@"" forEmptyString:linkHref]];
 }
 
 - (NSString*) description {
@@ -177,6 +185,39 @@
 		[listCreated addObject:createdEvent];
 	}
 	return listCreated;
+}
+
+// SEARCHABLE ITEM
+
+- (NSString*) itemTitle {
+    return title;
+}
+
+- (NSString*) itemSubtitle {
+    return subtitle;
+}
+- (NSString*) itemAbstract {
+    return descriptionText;
+}
+
+- (NSString*) itemPerson {
+    NSMutableString *personsString = [NSMutableString string];
+    BOOL isFirst = YES;
+    for( Person* currentPerson in persons ) {
+        [personsString appendFormat:@"%@%@", isFirst ? @"" : @",", currentPerson.personName];
+        isFirst = NO;
+    }
+    return personsString;
+}
+
+- (NSDate*) itemDateStart {
+    // TODO: calculate date from day & self.timeHour self.timeMinute
+    return nil;
+}
+
+- (NSDate*) itemDateEnd {
+    // TODO: calculate date from day & self.timeHour self.timeMinute
+    return nil;
 }
 
 @end

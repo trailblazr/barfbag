@@ -28,9 +28,21 @@
     }
 }
 
+- (NSString*) httpUrlString {
+    NSString* cleanTrailingSpaces = [self trimmedString];
+    BOOL isHttp = [cleanTrailingSpaces containsString:@"http://" ignoringCase:YES];
+    BOOL isHttps = [cleanTrailingSpaces containsString:@"https://" ignoringCase:YES];
+    if( !isHttp && !isHttps && cleanTrailingSpaces && [cleanTrailingSpaces length] > 0 ) {
+        return [NSString stringWithFormat:@"http://%@", cleanTrailingSpaces];
+    }
+    else {
+        return cleanTrailingSpaces;
+    }
+}
+
 + (NSString*)placeHolder:(NSString*)placeholder forEmptyString:(NSString*)string {
     NSString *clean = [string trimmedString];
-    if( [clean length] == 0 || [[clean lowercaseString] isEqualToString:@"(null)"] ) {
+    if( !clean || [clean length] == 0 || [[clean lowercaseString] isEqualToString:@"(null)"] ) {
         return placeholder;
     }
     else {

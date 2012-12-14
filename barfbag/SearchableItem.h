@@ -1,0 +1,22 @@
+//
+//  SearchableItem.h
+//  barfbag
+//
+//  Created by Lincoln Six Echo on 14.12.12.
+//  Copyright (c) 2012 appdoctors. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface SearchableItem : NSObject {
+
+}
+
+- (NSString*) itemTitle;
+- (NSString*) itemSubtitle;
+- (NSString*) itemAbstract;
+- (NSString*) itemPerson;
+- (NSDate*) itemDateStart;
+- (NSDate*) itemDateEnd;
+
+@end

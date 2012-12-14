@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "FavouriteManager.h"
 #import "FavouriteItem.h"
+#import "SearchableItem.h"
 #import "Event.h"
 #import "JSONAssembly.h"
 #import "JSONWorkshop.h"
@@ -18,10 +19,14 @@
 
 @synthesize hud;
 @synthesize reminderObject;
+@synthesize isSearching;
+@synthesize isUserAllowedToSelectRow;
+@synthesize searchItemsFiltered;
 
 - (void) dealloc {
     self.hud = nil;
     self.reminderObject = nil;
+    self.searchItemsFiltered = nil;
     [super dealloc];
 }
 
@@ -92,27 +97,30 @@
 }
 
 - (NSString*) stringRepresentationTwitterFor:(id)item {
+    if( !item ) return @"";
     NSMutableString *stringRep = [NSMutableString string];
     if( [item isKindOfClass:[Event class]] ) {
         Event *event = (Event*)item;
         [stringRep appendString:[event stringRepresentationTwitter]];
     }
-    if( [item isKindOfClass:[JSONAssembly class]] ) {
+    else if( [item isKindOfClass:[JSONAssembly class]] ) {
         JSONAssembly* assembly = (JSONAssembly*)item;
         [stringRep appendString:[assembly stringRepresentationTwitter]];
     }
-    if( [item isKindOfClass:[JSONWorkshop class]] ) {
+    else if( [item isKindOfClass:[JSONWorkshop class]] ) {
         JSONWorkshop* workshop = (JSONWorkshop*)item;
         [stringRep appendString:[workshop stringRepresentationTwitter]];
-    }
-    if( [item isKindOfClass:[NSDictionary class]] || [item isKindOfClass:[NSMutableDictionary class]] ) {
+    } else if( [item isKindOfClass:[NSDictionary class]] || [item isKindOfClass:[NSMutableDictionary class]] ) {
         NSDictionary *dictionary = (NSDictionary*)item;
         NSArray *allEntries = [dictionary allValues];
         for( NSArray* sectionItems in allEntries ) {
             [stringRep appendFormat:@"\n\n"];
             for( id currentItem in sectionItems ) {
                 // TO DO: APPEND STRING REPRESENTATIONS OF ITEMS
-                [stringRep appendString:[self stringRepresentationTwitterFor:currentItem]]; // WARNING: RECURSIVE
+                NSString *recursiveRep = [self stringRepresentationTwitterFor:currentItem];
+                if( recursiveRep && [recursiveRep length] > 0 ) {
+                    [stringRep appendString:recursiveRep]; // WARNING: RECURSIVE
+                }
             }
         }
     }
@@ -122,10 +130,9 @@
 #pragma mark - Create Twitter Tweet
 
 - (void) actionTweetShortenedString:(NSString*)shortenedString {
-    NSMutableString *tweetText = [NSMutableString string];
-    NSString *currentString = nil;
-    
-    [tweetText appendString:currentString];
+    NSMutableString *tweetText = [NSMutableString string];    
+    [tweetText appendString:shortenedString];
+    [tweetText appendString:@" #29c3"];
     TWTweetComposeViewController *tweetComposeViewController = [[TWTweetComposeViewController alloc] init];
     [tweetComposeViewController setInitialText:tweetText];
     [tweetComposeViewController setCompletionHandler:^(TWTweetComposeViewControllerResult result){
@@ -159,7 +166,8 @@
     }
     else {
         // TO DO: ensure short string limited to 140 chars
-        [self actionTweetShortenedString:[NSString placeHolder:LOC( @"Keine Info." ) forEmptyString:[self stringRepresentationTwitterFor:objectToShare]]];
+        NSString* message = [self stringRepresentationTwitterFor:objectToShare];
+        [self actionTweetShortenedString:[NSString placeHolder:LOC( @"Keine Info." ) forEmptyString:message]];
     }
 }
 
@@ -303,13 +311,13 @@
     
     NSString *titelString = nil;
     if( hasAlreadyReminder ) {
-        titelString = [NSString stringWithFormat:@"Erinnerung für\n%@\nentfernen?", [[FavouriteManager sharedManager] favouriteNameFromItem:reminderObject]];
+        titelString = [NSString stringWithFormat:@"Erinnerung für\n%@", [[FavouriteManager sharedManager] favouriteNameFromItem:reminderObject]];
     }
     else {
-        titelString = [NSString stringWithFormat:@"Erinnerung für\n%@\nhinzufügen?", [[FavouriteManager sharedManager] favouriteNameFromItem:reminderObject]];    
+        titelString = [NSString stringWithFormat:@"Erinnerung für\n%@", [[FavouriteManager sharedManager] favouriteNameFromItem:reminderObject]];
     }
     NSString* destructionTitle = hasAlreadyReminder ? LOC( @"Entfernen" ) : nil;
-    NSString* reminderTitle = hasAlreadyReminder ? nil : LOC( @"Erinnern" );
+    NSString* reminderTitle = hasAlreadyReminder ? nil : LOC( @"Vormerken" );
     NSString* sharingMail = LOC( @"E-Mailen" );
     NSString* sharingTwitter = LOC( @"Twittern" );
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:titelString delegate:self cancelButtonTitle:LOC( @"Abbrechen" ) destructiveButtonTitle:destructionTitle otherButtonTitles:sharingMail,sharingTwitter,reminderTitle, nil];
@@ -339,6 +347,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.isSearching = NO;
+    self.isUserAllowedToSelectRow = NO;
+    self.searchItemsFiltered = [NSMutableArray array];
+
     self.view.backgroundColor = [self backgroundColor];
     self.tableView.separatorColor = [self darkColor];
     self.tableView.backgroundView = nil;
@@ -475,7 +488,7 @@
 
 - (NSString*) stringTimeForDate:(NSDate*)date {
     if( !date ) return nil;
-    return [self stringForDate:date withFormat:@"eee, dd. @ HH:mm"];
+    return [self stringForDate:date withFormat:@"eee, dd.MM.yyyy @ HH:mm"];
 }
 
 - (NSString*) stringDayForDate:(NSDate*)date {
@@ -632,6 +645,100 @@
     label.shadowOffset = CGSizeMake(1.0, 1.0);
     label.text = [self tableView:tableView titleForHeaderInSection:section];
     return containerView;
+}
+
+#pragma mark - UISearchBarDelegate, UISearchDisplayDelegate
+
+- (NSArray*) allSearchableItems {
+    // ATTN: NEEDS TO BE OVERRIDDEN IN SUBCLASS TO HAVE SEARCH WORKING
+    return nil;
+}
+
+- (BOOL) searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    return NO;
+}
+
+- (void) searchBarTextDidBeginEditing:(UISearchBar *)theSearchBar {
+    self.isSearching = YES;
+    self.isUserAllowedToSelectRow = NO;
+    self.tableView.scrollEnabled = NO;
+}
+
+- (void) searchBar:(UISearchBar *)theSearchBar textDidChange:(NSString *)searchText {
+
+    // CLEAN FILTERED ARRAY
+    [searchItemsFiltered removeAllObjects];
+    
+    // ADJUST/PREPARE UI
+    BOOL hasEnteredSubstantialSearchString = ( [searchText length] > 0 );
+    self.isSearching = hasEnteredSubstantialSearchString;
+    self.isUserAllowedToSelectRow = hasEnteredSubstantialSearchString;
+    self.tableView.scrollEnabled = hasEnteredSubstantialSearchString;
+
+    // TRIGGER FILTERING
+    if( hasEnteredSubstantialSearchString ) {
+        [self searchTableView];
+    }
+    else {
+        [self.tableView reloadData];
+    }
+}
+
+- (void) searchBarSearchButtonClicked:(UISearchBar *)theSearchBar {
+    [self searchTableView];
+}
+
+- (void) searchTableView {
+    NSString *searchText = self.searchDisplayController.searchBar.text;
+    NSArray *items = [self allSearchableItems];
+
+    // FILTER CERTAIN PROPERTIES
+    for( id currentItem in items ) {
+        SearchableItem *searchableItem = (SearchableItem*)currentItem;
+        NSRange resultsRangeTitle = [searchableItem.itemTitle rangeOfString:searchText options:NSCaseInsensitiveSearch];
+        NSRange resultsRangeSubTitle = [searchableItem.itemSubtitle rangeOfString:searchText options:NSCaseInsensitiveSearch];
+        NSRange resultsRangeAbstract = [searchableItem.itemAbstract rangeOfString:searchText options:NSCaseInsensitiveSearch];
+        NSRange resultsRangePerson = [searchableItem.itemPerson rangeOfString:searchText options:NSCaseInsensitiveSearch];
+        
+        if( resultsRangeTitle.length > 0 ||
+           resultsRangeSubTitle.length > 0 ||
+           resultsRangeAbstract.length > 0 ||
+           resultsRangePerson.length > 0 ) {
+            [searchItemsFiltered addObject:currentItem];
+        }
+    }
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"itemDateStart" ascending:TRUE];
+    [searchItemsFiltered sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    [sortDescriptor release];
+    [self.tableView reloadData];    
+}
+
+- (void) searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    self.searchDisplayController.searchBar.text = @"";
+    [self.searchDisplayController.searchBar resignFirstResponder];
+    
+    self.isSearching = NO;
+    self.isUserAllowedToSelectRow = YES;
+    self.tableView.scrollEnabled = YES;
+    
+    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
+    [self.tableView reloadData];
+}
+
+- (void) loadSimpleWebViewWithURL:(NSURL*)url shouldScaleToFit:(BOOL)shouldScaleToFit {
+    // LOAD WEBVIEW
+    WebbrowserViewController *controller = [[WebbrowserViewController alloc] initWithNibName:@"WebbrowserViewController" bundle:nil];
+    controller.urlToOpen = url;
+    controller.shouldScaleToFit = shouldScaleToFit;
+    controller.delegate = (id<WebbrowserViewControllerDelegate>)self; // ISSUES WITH DELEGATE INHERITANCE
+    controller.shouldDetectPages404 = YES;
+    [self.navigationController presentModalViewController:controller animated:YES];
+    [controller release];
+}
+
+- (void) webcontentViewControllerDidFinish:(WebbrowserViewController*)controller {
+    [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
 @end

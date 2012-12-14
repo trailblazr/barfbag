@@ -4,8 +4,9 @@
 
 #import <Foundation/Foundation.h>
 #import "NSObject+JTObjectMapping.h"
+#import "SearchableItem.h"
 
-@interface JSONWorkshop : NSObject
+@interface JSONWorkshop : SearchableItem
 
 @property (nonatomic, retain) NSNumber *objId;
 @property (nonatomic, copy) NSString *label;

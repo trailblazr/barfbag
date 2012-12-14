@@ -11,14 +11,8 @@
 
 @interface EventsViewController : GenericTableViewController <UISearchBarDelegate> {
 
-    BOOL isSearching;
-
 }
 
-@property( nonatomic, assign ) BOOL isSearching;
-
-
 - (IBAction) actionSearch:(id)sender;
-- (void) searchFilterEventsDisplayed;
 
 @end

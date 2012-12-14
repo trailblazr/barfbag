@@ -9,20 +9,28 @@
 #import <UIKit/UIKit.h>
 #import <Twitter/Twitter.h>
 #import <MessageUI/MessageUI.h>
+#import "WebbrowserViewController.h"
 #import "ATMHudDelegate.h"
 #import "ATMHud.h"
 #import "Conference.h"
 
 @class AppDelegate;
 
-@interface GenericTableViewController : UITableViewController <ATMHudDelegate,UIActionSheetDelegate,MFMailComposeViewControllerDelegate> {
+@interface GenericTableViewController : UITableViewController <ATMHudDelegate,UIActionSheetDelegate,MFMailComposeViewControllerDelegate,UISearchBarDelegate,UISearchDisplayDelegate,WebbrowserViewControllerDelegate> {
 
     ATMHud *hud;
     id reminderObject;
+    BOOL isSearching;
+    BOOL isUserAllowedToSelectRow;
+    NSMutableArray *searchItemsFiltered;
+
 }
 
+@property( nonatomic, assign ) BOOL isSearching;
+@property( nonatomic, assign ) BOOL isUserAllowedToSelectRow;
 @property( nonatomic, retain ) ATMHud *hud;
 @property( nonatomic, retain ) id reminderObject;
+@property( nonatomic, retain ) NSMutableArray *searchItemsFiltered;
 
 - (void) showHudWithCaption:(NSString*)caption hasActivity:(BOOL)hasActivity;
 - (void) hideHud;
@@ -57,5 +65,8 @@
 - (IBAction) actionMultiActionSharingOnlyButtonTapped:(id)sender;
 - (UIBarButtonItem*) actionBarButtonItem;
 - (UIBarButtonItem*) actionBarButtonItemSharingOnly;
+
+- (NSArray*) allSearchableItems;
+- (void) loadSimpleWebViewWithURL:(NSURL*)url shouldScaleToFit:(BOOL)shouldScaleToFit;
 
 @end

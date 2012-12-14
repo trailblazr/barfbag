@@ -10,8 +10,11 @@
 #import "RegexKitLite.h"
 #import "Person.h"
 #import "Link.h"
+#import "SearchableItem.h"
 
-@interface Event : NSObject {
+@class Day;
+
+@interface Event : SearchableItem {
 
 	NSInteger eventId;
 	NSTimeInterval duration;
@@ -29,6 +32,7 @@
 	NSMutableArray *links;	
     NSInteger timeHour;
     NSInteger timeMinute;
+    Day *day;
 }
 
 @property(nonatomic, assign) NSInteger eventId; //       <event id="4302">
@@ -47,6 +51,7 @@
 @property(nonatomic, retain) NSMutableArray *links;
 @property(nonatomic, assign) NSInteger timeHour;
 @property(nonatomic, assign) NSInteger timeMinute;
+@property(nonatomic, retain) Day *day;
 
 
 + (NSMutableArray*) completeEventListFromArray:(NSArray*)array withFetchLimit:(int)limitValue;

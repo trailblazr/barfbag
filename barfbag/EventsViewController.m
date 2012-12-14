@@ -16,8 +16,6 @@
 
 @implementation EventsViewController
 
-@synthesize isSearching;
-
 - (void) dealloc {
     [super dealloc];
 }
@@ -147,19 +145,34 @@
 #pragma mark - Table view data source
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    NSArray *days = [[self conference] days];
-    Day *currentDay = [days objectAtIndex:section];
-    return [NSString stringWithFormat:LOC( @"%@  –  %i Events" ),[self stringShortDayForDate:currentDay.date], [currentDay.events count]];
+    if( isSearching ) {
+        return [NSString stringWithFormat:LOC( @"%i Treffer" ), [searchItemsFiltered count] ];
+    }
+    else {
+        NSArray *days = [[self conference] days];
+        Day *currentDay = [days objectAtIndex:section];
+        return [NSString stringWithFormat:LOC( @"%@  –  %i Events" ),[self stringShortDayForDate:currentDay.date], [currentDay.events count]];
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [[[self conference] days] count];
+    if( isSearching ) {
+        return 1;
+    }
+    else {
+        return [[[self conference] days] count];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSArray *days = [[self conference] days];
-    Day *currentDay = [days objectAtIndex:section];
-    return [[currentDay events] count];
+    if( isSearching ) {
+        return [searchItemsFiltered count];
+    }
+    else {
+        NSArray *days = [[self conference] days];
+        Day *currentDay = [days objectAtIndex:section];
+        return [[currentDay events] count];
+    }
 }
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -193,9 +206,15 @@
     }
     
     // Configure the cell...
-    NSArray *days = [[self conference] days];
-    Day *currentDay = [days objectAtIndex:indexPath.section];
-    Event *currentEvent = [currentDay.events objectAtIndex:indexPath.row];
+    Event *currentEvent = nil;
+    if( isSearching ) {
+        currentEvent = [searchItemsFiltered objectAtIndex:indexPath.row];
+    }
+    else {
+        NSArray *days = [[self conference] days];
+        Day *currentDay = [days objectAtIndex:indexPath.section];
+        currentEvent = [currentDay.events objectAtIndex:indexPath.row];
+    }
     // NSLog( @"EVENT: %@", currentEvent );
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",[currentEvent.start placeHolderWhenEmpty:@"<start>"], [currentEvent.title placeHolderWhenEmpty:@"<title>"]];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@",[currentEvent.track placeHolderWhenEmpty:@"<track>"], [currentEvent.subtitle placeHolderWhenEmpty:@"<subtitle>"]];
@@ -245,38 +264,29 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     EventDetailViewController *detailViewController = [[EventDetailViewController alloc] initWithNibName:@"EventDetailViewController" bundle:nil];
-    NSArray *days = [[self conference] days];
-    Day *currentDay = [days objectAtIndex:indexPath.section];
-    Event *currentEvent = [currentDay.events objectAtIndex:indexPath.row];
-    detailViewController.day = currentDay;
-    detailViewController.event = currentEvent;
+    if( isSearching ) {
+        Event *currentEvent = [searchItemsFiltered objectAtIndex:indexPath.row];
+        Day *currentDay = currentEvent.day;
+        detailViewController.day = currentDay;
+        detailViewController.event = currentEvent;
+    }
+    else {
+        NSArray *days = [[self conference] days];
+        Day *currentDay = [days objectAtIndex:indexPath.section];
+        Event *currentEvent = [currentDay.events objectAtIndex:indexPath.row];
+        detailViewController.day = currentDay;
+        detailViewController.event = currentEvent;
+    }
     [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
 }
 
 #pragma mark - UISearchBarDelegate
 
-- (void) searchFilterEventsDisplayed {
-    /*
-    NSString *searchText = searchBar.text;
-    
-    for (Event *aEvent in appDelegate.events) {
-        NSRange titleResultsRange = [aEvent.title rangeOfString:searchText options:NSCaseInsensitiveSearch];
-        NSRange subtitleResultsRange = [aEvent.subtitle rangeOfString:searchText options:NSCaseInsensitiveSearch];
-        NSRange abstractResultsRange = [aEvent.abstract rangeOfString:searchText options:NSCaseInsensitiveSearch];
-        NSRange speakerResultsRange = [aEvent.speaker rangeOfString:searchText options:NSCaseInsensitiveSearch];
-        
-        if (titleResultsRange.length > 0 || subtitleResultsRange.length > 0 || abstractResultsRange.length > 0 || speakerResultsRange.length >0)
-            [searchAllEvents addObject:aEvent];
-    }
-    
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"realDate" ascending:TRUE];
-    [searchAllEvents sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-    [sortDescriptor release];
-     */
+- (NSArray*) allSearchableItems {
+    // ATTN: NEEDS TO BE OVERRIDDEN IN SUBCLASS TO HAVE SEARCH WORKING
+    return [[self conference] allEvents];
 }
-
 
 @end
