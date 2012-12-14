@@ -250,6 +250,7 @@
         cell.accessoryView = nil;
     }
     cell.accessoryView = nil;
+    cell.accessoryType = UITableViewCellAccessoryNone;
     // Configure the cell...
     NSString *sectionKey = [sectionKeys objectAtIndex:indexPath.section];
     NSArray *sectionItems = [sectionArrays objectForKey:sectionKey];
@@ -266,6 +267,8 @@
         cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",[currentEvent.start placeHolderWhenEmpty:@"<start>"], [currentEvent.title placeHolderWhenEmpty:@"<title>"]];
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@",[currentEvent.track placeHolderWhenEmpty:@"<track>"], [currentEvent.subtitle placeHolderWhenEmpty:@"<subtitle>"]];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        // CHECK FAVOURITE
+        cell.accessoryType = [currentEvent isFavourite] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     }
     else if( [sectionKey isEqualToString:@"links"] ) {
         Link *currentLink = (Link*)[sectionItems objectAtIndex:indexPath.row];

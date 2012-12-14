@@ -3,6 +3,7 @@
 //
 
 #import "JSONAssembly.h"
+#import "FavouriteManager.h"
 
 @implementation JSONAssembly
 
@@ -146,5 +147,9 @@ nil];
     return [self endTime];
 }
 */
+
+- (BOOL) isFavourite {
+    return [[FavouriteManager sharedManager] hasStoredFavourite:self];
+}
 
 @end

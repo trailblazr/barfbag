@@ -27,6 +27,7 @@
 @synthesize favouritesStored;
 
 - (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.favouritesKeysArray = nil;
     self.favouritesStored = nil;
     [super dealloc];

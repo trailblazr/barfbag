@@ -10,6 +10,7 @@
 #import "RegexKitLite.h"
 #import "MasterConfig.h"
 #import "NSString-Toolkit.h"
+#import "FavouriteManager.h"
 
 @implementation Event
 
@@ -218,6 +219,10 @@
 - (NSDate*) itemDateEnd {
     // TODO: calculate date from day & self.timeHour self.timeMinute
     return nil;
+}
+
+- (BOOL) isFavourite {
+    return [[FavouriteManager sharedManager] hasStoredFavourite:self];
 }
 
 @end

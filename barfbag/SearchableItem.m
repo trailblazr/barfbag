@@ -34,4 +34,8 @@
     return nil;
 }
 
+- (BOOL) isFavourite {
+    return NO;
+}
+
 @end

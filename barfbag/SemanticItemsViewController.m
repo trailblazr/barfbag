@@ -136,7 +136,9 @@
     }
     
     // Configure the cell...
-    switch( indexPath.section ) {
+    cell.accessoryView = nil;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+   switch( indexPath.section ) {
             
         case 0: {
             NSArray *workshops = [self appDelegate].semanticWikiWorkshops;
@@ -148,6 +150,8 @@
             [df release];
             cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",[NSString placeHolder:@"<start>" forEmptyString:startTimeString], [NSString placeHolder:@"<title>"forEmptyString:currentWorkshop.label]];
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@", [NSString placeHolder:@"<location>" forEmptyString:currentWorkshop.eventLocation], [NSString placeHolder:@"<description>" forEmptyString:currentWorkshop.abstract]];
+            // CHECK FAVOURITE
+            cell.accessoryType = [currentWorkshop isFavourite] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
             break;
         }
 
@@ -157,6 +161,7 @@
             NSLog( @"ASSEMBLY: %@", currentAssembly );
             cell.textLabel.text = [NSString stringWithFormat:@"%@",[currentAssembly.label placeHolderWhenEmpty:@"<title>"]];
             cell.detailTextLabel.text = [NSString stringWithFormat:LOC( @"%i Plätze: %@" ), currentAssembly.numLectureSeats, [NSString placeHolder:@"<description>" forEmptyString:currentAssembly.abstract]];
+            cell.accessoryType = [currentAssembly isFavourite] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
             break;
         }
 

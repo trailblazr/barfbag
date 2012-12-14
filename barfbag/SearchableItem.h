@@ -18,5 +18,5 @@
 - (NSString*) itemPerson;
 - (NSDate*) itemDateStart;
 - (NSDate*) itemDateEnd;
-
+- (BOOL) isFavourite;
 @end

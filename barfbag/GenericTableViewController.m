@@ -24,6 +24,7 @@
 @synthesize searchItemsFiltered;
 
 - (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.hud = nil;
     self.reminderObject = nil;
     self.searchItemsFiltered = nil;
@@ -348,8 +349,15 @@
     return item;
 }
 
+- (void) refreshVisibleCells {
+    NSArray *visibleIndexPaths = self.tableView.indexPathsForVisibleRows;
+    [self.tableView reloadRowsAtIndexPaths:visibleIndexPaths withRowAnimation:UITableViewRowAnimationNone];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshVisibleCells) name:kNOTIFICATION_FAVOURITE_ADDED object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshVisibleCells) name:kNOTIFICATION_FAVOURITE_REMOVED object:nil];
 
     self.isSearching = NO;
     self.isUserAllowedToSelectRow = NO;

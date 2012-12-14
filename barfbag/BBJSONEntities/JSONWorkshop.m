@@ -3,6 +3,7 @@
 //
 
 #import "JSONWorkshop.h"
+#import "FavouriteManager.h"
 
 @implementation JSONWorkshop
 
@@ -169,5 +170,8 @@
     return [self endTime];
 }
 
+- (BOOL) isFavourite {
+    return [[FavouriteManager sharedManager] hasStoredFavourite:self];
+}
 
 @end
