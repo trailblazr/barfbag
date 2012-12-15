@@ -28,10 +28,13 @@
     BOOL shouldStartLoadingCheckedRequest;
     BOOL shouldAddDoneButton;
     BOOL shouldAddActionButton;
+    BOOL shouldUseSmoothFading;
+    BOOL isPresentedModal;
 	NSURL *urlToOpen;
     NSURLRequest *requestToCheck;
     NSURLRequest *requestChecked;
     NSTimer *timerActivityIndicator;
+    NSTimer *timerFadeInFinal;
     id<WebbrowserViewControllerDelegate> delegate;
 }
 
@@ -42,6 +45,8 @@
 @property (nonatomic, assign) BOOL shouldStartLoadingCheckedRequest;
 @property (nonatomic, assign) BOOL shouldAddDoneButton;
 @property (nonatomic, assign) BOOL shouldAddActionButton;
+@property (nonatomic, assign) BOOL shouldUseSmoothFading;
+@property (nonatomic, assign) BOOL isPresentedModal;
 @property (nonatomic, assign) id<WebbrowserViewControllerDelegate> delegate;
 @property (nonatomic, retain) UIWebView* fullWebView;
 @property (nonatomic, retain) NSURL *urlToOpen;
@@ -56,6 +61,7 @@
 @property (nonatomic, retain) NSURLRequest *requestToCheck;
 @property (nonatomic, retain) NSURLRequest *requestChecked;
 @property (nonatomic, retain) NSTimer *timerActivityIndicator;
+@property (nonatomic, retain) NSTimer *timerFadeInFinal;
 
 - (IBAction) actionStopReload:(id)sender;
 - (IBAction) actionDone:(id)sender;

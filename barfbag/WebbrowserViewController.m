@@ -39,6 +39,9 @@
 @synthesize timerActivityIndicator;
 @synthesize shouldAddDoneButton;
 @synthesize shouldAddActionButton;
+@synthesize shouldUseSmoothFading;
+@synthesize timerFadeInFinal;
+@synthesize isPresentedModal;
 
 BOOL isFirstLoad = YES;
 BOOL isShowingActionSheet = NO;
@@ -52,6 +55,10 @@ BOOL isShowingActionSheet = NO;
         [timerActivityIndicator invalidate];
     }
     self.timerActivityIndicator = nil;
+    if( timerFadeInFinal && [timerFadeInFinal isValid] ) {
+        [timerFadeInFinal invalidate];
+    }
+    self.timerFadeInFinal = nil;
     [fullWebView release];
     [myToolBar release];
     [backButton release];
@@ -118,6 +125,10 @@ BOOL isShowingActionSheet = NO;
     }];
 }
 
+- (void) startFadeInTimer {
+    self.timerFadeInFinal = [NSTimer scheduledTimerWithTimeInterval:3.5 target:self selector:@selector(actionFadeInWebView) userInfo:nil repeats:NO];
+}
+
 #pragma mark - construction
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -128,6 +139,7 @@ BOOL isShowingActionSheet = NO;
         self.isRequestCheckDone = NO;
         self.shouldAddDoneButton = YES;
         self.shouldAddActionButton = YES;
+        self.shouldUseSmoothFading = NO;
     }
     return self;
 }
@@ -145,6 +157,10 @@ BOOL isShowingActionSheet = NO;
 }
 
 - (void) actionFadeInWebView {
+    if( !shouldUseSmoothFading ) {
+        fullWebView.alpha = 1.0f;
+        return;
+    }
     if( fullWebView.alpha != 0.0f ) return;
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         fullWebView.alpha = 1.0f;
@@ -167,7 +183,13 @@ BOOL isShowingActionSheet = NO;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    if( !isPresentedModal ) {
+        [myNavBar removeFromSuperview];
+        self.myNavItem = nil;
+        self.myNavBar = nil;
+        self.myNavItem = self.navigationItem;
+        self.myNavBar = self.navigationController.navigationBar;
+    }
     myNavItem.title = kSTRING_DEFAULT_LOADING;
     loadingIndicator.alpha = 0.0f;
     if( shouldAddDoneButton ) {
@@ -176,8 +198,11 @@ BOOL isShowingActionSheet = NO;
     if( shouldAddActionButton ) {
         [self addActionButtonToNavigationItem:myNavItem animated:NO];
     }
-
-    fullWebView.alpha = 0.0;
+    
+    if( shouldUseSmoothFading ) {
+        [self startFadeInTimer];
+        fullWebView.alpha = 0.0;
+    }
    [myToolBar setTintColor:kCOLOR_BACK];
 	[fullWebView setScalesPageToFit:shouldScaleToFit];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:urlToOpen cachePolicy:NSURLRequestReloadRevalidatingCacheData timeoutInterval:30];
@@ -247,11 +272,16 @@ BOOL isShowingActionSheet = NO;
 
 - (IBAction) actionDone:(id)sender {
     [self cancelPendingRequestsBeforeExit];
-    if( delegate && [delegate respondsToSelector:@selector(webcontentViewControllerDidFinish:)] ) {
-        [delegate webcontentViewControllerDidFinish:self];
+    if( isPresentedModal ) {
+        if( delegate && [delegate respondsToSelector:@selector(webcontentViewControllerDidFinish:)] ) {
+            [delegate webcontentViewControllerDidFinish:self];
+        }
+        else { // REMOVE INELEGANTLY
+            [self.view.superview removeFromSuperview];
+        }
     }
-    else { // REMOVE INELEGANTLY
-        [self.view.superview removeFromSuperview];
+    else {
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

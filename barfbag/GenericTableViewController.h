@@ -71,5 +71,6 @@
 
 - (NSArray*) allSearchableItems;
 - (void) loadSimpleWebViewWithURL:(NSURL*)url shouldScaleToFit:(BOOL)shouldScaleToFit;
+- (void) loadSimpleWebViewWithURL:(NSURL*)url shouldScaleToFit:(BOOL)shouldScaleToFit isModal:(BOOL)isModal;
 
 @end

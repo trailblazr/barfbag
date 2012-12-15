@@ -780,16 +780,26 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
     [self.tableView reloadData];
 }
 
-
-- (void) loadSimpleWebViewWithURL:(NSURL*)url shouldScaleToFit:(BOOL)shouldScaleToFit {
+- (void) loadSimpleWebViewWithURL:(NSURL*)url shouldScaleToFit:(BOOL)shouldScaleToFit isModal:(BOOL)isModal {
     // LOAD WEBVIEW
     WebbrowserViewController *controller = [[WebbrowserViewController alloc] initWithNibName:@"WebbrowserViewController" bundle:nil];
     controller.urlToOpen = url;
     controller.shouldScaleToFit = shouldScaleToFit;
     controller.delegate = (id<WebbrowserViewControllerDelegate>)self; // ISSUES WITH DELEGATE INHERITANCE
     controller.shouldDetectPages404 = NO;
-    [self.navigationController presentModalViewController:controller animated:YES];
+    controller.shouldUseSmoothFading = YES;
+    controller.isPresentedModal = isModal;
+    if( isModal ) {
+        [self.navigationController presentModalViewController:controller animated:YES];
+    }
+    else {
+        [self.navigationController pushViewController:controller animated:YES];
+    }
     [controller release];
+}
+
+- (void) loadSimpleWebViewWithURL:(NSURL*)url shouldScaleToFit:(BOOL)shouldScaleToFit {
+    [self loadSimpleWebViewWithURL:url shouldScaleToFit:shouldScaleToFit isModal:YES];
 }
 
 - (void) webcontentViewControllerDidFinish:(WebbrowserViewController*)controller {

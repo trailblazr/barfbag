@@ -184,7 +184,7 @@
     NSString *urlStringToOpen = [currentEntryDict objectForKey:@"itemUrl"];
     
     NSURL *url = [NSURL URLWithString:[urlStringToOpen httpUrlString]];
-    [self loadSimpleWebViewWithURL:url shouldScaleToFit:YES];
+    [self loadSimpleWebViewWithURL:url shouldScaleToFit:YES isModal:NO];
 }
 
 @end
