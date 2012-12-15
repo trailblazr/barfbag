@@ -184,7 +184,8 @@
     NSString *urlStringToOpen = [currentEntryDict objectForKey:@"itemUrl"];
     
     NSURL *url = [NSURL URLWithString:[urlStringToOpen httpUrlString]];
-    [self loadSimpleWebViewWithURL:url shouldScaleToFit:YES isModal:NO];
+    BOOL isFon = ![[UIDevice currentDevice] isPad];
+    [self loadSimpleWebViewWithURL:url shouldScaleToFit:YES isModal:isFon];
 }
 
 @end
