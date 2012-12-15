@@ -86,6 +86,20 @@
 				<key>groupKey</key>
 				<string>livestreamtest</string>
 				<key>itemUrl</key>
+				<string>http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8</string>
+				<key>itemTitleDe</key>
+				<string>Apple Keynote</string>
+				<key>itemTitleEn</key>
+				<string>Apple Keynote</string>
+				<key>itemSubtitleDe</key>
+				<string>Just some Testvideo</string>
+				<key>itemSubtitleEn</key>
+				<string>Just some Testvideo</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>livestreamtest</string>
+				<key>itemUrl</key>
 				<string>http://devimages.apple.com/iphone/samples/bipbop/gear1/prog_index.m3u8</string>
 				<key>itemTitleDe</key>
 				<string>Gear 1</string>
