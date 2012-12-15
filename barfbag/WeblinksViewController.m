@@ -15,13 +15,13 @@
 @synthesize sectionArrays;
 
 - (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.sectionKeys = nil;
     self.sectionArrays = nil;
     [super dealloc];
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -29,8 +29,13 @@
     return self;
 }
 
+- (void) actionUpdateDisplayAfterRefresh {
+    [self.tableView reloadData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionUpdateDisplayAfterRefresh) name:kNOTIFICATION_PARSER_COMPLETED  object:nil];
 
     self.navigationItem.title = LOC( @"29C3 Livestreams" );
     
