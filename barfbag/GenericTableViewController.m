@@ -365,6 +365,25 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
     [self.tableView reloadRowsAtIndexPaths:visibleIndexPaths withRowAnimation:UITableViewRowAnimationNone];
 }
 
+- (void) dimSubviewInView:(UIView*)view toAlpha:(CGFloat)alpha {
+    for( UIView *currentSubview in view.subviews ) {
+        if( currentSubview.subviews ) {
+            [self dimSubviewInView:currentSubview toAlpha:alpha];
+        }
+        if ([currentSubview isKindOfClass:NSClassFromString(@"UISearchBarBackground") ] ) {
+            currentSubview.alpha = 0.0;
+        }
+    }
+}
+
+- (void) dimSearchBar:(BOOL)shouldDim {
+    UISearchBar *searchBar = self.searchDisplayController.searchBar;
+    [UIView animateWithDuration:0.3 animations:^{
+        searchBar.alpha = ( shouldDim ? 0.3f : 1.0f );
+        [self dimSubviewInView:searchBar toAlpha:( shouldDim ? 0.5f : 0.9f )];
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshVisibleCells) name:kNOTIFICATION_FAVOURITE_ADDED object:nil];
@@ -379,14 +398,9 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
     self.tableView.backgroundView = nil;
 
     // APPLY SOME NICE SEARCHBAR HACK
-    UISearchBar *sb = self.searchDisplayController.searchBar;
-    for (UIView *subview in sb.subviews) {
-        if ([subview isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
-            [subview removeFromSuperview];
-            break;
-        }
-    }
-    
+    self.searchDisplayController.searchBar.placeholder = nil;
+    [self dimSearchBar:YES];
+
     [self.searchDisplayController.searchResultsTableView setBackgroundColor:[self backgroundColor]];
     [self.searchDisplayController.searchResultsTableView setSeparatorColor:[self darkerColor]];
 
@@ -691,6 +705,7 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
 }
 
 - (BOOL) searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    [self dimSearchBar:NO];
     [self.searchDisplayController.searchResultsTableView setBackgroundColor:[self backgroundColor]];
     [self.searchDisplayController.searchResultsTableView setSeparatorColor:[self darkerColor]];
     return YES;
@@ -753,6 +768,7 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
 }
 
 - (void) searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [self dimSearchBar:YES];
     self.searchDisplayController.searchBar.text = @"";
     [self.searchDisplayController.searchBar resignFirstResponder];
     
@@ -771,7 +787,7 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
     controller.urlToOpen = url;
     controller.shouldScaleToFit = shouldScaleToFit;
     controller.delegate = (id<WebbrowserViewControllerDelegate>)self; // ISSUES WITH DELEGATE INHERITANCE
-    controller.shouldDetectPages404 = YES;
+    controller.shouldDetectPages404 = NO;
     [self.navigationController presentModalViewController:controller animated:YES];
     [controller release];
 }

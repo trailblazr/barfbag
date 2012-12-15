@@ -7,7 +7,7 @@
 //
 
 #import "VideoStreamNavigationController.h"
-#import "VideoStreamsViewController.h"
+#import "WeblinksViewController.h"
 
 @implementation VideoStreamNavigationController
 
@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    VideoStreamsViewController *controller = [[VideoStreamsViewController alloc] initWithNibName:@"VideoStreamsViewController" bundle:nil];
+    WeblinksViewController *controller = [[WeblinksViewController alloc] initWithNibName:@"WeblinksViewController" bundle:nil];
     [self pushViewController:controller animated:NO];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:LOC( @"Zurück" ) style:UIBarButtonItemStylePlain target:nil action:nil];
 }

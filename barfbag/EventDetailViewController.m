@@ -150,6 +150,14 @@
         cell.detailTextLabel.textColor = [self themeColor];
         cell.textLabel.backgroundColor = kCOLOR_CLEAR;
         cell.detailTextLabel.backgroundColor = kCOLOR_CLEAR;
+        UIView *backgroundView = [[[UIView alloc] initWithFrame:CGRectNull] autorelease];
+        backgroundView.backgroundColor = [self backgroundColor];
+        cell.backgroundView = backgroundView;
+        UIImage *gradientImage = [self imageGradientWithSize:cell.bounds.size color1:[self themeColor] color2:[self darkerColor]];
+        UIView *selectedBackgroundView = [[[UIImageView alloc] initWithImage:gradientImage] autorelease];
+        selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        selectedBackgroundView.backgroundColor = [self darkColor];
+        cell.selectedBackgroundView = selectedBackgroundView;
     }
     
     NSString *sectionKey = [sectionKeys objectAtIndex:indexPath.section];

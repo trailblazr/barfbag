@@ -161,6 +161,7 @@
     [self updateTableFooter];
     
     [self actionUpdateDisplayAfterRefresh];
+    
     /*
     UIImage *searchFieldBackgroundImage = [self imageGradientWithSize:self.searchDisplayController.searchBar.bounds.size color1:[self themeColor] color2:[self darkColor]];
 ;

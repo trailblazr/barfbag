@@ -40,6 +40,10 @@
 		8F356543166B937C00814549 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F356542166B937C00814549 /* Default-568h@2x.png */; };
 		8F4B6BCD1671544400AE6880 /* assemblies.json in Resources */ = {isa = PBXBuildFile; fileRef = 8FF921E016702352005A1C55 /* assemblies.json */; };
 		8F4B6BCE1671544400AE6880 /* workshops.json in Resources */ = {isa = PBXBuildFile; fileRef = 8FF921E116702352005A1C55 /* workshops.json */; };
+		8F51F11F167BF25100C7A22B /* search_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F51F11D167BF25100C7A22B /* search_back.png */; };
+		8F51F120167BF25100C7A22B /* search_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F51F11E167BF25100C7A22B /* search_back@2x.png */; };
+		8F51F12C167BFFB800C7A22B /* WeblinksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F51F12A167BFFB700C7A22B /* WeblinksViewController.m */; };
+		8F51F12D167BFFB800C7A22B /* WeblinksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F51F12B167BFFB700C7A22B /* WeblinksViewController.xib */; };
 		8F754ACF166B93F000F74DBB /* Icon_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754AC9166B93F000F74DBB /* Icon_57.png */; };
 		8F754AD0166B93F000F74DBB /* Icon_72.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754ACA166B93F000F74DBB /* Icon_72.png */; };
 		8F754AD1166B93F000F74DBB /* Icon_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754ACB166B93F000F74DBB /* Icon_114.png */; };
@@ -208,6 +212,11 @@
 		8F4B6BCF1671545C00AE6880 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8F51F112167BBC9000C7A22B /* 28c3_schedule.de.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = 28c3_schedule.de.xml; path = xml/28c3_schedule.de.xml; sourceTree = SOURCE_ROOT; };
 		8F51F113167BBC9000C7A22B /* 28c3_schedule.en.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = 28c3_schedule.en.xml; path = xml/28c3_schedule.en.xml; sourceTree = SOURCE_ROOT; };
+		8F51F11D167BF25100C7A22B /* search_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = search_back.png; path = images/search_back.png; sourceTree = SOURCE_ROOT; };
+		8F51F11E167BF25100C7A22B /* search_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "search_back@2x.png"; path = "images/search_back@2x.png"; sourceTree = SOURCE_ROOT; };
+		8F51F129167BFFB700C7A22B /* WeblinksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeblinksViewController.h; sourceTree = "<group>"; };
+		8F51F12A167BFFB700C7A22B /* WeblinksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeblinksViewController.m; sourceTree = "<group>"; };
+		8F51F12B167BFFB700C7A22B /* WeblinksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeblinksViewController.xib; sourceTree = "<group>"; };
 		8F754AC9166B93F000F74DBB /* Icon_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_57.png; sourceTree = "<group>"; };
 		8F754ACA166B93F000F74DBB /* Icon_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_72.png; sourceTree = "<group>"; };
 		8F754ACB166B93F000F74DBB /* Icon_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_114.png; sourceTree = "<group>"; };
@@ -626,6 +635,8 @@
 		8F754AC7166B93A800F74DBB /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8F51F11D167BF25100C7A22B /* search_back.png */,
+				8F51F11E167BF25100C7A22B /* search_back@2x.png */,
 				8FBB596F167AD06A0016E638 /* arrow_left_white.png */,
 				8FBB5970167AD06A0016E638 /* arrow_left_white@2x.png */,
 				8FBB5971167AD06A0016E638 /* arrow_right_white.png */,
@@ -796,6 +807,9 @@
 			children = (
 				8F754BBD166EB0AA00F74DBB /* VideoStreamNavigationController.h */,
 				8F754BBE166EB0AC00F74DBB /* VideoStreamNavigationController.m */,
+				8F51F129167BFFB700C7A22B /* WeblinksViewController.h */,
+				8F51F12A167BFFB700C7A22B /* WeblinksViewController.m */,
+				8F51F12B167BFFB700C7A22B /* WeblinksViewController.xib */,
 				8F754BC1166EB28B00F74DBB /* VideoStreamsViewController.h */,
 				8F754BC2166EB28C00F74DBB /* VideoStreamsViewController.m */,
 				8F754BC3166EB28C00F74DBB /* VideoStreamsViewController.xib */,
@@ -1108,6 +1122,9 @@
 				8FBB5974167AD06A0016E638 /* arrow_left_white@2x.png in Resources */,
 				8FBB5975167AD06A0016E638 /* arrow_right_white.png in Resources */,
 				8FBB5976167AD06A0016E638 /* arrow_right_white@2x.png in Resources */,
+				8F51F11F167BF25100C7A22B /* search_back.png in Resources */,
+				8F51F120167BF25100C7A22B /* search_back@2x.png in Resources */,
+				8F51F12D167BFFB800C7A22B /* WeblinksViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1195,6 +1212,7 @@
 				8FBB594F167AA9910016E638 /* SearchableItem.m in Sources */,
 				8FBB595C167ABB630016E638 /* WebbrowserViewController.m in Sources */,
 				8FBB5979167B984A0016E638 /* ColoredAccessoryView.m in Sources */,
+				8F51F12C167BFFB800C7A22B /* WeblinksViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

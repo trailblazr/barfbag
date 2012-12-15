@@ -97,6 +97,12 @@
 "Videostreams konnten nicht erfolgreich geladen werden. %@" = "Videostreams could not be loaded.%@";
 "Problem" = "Problem";
 
+/* WeblinksViewController */
+
+"livestream" = "Live Streams";
+"livestreamtest" = "Stream Tests";
+"otherlinks" = "More Links";
+
 /* ConfigurationNavigationController */
 
 "Einstellungen" = "Settings";

@@ -53,6 +53,8 @@ typedef enum {
 - (void) refreshFromMothership;
 - (NSDate*) mothershipRelayDateLastUpdated;
 
+- (NSArray*) configWeblinkArray;
+
 - (NSString*) urlStringForKey:(NSString*)key isMothership:(BOOL)isMothership language:(MasterConfigLanguage)language;
 - (NSString*) urlStringForKey:(NSString*)key isMothership:(BOOL)isMothership;
 - (NSString*) urlStringForKey:(NSString*)key;

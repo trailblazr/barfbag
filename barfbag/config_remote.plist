@@ -10,6 +10,219 @@
 		<date>2012-12-09T23:00:00Z</date>
 		<key>configMasterUrl</key>
 		<string>http://29c3.postcapitalism.org/config_remote.plist</string>
+		<key>configLinkboard</key>
+		<array>
+			<dict>
+				<key>groupKey</key>
+				<string>livestream</string>
+				<key>itemUrl</key>
+				<string>http://http.28c3.fem-net.de/live/stream_saal1.m3u8</string>
+				<key>itemTitleDe</key>
+				<string>Saal 1</string>
+				<key>itemTitleEn</key>
+				<string>Room 1</string>
+				<key>itemSubtitleDe</key>
+				<string>Stream (by FEM)</string>
+				<key>itemSubtitleEn</key>
+				<string>Stream (by FEM)</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>livestream</string>
+				<key>itemUrl</key>
+				<string>http://http.28c3.fem-net.de/live/stream_saal2.m3u8</string>
+				<key>itemTitleDe</key>
+				<string>Saal 2</string>
+				<key>itemTitleEn</key>
+				<string>Room 2</string>
+				<key>itemSubtitleDe</key>
+				<string>Stream (by FEM)</string>
+				<key>itemSubtitleEn</key>
+				<string>Stream (by FEM)</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>livestream</string>
+				<key>itemUrl</key>
+				<string>http://http.28c3.fem-net.de/live/stream_saal3.m3u8</string>
+				<key>itemTitleDe</key>
+				<string>Saal 3</string>
+				<key>itemTitleEn</key>
+				<string>Room 3</string>
+				<key>itemSubtitleDe</key>
+				<string>Stream (by FEM)</string>
+				<key>itemSubtitleEn</key>
+				<string>Stream (by FEM)</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>livestreamtest</string>
+				<key>itemUrl</key>
+				<string>https://devimages.apple.com.edgekey.net/resources/http-streaming/examples/bipbop_4x3/bipbop_4x3_variant.m3u8</string>
+				<key>itemTitleDe</key>
+				<string>4:3</string>
+				<key>itemTitleEn</key>
+				<string>4:3</string>
+				<key>itemSubtitleDe</key>
+				<string>Autoadjust</string>
+				<key>itemSubtitleEn</key>
+				<string>Autoadjust</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>livestreamtest</string>
+				<key>itemUrl</key>
+				<string>https://devimages.apple.com.edgekey.net/resources/http-streaming/examples/bipbop_16x9/bipbop_16x9_variant.m3u8</string>
+				<key>itemTitleDe</key>
+				<string>16:9</string>
+				<key>itemTitleEn</key>
+				<string>16:9</string>
+				<key>itemSubtitleDe</key>
+				<string>Autoadjust</string>
+				<key>itemSubtitleEn</key>
+				<string>Autoadjust</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>livestreamtest</string>
+				<key>itemUrl</key>
+				<string>http://devimages.apple.com/iphone/samples/bipbop/gear1/prog_index.m3u8</string>
+				<key>itemTitleDe</key>
+				<string>Gear 1</string>
+				<key>itemTitleEn</key>
+				<string>Gear 1</string>
+				<key>itemSubtitleDe</key>
+				<string>400x300 @ 232 kbps</string>
+				<key>itemSubtitleEn</key>
+				<string>400x300 @ 232 kbps</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>livestreamtest</string>
+				<key>itemUrl</key>
+				<string>http://devimages.apple.com/iphone/samples/bipbop/gear2/prog_index.m3u8</string>
+				<key>itemTitleDe</key>
+				<string>Gear 2</string>
+				<key>itemTitleEn</key>
+				<string>Gear 2</string>
+				<key>itemSubtitleDe</key>
+				<string>640x480 @ 650 kbps</string>
+				<key>itemSubtitleEn</key>
+				<string>640x480 @ 650 kbps</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>livestreamtest</string>
+				<key>itemUrl</key>
+				<string>http://devimages.apple.com/iphone/samples/bipbop/gear3/prog_index.m3u8</string>
+				<key>itemTitleDe</key>
+				<string>Gear 3</string>
+				<key>itemTitleEn</key>
+				<string>Gear 3</string>
+				<key>itemSubtitleDe</key>
+				<string>640x480 @ 1 Mbps</string>
+				<key>itemSubtitleEn</key>
+				<string>640x480 @ 1 Mbps</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>livestreamtest</string>
+				<key>itemUrl</key>
+				<string>http://devimages.apple.com/iphone/samples/bipbop/gear4/prog_index.m3u8</string>
+				<key>itemTitleDe</key>
+				<string>Gear 4</string>
+				<key>itemTitleEn</key>
+				<string>Gear 4</string>
+				<key>itemSubtitleDe</key>
+				<string>960x720 @ 2 Mbps</string>
+				<key>itemSubtitleEn</key>
+				<string>960x720 @ 2 Mbps</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>https://events.ccc.de/congress/2012/wiki/</string>
+				<key>itemTitleDe</key>
+				<string>29c3 Wiki</string>
+				<key>itemTitleEn</key>
+				<string>29c3 Wiki</string>
+				<key>itemSubtitleDe</key>
+				<string>Im Web</string>
+				<key>itemSubtitleEn</key>
+				<string>On the Web</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://events.ccc.de/congress/2012/Fahrplan/</string>
+				<key>itemTitleDe</key>
+				<string>29c3 Fahrplan</string>
+				<key>itemTitleEn</key>
+				<string>29c3 Fahrplan</string>
+				<key>itemSubtitleDe</key>
+				<string>Im Web</string>
+				<key>itemSubtitleEn</key>
+				<string>On the Web</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://events.ccc.de/congress/2012/Fahrplan/day_2012-12-27.en.html</string>
+				<key>itemTitleDe</key>
+				<string>Tag 1</string>
+				<key>itemTitleEn</key>
+				<string>Day 1</string>
+				<key>itemSubtitleDe</key>
+				<string>auf dem 29c3</string>
+				<key>itemSubtitleEn</key>
+				<string>at 29c3</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://events.ccc.de/congress/2012/Fahrplan/day_2012-12-28.en.html</string>
+				<key>itemTitleDe</key>
+				<string>Tag 2</string>
+				<key>itemTitleEn</key>
+				<string>Day 2</string>
+				<key>itemSubtitleDe</key>
+				<string>auf dem 29c3</string>
+				<key>itemSubtitleEn</key>
+				<string>at 29c3</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://events.ccc.de/congress/2012/Fahrplan/day_2012-12-29.en.html</string>
+				<key>itemTitleDe</key>
+				<string>Tag 3</string>
+				<key>itemTitleEn</key>
+				<string>Day 3</string>
+				<key>itemSubtitleDe</key>
+				<string>auf dem 29c3</string>
+				<key>itemSubtitleEn</key>
+				<string>at 29c3</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://events.ccc.de/congress/2012/Fahrplan/day_2012-12-30.en.html</string>
+				<key>itemTitleDe</key>
+				<string>Tag 4</string>
+				<key>itemTitleEn</key>
+				<string>Day 4</string>
+				<key>itemSubtitleDe</key>
+				<string>auf dem 29c3</string>
+				<key>itemSubtitleEn</key>
+				<string>at 29c3</string>
+			</dict>
+		</array>
 		<key>mothership</key>
 		<dict>
 			<key>port_de</key>
@@ -19,9 +232,9 @@
 				<key>fahrplan_images</key>
 				<string>http://events.ccc.de/congress/2012/Fahrplan/images</string>
 				<key>workshops</key>
-				<string>https://events.ccc.de/congress/2012/wiki/Special:Ask/-5B-5BCategory:ScheduleEntry-5D-5D/-3FDescription/-3FStart-20time/-3FEnd-20time/-3FEntry-20location/-3FLecture-20seats/-3FLocation-20opened-20at/-3FPerson-20organizing/-3FOrga-20contact/-3FDuration/mainlabel%3D/offset%3D47/limit%3D500/searchlabel%3D/format%3Djson</string>
+				<string>https://events.ccc.de/congress/2012/wiki/Special:Ask/-5B-5BCategory:ScheduleEntry-5D-5D/-3FDescription/-3FStart-20time/-3FEnd-20time/-3FEntry-20location/-3FPerson-20organizing/-3FOrga-20contact/-3FDuration/mainlabel%3D/offset%3D20/limit%3D500/searchlabel%3D/format%3Djson</string>
 				<key>assemblies</key>
-				<string>https://events.ccc.de/congress/2012/wiki/Special:Ask/-5B-5BCategory:Assembly-5D-5D/-3FDescription/-3FLecture-20seats/-3FArea/-3FMember-20seats/-3FLecture-20seats/-3FOrga-20contact/-3FPlanned-20workshops/-3FPlanning-20notes/-3FMember-20of/mainlabel%3D/offset%3D93/limit%3D500/searchlabel%3D/format%3Djson</string>
+				<string>https://events.ccc.de/congress/2012/wiki/Special:Ask/-5B-5BCategory:Assembly-5D-5D/-3F%3Duri-23/-3FDescription/-3FLecture-20seats/-3FName-20of-20location/-3FWeblink/-3FOrga-20contact/-3FLocation-20opened-20at/-3FPlanned-20workshops/-3FPlanning-20notes/-3FBrings-20stuff/-3FPerson-20organizing/mainlabel%3Duri/offset%3D20/limit%3D500/searchlabel%3D/format%3Djson</string>
 				<key>livestreams</key>
 				<string>http://29c3.postcapitalism.org/data/streams_de_remote.html</string>
 				<key>wikibaseurl</key>
@@ -34,9 +247,9 @@
 				<key>fahrplan_images</key>
 				<string>http://events.ccc.de/congress/2012/Fahrplan/images</string>
 				<key>workshops</key>
-				<string>https://events.ccc.de/congress/2012/wiki/Special:Ask/-5B-5BCategory:ScheduleEntry-5D-5D/-3FDescription/-3FStart-20time/-3FEnd-20time/-3FEntry-20location/-3FLecture-20seats/-3FLocation-20opened-20at/-3FPerson-20organizing/-3FOrga-20contact/-3FDuration/mainlabel%3D/offset%3D47/limit%3D500/searchlabel%3D/format%3Djson</string>
+				<string>https://events.ccc.de/congress/2012/wiki/Special:Ask/-5B-5BCategory:ScheduleEntry-5D-5D/-3FDescription/-3FStart-20time/-3FEnd-20time/-3FEntry-20location/-3FPerson-20organizing/-3FOrga-20contact/-3FDuration/mainlabel%3D/offset%3D20/limit%3D500/searchlabel%3D/format%3Djson</string>
 				<key>assemblies</key>
-				<string>https://events.ccc.de/congress/2012/wiki/Special:Ask/-5B-5BCategory:Assembly-5D-5D/-3FDescription/-3FLecture-20seats/-3FArea/-3FMember-20seats/-3FLecture-20seats/-3FOrga-20contact/-3FPlanned-20workshops/-3FPlanning-20notes/-3FMember-20of/mainlabel%3D/offset%3D93/limit%3D500/searchlabel%3D/format%3Djson</string>
+				<string>https://events.ccc.de/congress/2012/wiki/Special:Ask/-5B-5BCategory:Assembly-5D-5D/-3F%3Duri-23/-3FDescription/-3FLecture-20seats/-3FName-20of-20location/-3FWeblink/-3FOrga-20contact/-3FLocation-20opened-20at/-3FPlanned-20workshops/-3FPlanning-20notes/-3FBrings-20stuff/-3FPerson-20organizing/mainlabel%3Duri/offset%3D20/limit%3D500/searchlabel%3D/format%3Djson</string>
 				<key>livestreams</key>
 				<string>http://29c3.postcapitalism.org/data/streams_en_remote.html</string>
 				<key>wikibaseurl</key>

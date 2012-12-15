@@ -123,8 +123,8 @@ BOOL isShowingActionSheet = NO;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
 		self.shouldScaleToFit = YES;
-        self.isDisplayingNice404 = YES;
-        self.shouldDetectPages404 = YES;
+        self.isDisplayingNice404 = NO;
+        self.shouldDetectPages404 = NO;
         self.isRequestCheckDone = NO;
         self.shouldAddDoneButton = YES;
         self.shouldAddActionButton = YES;

@@ -12,6 +12,8 @@
 #import "JTISO8601DateFormatter.h"
 #import "AppDelegate.h"
 
+#define kMASTER_CONFIG_KEY_WEBLINKS_ARRAY @"configLinkboard"
+
 @implementation MasterConfig
 
 @synthesize currentConfigDictionary;
@@ -42,6 +44,11 @@ static MasterConfig *sharedInstance = nil;
 
 - (AppDelegate*) appDelegate {
     return (AppDelegate*)[UIApplication sharedApplication].delegate;
+}
+
+- (NSArray*) configWeblinkArray {
+    NSDictionary *shipsDictionary = [currentConfigDictionary objectForKey:@"motherships"];
+    return [shipsDictionary objectForKey:kMASTER_CONFIG_KEY_WEBLINKS_ARRAY];
 }
 
 - (void) useMothershipRelay {
