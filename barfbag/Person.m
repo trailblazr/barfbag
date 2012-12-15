@@ -98,6 +98,9 @@
     @catch (NSException *exception) {
         // do nothing
     }
+    if( !imageInMemory ) {
+        self.imageInMemory = [UIImage imageNamed:@"person-0-128x128.png"];
+    }
     return imageInMemory;
 }
 
