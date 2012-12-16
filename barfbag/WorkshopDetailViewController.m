@@ -8,7 +8,7 @@
 
 #import "WorkshopDetailViewController.h"
 #import "MasterConfig.h"
-#import "JSONWorkshop.h"
+#import "Workshop.h"
 
 @implementation WorkshopDetailViewController
 

@@ -9,19 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "GenericTableViewController.h"
 #import "GenericDetailViewController.h"
-#import "JSONWorkshop.h"
+#import "Workshop.h"
 
 @interface WorkshopDetailViewController : GenericTableViewController {
 
     GenericDetailViewController *detailHeaderViewController;
-    JSONWorkshop *workshop;
+    Workshop *workshop;
     NSArray *sectionKeys;
     NSMutableDictionary *sectionArrays;
     NSString *navigationTitle;
 }
 
 @property( nonatomic, retain ) GenericDetailViewController *detailHeaderViewController;
-@property( nonatomic, retain ) JSONWorkshop *workshop;
+@property( nonatomic, retain ) Workshop *workshop;
 @property( nonatomic, retain ) NSArray *sectionKeys;
 @property( nonatomic, retain ) NSMutableDictionary *sectionArrays;
 @property( nonatomic, retain ) NSString *navigationTitle;

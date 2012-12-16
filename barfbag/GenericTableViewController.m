@@ -12,8 +12,8 @@
 #import "FavouriteItem.h"
 #import "SearchableItem.h"
 #import "Event.h"
-#import "JSONAssembly.h"
-#import "JSONWorkshop.h"
+#import "Assembly.h"
+#import "Workshop.h"
 #import "ColoredAccessoryView.h"
 
 @implementation GenericTableViewController
@@ -73,12 +73,12 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
         Event *event = (Event*)item;
         [stringRep appendString:[event stringRepresentationMail]];
     }
-    if( [item isKindOfClass:[JSONAssembly class]] ) {
-        JSONAssembly* assembly = (JSONAssembly*)item;
+    if( [item isKindOfClass:[Assembly class]] ) {
+        Assembly* assembly = (Assembly*)item;
         [stringRep appendString:[assembly stringRepresentationMail]];
     }
-    if( [item isKindOfClass:[JSONWorkshop class]] ) {
-        JSONWorkshop* workshop = (JSONWorkshop*)item;
+    if( [item isKindOfClass:[Workshop class]] ) {
+        Workshop* workshop = (Workshop*)item;
         [stringRep appendString:[workshop stringRepresentationMail]];
     }
     if( [item isKindOfClass:[FavouriteItem class]] ) {
@@ -115,12 +115,12 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
         Event *event = (Event*)item;
         [stringRep appendString:[event stringRepresentationTwitter]];
     }
-    else if( [item isKindOfClass:[JSONAssembly class]] ) {
-        JSONAssembly* assembly = (JSONAssembly*)item;
+    else if( [item isKindOfClass:[Assembly class]] ) {
+        Assembly* assembly = (Assembly*)item;
         [stringRep appendString:[assembly stringRepresentationTwitter]];
     }
-    else if( [item isKindOfClass:[JSONWorkshop class]] ) {
-        JSONWorkshop* workshop = (JSONWorkshop*)item;
+    else if( [item isKindOfClass:[Workshop class]] ) {
+        Workshop* workshop = (Workshop*)item;
         [stringRep appendString:[workshop stringRepresentationTwitter]];
     } else if( [item isKindOfClass:[NSDictionary class]] || [item isKindOfClass:[NSMutableDictionary class]] ) {
         NSDictionary *dictionary = (NSDictionary*)item;

@@ -1,11 +1,11 @@
 //
-//  JSONWorkshop.m
+//  JSON2Workshop.m
 //
 
-#import "JSONWorkshop.h"
+#import "JSON2Workshop.h"
 #import "FavouriteManager.h"
 
-@implementation JSONWorkshop
+@implementation JSON2Workshop
 
 @synthesize objId;
 @synthesize label;
@@ -19,15 +19,15 @@
 
 + (NSDictionary*) objectMapping {
     NSDictionary *mappingDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 @"objId", @"id",
-                                 @"label", @"label",
-                                 @"descriptionText", @"description",
-                                 @"location", @"entry_location",
-                                 @"dateTimeStart", @"start_time",
-                                 @"dateTimeEnd", @"end_time",
-                                 @"duration", @"duration",
-                                 @"personOrganizing", @"person_organizing",
-                                 @"contactOrganizing", @"orga_contact",
+                                 @"objId", @"fullurl",
+                                 @"label", @"fulltext",
+                                 @"descriptionText", @"Description",
+                                 @"location", @"Entry location",
+                                 @"dateTimeStart", @"Start time",
+                                 @"dateTimeEnd", @"End time",
+                                 @"duration", @"Duration",
+                                 @"personOrganizing", @"Person organizing",
+                                 @"contactOrganizing", @"Orga contact",
                                  nil];
     return mappingDict;
 }

@@ -186,6 +186,7 @@
                             self.result = [request.responseString JSONValue];
                         }
                         @catch (NSException *exception) {
+                            NSLog( @"JSON CONNECTOR: EXCEPTION = %@", exception );
                             self.result = nil;
                         }
                         @finally {

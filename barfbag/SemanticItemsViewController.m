@@ -10,8 +10,8 @@
 #import "AssemblyDetailViewController.h"
 #import "WorkshopDetailViewController.h"
 #import "AppDelegate.h"
-#import "JSONAssembly.h"
-#import "JSONWorkshop.h"
+#import "Assembly.h"
+#import "Workshop.h"
 
 @implementation SemanticItemsViewController
 
@@ -169,7 +169,7 @@
                 
             case 0: {
                 NSArray *workshops = [self appDelegate].semanticWikiWorkshops;
-                JSONWorkshop *currentWorkshop = [workshops objectAtIndex:indexPath.row];
+                Workshop *currentWorkshop = [workshops objectAtIndex:indexPath.row];
                 NSLog( @"WORKSHOP: %@", currentWorkshop );
                 NSDateFormatter *df = [[NSDateFormatter alloc] init];
                 df.dateFormat = @"HH:mm";
@@ -184,7 +184,7 @@
                 
             case 1: {
                 NSArray *assemblies = [self appDelegate].semanticWikiAssemblies;
-                JSONAssembly *currentAssembly = [assemblies objectAtIndex:indexPath.row];
+                Assembly *currentAssembly = [assemblies objectAtIndex:indexPath.row];
                 NSLog( @"ASSEMBLY: %@", currentAssembly );
                 cell.textLabel.text = [NSString stringWithFormat:@"%@",[currentAssembly.label placeHolderWhenEmpty:@"<title>"]];
                 cell.detailTextLabel.text = [NSString stringWithFormat:LOC( @"%i Plätze: %@" ), currentAssembly.numLectureSeats, [NSString placeHolder:@"<description>" forEmptyString:currentAssembly.abstract]];
@@ -244,7 +244,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
     if( indexPath.section == 0 ) {
-        JSONWorkshop *workshop = [[self appDelegate].semanticWikiWorkshops objectAtIndex:indexPath.row];
+        Workshop *workshop = [[self appDelegate].semanticWikiWorkshops objectAtIndex:indexPath.row];
         WorkshopDetailViewController *detailViewController = [[WorkshopDetailViewController alloc] initWithNibName:@"WorkshopDetailViewController" bundle:nil];
         detailViewController.workshop = workshop;
         detailViewController.navigationTitle = [NSString stringWithFormat:LOC( @"Workshop #%i" ), indexPath.row+1];
@@ -252,7 +252,7 @@
         [detailViewController release];
     }
     if( indexPath.section == 1 ) {
-        JSONAssembly *assembly = [[self appDelegate].semanticWikiAssemblies objectAtIndex:indexPath.row];
+        Assembly *assembly = [[self appDelegate].semanticWikiAssemblies objectAtIndex:indexPath.row];
         AssemblyDetailViewController *detailViewController = [[AssemblyDetailViewController alloc] initWithNibName:@"AssemblyDetailViewController" bundle:nil];
         detailViewController.navigationTitle = [NSString stringWithFormat:LOC( @"Assembly #%i" ), indexPath.row+1];
         detailViewController.assembly = assembly;

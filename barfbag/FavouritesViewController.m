@@ -16,8 +16,8 @@
 
 #import "Conference.h"
 #import "Event.h"
-#import "JSONWorkshop.h"
-#import "JSONAssembly.h"
+#import "Workshop.h"
+#import "Assembly.h"
 
 #import "MKiCloudSync.h"
 
@@ -213,8 +213,8 @@
 
         case FavouriteItemTypeWorkshop: {
             NSArray *workshops = [self appDelegate].semanticWikiWorkshops;
-            JSONWorkshop *workshopToDisplay = nil;
-            for( JSONWorkshop *currentWorkshop in workshops ) {
+            Workshop *workshopToDisplay = nil;
+            for( Workshop *currentWorkshop in workshops ) {
                 if( [[FavouriteManager sharedManager] isFavouriteIdFromItem:currentWorkshop identicalToId:currentFavourite.favouriteId] ) {
                     workshopToDisplay = currentWorkshop;
                     break;
@@ -230,8 +230,8 @@
 
         case FavouriteItemTypeAssembly: {
             NSArray *assemblies = [self appDelegate].semanticWikiAssemblies;
-            JSONAssembly *assemblyToDisplay = nil;
-            for( JSONAssembly *currentAssembly in assemblies ) {
+            Assembly *assemblyToDisplay = nil;
+            for( Assembly *currentAssembly in assemblies ) {
                 if( [[FavouriteManager sharedManager] isFavouriteIdFromItem:currentAssembly identicalToId:currentFavourite.favouriteId] ) {
                     assemblyToDisplay = currentAssembly;
                     break;

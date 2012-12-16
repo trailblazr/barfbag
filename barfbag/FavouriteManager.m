@@ -9,8 +9,8 @@
 #import "FavouriteManager.h"
 #import "FavouriteItem.h"
 #import "Event.h"
-#import "JSONAssembly.h"
-#import "JSONWorkshop.h"
+#import "Assembly.h"
+#import "Workshop.h"
 
 #import "MKiCloudSync.h"
 
@@ -186,11 +186,11 @@ static FavouriteManager *sharedInstance = nil;
     if( [item isKindOfClass:[Event class]] ) {
         return [NSString stringWithFormat:@"%i", [(Event*)item eventId]];
     }
-    if( [item isKindOfClass:[JSONAssembly class]] ) {
-        return [[(JSONAssembly*)item label] normalizedString];
+    if( [item isKindOfClass:[Assembly class]] ) {
+        return [[(Assembly*)item label] normalizedString];
     }
-    if( [item isKindOfClass:[JSONWorkshop class]] ) {
-        return [[(JSONWorkshop*)item label] normalizedString];
+    if( [item isKindOfClass:[Workshop class]] ) {
+        return [[(Workshop*)item label] normalizedString];
     }
     return nil;
 }
@@ -199,11 +199,11 @@ static FavouriteManager *sharedInstance = nil;
     if( [item isKindOfClass:[Event class]] ) {
         return [(Event*)item title];
     }
-    if( [item isKindOfClass:[JSONAssembly class]] ) {
-        return [(JSONAssembly*)item label];
+    if( [item isKindOfClass:[Assembly class]] ) {
+        return [(Assembly*)item label];
     }
-    if( [item isKindOfClass:[JSONWorkshop class]] ) {
-        return [(JSONWorkshop*)item label];
+    if( [item isKindOfClass:[Workshop class]] ) {
+        return [(Workshop*)item label];
     }
     if( [item isKindOfClass:[NSDictionary class]] || [item isKindOfClass:[NSMutableDictionary class]] ) {
         return LOC( @"Favoritenliste" );
@@ -215,10 +215,10 @@ static FavouriteManager *sharedInstance = nil;
     if( [item isKindOfClass:[Event class]] ) {
         return FavouriteItemTypeEvent;
     }
-    if( [item isKindOfClass:[JSONAssembly class]] ) {
+    if( [item isKindOfClass:[Assembly class]] ) {
         return FavouriteItemTypeAssembly;
     }
-    if( [item isKindOfClass:[JSONWorkshop class]] ) {
+    if( [item isKindOfClass:[Workshop class]] ) {
         return FavouriteItemTypeWorkshop;
     }
     return FavouriteItemTypeUndefined;

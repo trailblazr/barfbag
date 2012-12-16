@@ -9,19 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "GenericTableViewController.h"
 #import "GenericDetailViewController.h"
-#import "JSONAssembly.h"
+#import "Assembly.h"
 
 @interface AssemblyDetailViewController : GenericTableViewController {
 
     GenericDetailViewController *detailHeaderViewController;
-    JSONAssembly *assembly;
+    Assembly *assembly;
     NSArray *sectionKeys;
     NSMutableDictionary *sectionArrays;
     NSString *navigationTitle;
 }
 
 @property( nonatomic, retain ) GenericDetailViewController *detailHeaderViewController;
-@property( nonatomic, strong ) JSONAssembly *assembly;
+@property( nonatomic, strong ) Assembly *assembly;
 @property( nonatomic, retain ) NSArray *sectionKeys;
 @property( nonatomic, retain ) NSMutableDictionary *sectionArrays;
 @property( nonatomic, retain ) NSString *navigationTitle;

@@ -33,8 +33,8 @@
 
 // SEMANTIC WIKI OBJECTS & CONNECTION HANDLING
 #import "NSObject+SBJson.h"
-#import "JSONWorkshops.h"
-#import "JSONAssemblies.h"
+#import "Workshops.h"
+#import "Assemblies.h"
 
 //iCloud Sync
 #import "MKiCloudSync.h"
@@ -104,7 +104,7 @@
 
 - (UIColor*) randomColor {
 #if SCREENSHOTMODE
-    return kCOLOR_CYAN;
+    return kCOLOR_ORANGE;
 #endif
     NSArray *colors = [NSArray arrayWithObjects:kCOLOR_VIOLET,kCOLOR_GREEN,kCOLOR_RED,kCOLOR_CYAN,kCOLOR_ORANGE,nil];
     NSInteger colorIndex = [[NSNumber numberWithFloat:(0.4+[self randomFloatBetweenLow:0.0 andHigh:4.0])] integerValue];
@@ -461,17 +461,33 @@
     // FETCH FROM CACHE
     if( [fm fileExistsAtPath:pathToCachedAssemblyFile] ) {
         NSString *jsonString = [NSString stringWithContentsOfFile:pathToCachedAssemblyFile encoding:NSUTF8StringEncoding error:nil];
-        id result = [[JSONAssemblies class] objectFromJSONObject:[jsonString JSONValue] mapping:[JSONAssemblies objectMapping]];
-        JSONAssemblies *assemblies = (JSONAssemblies*)result;
-        self.semanticWikiAssemblies = [assemblies assemblyItems];
-        if( DEBUG ) NSLog( @"WIKI: ASSEMBLIES FOUND %i items", [semanticWikiAssemblies count] );
+        id result = nil;
+        @try {
+            result = [[Assemblies class] objectFromJSONObject:[jsonString JSONValue] mapping:[Assemblies objectMapping]];
+            NSLog( @"WIKI: ASSEMBLIESCLASS = %@, OBJECT: %@", NSStringFromClass( [result class] ), result );
+            Assemblies *assemblies = (Assemblies*)result;
+            if( DEBUG ) NSLog( @"WIKI: ASSEMBLIES FOUND %i items", [[assemblies assemblyItems] count] );
+            self.semanticWikiAssemblies = [assemblies assemblyItems];
+        }
+        @catch (NSException *exception) {
+            self.semanticWikiAssemblies = [NSArray array];
+            if( DEBUG ) NSLog( @"WIKI: NO ASSEMBLIES FOUND/PARSED" );
+        }
     }
     if( [fm fileExistsAtPath:pathToCachedWorkshopFile] ) {
         NSString *jsonString = [NSString stringWithContentsOfFile:pathToCachedWorkshopFile encoding:NSUTF8StringEncoding error:nil];
-        id result = [[JSONWorkshops class] objectFromJSONObject:[jsonString JSONValue] mapping:[JSONWorkshops objectMapping]];
-        JSONWorkshops *workshops = (JSONWorkshops*)result;
-        self.semanticWikiWorkshops = [workshops workshopItems];
-        if( DEBUG ) NSLog( @"WIKI: WORKSHOPS FOUND %i items", [semanticWikiWorkshops count] );
+        id result = nil;
+        @try {
+            result = [[Workshops class] objectFromJSONObject:[jsonString JSONValue] mapping:[Workshops objectMapping]];
+            NSLog( @"WIKI: WORKSHOPSCLASS = %@, OBJECT: %@", NSStringFromClass( [result class] ), result );
+            Workshops *workshops = (Workshops*)result;
+            if( DEBUG ) NSLog( @"WIKI: WORKSHOPS FOUND %i items", [[workshops workshopItems] count] );
+            self.semanticWikiWorkshops = [workshops workshopItems];
+        }
+        @catch (NSException *exception) {
+            self.semanticWikiWorkshops = [NSArray array];
+            if( DEBUG ) NSLog( @"WIKI: NO WORKSHOPS FOUND/PARSED" );
+        }
     }
 }
 
@@ -480,8 +496,8 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_STARTED object:self];
     NSURL *connectionUrl = [NSURL URLWithString:[[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_ASSEMBLIES]];
     BBJSONConnectOperation *operation = [BBJSONConnectOperation operationWithConnectUrl:connectionUrl andPathComponent:nil delegate:self selFail:@selector(operationFailedAssemblies:) selInvalid:@selector(operationInvalidAssemblies:) selSuccess:@selector(operationSuccessAssemblies:)];
-    operation.jsonObjectClass = [JSONAssemblies class];
-    operation.jsonMappingDictionary = [JSONAssemblies objectMapping];
+    operation.jsonObjectClass = [Assemblies class];
+    operation.jsonMappingDictionary = [Assemblies objectMapping];
     operation.isOperationDebugEnabled = NO;
     // [self operationAddAsPending:operation];
     [[BBJSONConnector instance] operationInitiate:operation];
@@ -492,9 +508,17 @@
     // if( DEBUG ) NSLog( @"%s: SUCCESS.\nOPERATION: %@", __PRETTY_FUNCTION__, operation );
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_SUCCEEDED object:self];
     // [self operationRemoveFromPending:operation];
-    JSONAssemblies *assemblies = (JSONAssemblies*)operation.result;
-    self.semanticWikiAssemblies = [assemblies assemblyItems];
-    if( DEBUG ) NSLog( @"WIKI: ASSEMBLIES FOUND %i items", [semanticWikiAssemblies count] );
+    Assemblies *assemblies = nil;
+    @try {
+        NSLog( @"WIKI: WORKSHOPSCLASS = %@, OBJECT: %@", NSStringFromClass( [assemblies class] ), assemblies );
+        assemblies = (Assemblies*)operation.result;
+        if( DEBUG ) NSLog( @"WIKI: ASSEMBLIES FOUND %i items", [[assemblies assemblyItems] count] );
+        self.semanticWikiAssemblies = [assemblies assemblyItems];
+    }
+    @catch (NSException *exception) {
+        self.semanticWikiAssemblies = [NSArray array];
+        if( DEBUG ) NSLog( @"WIKI: NO ASSEMBLIES FOUND/PARSED" );
+    }
 
     // SAVE ASSEMBLIES TO CACHE...
     NSString *jsonString = operation.currentRequest.responseString;
@@ -531,8 +555,8 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_STARTED object:self];
     NSURL *connectionUrl = [NSURL URLWithString:[[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_WORKSHOPS]];
     BBJSONConnectOperation *operation = [BBJSONConnectOperation operationWithConnectUrl:connectionUrl andPathComponent:nil delegate:self selFail:@selector(operationFailedWorkshops:) selInvalid:@selector(operationInvalidWorkshops:) selSuccess:@selector(operationSuccessWorkshops:)];
-    operation.jsonObjectClass = [JSONWorkshops class];
-    operation.jsonMappingDictionary = [JSONWorkshops objectMapping];
+    operation.jsonObjectClass = [Workshops class];
+    operation.jsonMappingDictionary = [Workshops objectMapping];
     operation.isOperationDebugEnabled = NO;
     // [self operationAddAsPending:operation];
     [[BBJSONConnector instance] operationInitiate:operation];
@@ -543,9 +567,18 @@
     // if( DEBUG ) NSLog( @"%s: SUCCESS.\nOPERATION: %@", __PRETTY_FUNCTION__, operation );
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_SUCCEEDED object:self];
     // [self operationRemoveFromPending:operation];
-    JSONWorkshops *workshops = (JSONWorkshops*)operation.result;
-    self.semanticWikiWorkshops = [workshops workshopItems];
-    if( DEBUG ) NSLog( @"WIKI: WORKSHOPS FOUND %i items", [semanticWikiWorkshops count] );
+    Workshops *workshops = nil;
+    @try {
+        workshops = (Workshops*)operation.result;
+        NSLog( @"WIKI: WORKSHOPSCLASS = %@, OBJECT: %@", NSStringFromClass( [workshops class] ), workshops );
+        if( DEBUG ) NSLog( @"WIKI: WORKSHOPS FOUND %i items", [[workshops workshopItems] count] );
+        self.semanticWikiWorkshops = [workshops workshopItems];
+    }
+    @catch (NSException *exception) {
+        self.semanticWikiWorkshops = [NSArray array];
+        if( DEBUG ) NSLog( @"WIKI: NO WORKSHOPS FOUND/PARSED" );
+    }
+
     // if( DEBUG ) NSLog( @"WORKSHOPS: %@", workshops );
     NSString *jsonString = operation.currentRequest.responseString;
     NSString *pathToStoreFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_WORKSHOPS];
