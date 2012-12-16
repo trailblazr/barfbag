@@ -315,6 +315,7 @@
     NSString *pathToStoredFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_MASTER_CONFIG];
     @try {
         self.masterConfiguration = [NSDictionary dictionaryWithContentsOfFile:pathToStoredFile];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kUSERDEFAULT_KEY_DATE_LAST_UPDATED];
     }
     @catch (NSException *exception) {
         // Not interested, sorry!
@@ -829,6 +830,20 @@
     [self videoStreamsRefresh];
 }
 
+- (void) manageCloudStorage {
+    if( DEBUG ) NSLog( @"CLOUD: STATUS CHANGED" );
+    if( [[MKiCloudSync instance] isDeviceCloudEnabled] ) {
+        if( [self isConfigOnForKey:kUSERDEFAULT_KEY_BOOL_USE_CLOUD_SYNC defaultValue:YES] ) {
+            if( DEBUG ) NSLog( @"CLOUD: WILL START CLOUD SYNC..." );
+            [[MKiCloudSync instance] start];
+        }
+    }
+    else {
+        if( DEBUG ) NSLog( @"CLOUD: WILL STOP CLOUD SYNC..." );
+        [[MKiCloudSync instance] stop];
+    }
+}
+
 #pragma mark - Application Launching & State Transitions
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -841,7 +856,20 @@
     [[MasterConfig sharedConfiguration] initialize];
     
     // START SYNC TO ICLOUD
-    [MKiCloudSync start];
+    // MONITOR ICLOUD AVAILABILITY
+    if( ![[UIDevice currentDevice] isLowerThanOS_6] ) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(manageCloudStorage)
+                                                 name:NSUbiquityIdentityDidChangeNotification                                                    object:nil];
+    }
+    
+    if( [self isConfigOnForKey:kUSERDEFAULT_KEY_BOOL_USE_CLOUD_SYNC defaultValue:YES] ) {
+        if( DEBUG ) NSLog( @"CLOUD: USER WANTS IT." );
+        [[MKiCloudSync instance] start];
+    }
+    else {
+        if( DEBUG ) NSLog( @"CLOUD: USER DOES NOT WANT IT." );
+    }
     
     // CONFIGURE CUSTOM UI APPEARANCE
     [self configureAppearance];
@@ -893,8 +921,29 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
+- (BOOL) shouldExecuteAutoUpdate {
+    if( [self isConfigOnForKey:kUSERDEFAULT_KEY_BOOL_AUTOUPDATE defaultValue:YES] ) {
+        NSDate *dateLastUpdated = [[NSUserDefaults standardUserDefaults] objectForKey:kUSERDEFAULT_KEY_DATE_LAST_UPDATED];
+        if( !dateLastUpdated ) return YES;
+        NSTimeInterval intervalInSeconds = fabs( [dateLastUpdated timeIntervalSinceNow] );
+        CGFloat maxInterval = 30.0f * 60.0f; // 30 minutes
+        BOOL shouldUpdate = ( intervalInSeconds > maxInterval );
+        NSLog( @"AUTOUPDATE: %.0f MINUTES OLD. %@", floorf(( intervalInSeconds / 60.0f )), shouldUpdate ? @"WILL UPDATE." : @"STILL GOOD ENOUGH." );
+        return shouldUpdate;
+    }
+    else {
+        NSLog( @"AUTOUPDATE: DEACTIVATED BY USER." );
+        return NO;
+    }
+}
+
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+
+    // CHECK IF WE NEED TO UPDATE
+    if( [self shouldExecuteAutoUpdate] ) {
+        
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

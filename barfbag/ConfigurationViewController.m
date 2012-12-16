@@ -9,6 +9,7 @@
 #import "ConfigurationViewController.h"
 #import "AppDelegate.h"
 #import "MasterConfig.h"
+#import "MKiCloudSync.h"
 
 #define kTABLE_SECTION_HEADER_HEIGHT 50.0f
 
@@ -83,6 +84,17 @@
         if( [currentDict objectForKey:@"switchImageUpdates"] == theSwitch ) {
             [self updateDefaultsForKey:kUSERDEFAULT_KEY_BOOL_IMAGEUPDATE withValue:theSwitch.isOn];
         }
+        if( [currentDict objectForKey:@"switchCloudSync"] == theSwitch ) {
+            [self updateDefaultsForKey:kUSERDEFAULT_KEY_BOOL_USE_CLOUD_SYNC withValue:theSwitch.isOn];
+            if( theSwitch.isOn ) {
+                [[MKiCloudSync instance] start];
+                [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:1.0];
+            }
+            else {
+                [[MKiCloudSync instance] stop];
+                [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:1.0];
+            }
+        }
     }
 }
 
@@ -103,6 +115,11 @@
         if( currentSwitch ) {
             [currentSwitch setOn:YES animated:YES];
             [self updateDefaultsForKey:kUSERDEFAULT_KEY_BOOL_IMAGEUPDATE withValue:YES];
+        }
+        currentSwitch = (UISwitch*)[currentDict objectForKey:@"switchCloudSync"];
+        if( currentSwitch ) {
+            [currentSwitch setOn:YES animated:YES];
+            [self updateDefaultsForKey:kUSERDEFAULT_KEY_BOOL_USE_CLOUD_SYNC withValue:YES];
         }
     }
     [[self appDelegate] emptyAllFilesFromFolder:kFOLDER_DOCUMENTS];
@@ -133,6 +150,13 @@
     switchUseFailoverPermanent.on = [[self appDelegate] isConfigOnForKey:kUSERDEFAULT_KEY_BOOL_FAILOVER defaultValue:NO];
     [switchUseFailoverPermanent addTarget:self action:@selector(actionSwitchChanged:) forControlEvents:UIControlEventValueChanged];
     itemEntry = [NSDictionary dictionaryWithObject:switchUseFailoverPermanent forKey:@"switchFailover"];
+    [sectionsArray addObject:itemEntry];
+
+    // SWITCH ICLOUD SYNC
+    UISwitch *switchUseCloudSync = [[[UISwitch alloc] init] autorelease];
+    switchUseCloudSync.on = [[self appDelegate] isConfigOnForKey:kUSERDEFAULT_KEY_BOOL_USE_CLOUD_SYNC defaultValue:YES];
+    [switchUseCloudSync addTarget:self action:@selector(actionSwitchChanged:) forControlEvents:UIControlEventValueChanged];
+    itemEntry = [NSDictionary dictionaryWithObject:switchUseCloudSync forKey:@"switchCloudSync"];
     [sectionsArray addObject:itemEntry];
 
     // BUTTON RESET
@@ -209,12 +233,19 @@
 
 #pragma mark - Table view data source
 
+#define kUSE_SECTION_HEADER NO
+
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+#if kUSE_SECTION_HEADER
     CGFloat height50 = [[UIDevice currentDevice] isPad] ? kTABLE_SECTION_HEADER_HEIGHT*1.5f : kTABLE_SECTION_HEADER_HEIGHT;
     return height50;
+#else
+    return 0;
+#endif
 }
 
 - (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+#if kUSE_SECTION_HEADER
     CGFloat width = self.view.bounds.size.width;
     UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, kTABLE_SECTION_HEADER_HEIGHT)] autorelease];
     headerView.backgroundColor = kCOLOR_CLEAR;
@@ -230,6 +261,9 @@
     [headerView addSubview:sectionHeader];
     sectionHeader.center = headerView.center;
     return headerView;
+#else
+    return nil;
+#endif
 }
 
 /*
@@ -294,14 +328,29 @@
             break;
         }
 
-        case 3:
+        case 3: {
+            uiElement = [currentDict objectForKey:@"switchCloudSync"];
+            cell.textLabel.text = LOC( @"iCloud" );
+            cell.accessoryView = uiElement;
+        ((UISwitch*)uiElement).enabled = [MKiCloudSync instance].isDeviceCloudEnabled;
+            if( ![[MKiCloudSync instance] hasDeviceCloudSupport] ) {
+                cell.detailTextLabel.text = LOC( @"Device does not support iCloud" );
+            } else if( ![[MKiCloudSync instance] isDeviceCloudEnabled] ) {
+                cell.detailTextLabel.text = LOC( @"Please enable iCloud in Settings" );
+            } else {
+                cell.detailTextLabel.text = LOC( @"Synchronize Favourites with iCloud" );
+            }
+            break;
+        }
+
+        case 4:
             uiElement = [currentDict objectForKey:@"buttonForceReconfig"];
             cell.textLabel.text = LOC( @"Force Reconfigure" );
             cell.detailTextLabel.text = LOC( @"Basiskonfiguration resetten" );
             cell.accessoryView = uiElement;
             break;
 
-        case 4:
+        case 5:
             uiElement = [currentDict objectForKey:@"buttonRefreshAllData"];
             cell.textLabel.text = nil;
             cell.detailTextLabel.text = nil;

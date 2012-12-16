@@ -39,7 +39,21 @@
 #import <Foundation/Foundation.h>
 #define kMKiCloudSyncNotification @"MKiCloudSyncDidUpdateToLatest"
 
-@interface MKiCloudSync : NSObject
+@interface MKiCloudSync : NSObject {
 
-+(void) start;
+    BOOL isActivatedRightNow;
+}
+
+@property( nonatomic, assign ) BOOL isActivatedRightNow;
+
++ (MKiCloudSync*) instance;
+
+- (BOOL) hasDeviceCloudSupport;
+- (BOOL) isDeviceCloudEnabled;
+- (BOOL) isCloudSyncActivated;
+
+- (void) start;
+- (void) stop;
+
 @end
+

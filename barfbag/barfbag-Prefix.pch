@@ -131,6 +131,8 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 #define kUSERDEFAULT_KEY_BOOL_AUTOUPDATE        @"boolAutoUpdateData"
 #define kUSERDEFAULT_KEY_BOOL_FAILOVER          @"boolFailoverActive"
 #define kUSERDEFAULT_KEY_BOOL_IMAGEUPDATE       @"boolImageUpdateActive"
+#define kUSERDEFAULT_KEY_BOOL_USE_CLOUD_SYNC    @"boolUseCloudSync"
+#define kUSERDEFAULT_KEY_DATE_LAST_UPDATED      @"dateLastUpdated"
 
 // NOTIFICATIONS
 #define kNOTIFICATION_PARSER_STARTED        @"xmlParserStarted"

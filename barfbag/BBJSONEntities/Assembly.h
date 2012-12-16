@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JSON2Assembly.h"
+#import "JSONAssembly.h"
 
-@interface Assembly : JSON2Assembly
+@interface Assembly : JSONAssembly
 
 @end

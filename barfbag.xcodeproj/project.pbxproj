@@ -499,8 +499,7 @@
 				8F09CCA916703001008F8D26 /* RegexKitLite */,
 				8F754BA7166EAB5D00F74DBB /* ATMHud */,
 				8F754B37166D556500F74DBB /* SinaURLConnection */,
-				8FBB5977167B984A0016E638 /* ColoredAccessoryView.h */,
-				8FBB5978167B984A0016E638 /* ColoredAccessoryView.m */,
+				8F49846F167E4B1B003E0FDE /* Karl Bode */,
 			);
 			name = "Third Party Code";
 			sourceTree = "<group>";
@@ -665,6 +664,15 @@
 				8F754AC7166B93A800F74DBB /* images */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		8F49846F167E4B1B003E0FDE /* Karl Bode */ = {
+			isa = PBXGroup;
+			children = (
+				8FBB5977167B984A0016E638 /* ColoredAccessoryView.h */,
+				8FBB5978167B984A0016E638 /* ColoredAccessoryView.m */,
+			);
+			name = "Karl Bode";
 			sourceTree = "<group>";
 		};
 		8F754AC7166B93A800F74DBB /* images */ = {

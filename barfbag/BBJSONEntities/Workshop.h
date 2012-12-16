@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JSON2Workshop.h"
+#import "JSONWorkshop.h"
 
-@interface Workshop : JSON2Workshop
+@interface Workshop : JSONWorkshop
 
 @end

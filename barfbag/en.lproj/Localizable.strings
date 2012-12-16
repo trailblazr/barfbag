@@ -123,5 +123,9 @@
 "Update All Data" = "Refresh all data now...";
 "Bilderupdate" = "Images";
 "Aktualisiere auch alle Bilder" = "Refresh also images of persons";
+"iCloud" = "iCloud";
+"Synchronize Favourites with iCloud" = "Synchronize Favourites with iCloud";
+"Device does not support iCloud" = "Device does not support iCloud";
+"Please enable iCloud in Settings" = "Please enable iCloud in Settings";
 
 

@@ -30,9 +30,39 @@
 
 #import "MKiCloudSync.h"
 
+
 @implementation MKiCloudSync
 
-+(void) updateToiCloud:(NSNotification*) notificationObject {
+static MKiCloudSync *sharedInstance = nil;
+
+@synthesize isActivatedRightNow;
+
+#pragma mark - Setup Shared Instance
+
++ (MKiCloudSync*) instance {
+    @synchronized( sharedInstance ) {
+        if( nil == sharedInstance ) {
+            sharedInstance = [[super allocWithZone:NULL] init];
+            sharedInstance.isActivatedRightNow = NO;
+        }
+    }
+    return sharedInstance;
+}
+
+/*
+- (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:NSUserDefaultsDidChangeNotification
+                                                  object:nil];
+    [super dealloc];
+}
+ */
+
+
+- (void) updateToiCloud:(NSNotification*) notificationObject {
     
     NSDictionary *dict = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
     
@@ -44,7 +74,7 @@
     [[NSUbiquitousKeyValueStore defaultStore] synchronize];
 }
 
-+(void) updateFromiCloud:(NSNotification*) notificationObject {
+- (void) updateFromiCloud:(NSNotification*) notificationObject {
     
     NSUbiquitousKeyValueStore *iCloudStore = [NSUbiquitousKeyValueStore defaultStore];
     NSDictionary *dict = [iCloudStore dictionaryRepresentation];
@@ -72,37 +102,91 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kMKiCloudSyncNotification object:nil];
 }
 
-+(void) start {
-    
-    if(NSClassFromString(@"NSUbiquitousKeyValueStore")) { // is iOS 5?
+- (BOOL) hasDeviceCloudSupport {
+    if( ! NSClassFromString(@"NSUbiquitousKeyValueStore") ) {
+        if( DEBUG ) NSLog( @"CLOUD: NOT AVAILABLE (PRE iOS 5 DEVICE)." );
+        return NO;
+    }
+    else {
+        return YES;
+    }
+}
+
+- (BOOL) hasValidCloudToken {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    if( ![fm respondsToSelector:@selector(ubiquityIdentityToken)] ) return NO;
+    id cloudToken = [fm ubiquityIdentityToken];
+    if( cloudToken ) {
+        NSData *tokenAsData = [NSKeyedArchiver archivedDataWithRootObject:cloudToken];
+        [[NSUserDefaults standardUserDefaults] setObject:tokenAsData forKey: @"com.apple.MyAppName.UbiquityIdentityToken"];
+        return YES;
+    }
+    else {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey: @"com.apple.MyAppName.UbiquityIdentityToken"];
+        return NO;
+    }
+}
+
+- (BOOL) isDeviceCloudEnabled {
+    if( ![self hasDeviceCloudSupport] ) {
+        if( DEBUG ) NSLog( @"CLOUD: NOT AVAILABLE (PRE iOS 5 DEVICE)." );
+        return NO;
+    }
+    if( ![NSUbiquitousKeyValueStore defaultStore] ) {
+        if( DEBUG ) NSLog( @"CLOUD: NOT ENABLED BY USER." );
+        return NO;
+    }
+    else {
+        return YES;
+    }
+    // return [self hasValidCloudToken];
+}
+
+- (BOOL) isCloudSyncActivated {
+    return isActivatedRightNow;
+}
+
+- (void) start {
+    if( [self hasDeviceCloudSupport] ) { // is iOS 5?
         
-        if([NSUbiquitousKeyValueStore defaultStore]) {  // is iCloud enabled
-            
+        if( [self isDeviceCloudEnabled] ) {  // is iCloud enabled
+            // ADD LISTENDER TO NOTIFICATIONS
             [[NSNotificationCenter defaultCenter] addObserver:self 
                                                      selector:@selector(updateFromiCloud:) 
                                                          name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification 
                                                        object:nil];
             
-            [[NSNotificationCenter defaultCenter] addObserver:self 
-                                                     selector:@selector(updateToiCloud:) 
-                                                         name:NSUserDefaultsDidChangeNotification                                                    object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(updateToiCloud:)
+                                                         name:NSUserDefaultsDidChangeNotification                                                    object:nil];            
+            if( DEBUG ) NSLog( @"CLOUD: STARTED SYNC." );
+            self.isActivatedRightNow = YES;
         } else {
-            DLog(@"iCloud not enabled");          
+            self.isActivatedRightNow = NO;
+            if( DEBUG ) NSLog( @"CLOUD: NOT ENABLED." );
         }
     }
     else {
-        DLog(@"Not an iOS 5 device");        
+        if( DEBUG ) NSLog( @"CLOUD: NOT AVAILABLE (PRE iOS 5 DEVICE)." );
     }
 }
 
-+ (void) dealloc {
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self 
-                                                    name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification 
-                                                  object:nil];
-
-    [[NSNotificationCenter defaultCenter] removeObserver:self 
-                                                    name:NSUserDefaultsDidChangeNotification 
-                                                  object:nil];
+- (void) stop {
+    if(NSClassFromString(@"NSUbiquitousKeyValueStore")) { // is iOS 5?
+        
+        if([NSUbiquitousKeyValueStore defaultStore]) {  // is iCloud enabled
+            [[NSNotificationCenter defaultCenter] removeObserver:self];
+            self.isActivatedRightNow = NO;
+            if( DEBUG ) NSLog( @"CLOUD: STOPPED SYNC." );
+            
+        } else {
+            self.isActivatedRightNow = NO;
+            if( DEBUG ) NSLog( @"CLOUD: NOT ENABLED." );
+        }
+    }
+    else {
+        if( DEBUG ) NSLog( @"CLOUD: NOT AVAILABLE (PRE iOS 5 DEVICE)." );
+    }
 }
+
 @end
