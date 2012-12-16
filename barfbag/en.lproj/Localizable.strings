@@ -84,6 +84,7 @@
 "events" = "Events";
 "workshops" = "Workshops";
 "assemblies" = "Assemblies";
+"Letzter iCloud Sync:\n%@" = "Last iCloud Sync:\n%@";
 
 /* VideoStreamNavigationController */
 

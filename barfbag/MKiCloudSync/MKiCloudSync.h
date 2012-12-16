@@ -51,6 +51,7 @@
 - (BOOL) hasDeviceCloudSupport;
 - (BOOL) isDeviceCloudEnabled;
 - (BOOL) isCloudSyncActivated;
+- (NSDate*) dateLastSynced;
 
 - (void) start;
 - (void) stop;

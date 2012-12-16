@@ -71,9 +71,50 @@
     [self.tableView reloadData];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void) setupTableViewHeader {
+    CGFloat width = self.tableView.frame.size.width;
+    UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 70.0)] autorelease];
+    footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    footerView.backgroundColor = [self themeColor];
+
+    UILabel *cloudDateLabel = [[[UILabel alloc] initWithFrame:footerView.frame] autorelease];
+    cloudDateLabel.backgroundColor = kCOLOR_CLEAR;
+    cloudDateLabel.numberOfLines = 2;
+    cloudDateLabel.textAlignment = UITextAlignmentCenter;
+    [footerView addSubview:cloudDateLabel];
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.timeStyle = NSDateFormatterFullStyle;
+    df.dateStyle = NSDateFormatterFullStyle;
+    df.doesRelativeDateFormatting = YES;
+    NSString *formattedDate = [df stringFromDate:[MKiCloudSync instance].dateLastSynced];
+    [df release];
+    cloudDateLabel.text = [NSString stringWithFormat:LOC( @"Letzter iCloud Sync:\n%@" ), formattedDate];
+    cloudDateLabel.font = [UIFont boldSystemFontOfSize:cloudDateLabel.font.pointSize];
+    cloudDateLabel.textColor = kCOLOR_WHITE;
+    cloudDateLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+    cloudDateLabel.center = footerView.center;
+    self.tableView.tableFooterView = footerView;
+}
+
+- (void) refreshAfterCloudSync {
+    [self showCloudSyncDate];
     [self refreshData];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:kMKiCloudSyncNotification object:nil];
+}
+
+- (void) showCloudSyncDate {
+    [self setupTableViewHeader];
+}
+
+- (void) hideCloudSyncDate {
+    self.tableView.tableFooterView = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    if( [MKiCloudSync instance].isActivatedRightNow ) {
+        [self showCloudSyncDate];
+    }
+    [self refreshData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAfterCloudSync) name:kMKiCloudSyncNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

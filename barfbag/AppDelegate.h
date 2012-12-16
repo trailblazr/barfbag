@@ -29,6 +29,7 @@
     NSArray *semanticWikiWorkshops;
     NSString *videoStreamsHtml;
     NSDictionary *masterConfiguration;
+    UIView *flashyView;
 }
 
 @property( strong, nonatomic ) UIWindow *window;
@@ -39,11 +40,14 @@
 @property( retain, nonatomic ) NSArray *semanticWikiWorkshops;
 @property( retain, nonatomic ) NSString *videoStreamsHtml;
 @property( retain, nonatomic ) NSDictionary *masterConfiguration;
+@property( retain, nonatomic ) UIView *flashyView;
 
 @property( nonatomic, retain ) ATMHud *hud;
 
 - (BOOL) isConfigOnForKey:(NSString*)key defaultValue:(BOOL)isOn;
 - (UIFont*) fontWithType:(CustomFontType)fontType andPointSize:(CGFloat)pointSize;
+
+- (void) signalCloudSyncToUser;
 
 - (void) configLoadCached;
 - (void) emptyAllFilesFromFolder:(NSString*)folderPath;

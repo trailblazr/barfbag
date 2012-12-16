@@ -50,6 +50,7 @@
 @synthesize videoStreamsHtml;
 @synthesize masterConfiguration;
 @synthesize hud;
+@synthesize flashyView;
 
 - (void)dealloc {
     [_window release];
@@ -61,6 +62,7 @@
     self.videoStreamsHtml = nil;
     self.masterConfiguration = nil;
     self.hud = nil;
+    self.flashyView = nil;
     [super dealloc];
 }
 
@@ -195,6 +197,36 @@
         return isOn;
     }
     return [[NSUserDefaults standardUserDefaults] boolForKey:key];
+}
+
+- (void) signalCloudSyncToUser {
+    CGFloat sizeValue = MAX([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    self.flashyView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, sizeValue, sizeValue )] autorelease];
+    flashyView.backgroundColor = kCOLOR_WHITE;
+    flashyView.alpha = 0.0f;
+    [_window.rootViewController.view addSubview:flashyView];
+    [UIView animateWithDuration:0.15 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        flashyView.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        if( finished ) {
+            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                flashyView.backgroundColor = [self themeColor];
+            } completion:^(BOOL finished) {
+                if( finished ) {
+                    
+                    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                        flashyView.alpha = 0.0;
+                    } completion:^(BOOL finished) {
+                        if( finished ) {
+                            [flashyView removeFromSuperview];
+                        }
+                    }];
+                    
+                }
+            }];
+        
+        }
+    }];
 }
 
 - (void) configureAppearance {
@@ -863,6 +895,7 @@
                                              selector:@selector(manageCloudStorage)
                                                  name:NSUbiquityIdentityDidChangeNotification                                                    object:nil];
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(signalCloudSyncToUser) name:kMKiCloudSyncNotification object:nil];
     
     if( [self isConfigOnForKey:kUSERDEFAULT_KEY_BOOL_USE_CLOUD_SYNC defaultValue:YES] ) {
         if( DEBUG ) NSLog( @"CLOUD: USER WANTS IT." );

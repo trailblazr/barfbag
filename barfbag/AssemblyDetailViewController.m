@@ -58,6 +58,7 @@
     [buttonOpenWiki setTitle:LOC( @"Wikiseite öffnen" ) forState:UIControlStateNormal];
     [buttonOpenWiki.titleLabel setFont:[UIFont boldSystemFontOfSize:buttonOpenWiki.titleLabel.font.pointSize]];
     [buttonOpenWiki setTitleColor:kCOLOR_WHITE forState:UIControlStateNormal];
+    buttonOpenWiki.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
     buttonOpenWiki.center = footerView.center;
     self.tableView.tableFooterView = footerView;
 }

@@ -89,7 +89,8 @@ static MKiCloudSync *sharedInstance = nil;
         
         [[NSUserDefaults standardUserDefaults] setObject:obj forKey:key];
     }];
-
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kUSERDEFAULT_KEY_DATE_LAST_SYNCED];
     [[NSUserDefaults standardUserDefaults] synchronize];
 
     // enable NSUserDefaultsDidChangeNotification notifications again
@@ -100,6 +101,11 @@ static MKiCloudSync *sharedInstance = nil;
 												object:nil];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kMKiCloudSyncNotification object:nil];
+}
+
+- (NSDate*) dateLastSynced {
+    NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:kUSERDEFAULT_KEY_DATE_LAST_SYNCED];
+    return date;
 }
 
 - (BOOL) hasDeviceCloudSupport {
