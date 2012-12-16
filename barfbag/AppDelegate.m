@@ -205,20 +205,21 @@
     flashyView.backgroundColor = kCOLOR_WHITE;
     flashyView.alpha = 0.0f;
     [_window.rootViewController.view addSubview:flashyView];
-    [UIView animateWithDuration:0.15 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         flashyView.alpha = 1.0;
     } completion:^(BOOL finished) {
         if( finished ) {
-            [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 flashyView.backgroundColor = [self themeColor];
             } completion:^(BOOL finished) {
                 if( finished ) {
                     
-                    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    [UIView animateWithDuration:0.8 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                         flashyView.alpha = 0.0;
                     } completion:^(BOOL finished) {
                         if( finished ) {
                             [flashyView removeFromSuperview];
+                            [self showHudWithCaption:@"iCloud was synced." hasActivity:NO];
                         }
                     }];
                     
@@ -353,7 +354,6 @@
     @catch (NSException *exception) {
         // Not interested, sorry!
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_MASTER_CONFIG_COMPLETED object:self];
     [self masterConfigFetchCompleted];
 }
 
@@ -379,6 +379,7 @@
 
 - (void) masterConfigFetchCompleted {
     [[MasterConfig sharedConfiguration] initialize];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_MASTER_CONFIG_COMPLETED object:self];
 }
 
 #pragma mark - Fetching & Caching of HTML (videostreams)

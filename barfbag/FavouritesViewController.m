@@ -81,6 +81,7 @@
     cloudDateLabel.backgroundColor = kCOLOR_CLEAR;
     cloudDateLabel.numberOfLines = 2;
     cloudDateLabel.textAlignment = UITextAlignmentCenter;
+    cloudDateLabel.adjustsFontSizeToFitWidth = YES;
     [footerView addSubview:cloudDateLabel];
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     df.timeStyle = NSDateFormatterFullStyle;
