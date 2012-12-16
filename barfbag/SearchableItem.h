@@ -12,6 +12,7 @@
 
 }
 
+- (NSString*) itemId;
 - (NSString*) itemTitle;
 - (NSString*) itemSubtitle;
 - (NSString*) itemAbstract;

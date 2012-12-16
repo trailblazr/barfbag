@@ -114,6 +114,10 @@ nil];
 
 // SEARCHABLE ITEM
 
+- (NSString*) itemId {
+    return [[self singlePropertyFromObject:label] normalizedString];
+}
+
 - (NSString*) itemTitle {
     return [self singlePropertyFromObject:label];
 }

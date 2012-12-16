@@ -11,6 +11,9 @@
 #import "Event.h"
 #import "Assembly.h"
 #import "Workshop.h"
+#import "JSONAssembly.h"
+#import "JSONWorkshop.h"
+#import "SearchableItem.h"
 
 #import "MKiCloudSync.h"
 
@@ -88,7 +91,10 @@ static FavouriteManager *sharedInstance = nil;
         [[NSUserDefaults standardUserDefaults] setObject:dataToWrite forKey:@"favourites"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         wasWritten = YES;
-        
+        if( wasWritten ) {
+            [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kUSERDEFAULT_KEY_DATE_LAST_FAVOURITE];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
     }
     @catch (NSException *exception) {
         //
@@ -183,27 +189,17 @@ static FavouriteManager *sharedInstance = nil;
 }
 
 - (NSString*) favouriteIdFromItem:(id)item {
-    if( [item isKindOfClass:[Event class]] ) {
-        return [NSString stringWithFormat:@"%i", [(Event*)item eventId]];
-    }
-    if( [item isKindOfClass:[Assembly class]] ) {
-        return [[(Assembly*)item label] normalizedString];
-    }
-    if( [item isKindOfClass:[Workshop class]] ) {
-        return [[(Workshop*)item label] normalizedString];
+    SearchableItem *searcheableItem = (SearchableItem*)item;
+    if( [item isKindOfClass:[SearchableItem class]] ) {
+        return searcheableItem.itemId;
     }
     return nil;
 }
 
 - (NSString*) favouriteNameFromItem:(id)item {
-    if( [item isKindOfClass:[Event class]] ) {
-        return [(Event*)item title];
-    }
-    if( [item isKindOfClass:[Assembly class]] ) {
-        return [(Assembly*)item label];
-    }
-    if( [item isKindOfClass:[Workshop class]] ) {
-        return [(Workshop*)item label];
+    SearchableItem *searcheableItem = (SearchableItem*)item;
+    if( [item isKindOfClass:[SearchableItem class]] ) {
+        return searcheableItem.itemTitle;
     }
     if( [item isKindOfClass:[NSDictionary class]] || [item isKindOfClass:[NSMutableDictionary class]] ) {
         return LOC( @"Favoritenliste" );
@@ -215,10 +211,10 @@ static FavouriteManager *sharedInstance = nil;
     if( [item isKindOfClass:[Event class]] ) {
         return FavouriteItemTypeEvent;
     }
-    if( [item isKindOfClass:[Assembly class]] ) {
+    if( [item isKindOfClass:[JSONAssembly class]] ) {
         return FavouriteItemTypeAssembly;
     }
-    if( [item isKindOfClass:[Workshop class]] ) {
+    if( [item isKindOfClass:[JSONWorkshop class]] ) {
         return FavouriteItemTypeWorkshop;
     }
     return FavouriteItemTypeUndefined;

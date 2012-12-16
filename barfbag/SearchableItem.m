@@ -10,6 +10,11 @@
 
 @implementation SearchableItem
 
+
+- (NSString*) itemId {
+    return nil;
+}
+
 - (NSString*) itemTitle {
     return nil;
 }

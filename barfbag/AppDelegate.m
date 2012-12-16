@@ -316,6 +316,7 @@
     @try {
         self.masterConfiguration = [NSDictionary dictionaryWithContentsOfFile:pathToStoredFile];
         [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kUSERDEFAULT_KEY_DATE_LAST_UPDATED];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     @catch (NSException *exception) {
         // Not interested, sorry!

@@ -190,6 +190,10 @@
 
 // SEARCHABLE ITEM
 
+- (NSString*) itemId {
+    return [NSString stringWithFormat:@"%i", [self eventId]];
+}
+
 - (NSString*) itemTitle {
     return title;
 }
