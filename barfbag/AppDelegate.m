@@ -108,8 +108,17 @@
 #if SCREENSHOTMODE
     return kCOLOR_ORANGE;
 #endif
+    NSInteger indexLastDisplayed = 10;
+    if( [[NSUserDefaults standardUserDefaults] objectForKey:kUSERDEFAULT_KEY_INTEGER_COLOR_INDEX] ) {
+        indexLastDisplayed = [[NSUserDefaults standardUserDefaults] integerForKey:kUSERDEFAULT_KEY_INTEGER_COLOR_INDEX];
+    }
+    NSInteger colorIndex = 0;
     NSArray *colors = [NSArray arrayWithObjects:kCOLOR_VIOLET,kCOLOR_GREEN,kCOLOR_RED,kCOLOR_CYAN,kCOLOR_ORANGE,nil];
-    NSInteger colorIndex = [[NSNumber numberWithFloat:(0.4+[self randomFloatBetweenLow:0.0 andHigh:4.0])] integerValue];
+    while( colorIndex == indexLastDisplayed ) {
+        colorIndex = [[NSNumber numberWithFloat:(0.4+[self randomFloatBetweenLow:0.0 andHigh:4.0])] integerValue];
+    }
+    [[NSUserDefaults standardUserDefaults] setInteger:colorIndex forKey:kUSERDEFAULT_KEY_INTEGER_COLOR_INDEX];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     return [colors objectAtIndex:colorIndex];
 }
 
@@ -208,6 +217,9 @@
 
 - (void) signalCloudSyncToUser {
     CGFloat sizeValue = MAX([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    if( flashyView ) {
+        [flashyView removeFromSuperview];
+    }
     self.flashyView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, sizeValue, sizeValue )] autorelease];
     flashyView.backgroundColor = kCOLOR_WHITE;
     flashyView.alpha = 0.0f;
@@ -226,6 +238,7 @@
                     } completion:^(BOOL finished) {
                         if( finished ) {
                             [flashyView removeFromSuperview];
+                            self.flashyView = nil;
                             [self showHudWithCaption:@"iCloud was synced." hasActivity:NO];
                         }
                     }];

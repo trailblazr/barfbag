@@ -51,7 +51,7 @@
 - (void) prepareMessage {
     UIColor *textColor = kCOLOR_WHITE;
 
-    CGFloat fontSize40 = [[UIDevice currentDevice] isPad] ? 80.0f : 40.0f;
+    CGFloat fontSize40 = [[UIDevice currentDevice] isPad] ? 65.0f : 40.0f;
     
     // congressMessagePlainLabel.alpha = 0.0f;
     // congressMessageSemiboldLabel.alpha = 0.0f;

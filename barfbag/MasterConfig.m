@@ -145,7 +145,7 @@ static MasterConfig *sharedInstance = nil;
         if( [key isEqualToString:kURL_KEY_29C3_FAHRPLAN] ) {
             urlString = kURL_DATA_28C3_FAHRPLAN_EN;
         }
-        if( [key isEqualToString:kURL_KEY_29C3_PERSONS] ) {
+        if( [key isEqualToString:kURL_KEY_29C3_PERSON_IMG] ) {
             urlString = kURL_DATA_28C3_IMAGE_PATH;
         }
     }

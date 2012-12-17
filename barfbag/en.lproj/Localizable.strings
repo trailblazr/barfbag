@@ -18,6 +18,33 @@
 "Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten.\n\nSie verwenden derzeit\n%@ der Daten." = "It seems as if we do\nnot have a network connection\nto update the data.\n\nYou are using\n%@ of the Fahrplan.";
 "Aktualisiere Fahrplan" = "Updating Fahrplan";
 
+/* FavouriteManager */
+"Favoritenliste" = "Favoritelist";
+
+/* GenericTableViewController */
+
+"Habe schon %i Veranstaltungsfavoriten in meiner Liste." = "I have already %i favourites to visit on my list.";
+"Habe leider noch keine Veranstaltungsfavoriten in meiner Liste." = "I have no single favourite to visit on my list, yet.";
+"Tweet erfolgreich abgesendet." = "Tweet sent successfully.";
+"Kein Twitter Account konfiguriert." = "No Twitter account configured.";
+"Keine Info." = "No info available.";
+
+"Versenden der E-Mail wurde unterbrochen/abgebrochen!" = "Sending of mail cancelled/interrupted!";
+"Mail wurde für späteren Versand gespeichert!" = "Mail was saved for later sending!";
+"Mail wurde versendet!" = "Mail was sent!";
+"Versand fehlgeschlagen!" = "Sending of mail failed.!";
+"29c3 Favorit(en)" = "29c3 Favorit(s)";
+"Keine Informtion" = "No informtion";
+"Sie haben derzeit keinen E-Mail-Account auf ihrem Gerät konfiguriert. Bitte zunächst das Mail App in Betrieb nehmen!" = "There is currently no valid mail account available. Please setup an e-mail account in the Settings App first!";
+"29c3 Veranstaltungstipp" = "29c3 Eventtipp";
+"Information für\n%@\nweitersagen?" = "Share info of\n%@\nwith others?";
+"Abbrechen" = "Cancel";
+"Erinnerung für\n%@" = "Favourite for\n%@";
+"Entfernen" = "Remove";
+"Vormerken" = "Remember";
+"E-Mailen" = "Mail";
+"Twittern" = "Tweet";
+
 /* ScheduleNavigationController */
 
 "Fahrplan" = "Fahrplan";
@@ -42,6 +69,7 @@
 "descriptionText" = "Description";
 "persons" = "Speakers";
 "links" = "Links";
+"Webseite öffnen" = "Open website";
 
 /* ScheduleSemanticNavigationController */
 

@@ -58,6 +58,7 @@
 - (void) addPerson:(Person*)personToAdd;
 - (void) addLink:(Link*)linkToAdd;
 - (NSString*) pngIconHref;
+- (NSString*) websiteHref;
 - (NSString*) speakerList;
 - (NSString*) localizedLanguageName;
 

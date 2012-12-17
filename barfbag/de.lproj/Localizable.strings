@@ -18,6 +18,32 @@
 "Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten.\n\nSie verwenden derzeit\n%@ der Daten." = "Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten.\n\nSie verwenden derzeit\n%@ des Fahrplans.";
 "Aktualisiere Fahrplan" = "Aktualisiere Fahrplan";
 
+/* FavouriteManager */
+"Favoritenliste" = "Favoritenliste";
+
+/* GenericTableViewController */
+
+"Habe schon %i Veranstaltungsfavoriten in meiner Liste." = "Habe schon %i Veranstaltungsfavoriten in meiner Liste.";
+"Habe leider noch keine Veranstaltungsfavoriten in meiner Liste." = "Habe leider noch keine Veranstaltungsfavoriten in meiner Liste.";
+"Tweet erfolgreich abgesendet." = "Tweet erfolgreich abgesendet.";
+"Kein Twitter Account konfiguriert." = "Kein Twitter Account konfiguriert.";
+"Keine Info." = "Keine Info.";
+
+"Versenden der E-Mail wurde unterbrochen/abgebrochen!" = "Versenden der E-Mail wurde unterbrochen/abgebrochen!";
+"Mail wurde für späteren Versand gespeichert!" = "Mail wurde für späteren Versand gespeichert!";
+"Mail wurde versendet!" = "Mail wurde versendet!";
+"Versand fehlgeschlagen!" = "Versand fehlgeschlagen!";
+"29c3 Favorit(en)" = "29c3 Favorit(en)";
+"Keine Informtion" = "Keine Informtion";
+"Sie haben derzeit keinen E-Mail-Account auf ihrem Gerät konfiguriert. Bitte zunächst das Mail App in Betrieb nehmen!" = "Sie haben derzeit keinen E-Mail-Account auf ihrem Gerät konfiguriert. Bitte zunächst das Mail App in Betrieb nehmen!";
+"29c3 Veranstaltungstipp" = "29c3 Veranstaltungstipp";
+"Information für\n%@\nweitersagen?" = "Information für\n%@\nweitersagen?";
+"Abbrechen" = "Abbrechen";
+"Erinnerung für\n%@" = "Erinnerung für\n%@";
+"Entfernen" = "Entfernen";
+"Vormerken" = "Vormerken";
+"E-Mailen" = "E-Mailen";
+"Twittern" = "Twittern";
 
 /* ScheduleNavigationController */
 
@@ -43,6 +69,7 @@
 "descriptionText" = "Beschreibung";
 "persons" = "Sprecher";
 "links" = "Links";
+"Webseite öffnen" = "Webseite öffnen";
 
 /* ScheduleSemanticNavigationController */
 

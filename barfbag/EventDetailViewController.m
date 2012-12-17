@@ -40,6 +40,28 @@
     [self presentActionSheetForObject:event fromBarButtonItem:item];
 }
 
+- (void) actionOpenWebPage {
+    NSString* urlString = event.websiteHref;
+    NSURL *url = [NSURL URLWithString:urlString];
+    [self loadSimpleWebViewWithURL:url shouldScaleToFit:YES];
+}
+
+- (void) setupTableViewFooter {
+    CGFloat width = self.tableView.frame.size.width;
+    UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 70.0)] autorelease];
+    footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    footerView.backgroundColor = [self themeColor];
+    UIButton *buttonOpenWiki = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 250.0, 40.0)];
+    [buttonOpenWiki addTarget:self action:@selector(actionOpenWebPage) forControlEvents:UIControlEventTouchUpInside];
+    [footerView addSubview:buttonOpenWiki];
+    [buttonOpenWiki setTitle:LOC( @"Webseite öffnen" ) forState:UIControlStateNormal];
+    [buttonOpenWiki.titleLabel setFont:[UIFont boldSystemFontOfSize:buttonOpenWiki.titleLabel.font.pointSize]];
+    [buttonOpenWiki setTitleColor:kCOLOR_WHITE forState:UIControlStateNormal];
+    buttonOpenWiki.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+    buttonOpenWiki.center = footerView.center;
+    self.tableView.tableFooterView = footerView;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = [self stringShortDayForDate:day.date];
@@ -52,6 +74,8 @@
     self.tableView.tableHeaderView = detailHeaderViewController.view;
     self.tableView.tableHeaderView.backgroundColor = [self themeColor];
 
+    [self setupTableViewFooter];
+    
     detailHeaderViewController.titleLabel.text = event.title;
     detailHeaderViewController.titleLabel.adjustsFontSizeToFitWidth = YES;
     detailHeaderViewController.titleLabel.layer.masksToBounds = NO;
@@ -169,7 +193,8 @@
     }
     cell.accessoryView = nil;
     cell.accessoryType = UITableViewCellAccessoryNone;
-
+    cell.imageView.image = nil;
+    
     if( [sectionKey isEqualToString:@"descriptionText"] ) {
         CGSize textSize = [self textSizeNeededForString:[self eventDescriptionText]];
         CGFloat offset5 = [[UIDevice currentDevice] isPad] ? 10.0f : 5.0f;
@@ -182,15 +207,18 @@
         Person *currentPerson = (Person*)[items objectAtIndex:indexPath.row];
         cell.textLabel.text = currentPerson.personName;
         cell.detailTextLabel.text = currentPerson.personIdKey;
+        cell.imageView.image = [currentPerson cachedImage];
+
+        /*
         UIImageView *personImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 40.0, 40.0)];
         personImageView.backgroundColor = [self darkColor];
-        personImageView.image = [currentPerson cachedImage];
         personImageView.contentMode = UIViewContentModeScaleAspectFill;
         personImageView.layer.cornerRadius = 7.0;
         personImageView.layer.masksToBounds = YES;
         personImageView.layer.borderColor = [[self darkerColor] colorWithAlphaComponent:0.3].CGColor;
         personImageView.layer.borderWidth = 1.0;
-        cell.accessoryView = personImageView;
+         cell.accessoryView = personImageView;
+         */
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
     else if( [sectionKey isEqualToString:@"links"] ) {
@@ -247,6 +275,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if( [[sectionKeys objectAtIndex:indexPath.section] isEqualToString:@"persons"] ) {
         NSLog( @"TOUCHED PERSON" );
+        NSString *sectionKey = [sectionKeys objectAtIndex:indexPath.section];
+        Person *currentPerson = (Person*)[[sectionArrays objectForKey:sectionKey] objectAtIndex:indexPath.row];
+        if( currentPerson.websiteHref ) {
+            NSURL *linkUrl = [NSURL URLWithString:[currentPerson.websiteHref httpUrlString]];
+            [self loadSimpleWebViewWithURL:linkUrl shouldScaleToFit:YES];
+        }
     }
     if( [[sectionKeys objectAtIndex:indexPath.section] isEqualToString:@"links"] ) {
         NSLog( @"TOUCHED LINK" );

@@ -115,25 +115,23 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
         Event *event = (Event*)item;
         [stringRep appendString:[event stringRepresentationTwitter]];
     }
-    else if( [item isKindOfClass:[Assembly class]] ) {
-        Assembly* assembly = (Assembly*)item;
+    else if( [item isKindOfClass:[JSONAssembly class]] ) {
+        JSONAssembly* assembly = (JSONAssembly*)item;
         [stringRep appendString:[assembly stringRepresentationTwitter]];
     }
-    else if( [item isKindOfClass:[Workshop class]] ) {
-        Workshop* workshop = (Workshop*)item;
+    else if( [item isKindOfClass:[JSONWorkshop class]] ) {
+        JSONWorkshop* workshop = (JSONWorkshop*)item;
         [stringRep appendString:[workshop stringRepresentationTwitter]];
     } else if( [item isKindOfClass:[NSDictionary class]] || [item isKindOfClass:[NSMutableDictionary class]] ) {
+        // THIS IS THE FAVOURITE LIST WE NEED TO STRINGIFY...
         NSDictionary *dictionary = (NSDictionary*)item;
         NSArray *allEntries = [dictionary allValues];
-        for( NSArray* sectionItems in allEntries ) {
-            [stringRep appendFormat:@"\n\n"];
-            for( id currentItem in sectionItems ) {
-                // TO DO: APPEND STRING REPRESENTATIONS OF ITEMS
-                NSString *recursiveRep = [self stringRepresentationTwitterFor:currentItem];
-                if( recursiveRep && [recursiveRep length] > 0 ) {
-                    [stringRep appendString:recursiveRep]; // WARNING: RECURSIVE
-                }
-            }
+        NSInteger numOfFavourites = [allEntries count];
+        if( numOfFavourites > 0 ) {
+            [stringRep appendString:[NSString stringWithFormat:LOC( @"Habe schon %i Veranstaltungsfavoriten in meiner Liste." ), numOfFavourites ]];
+        }
+        else {
+            [stringRep appendString:LOC( @"Habe leider noch keine Veranstaltungsfavoriten in meiner Liste." )];
         }
     }
     return stringRep;
@@ -152,7 +150,7 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self dismissModalViewControllerAnimated:YES];
             if (result == TWTweetComposeViewControllerResultDone) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Twitter" message:@"Tweet erfolgreich abgesendet." delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Twitter" message:LOC( @"Tweet erfolgreich abgesendet." ) delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
                 [alert show];
                 [alert release];
             }
@@ -171,7 +169,7 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
 - (void) actionShareObjectViaTwitter:(id)objectToShare {
     NSLog( @"SHARE VIA TWITTER");
     if( ![TWTweetComposeViewController canSendTweet] ) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString( @"Twitter", nil ) message:NSLocalizedString(@"Kein Twitter Account konfiguriert.", nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString( @"Twitter", nil ) message:LOC( @"Kein Twitter Account konfiguriert." ) delegate:self cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
         [alert show];
         [alert release];
         return;
@@ -193,7 +191,7 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
 		case MFMailComposeResultCancelled: {
             BOOL shouldSHowAlert = NO;
             if( shouldSHowAlert ) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"E-Mail" message:@"Versenden der E-Mail wurde unterbrochen/abgebrochen!" delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"E-Mail" message:LOC( @"Versenden der E-Mail wurde unterbrochen/abgebrochen!" ) delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
                 [alert show];
                 [alert release];
             }
@@ -201,20 +199,20 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
         }
             
 		case MFMailComposeResultSaved: {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"E-Mail" message:@"Mail wurde für späteren Versand gespeichert!" delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"E-Mail" message:LOC( @"Mail wurde für späteren Versand gespeichert!" ) delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
             [alert show];
             [alert release];
 			break;
         }
 		case MFMailComposeResultSent: {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"E-Mail" message:@"Mail wurde versendet!" delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"E-Mail" message:LOC( @"Mail wurde versendet!" ) delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
             [alert show];
             [alert release];
 			break;
         }
             
 		case MFMailComposeResultFailed: {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"E-Mail" message:@"Versand fehlgeschlagen!" delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"E-Mail" message:LOC( @"Versand fehlgeschlagen!" )delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
             [alert show];
             [alert release];
 			break;
@@ -232,7 +230,7 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
     df.timeStyle = NSDateFormatterShortStyle;
     
     [htmlString appendFormat:@"<html><body>"];
-    [htmlString appendFormat:@"<p><strong>29c3 Favorit(en):</strong></p>"];
+    [htmlString appendFormat:@"<p><strong>%@:</strong></p>", LOC( @"29c3 Favorit(en)" )];
     [htmlString appendString:@"<p>"];
     
     [htmlString appendString:[NSString placeHolder:LOC( @"Keine Informtion" ) forEmptyString:[self stringRepresentationMailFor:object]]];
@@ -246,7 +244,7 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
 - (void) actionShareObjectViaMail:(id)objectToShare {
     NSLog( @"SHARE VIA MAIL");
     if ( ![MFMailComposeViewController canSendMail] ) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"E-Mail" message:@"Sie haben derzeit keinen E-Mail-Account auf ihrem Gerät konfiguriert. Bitte zunächst das Mail App in Betrieb nehmen!" delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"E-Mail" message:LOC( @"Sie haben derzeit keinen E-Mail-Account auf ihrem Gerät konfiguriert. Bitte zunächst das Mail App in Betrieb nehmen!" ) delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
         [alert show];
         [alert release];
         return;
@@ -255,7 +253,7 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
     MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
     [controller setMailComposeDelegate:self];
     [controller setToRecipients:toRecipients];
-    [controller setSubject:LOC(@"29c3 Veranstaltungstipp")];
+    [controller setSubject:LOC( @"29c3 Veranstaltungstipp" )];
     NSString *message = [self htmlMailBodyForObject:objectToShare];
     [controller setMessageBody:message isHTML:YES];
     [[self navigationController] presentModalViewController:controller animated:YES];
@@ -312,7 +310,7 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
 
 - (void) presentActionSheetSharinOnlyForObject:(id)objectInProgress fromBarButtonItem:(UIBarButtonItem*)item {
     self.reminderObject = objectInProgress;
-    NSString *titelString = [NSString stringWithFormat:@"Information für\n%@\nweitersagen?", [[FavouriteManager sharedManager] favouriteNameFromItem:reminderObject]];
+    NSString *titelString = [NSString stringWithFormat:LOC( @"Information für\n%@\nweitersagen?" ), [[FavouriteManager sharedManager] favouriteNameFromItem:reminderObject]];
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:titelString delegate:self cancelButtonTitle:LOC( @"Abbrechen" ) destructiveButtonTitle:nil otherButtonTitles:LOC( @"E-Mail" ),LOC( @"Twitter" ), nil];
     sheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     sheet.tag = kACTION_SHEET_TAG_SHARING;
@@ -326,10 +324,10 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
     
     NSString *titelString = nil;
     if( hasAlreadyReminder ) {
-        titelString = [NSString stringWithFormat:@"Erinnerung für\n%@", [[FavouriteManager sharedManager] favouriteNameFromItem:reminderObject]];
+        titelString = [NSString stringWithFormat:LOC( @"Erinnerung für\n%@" ), [[FavouriteManager sharedManager] favouriteNameFromItem:reminderObject]];
     }
     else {
-        titelString = [NSString stringWithFormat:@"Erinnerung für\n%@", [[FavouriteManager sharedManager] favouriteNameFromItem:reminderObject]];
+        titelString = [NSString stringWithFormat:LOC( @"Erinnerung für\n%@" ), [[FavouriteManager sharedManager] favouriteNameFromItem:reminderObject]];
     }
     NSString* destructionTitle = hasAlreadyReminder ? LOC( @"Entfernen" ) : nil;
     NSString* reminderTitle = hasAlreadyReminder ? nil : LOC( @"Vormerken" );

@@ -65,7 +65,13 @@
 }
 
 - (NSString*) pngIconHref {
-    NSString *imageTemplateUrl = [[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_EVENTS];
+    NSString *imageTemplateUrl = [[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_EVENT_IMG];
+    imageTemplateUrl = [imageTemplateUrl stringByReplacingOccurrencesOfString:@"$id$" withString:[self eventIdKey]];
+    return imageTemplateUrl;
+}
+
+- (NSString*) websiteHref {
+    NSString *imageTemplateUrl = [[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_EVENT_SITE];
     imageTemplateUrl = [imageTemplateUrl stringByReplacingOccurrencesOfString:@"$id$" withString:[self eventIdKey]];
     return imageTemplateUrl;
 }
@@ -93,19 +99,6 @@
         [listString appendFormat:@"%@%@", needsComma ? @", " : @"", currentPerson.personName];
     }
     return listString;
-}
-
-- (NSString*) stringRepresentationMail {
-    return [NSString stringWithFormat:@"<b>%@</b><br>%@", [NSString placeHolder:@"(Kein Titel)" forEmptyString:title], [NSString placeHolder:@"(Kein Untertitel)" forEmptyString:subtitle]];
-}
-
-- (NSString*) stringRepresentationTwitter {
-    Link *firstLink = nil;
-    if( links && [links count] > 0 ) {
-        firstLink = [links objectAtIndex:0];
-    }
-    NSString *linkHref = [firstLink.href httpUrlString];
-    return [NSString stringWithFormat:@"\"%@\" %@", [NSString placeHolder:@"(Kein Titel)" forEmptyString:title], [NSString placeHolder:@"" forEmptyString:linkHref]];
 }
 
 - (NSString*) description {
@@ -194,6 +187,22 @@
 		[listCreated addObject:createdEvent];
 	}
 	return listCreated;
+}
+
+- (NSString*) stringRepresentationMail {
+    return [NSString stringWithFormat:@"<b>%@</b><br>%@", [NSString placeHolder:@"(Kein Titel)" forEmptyString:title], [NSString placeHolder:@"(Kein Untertitel)" forEmptyString:subtitle]];
+}
+
+- (NSString*) stringRepresentationTwitter {
+    NSString *linkHref = [self websiteHref];
+    if( !linkHref ) {
+        Link *firstLink = nil;
+        if( links && [links count] > 0 ) {
+            firstLink = [links objectAtIndex:0];
+        }
+        linkHref = [firstLink.href httpUrlString];
+    }
+    return [NSString stringWithFormat:@"\"%@\" %@", [NSString placeHolder:@"(Kein Titel)" forEmptyString:title], [NSString placeHolder:@"" forEmptyString:linkHref]];
 }
 
 // SEARCHABLE ITEM

@@ -36,13 +36,13 @@
 }
 
 - (NSString*) pngIconHref {
-    NSString *imageTemplateUrl = [[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_PERSONS];
+    NSString *imageTemplateUrl = [[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_PERSON_IMG];
     imageTemplateUrl = [imageTemplateUrl stringByReplacingOccurrencesOfString:@"$id$" withString:[self personIdKey]];
     return imageTemplateUrl;
 }
 
 - (NSString*) websiteHref {
-    NSString *imageTemplateUrl = [[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_SPEAKERS];
+    NSString *imageTemplateUrl = [[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_PERSON_SITE];
     imageTemplateUrl = [imageTemplateUrl stringByReplacingOccurrencesOfString:@"$id$" withString:[self personIdKey]];
     return imageTemplateUrl;
 }
