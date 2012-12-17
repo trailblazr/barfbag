@@ -67,7 +67,7 @@
     if( [dateOrString isKindOfClass:[NSString class]] ) {
         @try {
             NSDateFormatter *df = [[NSDateFormatter alloc] init];
-            df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"]; // GOING WITH GMT here in hope someone has done his job right!
+            df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT+01"]; // FIXING SHIT OF SEMANTIC WIKI
             df.dateFormat = @"yyyy-MM-dd HH:mm:ss";
             date = [df dateFromString:dateOrString];
             [df release];

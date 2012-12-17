@@ -376,12 +376,17 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
     }
 }
 
-- (void) dimSearchBar:(BOOL)shouldDim {
+- (void) dimSearchBar:(BOOL)shouldDim animated:(BOOL)animated {
     UISearchBar *searchBar = self.searchDisplayController.searchBar;
-    [UIView animateWithDuration:0.3 animations:^{
-        searchBar.alpha = ( shouldDim ? 0.3f : 1.0f );
+    if( animated ) {
+        [UIView animateWithDuration:0.3 animations:^{
+            searchBar.alpha = ( shouldDim ? 0.3f : 1.0f );
+            [self dimSubviewInView:searchBar toAlpha:( shouldDim ? 0.5f : 0.9f )];
+        }];
+    }
+    else {
         [self dimSubviewInView:searchBar toAlpha:( shouldDim ? 0.5f : 0.9f )];
-    }];
+    }
 }
 
 - (void)viewDidLoad {
@@ -399,7 +404,7 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
 
     // APPLY SOME NICE SEARCHBAR HACK
     self.searchDisplayController.searchBar.placeholder = nil;
-    [self dimSearchBar:YES];
+    [self dimSearchBar:YES  animated:YES];
 
     [self.searchDisplayController.searchResultsTableView setBackgroundColor:[self backgroundColor]];
     [self.searchDisplayController.searchResultsTableView setSeparatorColor:[self darkerColor]];
@@ -566,6 +571,10 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
     return [self appDelegate].darkerColor;
 }
 
+- (UIColor*) backBrightColor {
+    return [self appDelegate].backBrightColor;
+}
+
 - (UIImage*) imageGradientWithSize:(CGSize)imageSize color1:(UIColor*)color1 color2:(UIColor*)color2 {
     if (NULL != UIGraphicsBeginImageContextWithOptions) {
         UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
@@ -705,7 +714,7 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
 }
 
 - (BOOL) searchBarShouldBeginEditing:(UISearchBar *)searchBar {
-    [self dimSearchBar:NO];
+    [self dimSearchBar:NO  animated:YES];
     [self.searchDisplayController.searchResultsTableView setBackgroundColor:[self backgroundColor]];
     [self.searchDisplayController.searchResultsTableView setSeparatorColor:[self darkerColor]];
     return YES;
@@ -768,7 +777,7 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
 }
 
 - (void) searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    [self dimSearchBar:YES];
+    [self dimSearchBar:YES  animated:YES];
     self.searchDisplayController.searchBar.text = @"";
     [self.searchDisplayController.searchBar resignFirstResponder];
     

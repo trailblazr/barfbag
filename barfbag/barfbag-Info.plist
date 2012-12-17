@@ -73,12 +73,14 @@
 	</array>
 	<key>UIStatusBarHidden</key>
 	<false/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleBlackOpaque</string>
 	<key>UIStatusBarTintParameters</key>
 	<dict>
 		<key>UINavigationBar</key>
 		<dict>
 			<key>Style</key>
-			<string>UIBarStyleBlack</string>
+			<string>UIBarStyleDefault</string>
 			<key>Translucent</key>
 			<false/>
 		</dict>

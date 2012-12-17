@@ -34,5 +34,6 @@
 - (UIColor*) brighterColor;
 - (UIColor*) darkColor;
 - (UIColor*) darkerColor;
+- (UIColor*) backBrightColor;
 
 @end

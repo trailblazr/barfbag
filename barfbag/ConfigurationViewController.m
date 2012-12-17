@@ -64,7 +64,6 @@
 
 - (void) refreshAllDataAfterForceReconfig {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[self appDelegate] allDataRefresh];
 }
 
 #pragma mark - User Actions
@@ -160,14 +159,28 @@
     [sectionsArray addObject:itemEntry];
 
     // BUTTON RESET
-    UIButton *buttonForceReconfiguration = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *buttonForceReconfiguration = [UIButton buttonWithType:UIButtonTypeCustom];
+    buttonForceReconfiguration.layer.cornerRadius = 7.0;
+    buttonForceReconfiguration.layer.borderColor = [self darkerColor].CGColor;
+    buttonForceReconfiguration.layer.borderWidth = 1.0;
+    buttonForceReconfiguration.layer.masksToBounds = YES;
+    buttonForceReconfiguration.backgroundColor = [self darkColor];
     buttonForceReconfiguration.frame = CGRectMake(0.0, 0.0, 85.0, 30.0);
     [buttonForceReconfiguration setTitle:LOC( @"Reconfig" ) forState:UIControlStateNormal];
-    [buttonForceReconfiguration setTitleColor:[self darkColor] forState:UIControlStateNormal];
+    [buttonForceReconfiguration setTitleColor:kCOLOR_WHITE forState:UIControlStateNormal];
     [buttonForceReconfiguration setTitleColor:kCOLOR_WHITE forState:UIControlStateHighlighted];
-    // MASK BUTTON
-    UIImage *gradientImage = [self imageGradientWithSize:buttonForceReconfiguration.bounds.size color1:[self themeColor] color2:[self darkerColor]];
+    buttonForceReconfiguration.titleLabel.font = [UIFont boldSystemFontOfSize:buttonForceReconfiguration.titleLabel.font.pointSize];
+    // NORMAL BUTTON
+    UIImage *gradientImage = [self imageGradientWithSize:buttonForceReconfiguration.bounds.size color1:[self themeColor] color2:[self darkColor]];
     UIImageView *maskedImageView = [[[UIImageView alloc] initWithImage:gradientImage] autorelease];
+    maskedImageView.layer.cornerRadius = 7.0;
+    maskedImageView.layer.masksToBounds = YES;
+    gradientImage = [self imageFromView:maskedImageView];
+    [buttonForceReconfiguration setBackgroundImage:gradientImage forState:UIControlStateNormal];
+
+    // PRESSED BUTTON
+    gradientImage = [self imageGradientWithSize:buttonForceReconfiguration.bounds.size color1:[self brighterColor] color2:[self themeColor]];
+    maskedImageView = [[[UIImageView alloc] initWithImage:gradientImage] autorelease];
     maskedImageView.layer.cornerRadius = 7.0;
     maskedImageView.layer.masksToBounds = YES;
     gradientImage = [self imageFromView:maskedImageView];
@@ -178,12 +191,19 @@
 
     
     // BUTTON RESET
-    UIButton *buttonUpdateAllData = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    buttonUpdateAllData.frame = CGRectMake(10.0, 7.0, 280.0, 30.0);
+    UIButton *buttonUpdateAllData = [UIButton buttonWithType:UIButtonTypeCustom];
+    buttonUpdateAllData.frame = CGRectMake(10.0, 7.0, 280.0, 50.0);
+    buttonUpdateAllData.layer.cornerRadius = 7.0;
+    buttonUpdateAllData.layer.borderColor = [self darkerColor].CGColor;
+    buttonUpdateAllData.layer.borderWidth = 1.0;
+    buttonUpdateAllData.layer.masksToBounds = YES;
+    buttonUpdateAllData.backgroundColor = [self themeColor];
+    buttonUpdateAllData.titleLabel.shadowOffset = CGSizeMake(0.0,0.0);
     buttonUpdateAllData.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [buttonUpdateAllData setTitle:LOC( @"Update All Data" ) forState:UIControlStateNormal];
-    [buttonUpdateAllData setTitleColor:[self darkColor] forState:UIControlStateNormal];
+    [buttonUpdateAllData setTitleColor:kCOLOR_WHITE forState:UIControlStateNormal];
     [buttonUpdateAllData setTitleColor:kCOLOR_WHITE forState:UIControlStateHighlighted];
+    buttonUpdateAllData.titleLabel.font = [UIFont boldSystemFontOfSize:buttonUpdateAllData.titleLabel.font.pointSize];
     // MASK BUTTON
     gradientImage = [self imageGradientWithSize:buttonUpdateAllData.bounds.size color1:[self themeColor] color2:[self darkerColor]];
     maskedImageView = [[[UIImageView alloc] initWithImage:gradientImage] autorelease];
@@ -200,20 +220,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupTableData];
+    // self.tableView.separatorColor = [self darkColor];
     [self.tableView reloadData];
     self.navigationItem.title = LOC( @"Einstellungen" );
     
     // FOOTER
     CGFloat width = self.view.bounds.size.width;
-    UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 70.0)] autorelease];
+    UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 80.0)] autorelease];
     footerView.backgroundColor = kCOLOR_CLEAR;
-    UILabel *creditsLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, width-20.0f, 70.0)] autorelease];
+    UILabel *creditsLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, width-20.0f, 80.0)] autorelease];
     creditsLabel.backgroundColor = kCOLOR_CLEAR;
-    creditsLabel.numberOfLines = 3;
+    creditsLabel.numberOfLines = 4;
     creditsLabel.textAlignment = UITextAlignmentCenter;
     creditsLabel.text = LOC( @"created in 2012 by trailblazr\nwith some help & code of plaetzchen" );
-    creditsLabel.font = [UIFont systemFontOfSize:12.0];
-    creditsLabel.textColor = [self brighterColor];
+    creditsLabel.font = [[self appDelegate] fontWithType:CustomFontTypeSemibold andPointSize:12];
+    creditsLabel.textColor = [self themeColor];
     [footerView addSubview:creditsLabel];
     creditsLabel.center = footerView.center;
     creditsLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -281,12 +302,24 @@
     return [sectionsArray count];
 }
 
+#define kROW_NUM_REFRESH_BUTTON 5
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if( indexPath.row == kROW_NUM_REFRESH_BUTTON ) {
+        return 64.0;
+    }
+    else {
+        return 44.0;
+    }
+}
+
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if( indexPath.row == 3 ) {
+    if( indexPath.row == kROW_NUM_REFRESH_BUTTON ) {
         NSDictionary *currentDict = [sectionsArray objectAtIndex:indexPath.row];
         id uiElement = [currentDict objectForKey:@"buttonRefreshAllData"];
         ((UIView*)uiElement).center = cell.contentView.center;
     }
+    // cell.backgroundColor = kCOLOR_BLACK;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -295,7 +328,9 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         cell.textLabel.adjustsFontSizeToFitWidth = YES;
+        cell.textLabel.textColor = [self brighterColor];
         cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
+        cell.detailTextLabel.textColor = [self themeColor];
     }
     
     // Configure the cell...
@@ -350,7 +385,7 @@
             cell.accessoryView = uiElement;
             break;
 
-        case 5:
+        case kROW_NUM_REFRESH_BUTTON:
             uiElement = [currentDict objectForKey:@"buttonRefreshAllData"];
             cell.textLabel.text = nil;
             cell.detailTextLabel.text = nil;

@@ -60,8 +60,6 @@
 - (void) barfBagLoadCached;
 - (void) semanticWikiRefresh;
 - (void) semanticWikiLoadCached;
-- (void) videoStreamsRefresh;
-- (void) videoStreamsLoadCached;
 
 - (NSString*) barfBagCurrentDataVersion;
 
@@ -73,6 +71,7 @@
 - (UIColor*) brighterColor;
 - (UIColor*) darkColor;
 - (UIColor*) darkerColor;
+- (UIColor*) backBrightColor;
 
 - (Conference*) conference;
 

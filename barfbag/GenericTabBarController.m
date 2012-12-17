@@ -95,6 +95,10 @@
     return [self appDelegate].darkerColor;
 }
 
+- (UIColor*) backBrightColor {
+    return [self appDelegate].backBrightColor;
+}
+
 #pragma mark - Headup Display Management
 
 - (void) showHudWithCaption:(NSString*)caption hasActivity:(BOOL)hasActivity {

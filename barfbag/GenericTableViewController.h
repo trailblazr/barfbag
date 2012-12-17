@@ -53,6 +53,7 @@
 - (UIColor*) brighterColor;
 - (UIColor*) darkColor;
 - (UIColor*) darkerColor;
+- (UIColor*) backBrightColor;
 
 - (Conference*) conference;
 

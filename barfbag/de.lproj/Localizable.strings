@@ -107,7 +107,7 @@
 
 /* ConfigurationNavigationController */
 
-"Einstellungen" = "Optionen";
+"Einstellungen" = "29C3 Optionen";
 "Zurück" = "Zurück";
 
 /* ConfigurationViewController */
@@ -116,7 +116,7 @@
 "Optionen" = "Not my department";
 "Autoupdate" = "Aktualisierung";
 "Aktualisiere alle Daten beim Start" = "Aktualisiere alle 30 Minuten";
-"created in 2012 by trailblazr\nwith some help & code of plaetzchen" = "App erstellt in 2012 von trailblazr\nmit hilfe & code von plaetzchen\nund server & unix hack' von bithopper";
+"created in 2012 by trailblazr\nwith some help & code of plaetzchen" = "App erstellt in 2012 von trailblazr\nmit hilfe & code von plaetzchen\nund server & unix hack' von bithopper\nspecial thx to karl bode";
 "Reconfig" = "Reset";
 "Force Reconfigure" = "Werkseinstellungen";
 "Basiskonfiguration resetten" = "Reset (Favoriten werden behalten!)";

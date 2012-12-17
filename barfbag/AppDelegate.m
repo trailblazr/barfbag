@@ -36,7 +36,7 @@
 #import "Workshops.h"
 #import "Assemblies.h"
 
-//iCloud Sync
+// ICLOUD SUPPORT
 #import "MKiCloudSync.h"
 
 @implementation AppDelegate
@@ -192,6 +192,13 @@
     return [UIColor colorWithHue:hue saturation:saturation brightness:brightness*0.4f alpha:1.0];
 }
 
+- (UIColor*) backBrightColor {
+    CGFloat hue = [kCOLOR_BACK hue];
+    CGFloat brightness = [kCOLOR_BACK brightness];
+    CGFloat saturation = [kCOLOR_BACK saturation];
+    return [UIColor colorWithHue:hue saturation:saturation brightness:brightness*1.55 alpha:1.0];
+}
+
 - (BOOL) isConfigOnForKey:(NSString*)key defaultValue:(BOOL)isOn {
     if( ![[NSUserDefaults standardUserDefaults] objectForKey:key] ) {
         return isOn;
@@ -233,6 +240,13 @@
 - (void) configureAppearance {
     if( ![[UINavigationBar class] respondsToSelector:@selector(appearance)] ) return;
 
+    // TOOLBARS I.E. MAIL TOOLBAR
+    UINavigationBar *proxyNavigationBar = [UINavigationBar appearance];
+    [proxyNavigationBar setTintColor:kCOLOR_BACK];
+    NSLog( @"ATTRIBUTES: %@", proxyNavigationBar.titleTextAttributes );
+    NSMutableDictionary *attribs = [NSMutableDictionary dictionary];
+    [attribs setObject:[self fontWithType:CustomFontTypeBold andPointSize:22.0] forKey:UITextAttributeFont];
+    proxyNavigationBar.titleTextAttributes = attribs;
     // MPAVController
     // MPAVController *proxyMpavController = [MPAVController appearance];
 
@@ -255,7 +269,7 @@
     
     // SEARCHBAR
     UISearchBar *proxySearchBar = [UISearchBar appearance];
-    proxySearchBar.tintColor = [self themeColor];
+    proxySearchBar.tintColor = kCOLOR_BACK;
 
     // TOOLBARS I.E. MAIL TOOLBAR
     UINavigationBar *proxyNavigationBarMail = [UINavigationBar appearanceWhenContainedIn:[MFMailComposeViewController class], nil];
@@ -348,13 +362,18 @@
     NSString *pathToStoredFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_MASTER_CONFIG];
     @try {
         self.masterConfiguration = [NSDictionary dictionaryWithContentsOfFile:pathToStoredFile];
-        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kUSERDEFAULT_KEY_DATE_LAST_UPDATED];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        if( !isCachedContent ) {
+            [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kUSERDEFAULT_KEY_DATE_LAST_UPDATED];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
     }
     @catch (NSException *exception) {
         // Not interested, sorry!
     }
-    [self masterConfigFetchCompleted];
+    [[MasterConfig sharedConfiguration] initialize];
+    if( !isCachedContent ) {
+        [self masterConfigFetchCompleted];
+    }
 }
 
 - (void) configLoadCached {
@@ -378,113 +397,8 @@
 }
 
 - (void) masterConfigFetchCompleted {
-    [[MasterConfig sharedConfiguration] initialize];
+    // WILL REFRESH ALL DATA AFTER MASTER CONFIG IS RELOADED ANY TIME
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_MASTER_CONFIG_COMPLETED object:self];
-}
-
-#pragma mark - Fetching & Caching of HTML (videostreams)
-
--(void) videoStreamsFillCached:(BOOL)isCachedContent {
-    NSString *pathToStoredFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_STREAMS_EN];
-    @try {
-        self.videoStreamsHtml = [NSString stringWithContentsOfFile:pathToStoredFile encoding:NSUTF8StringEncoding error:nil];
-    }
-    @catch (NSException *exception) {
-        // Not interested, sorry!
-    }
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_STREAM_COMPLETED object:self];
-}
-
-- (void) videoStreamsFetchContentWithUrlString:(NSString*)urlString {
-    if( DEBUG ) NSLog( @"VIDEOSTREAMS: HTML FETCHING FROM %@", urlString );
-    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]
-                                                              cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
-                                                          timeoutInterval:kCONNECTION_TIMEOUT];
-    
-    [self addUserAgentInfoToRequest:theRequest];
-    
-    BOOL shouldCheckModifiedDate = NO;
-    if( shouldCheckModifiedDate ) {
-        NSString *modifiedDateString = nil;
-        CGFloat secondsForTwoMonths = 60*24*60*60;
-        NSDate *lastModifiedDate = [NSDate dateWithTimeIntervalSinceNow:-secondsForTwoMonths];
-        @try {
-            NSDateFormatter *df = [[NSDateFormatter alloc] init];
-            df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss 'GMT'";
-            df.locale = [[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] autorelease];
-            df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-            modifiedDateString = [df stringFromDate:lastModifiedDate];
-            [df release];
-        }
-        @catch (NSException * e) {
-            // do nothing
-        }
-        NSLog( @"FETCHING STUFF SINCE DATE: %@", lastModifiedDate );
-        [theRequest addValue:modifiedDateString forHTTPHeaderField:@"If-Modified-Since"];
-    }
-    
-    // KICK OFF CONNECTION AS BLOCK
-    [SinaURLConnection asyncConnectionWithRequest:theRequest completionBlock:^(NSData *data, NSURLResponse *response) {
-        NSInteger statusCode = ((NSHTTPURLResponse*)response).statusCode;
-        if( DEBUG ) NSLog( @"VIDEOSTREAMS: HTML CONNECTION RESPONSECODE: %i", statusCode );
-        // REPLACE STORED OFFLINE DATA
-        if( statusCode != 200 ) {
-            [self alertWithTag:0 title:LOC( @"Videostream" ) andMessage:LOC( @"Derzeit liegen keine\nVideostreamdaten vor\num zu Aktualisieren.\n\nProbieren sie es später\nnoch einmal bitte!" )];
-        }
-        else {
-            BOOL isCached = NO;
-            if( data && [data length] > 500 ) {
-                isCached = NO;
-                // SAVE INFOS
-                NSString *pathToStoreFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_STREAMS_EN];
-                BOOL hasStoredFile = [data writeToFile:pathToStoreFile atomically:YES];
-                if( !hasStoredFile ) {
-                    if( DEBUG ) NSLog( @"VIDEOSTREAMS: HTML SAVING FAILED!!!" );
-                }
-                else {
-                    if( DEBUG ) NSLog( @"VIDEOSTREAMS: HTML SAVING SUCCEEDED." );
-                }
-                [self videoStreamsFillCached:isCached];
-            }
-            else {
-                isCached = YES;
-                [self videoStreamsFillCached:isCached];
-            }
-        }
-        [self hideHud];
-    } errorBlock:^(NSError *error) {
-        if( DEBUG ) NSLog( @"VIDEOSTREAMS: NO INTERNET CONNECTION." );
-        [self alertWithTag:0 title:LOC( @"Verbindungsproblem" ) andMessage:[NSString stringWithFormat:LOC( @"Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten.\n\nSie verwenden derzeit\n%@ der Daten." ), [self barfBagCurrentDataVersion]]];
-        // TODO: DISPLAY SOME ERROR...
-        BOOL isCached = YES;
-        [self videoStreamsFillCached:isCached];
-        [self hideHud];
-    } uploadProgressBlock:^(float progress) {
-        // do nothing
-    } downloadProgressBlock:^(float progress) {
-        // TODO: UPDATE PROGRESS DISPLAY ...
-    } cancelBlock:^(float progress) {
-        // do nothing
-        [self hideHud];
-    }];
-}
-
-- (void) videoStreamsLoadCached {
-    NSString *pathToCachedFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_STREAMS_EN];
-    NSFileManager *fm = [NSFileManager defaultManager];
-    if( [fm fileExistsAtPath:pathToCachedFile] ) {
-        if( DEBUG ) NSLog( @"VIDEOSTREAMS: HTML LOADING CACHED..." );
-        [self videoStreamsFillCached:YES];
-    }
-    else {
-        // TRY TO UPDATE DATA IMMEDIATELY
-        [self videoStreamsRefresh];
-    }
-}
-
-- (void) videoStreamsRefresh {
-    [self showHudWithCaption:LOC( @"Aktualisiere Videostreams" ) hasActivity:YES];
-    [self videoStreamsFetchContentWithUrlString:[[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_STREAMS]];
 }
 
 #pragma mark - Fetching, Caching & Parsing of JSON (semantic wiki)
@@ -544,11 +458,15 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_SUCCEEDED object:self];
     // [self operationRemoveFromPending:operation];
     Assemblies *assemblies = nil;
+    NSInteger itemsInJson = 0;
     @try {
         NSLog( @"WIKI: WORKSHOPSCLASS = %@, OBJECT: %@", NSStringFromClass( [assemblies class] ), assemblies );
         assemblies = (Assemblies*)operation.result;
-        if( DEBUG ) NSLog( @"WIKI: ASSEMBLIES FOUND %i items", [[assemblies assemblyItems] count] );
-        self.semanticWikiAssemblies = [assemblies assemblyItems];
+        itemsInJson = [[assemblies assemblyItems] count];
+        if( DEBUG ) NSLog( @"WIKI: ASSEMBLIES FOUND %i items", itemsInJson );
+        if( itemsInJson > 0 ) {
+            self.semanticWikiAssemblies = [assemblies assemblyItems];
+        }
     }
     @catch (NSException *exception) {
         self.semanticWikiAssemblies = [NSArray array];
@@ -556,9 +474,12 @@
     }
 
     // SAVE ASSEMBLIES TO CACHE...
-    NSString *jsonString = operation.currentRequest.responseString;
-    NSString *pathToStoreFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_ASSEMBLIES];
-    BOOL hasStoredFile = [jsonString writeToFile:pathToStoreFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    BOOL hasStoredFile = NO;
+    if( itemsInJson > 0 ) { // DO NOT STORE FUCKINg SHIT...
+        NSString *jsonString = operation.currentRequest.responseString;
+        NSString *pathToStoreFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_ASSEMBLIES];
+        hasStoredFile = [jsonString writeToFile:pathToStoreFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    }
     if( !hasStoredFile ) {
         if( DEBUG ) NSLog( @"WIKI: ASSEMBLY JSON SAVING FAILED!!!" );
     }
@@ -603,11 +524,15 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFICATION_JSON_SUCCEEDED object:self];
     // [self operationRemoveFromPending:operation];
     Workshops *workshops = nil;
+    NSInteger itemsInJson = 0;
     @try {
         workshops = (Workshops*)operation.result;
         NSLog( @"WIKI: WORKSHOPSCLASS = %@, OBJECT: %@", NSStringFromClass( [workshops class] ), workshops );
-        if( DEBUG ) NSLog( @"WIKI: WORKSHOPS FOUND %i items", [[workshops workshopItems] count] );
-        self.semanticWikiWorkshops = [workshops workshopItems];
+        itemsInJson = [[workshops workshopItems] count];
+        if( DEBUG ) NSLog( @"WIKI: WORKSHOPS FOUND %i items", itemsInJson );
+        if( itemsInJson > 0 ) {
+            self.semanticWikiWorkshops = [workshops workshopItems];
+        }
     }
     @catch (NSException *exception) {
         self.semanticWikiWorkshops = [NSArray array];
@@ -615,9 +540,12 @@
     }
 
     // if( DEBUG ) NSLog( @"WORKSHOPS: %@", workshops );
-    NSString *jsonString = operation.currentRequest.responseString;
-    NSString *pathToStoreFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_WORKSHOPS];
-    BOOL hasStoredFile = [jsonString writeToFile:pathToStoreFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    BOOL hasStoredFile = NO;
+    if( itemsInJson > 0 ) { // DO NOT STORE FUCKINg SHIT...
+        NSString *jsonString = operation.currentRequest.responseString;
+        NSString *pathToStoreFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_WORKSHOPS];
+        hasStoredFile = [jsonString writeToFile:pathToStoreFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    }
     if( !hasStoredFile ) {
         if( DEBUG ) NSLog( @"WIKI: WORKSHOP JSON SAVING FAILED!!!" );
     }
@@ -855,13 +783,11 @@
 - (void) allDataLoadCached {
     [self barfBagLoadCached];
     [self semanticWikiLoadCached];
-    [self videoStreamsLoadCached];
 }
 
 - (void) allDataRefresh {
     [self barfBagRefresh];
     [self semanticWikiRefresh];
-    [self videoStreamsRefresh];
 }
 
 - (void) manageCloudStorage {
@@ -883,7 +809,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.themeColor = [self randomColor];
-    
+
     // CONFIGURE APP
     [MasterConfig sharedConfiguration].delegate = self;
     // WILL REFRESH CONFIG FROM CACHE/BUNDLE
@@ -975,9 +901,15 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 
+    @try {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:kNOTIFICATION_MASTER_CONFIG_COMPLETED object:nil];
+    }
+    @catch (NSException *exception) {}
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(allDataRefresh) name:kNOTIFICATION_MASTER_CONFIG_COMPLETED object:nil];
+
     // CHECK IF WE NEED TO UPDATE
     if( [self shouldExecuteAutoUpdate] ) {
-        
+        [[MasterConfig sharedConfiguration] refreshFromMothership];
     }
 }
 

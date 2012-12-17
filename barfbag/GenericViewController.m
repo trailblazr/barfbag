@@ -88,6 +88,10 @@
     return [self appDelegate].darkerColor;
 }
 
+- (UIColor*) backBrightColor {
+    return [self appDelegate].backBrightColor;
+}
+
 - (void) alertWithTag:(NSInteger)tag title:(NSString*)title andMessage:(NSString*)message {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
     alert.tag = tag;
