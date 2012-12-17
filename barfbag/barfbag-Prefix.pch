@@ -105,6 +105,7 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 #define kURL_KEY_29C3_RELAY_STATUS_IMAGES   @"status_images"
 #define kURL_KEY_29C3_RELAY_STATUS_EVENTS   @"status_events"
 #define kURL_KEY_29C3_FAHRPLAN              @"fahrplan"
+#define kURL_KEY_29C3_FAHRPLAN_SITE         @"fahrplan_site"
 #define kURL_KEY_29C3_PERSON_IMG            @"fahrplan_person_img"
 #define kURL_KEY_29C3_PERSON_SITE           @"fahrplan_person_site"
 #define kURL_KEY_29C3_EVENT_IMG             @"fahrplan_event_img"

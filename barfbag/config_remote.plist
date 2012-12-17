@@ -243,6 +243,8 @@
 			<dict>
 				<key>fahrplan</key>
 				<string>http://events.ccc.de/congress/2012/Fahrplan/schedule.de.xml</string>
+				<key>fahrplan_site</key>
+				<string>http://events.ccc.de/congress/2012/Fahrplan</string>
 				<key>fahrplan_person_img</key>
 				<string>http://events.ccc.de/congress/2012/Fahrplan/images/person-$id$-128x128.png</string>
 				<key>fahrplan_person_site</key>
@@ -264,6 +266,8 @@
 			<dict>
 				<key>fahrplan</key>
 				<string>http://events.ccc.de/congress/2012/Fahrplan/schedule.en.xml</string>
+				<key>fahrplan_site</key>
+				<string>http://events.ccc.de/congress/2012/Fahrplan</string>
 				<key>fahrplan_person_img</key>
 				<string>http://events.ccc.de/congress/2012/Fahrplan/images/person-$id$-128x128.png</string>
 				<key>fahrplan_person_site</key>

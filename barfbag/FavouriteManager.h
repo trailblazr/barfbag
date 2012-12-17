@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SearchableItem.h"
+#import "FavouriteItem.h"
 
 @interface FavouriteManager : NSObject {
 
@@ -32,6 +34,7 @@
 - (NSString*) favouriteNameFromItem:(id)item;
 - (NSString*) favouriteIdFromItem:(id)item;
 - (FavouriteItemType) favouriteTypeForItem:(id)item;
+- (SearchableItem*) searchableItemForFavourite:(FavouriteItem*)item;
 
 - (BOOL) isFavouriteIdFromItem:(id)item1 identicalToId:(NSString*)id2;
 

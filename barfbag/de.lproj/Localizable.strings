@@ -114,6 +114,8 @@
 "assemblies" = "Assemblies";
 "Letzter iCloud Sync:\n%@" = "Letzter iCloud Sync:\n%@";
 "0 Favoriten.\nMarkiere Events, Assemblies\noder Workshops." = "0 Favoriten.\nMarkiere Events, Assemblies\noder Workshops.";
+"Nothing scheduled." = "Keine Eintragung.";
+
 /* VideoStreamNavigationController */
 
 "Videostreams" = "Livestreams";

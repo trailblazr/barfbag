@@ -128,22 +128,25 @@
     
 }
 
+- (void) actionOpenWebPage {
+    NSString* urlString = [[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_FAHRPLAN_SITE];
+    NSURL *url = [NSURL URLWithString:urlString];
+    [self loadSimpleWebViewWithURL:url shouldScaleToFit:YES];
+}
+
 - (void) updateTableFooter {
-    // FOOTER
-    CGFloat width = self.view.bounds.size.width;
+    CGFloat width = self.tableView.frame.size.width;
     UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 70.0)] autorelease];
-    footerView.backgroundColor = kCOLOR_CLEAR;
-    UILabel *versionLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, width-20.0f, 70.0)] autorelease];
-    versionLabel.backgroundColor = kCOLOR_CLEAR;
-    versionLabel.numberOfLines = 3;
-    versionLabel.textAlignment = UITextAlignmentCenter;
-    versionLabel.text = [NSString stringWithFormat:@"Fahrplan: %@", [NSString placeHolder:@"n.a." forEmptyString:[self appDelegate].barfBagCurrentDataVersion]];
-    versionLabel.font = [UIFont boldSystemFontOfSize:14.0];
-    versionLabel.textColor = [self brighterColor];
-    [footerView addSubview:versionLabel];
-    versionLabel.center = footerView.center;
-    versionLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    footerView.backgroundColor = [self themeColor];
+    UIButton *buttonOpenWiki = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 250.0, 40.0)];
+    [buttonOpenWiki addTarget:self action:@selector(actionOpenWebPage) forControlEvents:UIControlEventTouchUpInside];
+    [footerView addSubview:buttonOpenWiki];
+    [buttonOpenWiki setTitle:[NSString stringWithFormat:@"Fahrplan: %@", [NSString placeHolder:@"n.a." forEmptyString:[self appDelegate].barfBagCurrentDataVersion]] forState:UIControlStateNormal];
+    [buttonOpenWiki.titleLabel setFont:[UIFont boldSystemFontOfSize:buttonOpenWiki.titleLabel.font.pointSize]];
+    [buttonOpenWiki setTitleColor:kCOLOR_WHITE forState:UIControlStateNormal];
+    buttonOpenWiki.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+    buttonOpenWiki.center = footerView.center;
     self.tableView.tableFooterView = footerView;
 }
 

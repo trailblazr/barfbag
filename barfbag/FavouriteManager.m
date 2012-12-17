@@ -9,12 +9,13 @@
 #import "FavouriteManager.h"
 #import "FavouriteItem.h"
 #import "Event.h"
+#import "Conference.h"
 #import "Assembly.h"
 #import "Workshop.h"
 #import "JSONAssembly.h"
 #import "JSONWorkshop.h"
 #import "SearchableItem.h"
-
+#import "AppDelegate.h"
 #import "MKiCloudSync.h"
 
 #define kITEM_TYPE_KEY_PREFIX @"itemType_"
@@ -44,6 +45,10 @@ static FavouriteManager *sharedInstance = nil;
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
+}
+
+- (AppDelegate*) appDelegate {
+    return (AppDelegate*)[UIApplication sharedApplication].delegate;
 }
 
 #pragma mark - Favourite Managemenmt
@@ -186,6 +191,35 @@ static FavouriteManager *sharedInstance = nil;
     else {
         return NO;
     }
+}
+
+- (SearchableItem*) searchableItemForFavourite:(FavouriteItem*)item {
+    SearchableItem *itemFound = nil;
+    if( [item isKindOfClass:[Event class]] ) {
+        for( SearchableItem *currentItem in [self appDelegate].conference.allEvents ) {
+            if( [currentItem.itemId isEqualToString:item.favouriteId] ) {
+                itemFound = currentItem;
+                break;
+            }
+        }
+    }
+    if( [item isKindOfClass:[JSONAssembly class]] ) {
+        for( SearchableItem *currentItem in [self appDelegate].semanticWikiAssemblies ) {
+            if( [currentItem.itemId isEqualToString:item.favouriteId] ) {
+                itemFound = currentItem;
+                break;
+            }
+        }
+    }
+    if( [item isKindOfClass:[JSONWorkshop class]] ) {
+        for( SearchableItem *currentItem in [self appDelegate].semanticWikiWorkshops ) {
+            if( [currentItem.itemId isEqualToString:item.favouriteId] ) {
+                itemFound = currentItem;
+                break;
+            }
+        }
+    }
+    return itemFound;
 }
 
 - (NSString*) favouriteIdFromItem:(id)item {

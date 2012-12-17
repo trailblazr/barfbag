@@ -6,8 +6,9 @@
 //  Copyright (c) 2012 appdoctors. All rights reserved.
 //
 
-#import "FavouriteItem.h"
 #import <Foundation/Foundation.h>
+#import "FavouriteItem.h"
+#import "FavouriteManager.h"
 
 // ADD NSCoding conformnce
 @interface NSObject (NSCoding)
@@ -86,6 +87,11 @@
 
 - (NSString*) stringRepresentationMail {
     return [NSString stringWithFormat:@"<b>%@</b><br>(ID = %@)", [NSString placeHolder:@"(Kein Titel)" forEmptyString:favouriteName], [NSString placeHolder:@"(Keine ID)" forEmptyString:favouriteId]];
+}
+
+- (SearchableItem*)searchableItem {
+    SearchableItem *item = [[FavouriteManager sharedManager] searchableItemForFavourite:self];
+    return item;
 }
 
 @end

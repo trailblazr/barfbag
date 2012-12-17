@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SearchableItem.h"
 
 @interface FavouriteItem : NSObject {
 
@@ -26,6 +27,7 @@
 - (BOOL) hasType:(FavouriteItemType)itemType;
 - (BOOL) hasEqualId:(NSString*)_favouriteId;
 - (NSString*) stringRepresentationMail;
+- (SearchableItem*)searchableItem;
 
 @end
 

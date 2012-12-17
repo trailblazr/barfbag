@@ -721,8 +721,6 @@
 				8F09CCAB16703022008F8D26 /* Third Party Code */,
 				8F1663C9167504D7003347EA /* Data Processing */,
 				8F754B9D166EA95900F74DBB /* Generic Controllers */,
-				E8F0F5541678C8E70081A972 /* MasterConfig.h */,
-				E8F0F5551678C8E70081A972 /* MasterConfig.m */,
 				8F35653B166B937C00814549 /* AppDelegate.h */,
 				8F35653C166B937C00814549 /* AppDelegate.m */,
 				8FBB595E167ABB680016E638 /* Webbrowser */,
@@ -795,6 +793,8 @@
 		8F754B9D166EA95900F74DBB /* Generic Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E8F0F5541678C8E70081A972 /* MasterConfig.h */,
+				E8F0F5551678C8E70081A972 /* MasterConfig.m */,
 				8F754B29166C36A000F74DBB /* GenericViewController.h */,
 				8F754B2A166C36A000F74DBB /* GenericViewController.m */,
 				8F754B97166EA65400F74DBB /* GenericTableViewController.h */,

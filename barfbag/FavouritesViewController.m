@@ -67,11 +67,56 @@
         [neededKeys addObject:@"assemblies"];
     }
     self.favouritesKeysArray = [NSArray arrayWithArray:neededKeys];
+    [self setupTableViewHeader];
     
     [self.tableView reloadData];
 }
 
+- (SearchableItem*) nextEventOnSchedule {
+    // iterate over all events and find the best fit
+    NSDate *dateNow = [NSDate date];
+    NSTimeInterval timeOffsetMinimum = CGFLOAT_MAX;
+    SearchableItem *itemFound = nil;
+    NSArray *allFavourites = [NSArray arrayWithArray:[[FavouriteManager sharedManager] favouriteCacheArray]];
+    for( FavouriteItem *currentFavourite in allFavourites ) {
+        NSTimeInterval currentOffset = CGFLOAT_MAX;
+        if( currentFavourite && currentFavourite.searchableItem && currentFavourite.searchableItem.itemDateStart ) {
+            currentOffset = fabs([dateNow timeIntervalSinceDate:currentFavourite.searchableItem.itemDateStart]);
+        }
+        if( currentOffset < timeOffsetMinimum ) {
+            timeOffsetMinimum = currentOffset;
+            itemFound = currentFavourite.searchableItem;
+        }
+    }
+    return itemFound;
+}
+
 - (void) setupTableViewHeader {
+    if( [favouritesStored count] > 0 ) {
+        CGFloat width = self.tableView.frame.size.width;
+        UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 70.0)] autorelease];
+        footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        footerView.backgroundColor = [self themeColor];
+        UIButton *buttonOpenWiki = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 250.0, 40.0)];
+        [buttonOpenWiki addTarget:self action:@selector(actionOpenWebPage) forControlEvents:UIControlEventTouchUpInside];
+        [footerView addSubview:buttonOpenWiki];
+        NSString *scheduledItemTitle = [self nextEventOnSchedule].itemTitle;
+        NSString *nextEventString = [NSString stringWithFormat:@"UP NEXT: %@", [NSString placeHolder:LOC( @"Nothing scheduled." ) forEmptyString:scheduledItemTitle]];
+        [buttonOpenWiki setTitle:nextEventString forState:UIControlStateNormal];
+        [buttonOpenWiki.titleLabel setFont:[UIFont boldSystemFontOfSize:buttonOpenWiki.titleLabel.font.pointSize]];
+        buttonOpenWiki.titleLabel.numberOfLines = 3;
+        buttonOpenWiki.titleLabel.adjustsFontSizeToFitWidth = YES;
+        [buttonOpenWiki setTitleColor:kCOLOR_WHITE forState:UIControlStateNormal];
+        buttonOpenWiki.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+        buttonOpenWiki.center = footerView.center;
+        self.tableView.tableHeaderView = footerView;
+    }
+    else {
+        self.tableView.tableHeaderView = nil;
+    }
+}
+
+- (void) setupTableViewFooter {
     CGFloat width = self.tableView.frame.size.width;
     UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 70.0)] autorelease];
     footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -108,7 +153,7 @@
 }
 
 - (void) showCloudSyncDate {
-    [self setupTableViewHeader];
+    [self setupTableViewFooter];
 }
 
 - (void) hideCloudSyncDate {
