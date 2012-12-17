@@ -13,5 +13,6 @@
 
 + (NSDictionary*) objectMapping;
 - (NSString*) description;
+- (NSArray*) assemblyItemsSorted;
 
 @end

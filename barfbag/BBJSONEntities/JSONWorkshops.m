@@ -31,4 +31,12 @@
     return string;
 }
 
+- (NSArray*) workshopItemsSorted {
+    NSMutableArray *itemsUnsorted = [NSMutableArray arrayWithArray:workshopItems];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"itemSortNumberDateTime" ascending:TRUE];
+    [itemsUnsorted sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    NSArray *itemsSorted = [NSArray arrayWithArray:itemsUnsorted];
+    return itemsSorted;
+}
+
 @end

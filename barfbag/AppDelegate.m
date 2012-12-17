@@ -432,7 +432,7 @@
             NSLog( @"WIKI: ASSEMBLIESCLASS = %@, OBJECT: %@", NSStringFromClass( [result class] ), result );
             Assemblies *assemblies = (Assemblies*)result;
             if( DEBUG ) NSLog( @"WIKI: ASSEMBLIES FOUND %i items", [[assemblies assemblyItems] count] );
-            self.semanticWikiAssemblies = [assemblies assemblyItems];
+            self.semanticWikiAssemblies = [assemblies assemblyItemsSorted];
         }
         @catch (NSException *exception) {
             self.semanticWikiAssemblies = [NSArray array];
@@ -447,7 +447,7 @@
             NSLog( @"WIKI: WORKSHOPSCLASS = %@, OBJECT: %@", NSStringFromClass( [result class] ), result );
             Workshops *workshops = (Workshops*)result;
             if( DEBUG ) NSLog( @"WIKI: WORKSHOPS FOUND %i items", [[workshops workshopItems] count] );
-            self.semanticWikiWorkshops = [workshops workshopItems];
+            self.semanticWikiWorkshops = [workshops workshopItemsSorted];
         }
         @catch (NSException *exception) {
             self.semanticWikiWorkshops = [NSArray array];
@@ -481,7 +481,7 @@
         itemsInJson = [[assemblies assemblyItems] count];
         if( DEBUG ) NSLog( @"WIKI: ASSEMBLIES FOUND %i items", itemsInJson );
         if( itemsInJson > 0 ) {
-            self.semanticWikiAssemblies = [assemblies assemblyItems];
+            self.semanticWikiAssemblies = [assemblies assemblyItemsSorted];
         }
     }
     @catch (NSException *exception) {
@@ -547,7 +547,7 @@
         itemsInJson = [[workshops workshopItems] count];
         if( DEBUG ) NSLog( @"WIKI: WORKSHOPS FOUND %i items", itemsInJson );
         if( itemsInJson > 0 ) {
-            self.semanticWikiWorkshops = [workshops workshopItems];
+            self.semanticWikiWorkshops = [workshops workshopItemsSorted];
         }
     }
     @catch (NSException *exception) {

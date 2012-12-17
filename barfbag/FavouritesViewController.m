@@ -27,6 +27,8 @@
 @synthesize favouritesStored;
 @synthesize upNextButton;
 @synthesize timerUpdateUpNextString;
+@synthesize numOfRefreshes;
+@synthesize itemUpNext;
 
 - (void) dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -38,6 +40,7 @@
     self.favouritesStored = nil;
     self.upNextButton = nil;
     self.timerUpdateUpNextString = nil;
+    self.itemUpNext = nil;
     [super dealloc];
 }
 
@@ -116,19 +119,27 @@
 }
 
 - (void)timerStartUpNextUpdates {
+    self.numOfRefreshes = 0;
     if( timerUpdateUpNextString && [timerUpdateUpNextString isValid] ) {
         [timerUpdateUpNextString invalidate];
     }
-    self.timerUpdateUpNextString = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(updateUpNextString:) userInfo:nil repeats:YES];
+    self.timerUpdateUpNextString = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateUpNextString:) userInfo:nil repeats:YES];
 }
 
 - (void) updateUpNextString:(NSTimer*)timer {
-    SearchableItem *nextItem = [self nextEventOnSchedule];
-    NSInteger minutes = nextItem.itemMinutesTilStart % 60;
-    NSInteger hours = (nextItem.itemMinutesTilStart-minutes)/60;
-    NSInteger seconds = [[NSNumber numberWithDouble:(nextItem.itemSecondsTilStart - (minutes*60+hours*60*60))] integerValue];
+    if( numOfRefreshes == 0 ) {
+        self.itemUpNext = [self nextEventOnSchedule];
+    }
+    numOfRefreshes++;
+    if( numOfRefreshes > 600 ) {
+        self.itemUpNext = [self nextEventOnSchedule];
+        numOfRefreshes = 0;
+    }
+    NSInteger minutes = itemUpNext.itemMinutesTilStart % 60;
+    NSInteger hours = (itemUpNext.itemMinutesTilStart-minutes)/60;
+    NSInteger seconds = [[NSNumber numberWithDouble:(itemUpNext.itemSecondsTilStart - (minutes*60+hours*60*60))] integerValue];
     NSString *startsInMinutes = [NSString stringWithFormat:@"STARTS: IN %02dH %02dM %02dS", hours, minutes, seconds];
-    NSString *scheduledItemTitle = [NSString stringWithFormat:@"%@ - %@\n%@",[self stringShortTimeForDate:[self nextEventOnSchedule].itemDateStart], nextItem.itemTitle, startsInMinutes];
+    NSString *scheduledItemTitle = [NSString stringWithFormat:@"%@ - %@\n%@",[self stringShortTimeForDate:[self nextEventOnSchedule].itemDateStart], itemUpNext.itemTitle, startsInMinutes];
     NSString *nextEventString = [NSString stringWithFormat:@"UP NEXT: %@", [NSString placeHolder:LOC( @"Nothing scheduled." ) forEmptyString:scheduledItemTitle]];
     [upNextButton setTitle:nextEventString forState:UIControlStateNormal];
 }

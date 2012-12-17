@@ -170,7 +170,7 @@
             case 0: {
                 NSArray *workshops = [self appDelegate].semanticWikiWorkshops;
                 Workshop *currentWorkshop = [workshops objectAtIndex:indexPath.row];
-                NSLog( @"WORKSHOP: %@", currentWorkshop );
+                if( DEBUG ) NSLog( @"WORKSHOP: %@", currentWorkshop );
                 NSDateFormatter *df = [[NSDateFormatter alloc] init];
                 df.dateFormat = @"HH:mm";
                 NSString *startTimeString = [df stringFromDate:currentWorkshop.startTime];
@@ -185,7 +185,7 @@
             case 1: {
                 NSArray *assemblies = [self appDelegate].semanticWikiAssemblies;
                 Assembly *currentAssembly = [assemblies objectAtIndex:indexPath.row];
-                NSLog( @"ASSEMBLY: %@", currentAssembly );
+                if( DEBUG ) NSLog( @"ASSEMBLY: %@", currentAssembly );
                 cell.textLabel.text = [NSString stringWithFormat:@"%@",[currentAssembly.label placeHolderWhenEmpty:@"<title>"]];
                 cell.detailTextLabel.text = [NSString stringWithFormat:LOC( @"%i Plätze: %@" ), currentAssembly.numLectureSeats, [NSString placeHolder:@"<description>" forEmptyString:currentAssembly.abstract]];
                 cell.accessoryView = [currentAssembly isFavourite] ? [ColoredAccessoryView checkmarkViewWithColor:[self themeColor]] : [ColoredAccessoryView disclosureIndicatorViewWithColor:[self themeColor]];
