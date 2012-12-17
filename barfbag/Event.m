@@ -310,6 +310,10 @@
     }
 }
 
+- (NSTimeInterval) itemSecondsTilStart {
+    return [[self itemDateStart] timeIntervalSinceNow];
+}
+
 - (NSInteger) itemMinutesTilStart {
     NSTimeInterval secondsTilStart = [[self itemDateStart] timeIntervalSinceNow];
     return [[NSNumber numberWithDouble:(secondsTilStart/60.0f)] integerValue];

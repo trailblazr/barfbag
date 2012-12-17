@@ -25,11 +25,19 @@
 
 @synthesize favouritesKeysArray;
 @synthesize favouritesStored;
+@synthesize upNextButton;
+@synthesize timerUpdateUpNextString;
 
 - (void) dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    if( timerUpdateUpNextString && [timerUpdateUpNextString isValid] ) {
+        [timerUpdateUpNextString invalidate];
+    }
+    self.timerUpdateUpNextString = nil;
     self.favouritesKeysArray = nil;
     self.favouritesStored = nil;
+    self.upNextButton = nil;
+    self.timerUpdateUpNextString = nil;
     [super dealloc];
 }
 
@@ -100,28 +108,67 @@
     [self displayFavourite:currentItem];
 }
 
+- (void)timerStopUpNextUpdates {
+    if( timerUpdateUpNextString && [timerUpdateUpNextString isValid] ) {
+        [timerUpdateUpNextString invalidate];
+    }
+    self.timerUpdateUpNextString = nil;
+}
+
+- (void)timerStartUpNextUpdates {
+    if( timerUpdateUpNextString && [timerUpdateUpNextString isValid] ) {
+        [timerUpdateUpNextString invalidate];
+    }
+    self.timerUpdateUpNextString = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(updateUpNextString:) userInfo:nil repeats:YES];
+}
+
+- (void) updateUpNextString:(NSTimer*)timer {
+    SearchableItem *nextItem = [self nextEventOnSchedule];
+    NSInteger minutes = nextItem.itemMinutesTilStart % 60;
+    NSInteger hours = (nextItem.itemMinutesTilStart-minutes)/60;
+    NSInteger seconds = [[NSNumber numberWithDouble:(nextItem.itemSecondsTilStart - (minutes*60+hours*60*60))] integerValue];
+    NSString *startsInMinutes = [NSString stringWithFormat:@"STARTS: IN %02dH %02dM %02dS", hours, minutes, seconds];
+    NSString *scheduledItemTitle = [NSString stringWithFormat:@"%@ - %@\n%@",[self stringShortTimeForDate:[self nextEventOnSchedule].itemDateStart], nextItem.itemTitle, startsInMinutes];
+    NSString *nextEventString = [NSString stringWithFormat:@"UP NEXT: %@", [NSString placeHolder:LOC( @"Nothing scheduled." ) forEmptyString:scheduledItemTitle]];
+    [upNextButton setTitle:nextEventString forState:UIControlStateNormal];
+}
+
 - (void) setupTableViewHeader {
     if( [favouritesStored count] > 0 ) {
         CGFloat width = self.tableView.frame.size.width;
         UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 90.0)] autorelease];
         footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         footerView.backgroundColor = [self themeColor];
-        UIButton *buttonOpenWiki = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 90.0)];
-        [buttonOpenWiki addTarget:self action:@selector(actionOpenFavourite:) forControlEvents:UIControlEventTouchUpInside];
-        [footerView addSubview:buttonOpenWiki];
-        NSString *startsInMinutes = [NSString stringWithFormat:@"STARTS: IN %i MINS", [self nextEventOnSchedule].itemMinutesTilStart];
-        NSString *scheduledItemTitle = [NSString stringWithFormat:@"%@ - %@\n%@",[self stringShortTimeForDate:[self nextEventOnSchedule].itemDateStart], [self nextEventOnSchedule].itemTitle, startsInMinutes];
+
+        // APPLY BACKGROUND
+        UIImage *gradientImage = [self imageGradientWithSize:footerView.bounds.size color1:[self themeColor] color2:[self darkColor]];
+        UIImageView *imageBackgroundView = [[[UIImageView alloc] initWithImage:gradientImage] autorelease];
+        imageBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        imageBackgroundView.contentMode = UIViewContentModeScaleToFill;
+        [footerView addSubview:imageBackgroundView];
+        
+        self.upNextButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 90.0)];
+        [upNextButton addTarget:self action:@selector(actionOpenFavourite:) forControlEvents:UIControlEventTouchUpInside];
+        [footerView addSubview:upNextButton];
+        SearchableItem *nextItem = [self nextEventOnSchedule];
+        NSInteger minutes = nextItem.itemMinutesTilStart % 60;
+        NSInteger hours = (nextItem.itemMinutesTilStart-minutes)/60;
+        NSInteger seconds = [[NSNumber numberWithDouble:(nextItem.itemSecondsTilStart - (minutes*60+hours*60*60))] integerValue];
+        NSString *startsInMinutes = [NSString stringWithFormat:@"STARTS: IN %iH %iM %iS", hours, minutes, seconds];
+        NSString *scheduledItemTitle = [NSString stringWithFormat:@"%@ - %@\n%@",[self stringShortTimeForDate:[self nextEventOnSchedule].itemDateStart], nextItem.itemTitle, startsInMinutes];
         NSString *nextEventString = [NSString stringWithFormat:@"UP NEXT: %@", [NSString placeHolder:LOC( @"Nothing scheduled." ) forEmptyString:scheduledItemTitle]];
-        [buttonOpenWiki setTitle:nextEventString forState:UIControlStateNormal];
-        [buttonOpenWiki.titleLabel setFont:[UIFont boldSystemFontOfSize:buttonOpenWiki.titleLabel.font.pointSize]];
-        buttonOpenWiki.titleLabel.numberOfLines = 5;
-        buttonOpenWiki.titleLabel.adjustsFontSizeToFitWidth = YES;
-        [buttonOpenWiki setTitleColor:kCOLOR_WHITE forState:UIControlStateNormal];
-        buttonOpenWiki.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
-        buttonOpenWiki.center = footerView.center;
+        [upNextButton setTitle:nextEventString forState:UIControlStateNormal];
+        [upNextButton.titleLabel setFont:[UIFont boldSystemFontOfSize:upNextButton.titleLabel.font.pointSize]];
+        upNextButton.titleLabel.numberOfLines = 5;
+        upNextButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+        [upNextButton setTitleColor:kCOLOR_WHITE forState:UIControlStateNormal];
+        upNextButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+        upNextButton.center = footerView.center;
         self.tableView.tableHeaderView = footerView;
+        [self timerStartUpNextUpdates];
     }
     else {
+        [self timerStopUpNextUpdates];
         self.tableView.tableHeaderView = nil;
     }
 }

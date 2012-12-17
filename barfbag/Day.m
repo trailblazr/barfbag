@@ -54,9 +54,11 @@
         }
     }];
      */
+    /*
     for( Event *currentEvent in eventsSorted ) {
         NSLog( @"DAY: %@ TIME: %i:%i", currentEvent.day.date, currentEvent.timeHour, currentEvent.timeMinute );
     }
+     */
     return eventsSorted;
 }
 
