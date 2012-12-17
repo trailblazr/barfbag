@@ -19,6 +19,6 @@
 - (NSString*) itemPerson;
 - (NSDate*) itemDateStart;
 - (NSDate*) itemDateEnd;
-- (NSTimeInterval) itemSortNumberDateTime;
+- (NSNumber*) itemSortNumberDateTime;
 - (BOOL) isFavourite;
 @end

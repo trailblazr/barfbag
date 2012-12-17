@@ -80,7 +80,7 @@
     detailHeaderViewController.titleLabel.adjustsFontSizeToFitWidth = YES;
     detailHeaderViewController.titleLabel.layer.masksToBounds = NO;
     detailHeaderViewController.subtitleLabel.text = event.subtitle;
-    detailHeaderViewController.timeStart.text = [NSString stringWithFormat:LOC( @"%@ Uhr" ), event.start];
+    detailHeaderViewController.timeStart.text = [self stringTimeForDate:event.itemDateStart];
     detailHeaderViewController.timeDuration.text = [NSString stringWithFormat:@"%.1f h", event.duration];
     detailHeaderViewController.roomLabel.text = event.room;
     detailHeaderViewController.dateLabel.text = @"-";

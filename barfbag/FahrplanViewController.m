@@ -92,7 +92,7 @@
     for( Day *currentDay in days ) {
         currentDayKey = [NSString stringWithFormat:@"day%i", indexDay];
         [neededSectionKeys addObject:currentDayKey];
-        [sectionArrays setObject:currentDay.events forKey:currentDayKey];
+        [sectionArrays setObject:currentDay.eventsSorted forKey:currentDayKey];
         indexDay++;
     }
     

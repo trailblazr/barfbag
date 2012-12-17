@@ -77,8 +77,10 @@
     NSDate *dateNow = [NSDate date];
     NSTimeInterval timeOffsetMinimum = CGFLOAT_MAX;
     SearchableItem *itemFound = nil;
-    NSArray *allFavourites = [NSArray arrayWithArray:[[FavouriteManager sharedManager] favouriteCacheArray]];
-    for( FavouriteItem *currentFavourite in allFavourites ) {
+    NSMutableArray *arrayOfEventsWithStartDates = [NSMutableArray array];
+    [arrayOfEventsWithStartDates addObjectsFromArray:[[FavouriteManager sharedManager] favouritedItemsOfType:FavouriteItemTypeEvent]];
+    [arrayOfEventsWithStartDates addObjectsFromArray:[[FavouriteManager sharedManager] favouritedItemsOfType:FavouriteItemTypeWorkshop]];
+    for( FavouriteItem *currentFavourite in arrayOfEventsWithStartDates ) {
         NSTimeInterval currentOffset = CGFLOAT_MAX;
         if( currentFavourite && currentFavourite.searchableItem && currentFavourite.searchableItem.itemDateStart ) {
             currentOffset = fabs([dateNow timeIntervalSinceDate:currentFavourite.searchableItem.itemDateStart]);
@@ -91,6 +93,13 @@
     return itemFound;
 }
 
+- (IBAction) actionOpenFavourite:(id)sender {
+    SearchableItem *nextScheduledItem = [self nextEventOnSchedule];
+    NSString *favouriteId = [[FavouriteManager sharedManager] favouriteIdFromItem:nextScheduledItem];
+    FavouriteItem *currentItem = [[FavouriteManager sharedManager] favouriteItemForId:favouriteId];
+    [self displayFavourite:currentItem];
+}
+
 - (void) setupTableViewHeader {
     if( [favouritesStored count] > 0 ) {
         CGFloat width = self.tableView.frame.size.width;
@@ -98,10 +107,10 @@
         footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         footerView.backgroundColor = [self themeColor];
         UIButton *buttonOpenWiki = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 250.0, 40.0)];
-        [buttonOpenWiki addTarget:self action:@selector(actionOpenWebPage) forControlEvents:UIControlEventTouchUpInside];
+        [buttonOpenWiki addTarget:self action:@selector(actionOpenFavourite:) forControlEvents:UIControlEventTouchUpInside];
         [footerView addSubview:buttonOpenWiki];
-        NSString *scheduledItemTitle = [self nextEventOnSchedule].itemTitle;
-        NSString *nextEventString = [NSString stringWithFormat:@"UP NEXT: %@", [NSString placeHolder:LOC( @"Nothing scheduled." ) forEmptyString:scheduledItemTitle]];
+        NSString *scheduledItemTitle = [NSString stringWithFormat:@"%@ - %@",[self stringShortTimeForDate:[self nextEventOnSchedule].itemDateStart], [self nextEventOnSchedule].itemTitle];
+        NSString *nextEventString = [NSString stringWithFormat:@"NEXT: %@", [NSString placeHolder:LOC( @"Nothing scheduled." ) forEmptyString:scheduledItemTitle]];
         [buttonOpenWiki setTitle:nextEventString forState:UIControlStateNormal];
         [buttonOpenWiki.titleLabel setFont:[UIFont boldSystemFontOfSize:buttonOpenWiki.titleLabel.font.pointSize]];
         buttonOpenWiki.titleLabel.numberOfLines = 3;
@@ -277,15 +286,9 @@
 }
  */
 
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString* key = [favouritesKeysArray objectAtIndex:indexPath.section];
-    NSArray *items = [favouritesStored objectForKey:key];
-    FavouriteItem *currentFavourite = [items objectAtIndex:indexPath.row];
-    
+- (void) displayFavourite:(FavouriteItem*)currentFavourite {
     switch( currentFavourite.type ) {
-
+            
         case FavouriteItemTypeEvent: {
             NSArray *events = [[self conference] allEvents];
             Event *eventToDisplay = nil;
@@ -296,13 +299,14 @@
                 }
             }
             EventDetailViewController *detailViewController = [[EventDetailViewController alloc] initWithNibName:@"EventDetailViewController" bundle:nil];
-            detailViewController.day = nil;
+            detailViewController.day = eventToDisplay.day;
             detailViewController.event = eventToDisplay;
+            detailViewController.navigationItem.title = eventToDisplay.itemTitle;
             [self.navigationController pushViewController:detailViewController animated:YES];
             [detailViewController release];
             break;
         }
-
+            
         case FavouriteItemTypeWorkshop: {
             NSArray *workshops = [self appDelegate].semanticWikiWorkshops;
             Workshop *workshopToDisplay = nil;
@@ -311,15 +315,15 @@
                     workshopToDisplay = currentWorkshop;
                     break;
                 }
-            }            
+            }
             WorkshopDetailViewController *detailViewController = [[WorkshopDetailViewController alloc] initWithNibName:@"AssemblyDetailViewController" bundle:nil];
             detailViewController.workshop = workshopToDisplay;
-            detailViewController.navigationTitle = [NSString stringWithFormat:LOC( @"Workshop #%i" ), indexPath.row+1];
+            detailViewController.navigationTitle = [NSString stringWithFormat:LOC( @"Workshop" )];
             [self.navigationController pushViewController:detailViewController animated:YES];
             [detailViewController release];
             break;
         }
-
+            
         case FavouriteItemTypeAssembly: {
             NSArray *assemblies = [self appDelegate].semanticWikiAssemblies;
             Assembly *assemblyToDisplay = nil;
@@ -330,16 +334,25 @@
                 }
             }
             AssemblyDetailViewController *detailViewController = [[AssemblyDetailViewController alloc] initWithNibName:@"AssemblyDetailViewController" bundle:nil];
-            detailViewController.navigationTitle = [NSString stringWithFormat:LOC( @"Assembly #%i" ), indexPath.row+1];
+            detailViewController.navigationTitle = [NSString stringWithFormat:LOC( @"Assembly" )];
             detailViewController.assembly = assemblyToDisplay;
             [self.navigationController pushViewController:detailViewController animated:YES];
             [detailViewController release];
             break;
         }
-
+            
         default:
             break;
     }
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString* key = [favouritesKeysArray objectAtIndex:indexPath.section];
+    NSArray *items = [favouritesStored objectForKey:key];
+    FavouriteItem *currentFavourite = [items objectAtIndex:indexPath.row];
+    [self displayFavourite:currentFavourite];
 }
 
 @end

@@ -21,5 +21,6 @@
 @property(nonatomic, retain) NSMutableArray *events;
 
 - (void) addEvent:(Event*)eventToAdd;
+- (NSArray*) eventsSorted;
 
 @end

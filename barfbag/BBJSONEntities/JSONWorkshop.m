@@ -189,8 +189,8 @@
     return [[FavouriteManager sharedManager] hasStoredFavourite:self];
 }
 
-- (NSTimeInterval) itemSortNumberDateTime {
-    return 0.0f;
+- (NSNumber*) itemSortNumberDateTime {
+    return nil;
 }
 
 @end

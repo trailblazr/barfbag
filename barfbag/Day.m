@@ -36,4 +36,9 @@
 	[events addObject:eventToAdd];
 }
 
+- (NSArray*) eventsSorted {
+    NSMutableArray *eventsUnsorted = [NSMutableArray arrayWithArray:events];
+    return [eventsUnsorted sortedArrayUsingSelector:@selector(itemSortNumberDateTime)];
+}
+
 @end

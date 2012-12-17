@@ -195,27 +195,27 @@ static FavouriteManager *sharedInstance = nil;
 
 - (SearchableItem*) searchableItemForFavourite:(FavouriteItem*)item {
     SearchableItem *itemFound = nil;
-    if( [item isKindOfClass:[Event class]] ) {
-        for( SearchableItem *currentItem in [self appDelegate].conference.allEvents ) {
+    if( item.type = FavouriteItemTypeEvent ) {
+        for( Event *currentItem in [self appDelegate].conference.allEvents ) {
             if( [currentItem.itemId isEqualToString:item.favouriteId] ) {
                 itemFound = currentItem;
-                break;
+                return itemFound;
             }
         }
     }
-    if( [item isKindOfClass:[JSONAssembly class]] ) {
-        for( SearchableItem *currentItem in [self appDelegate].semanticWikiAssemblies ) {
+    if( item.type = FavouriteItemTypeAssembly ) {
+        for( JSONAssembly *currentItem in [self appDelegate].semanticWikiAssemblies ) {
             if( [currentItem.itemId isEqualToString:item.favouriteId] ) {
                 itemFound = currentItem;
-                break;
+                return itemFound;
             }
         }
     }
-    if( [item isKindOfClass:[JSONWorkshop class]] ) {
-        for( SearchableItem *currentItem in [self appDelegate].semanticWikiWorkshops ) {
+    if( item.type = FavouriteItemTypeWorkshop ) {
+        for( JSONWorkshop *currentItem in [self appDelegate].semanticWikiWorkshops ) {
             if( [currentItem.itemId isEqualToString:item.favouriteId] ) {
                 itemFound = currentItem;
-                break;
+                return itemFound;
             }
         }
     }
@@ -252,6 +252,16 @@ static FavouriteManager *sharedInstance = nil;
         return FavouriteItemTypeWorkshop;
     }
     return FavouriteItemTypeUndefined;
+}
+
+- (FavouriteItem*) favouriteItemForId:(NSString*)itemId {
+    NSArray *allItems = favouriteCacheArray;
+    for( FavouriteItem* currentItem in allItems ) {
+        if( [currentItem.favouriteId isEqualToString:itemId] ) {
+            return currentItem;
+        }
+    }
+    return nil;
 }
 
 - (BOOL) isFavouriteIdFromItem:(id)item1 identicalToId:(NSString*)id2 {

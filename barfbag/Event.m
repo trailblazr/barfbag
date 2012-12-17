@@ -7,6 +7,7 @@
 //
 
 #import "Event.h"
+#import "Day.h"
 #import "RegexKitLite.h"
 #import "MasterConfig.h"
 #import "NSString-Toolkit.h"
@@ -30,6 +31,8 @@
 @synthesize descriptionText;
 @synthesize persons;
 @synthesize links;
+@synthesize dateStart;
+@synthesize dateEnd;
 @synthesize day;
 
 
@@ -45,6 +48,8 @@
 	[descriptionText release];
 	[persons release];
 	[links release];
+    self.dateStart = nil;
+    self.dateEnd = nil;
     self.day = nil;
 	[super dealloc];
 }
@@ -141,7 +146,9 @@
 				break;
 		}
 	}
+    double timeTntervalInSeconds = (hours*60.0*60.0)+(minutes*60.0)+seconds;
 	self.duration = (NSTimeInterval)[[NSNumber numberWithInt:(hours+minutes)] doubleValue];
+	self.durationSeconds = (NSTimeInterval)timeTntervalInSeconds;
 }
 
 - (void) takeStartDateTimeFromString:(NSString*)dateString {
@@ -205,6 +212,34 @@
     return [NSString stringWithFormat:@"\"%@\" %@", [NSString placeHolder:@"(Kein Titel)" forEmptyString:title], [NSString placeHolder:@"" forEmptyString:linkHref]];
 }
 
+- (NSDate*) calculatedDateStart {
+    NSDate *dateCalculated = nil;
+    // STEP 1: fetch day date
+    NSDate *dateOfDay = self.day.date;
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:dateOfDay];
+    // STEP 2: fetch hour and minute
+    NSDateComponents *computedComponents = [[NSDateComponents alloc] init];
+    [computedComponents setDay:[comps day]];
+    [computedComponents setMonth:[comps month]];
+    [computedComponents setYear:[comps year]];
+    [computedComponents setHour:[self timeHour]];
+    [computedComponents setMinute:[self timeMinute]];
+    // STEP 3: CREATE NEW DATE
+    dateCalculated = [[NSCalendar currentCalendar] dateFromComponents:computedComponents];
+    return dateCalculated;
+}
+
+- (NSDate*) calculatedDateEnd {
+    NSDate *dateCalculated = nil;
+    // STEP 1: fetch start date
+    NSDate *dateStartCalculated = [self calculatedDateStart];
+    // STEP 2: add duration
+    NSTimeInterval durationInterval = [self durationSeconds];
+    // STEP 3: CREATE NEW DATE
+    dateCalculated = [dateStartCalculated dateByAddingTimeInterval:durationInterval];
+    return dateCalculated;
+}
+
 // SEARCHABLE ITEM
 
 - (NSString*) itemId {
@@ -233,23 +268,33 @@
 }
 
 - (NSDate*) itemDateStart {
-    // TODO: calculate date from day & self.timeHour self.timeMinute
-    return nil;
+    NSDate *dateToReturn = nil;
+    dateToReturn = [self calculatedDateStart];
+    return dateToReturn;
 }
 
 - (NSDate*) itemDateEnd {
-    // TODO: calculate date from day & self.timeHour self.timeMinute
-    return nil;
+    NSDate *dateToReturn = nil;
+    dateToReturn = [self calculatedDateEnd];
+    return dateToReturn;
 }
 
 - (BOOL) isFavourite {
     return [[FavouriteManager sharedManager] hasStoredFavourite:self];
 }
 
-- (NSTimeInterval) itemSortNumberDateTime {
-    // we have the day
-    // we have hour start and minute
-    return 0.0f;
+- (NSNumber*) itemSortNumberDateTime {
+    NSDate *baseDateForSorting = [self itemDateStart];
+    // FETCH COMPONENTS
+    if( !baseDateForSorting ) return [NSNumber numberWithFloat:CGFLOAT_MAX];
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSHourCalendarUnit, NSMinuteCalendarUnit) fromDate:baseDateForSorting];
+    NSInteger hourValue = [comps hour];
+    NSInteger minuteValue = [comps minute];
+    if( hourValue < 8 ) {
+        hourValue = hourValue + 24;
+    }
+    NSInteger continuousTimeValue = (hourValue * 60) + minuteValue;
+    return [NSNumber numberWithInt:continuousTimeValue];
 }
 
 @end

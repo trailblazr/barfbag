@@ -141,23 +141,21 @@ nil];
     return personsString;
 }
 
-/*
  // NO DATES AVAILABLE FOR ASSEMBLIES
 - (NSDate*) itemDateStart {
-    return [self startTime];
+    return [NSDate dateWithTimeInterval:600000000 sinceDate:[NSDate date]];
 }
 
 - (NSDate*) itemDateEnd {
-    return [self endTime];
+    return [NSDate dateWithTimeInterval:600000001 sinceDate:[NSDate date]];
 }
-*/
 
 - (BOOL) isFavourite {
     return [[FavouriteManager sharedManager] hasStoredFavourite:self];
 }
 
-- (NSTimeInterval) itemSortNumberDateTime {
-    return 0.0f;
+- (NSNumber*) itemSortNumberDateTime {
+    return nil;
 }
 
 

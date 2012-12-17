@@ -35,6 +35,7 @@
 - (NSString*) favouriteIdFromItem:(id)item;
 - (FavouriteItemType) favouriteTypeForItem:(id)item;
 - (SearchableItem*) searchableItemForFavourite:(FavouriteItem*)item;
+- (FavouriteItem*) favouriteItemForId:(NSString*)itemId;
 
 - (BOOL) isFavouriteIdFromItem:(id)item1 identicalToId:(NSString*)id2;
 

@@ -533,6 +533,11 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
     return [self stringForDate:date withFormat:@"eee, dd.MM.yyyy @ HH:mm"];
 }
 
+- (NSString*) stringShortTimeForDate:(NSDate*)date {
+    if( !date ) return nil;
+    return [self stringForDate:date withFormat:@"HH:mm"];
+}
+
 - (NSString*) stringDayForDate:(NSDate*)date {
     if( !date ) return nil;
     return [self stringDayForDate:date withDayFormat:@"eeee"];
