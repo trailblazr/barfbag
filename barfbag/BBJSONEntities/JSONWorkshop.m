@@ -190,7 +190,16 @@
 }
 
 - (NSNumber*) itemSortNumberDateTime {
-    return nil;
+    NSDate *baseDateForSorting = [self itemDateStart];
+    // FETCH COMPONENTS
+    if( !baseDateForSorting ) return [NSNumber numberWithFloat:CGFLOAT_MAX];
+    NSTimeInterval intervalSinceNow = [baseDateForSorting timeIntervalSinceNow];
+    return [NSNumber numberWithDouble:intervalSinceNow];
+}
+
+- (NSInteger) itemMinutesTilStart {
+    NSTimeInterval secondsTilStart = [[self itemDateStart] timeIntervalSinceNow];
+    return [[NSNumber numberWithDouble:(secondsTilStart/60.0f)] integerValue];
 }
 
 @end

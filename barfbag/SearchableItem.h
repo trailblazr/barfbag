@@ -20,5 +20,6 @@
 - (NSDate*) itemDateStart;
 - (NSDate*) itemDateEnd;
 - (NSNumber*) itemSortNumberDateTime;
+- (NSInteger) itemMinutesTilStart;
 - (BOOL) isFavourite;
 @end

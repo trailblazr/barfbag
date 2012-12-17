@@ -216,14 +216,21 @@
     NSDate *dateCalculated = nil;
     // STEP 1: fetch day date
     NSDate *dateOfDay = self.day.date;
-    NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:dateOfDay];
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit ) fromDate:dateOfDay];
     // STEP 2: fetch hour and minute
+
+    NSInteger hourValue = self.timeHour;
+    NSInteger minuteValue = self.timeMinute;
+    if( hourValue < 8 ) {
+        hourValue = hourValue + 24;
+    }
+    
     NSDateComponents *computedComponents = [[NSDateComponents alloc] init];
     [computedComponents setDay:[comps day]];
     [computedComponents setMonth:[comps month]];
     [computedComponents setYear:[comps year]];
-    [computedComponents setHour:[self timeHour]];
-    [computedComponents setMinute:[self timeMinute]];
+    [computedComponents setHour:hourValue];
+    [computedComponents setMinute:minuteValue];
     // STEP 3: CREATE NEW DATE
     dateCalculated = [[NSCalendar currentCalendar] dateFromComponents:computedComponents];
     return dateCalculated;
@@ -287,14 +294,13 @@
     NSDate *baseDateForSorting = [self itemDateStart];
     // FETCH COMPONENTS
     if( !baseDateForSorting ) return [NSNumber numberWithFloat:CGFLOAT_MAX];
-    NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSHourCalendarUnit, NSMinuteCalendarUnit) fromDate:baseDateForSorting];
-    NSInteger hourValue = [comps hour];
-    NSInteger minuteValue = [comps minute];
-    if( hourValue < 8 ) {
-        hourValue = hourValue + 24;
-    }
-    NSInteger continuousTimeValue = (hourValue * 60) + minuteValue;
-    return [NSNumber numberWithInt:continuousTimeValue];
+    NSTimeInterval intervalSinceNow = [baseDateForSorting timeIntervalSinceNow];
+    return [NSNumber numberWithDouble:intervalSinceNow];
+}
+
+- (NSInteger) itemMinutesTilStart {
+    NSTimeInterval secondsTilStart = [[self itemDateStart] timeIntervalSinceNow];
+    return [[NSNumber numberWithDouble:(secondsTilStart/60.0f)] integerValue];
 }
 
 @end

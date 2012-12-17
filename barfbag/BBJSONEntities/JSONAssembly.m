@@ -158,5 +158,8 @@ nil];
     return nil;
 }
 
+- (NSInteger) itemMinutesTilStart {
+    return NSIntegerMax;
+}
 
 @end

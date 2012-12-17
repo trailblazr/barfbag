@@ -103,17 +103,18 @@
 - (void) setupTableViewHeader {
     if( [favouritesStored count] > 0 ) {
         CGFloat width = self.tableView.frame.size.width;
-        UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 70.0)] autorelease];
+        UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 90.0)] autorelease];
         footerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         footerView.backgroundColor = [self themeColor];
-        UIButton *buttonOpenWiki = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 250.0, 40.0)];
+        UIButton *buttonOpenWiki = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 90.0)];
         [buttonOpenWiki addTarget:self action:@selector(actionOpenFavourite:) forControlEvents:UIControlEventTouchUpInside];
         [footerView addSubview:buttonOpenWiki];
-        NSString *scheduledItemTitle = [NSString stringWithFormat:@"%@ - %@",[self stringShortTimeForDate:[self nextEventOnSchedule].itemDateStart], [self nextEventOnSchedule].itemTitle];
-        NSString *nextEventString = [NSString stringWithFormat:@"NEXT: %@", [NSString placeHolder:LOC( @"Nothing scheduled." ) forEmptyString:scheduledItemTitle]];
+        NSString *startsInMinutes = [NSString stringWithFormat:@"STARTS: IN %i MINS", [self nextEventOnSchedule].itemMinutesTilStart];
+        NSString *scheduledItemTitle = [NSString stringWithFormat:@"%@ - %@\n%@",[self stringShortTimeForDate:[self nextEventOnSchedule].itemDateStart], [self nextEventOnSchedule].itemTitle, startsInMinutes];
+        NSString *nextEventString = [NSString stringWithFormat:@"UP NEXT: %@", [NSString placeHolder:LOC( @"Nothing scheduled." ) forEmptyString:scheduledItemTitle]];
         [buttonOpenWiki setTitle:nextEventString forState:UIControlStateNormal];
         [buttonOpenWiki.titleLabel setFont:[UIFont boldSystemFontOfSize:buttonOpenWiki.titleLabel.font.pointSize]];
-        buttonOpenWiki.titleLabel.numberOfLines = 3;
+        buttonOpenWiki.titleLabel.numberOfLines = 5;
         buttonOpenWiki.titleLabel.adjustsFontSizeToFitWidth = YES;
         [buttonOpenWiki setTitleColor:kCOLOR_WHITE forState:UIControlStateNormal];
         buttonOpenWiki.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
