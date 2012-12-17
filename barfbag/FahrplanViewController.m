@@ -371,7 +371,7 @@
             EventDetailViewController *detailViewController = [[EventDetailViewController alloc] initWithNibName:@"EventDetailViewController" bundle:nil];
             NSArray *days = [[self conference] days];
             Day *currentDay = [days objectAtIndex:indexPath.section];
-            Event *currentEvent = [currentDay.events objectAtIndex:indexPath.row];
+            Event *currentEvent = [currentDay.eventsSorted objectAtIndex:indexPath.row];
             detailViewController.day = currentDay;
             detailViewController.event = currentEvent;
             [self.navigationController pushViewController:detailViewController animated:YES];

@@ -38,7 +38,26 @@
 
 - (NSArray*) eventsSorted {
     NSMutableArray *eventsUnsorted = [NSMutableArray arrayWithArray:events];
-    return [eventsUnsorted sortedArrayUsingSelector:@selector(itemSortNumberDateTime)];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"itemSortNumberDateTime" ascending:TRUE];
+     [eventsUnsorted sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    NSArray *eventsSorted = [NSArray arrayWithArray:eventsUnsorted];
+    /*
+    NSArray *eventsSorted =  [eventsUnsorted sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        SearchableItem *item1 = (SearchableItem*)obj1;
+        SearchableItem *item2 = (SearchableItem*)obj2;
+        if( item1.itemSortNumberDateTime > item2.itemSortNumberDateTime ) {
+            return NSOrderedDescending;
+        } else if( item1.itemSortNumberDateTime < item2.itemSortNumberDateTime ) {
+            return NSOrderedAscending;
+        } else {
+            return NSOrderedSame;
+        }
+    }];
+     */
+    for( Event *currentEvent in eventsSorted ) {
+        NSLog( @"DAY: %@ TIME: %i:%i", currentEvent.day.date, currentEvent.timeHour, currentEvent.timeMinute );
+    }
+    return eventsSorted;
 }
 
 @end

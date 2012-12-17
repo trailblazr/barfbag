@@ -216,14 +216,12 @@
     NSDate *dateCalculated = nil;
     // STEP 1: fetch day date
     NSDate *dateOfDay = self.day.date;
-    NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit ) fromDate:dateOfDay];
+    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+    NSDateComponents *comps = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit ) fromDate:dateOfDay];
     // STEP 2: fetch hour and minute
 
     NSInteger hourValue = self.timeHour;
     NSInteger minuteValue = self.timeMinute;
-    if( hourValue < 8 ) {
-        hourValue = hourValue + 24;
-    }
     
     NSDateComponents *computedComponents = [[NSDateComponents alloc] init];
     [computedComponents setDay:[comps day]];
@@ -231,8 +229,12 @@
     [computedComponents setYear:[comps year]];
     [computedComponents setHour:hourValue];
     [computedComponents setMinute:minuteValue];
+
     // STEP 3: CREATE NEW DATE
     dateCalculated = [[NSCalendar currentCalendar] dateFromComponents:computedComponents];
+    if( hourValue < 8 ) {
+        dateCalculated = [dateCalculated dateByAddingTimeInterval:(24.0*60.0*60.0)]; // ADD 24 hours
+    }
     return dateCalculated;
 }
 
@@ -296,6 +298,16 @@
     if( !baseDateForSorting ) return [NSNumber numberWithFloat:CGFLOAT_MAX];
     NSTimeInterval intervalSinceNow = [baseDateForSorting timeIntervalSinceNow];
     return [NSNumber numberWithDouble:intervalSinceNow];
+}
+
+- (NSComparisonResult)itemContinuousTimeCompare:(SearchableItem*)item {
+    if( item.itemSortNumberDateTime > self.itemSortNumberDateTime ) {
+        return NSOrderedDescending;
+    } else if( item.itemSortNumberDateTime < self.itemSortNumberDateTime ) {
+        return NSOrderedAscending;
+    } else {
+        return NSOrderedSame;
+    }
 }
 
 - (NSInteger) itemMinutesTilStart {

@@ -51,4 +51,8 @@
     return NSIntegerMax;
 }
 
+- (NSComparisonResult)itemContinuousTimeCompare:(SearchableItem*)item {
+    return NSOrderedSame;
+}
+
 @end
