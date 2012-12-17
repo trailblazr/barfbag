@@ -79,7 +79,7 @@
 
     UILabel *cloudDateLabel = [[[UILabel alloc] initWithFrame:footerView.frame] autorelease];
     cloudDateLabel.backgroundColor = kCOLOR_CLEAR;
-    cloudDateLabel.numberOfLines = 2;
+    cloudDateLabel.numberOfLines = 3;
     cloudDateLabel.textAlignment = UITextAlignmentCenter;
     cloudDateLabel.adjustsFontSizeToFitWidth = YES;
     [footerView addSubview:cloudDateLabel];
@@ -89,7 +89,12 @@
     df.doesRelativeDateFormatting = YES;
     NSString *formattedDate = [df stringFromDate:[MKiCloudSync instance].dateLastSynced];
     [df release];
-    cloudDateLabel.text = [NSString stringWithFormat:LOC( @"Letzter iCloud Sync:\n%@" ), formattedDate];
+    if( [favouritesStored count] == 0 ) {
+        cloudDateLabel.text = LOC( @"0 Favoriten.\nMarkiere Events, Assemblies\noder Workshops." );
+    }
+    else {
+        cloudDateLabel.text = [NSString stringWithFormat:LOC( @"Letzter iCloud Sync:\n%@" ), [NSString placeHolder:@"n.a" forEmptyString:formattedDate]];
+    }
     cloudDateLabel.font = [UIFont boldSystemFontOfSize:cloudDateLabel.font.pointSize];
     cloudDateLabel.textColor = kCOLOR_WHITE;
     cloudDateLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;

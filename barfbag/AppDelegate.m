@@ -243,10 +243,13 @@
     // TOOLBARS I.E. MAIL TOOLBAR
     UINavigationBar *proxyNavigationBar = [UINavigationBar appearance];
     [proxyNavigationBar setTintColor:kCOLOR_BACK];
-    NSLog( @"ATTRIBUTES: %@", proxyNavigationBar.titleTextAttributes );
+
+    /*
+     // REVEALS FUCKED UP RESULTS OF TITLE TEXT
     NSMutableDictionary *attribs = [NSMutableDictionary dictionary];
-    [attribs setObject:[self fontWithType:CustomFontTypeBold andPointSize:22.0] forKey:UITextAttributeFont];
+    [attribs setObject:[self fontWithType:CustomFontTypeBold andPointSize:0.0] forKey:UITextAttributeFont];
     proxyNavigationBar.titleTextAttributes = attribs;
+     */
     // MPAVController
     // MPAVController *proxyMpavController = [MPAVController appearance];
 

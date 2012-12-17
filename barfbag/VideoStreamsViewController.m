@@ -33,7 +33,7 @@
 
 - (void) actionRefreshData {
     self.navigationItem.rightBarButtonItem.enabled = NO;
-    [[self appDelegate] videoStreamsRefresh];
+    // [[self appDelegate] videoStreamsRefresh];
 }
 
 - (void) actionUpdateDisplayAfterRefresh {

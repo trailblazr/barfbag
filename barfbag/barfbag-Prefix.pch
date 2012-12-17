@@ -105,7 +105,9 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 #define kURL_KEY_29C3_RELAY_STATUS_IMAGES   @"status_images"
 #define kURL_KEY_29C3_RELAY_STATUS_EVENTS   @"status_events"
 #define kURL_KEY_29C3_FAHRPLAN              @"fahrplan"
-#define kURL_KEY_29C3_IMAGES                @"fahrplan_images"
+#define kURL_KEY_29C3_PERSONS               @"fahrplan_persons"
+#define kURL_KEY_29C3_SPEAKERS              @"fahrplan_speakers"
+#define kURL_KEY_29C3_EVENTS                @"fahrplan_events"
 #define kURL_KEY_29C3_WORKSHOPS             @"workshops"
 #define kURL_KEY_29C3_ASSEMBLIES            @"assemblies"
 #define kURL_KEY_29C3_STREAMS               @"livestreams"
@@ -114,11 +116,11 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 // 29C3 URLS FAHRPLAN
 #define kURL_DATA_29C3_FAHRPLAN_EN      @"http://events.ccc.de/congress/2012/Fahrplan/schedule.en.xml"
 #define kURL_DATA_29C3_FAHRPLAN_DE      @"http://events.ccc.de/congress/2012/Fahrplan/schedule.de.xml"
-#define kURL_DATA_29C3_IMAGE_PATH       @"http://events.ccc.de/congress/2012/Fahrplan/images"
+#define kURL_DATA_29C3_IMAGE_PATH       @"http://events.ccc.de/congress/2012/Fahrplan/images/person-$id$-128x128.png"
 
 #define kURL_DATA_28C3_FAHRPLAN_EN      @"http://events.ccc.de/congress/2011/Fahrplan/schedule.en.xml"
 #define kURL_DATA_28C3_FAHRPLAN_DE      @"http://events.ccc.de/congress/2011/Fahrplan/schedule.de.xml"
-#define kURL_DATA_28C3_IMAGE_PATH       @"http://events.ccc.de/congress/2011/Fahrplan/images"
+#define kURL_DATA_28C3_IMAGE_PATH       @"http://events.ccc.de/congress/2012/Fahrplan/images/person-$id$-128x128.png"
 
 // 29C3 URLS SEMANTIC WIKI
 #define kASIHTTP_SHOULD_VALIDATE_SECURE_CERTIFICATE NO

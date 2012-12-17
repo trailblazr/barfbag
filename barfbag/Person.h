@@ -21,6 +21,7 @@
 @property( nonatomic, retain ) UIImage *imageInMemory; //       <person id="5">Alien8</person>
 
 - (NSString*) pngIconHref;
+- (NSString*) websiteHref;
 - (NSString*) personIdKey;
 - (UIImage*) cachedImage;
 - (void) fetchCachedImage;

@@ -217,12 +217,17 @@
     
 }
 
+- (NSString*) versionInfo {
+    return 	(NSString*)[[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleVersion"];
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupTableData];
     // self.tableView.separatorColor = [self darkColor];
     [self.tableView reloadData];
-    self.navigationItem.title = LOC( @"Einstellungen" );
+    self.navigationItem.title = LOC( @"29C3 Einstellungen" );
     
     // FOOTER
     CGFloat width = self.view.bounds.size.width;
@@ -232,7 +237,7 @@
     creditsLabel.backgroundColor = kCOLOR_CLEAR;
     creditsLabel.numberOfLines = 4;
     creditsLabel.textAlignment = UITextAlignmentCenter;
-    creditsLabel.text = LOC( @"created in 2012 by trailblazr\nwith some help & code of plaetzchen" );
+    creditsLabel.text = [NSString stringWithFormat:LOC( @"%@ created in 2012 by trailblazr\nwith some help & code of plaetzchen" ), [self versionInfo]];
     creditsLabel.font = [[self appDelegate] fontWithType:CustomFontTypeSemibold andPointSize:12];
     creditsLabel.textColor = [self themeColor];
     [footerView addSubview:creditsLabel];

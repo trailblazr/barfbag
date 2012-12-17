@@ -60,11 +60,19 @@
     return self;
 }
 
-- (NSString*) pngIconHref {
-    NSString *imageName = [NSString stringWithFormat:@"event-%i-128x128.png", eventId];
-    return [NSString stringWithFormat:@"%@/%@", [[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_IMAGES], imageName];
+- (NSString*) imageName {
+    return [NSString stringWithFormat:@"event-%i-128x128.png", eventId];
 }
 
+- (NSString*) pngIconHref {
+    NSString *imageTemplateUrl = [[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_EVENTS];
+    imageTemplateUrl = [imageTemplateUrl stringByReplacingOccurrencesOfString:@"$id$" withString:[self eventIdKey]];
+    return imageTemplateUrl;
+}
+
+- (NSString*) eventIdKey {
+    return [NSString stringWithFormat:@"%i", eventId];
+}
 
 - (void) addPerson:(Person*)personToAdd {
     [persons addObject:personToAdd];

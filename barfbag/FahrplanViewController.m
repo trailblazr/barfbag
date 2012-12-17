@@ -291,7 +291,7 @@
         personImageView.layer.borderColor = [[self darkerColor] colorWithAlphaComponent:0.3].CGColor;
         personImageView.layer.borderWidth = 1.0;
         cell.accessoryView = personImageView;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
     
     return cell;
@@ -368,8 +368,11 @@
                 [self loadSimpleWebViewWithURL:linkUrl shouldScaleToFit:YES];
             }
         } else if ( [sectionKey isEqualToString:@"persons"] ) {
-            // Person *currentPerson = (Person*)[sectionItems objectAtIndex:indexPath.row];
-            // do nothing;
+            Person *currentPerson = (Person*)[sectionItems objectAtIndex:indexPath.row];
+            if( currentPerson.websiteHref ) {
+                NSURL *linkUrl = [NSURL URLWithString:[currentPerson.websiteHref httpUrlString]];
+                [self loadSimpleWebViewWithURL:linkUrl shouldScaleToFit:YES];
+            }
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
         }
     }

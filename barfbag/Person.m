@@ -36,8 +36,15 @@
 }
 
 - (NSString*) pngIconHref {
-    NSString *imageName = [self imageName];
-    return [NSString stringWithFormat:@"%@/%@", [[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_IMAGES], imageName];
+    NSString *imageTemplateUrl = [[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_PERSONS];
+    imageTemplateUrl = [imageTemplateUrl stringByReplacingOccurrencesOfString:@"$id$" withString:[self personIdKey]];
+    return imageTemplateUrl;
+}
+
+- (NSString*) websiteHref {
+    NSString *imageTemplateUrl = [[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_SPEAKERS];
+    imageTemplateUrl = [imageTemplateUrl stringByReplacingOccurrencesOfString:@"$id$" withString:[self personIdKey]];
+    return imageTemplateUrl;
 }
 
 - (NSString*) personIdKey {
@@ -46,6 +53,7 @@
 
 - (void) fetchCachedImage {
     NSString *urlString = [self pngIconHref];
+    if( DEBUG ) NSLog( @"PERSON IMAGE: URL = %@", urlString );
     NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]
                                                               cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                                           timeoutInterval:kCONNECTION_TIMEOUT];
