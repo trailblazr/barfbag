@@ -137,7 +137,7 @@
     versionLabel.backgroundColor = kCOLOR_CLEAR;
     versionLabel.numberOfLines = 3;
     versionLabel.textAlignment = UITextAlignmentCenter;
-    versionLabel.text = [NSString stringWithFormat:@"Fahrplan: %@", [self appDelegate].barfBagCurrentDataVersion];
+    versionLabel.text = [NSString stringWithFormat:@"Fahrplan: %@", [NSString placeHolder:@"n.a." forEmptyString:[self appDelegate].barfBagCurrentDataVersion]];
     versionLabel.font = [UIFont boldSystemFontOfSize:14.0];
     versionLabel.textColor = [self brighterColor];
     [footerView addSubview:versionLabel];
@@ -223,6 +223,14 @@
 }
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.imageView.backgroundColor = [self darkColor];
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    /*
+    cell.imageView.layer.cornerRadius = 7.0;
+    cell.imageView.layer.masksToBounds = YES;
+    cell.imageView.layer.borderColor = [[self darkerColor] colorWithAlphaComponent:0.3].CGColor;
+    cell.imageView.layer.borderWidth = 1.0;
+     */
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -252,6 +260,7 @@
     }
     cell.accessoryView = nil;
     cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.imageView.image = nil;
     // Configure the cell...
     NSString *sectionKey = [sectionKeys objectAtIndex:indexPath.section];
     NSArray *sectionItems = [sectionArrays objectForKey:sectionKey];
@@ -282,6 +291,8 @@
         Person *currentPerson = (Person*)[sectionItems objectAtIndex:indexPath.row];
         cell.textLabel.text = [NSString placeHolder:@"" forEmptyString:currentPerson.personName];
         cell.detailTextLabel.text = [NSString placeHolder:@"" forEmptyString:currentPerson.personIdKey];
+        cell.imageView.image = [currentPerson cachedImage];
+        /*
         UIImageView *personImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 40.0, 40.0)];
         personImageView.backgroundColor = [self darkColor];
         personImageView.image = [currentPerson cachedImage];
@@ -291,6 +302,7 @@
         personImageView.layer.borderColor = [[self darkerColor] colorWithAlphaComponent:0.3].CGColor;
         personImageView.layer.borderWidth = 1.0;
         cell.accessoryView = personImageView;
+         */
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
     

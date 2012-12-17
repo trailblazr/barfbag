@@ -32,6 +32,7 @@
 }
 
 - (void) addEvent:(Event*)eventToAdd {
+    eventToAdd.day = self;
 	[events addObject:eventToAdd];
 }
 

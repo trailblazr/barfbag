@@ -43,4 +43,8 @@
     return NO;
 }
 
+- (NSTimeInterval) itemSortNumberDateTime {
+    return 0.0f;
+}
+
 @end

@@ -38,16 +38,10 @@
 		8F35653F166B937C00814549 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F35653E166B937C00814549 /* Default.png */; };
 		8F356541166B937C00814549 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F356540166B937C00814549 /* Default@2x.png */; };
 		8F356543166B937C00814549 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F356542166B937C00814549 /* Default-568h@2x.png */; };
-		8F498457167DED89003E0FDE /* JSON2Assembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F49844E167DED89003E0FDE /* JSON2Assembly.m */; };
-		8F498458167DED89003E0FDE /* JSON2PrintRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F498450167DED89003E0FDE /* JSON2PrintRequests.m */; };
-		8F498459167DED89003E0FDE /* JSON2ResultsAssemblies.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F498452167DED89003E0FDE /* JSON2ResultsAssemblies.m */; };
-		8F49845A167DED89003E0FDE /* JSON2ResultsWorkshops.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F498454167DED89003E0FDE /* JSON2ResultsWorkshops.m */; };
-		8F49845B167DED89003E0FDE /* JSON2Workshop.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F498456167DED89003E0FDE /* JSON2Workshop.m */; };
 		8F49845F167DEEB7003E0FDE /* Workshop.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F49845E167DEEB6003E0FDE /* Workshop.m */; };
 		8F498462167DEEC5003E0FDE /* Assembly.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F498461167DEEC5003E0FDE /* Assembly.m */; };
 		8F498465167DEEEA003E0FDE /* Workshops.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F498464167DEEEA003E0FDE /* Workshops.m */; };
 		8F498468167DEEFA003E0FDE /* Assemblies.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F498467167DEEFA003E0FDE /* Assemblies.m */; };
-		8F49846B167E0960003E0FDE /* SemanticWikiProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F49846A167E095F003E0FDE /* SemanticWikiProperties.m */; };
 		8F49846E167E18AD003E0FDE /* SemanticWikiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F49846D167E18AD003E0FDE /* SemanticWikiParser.m */; };
 		8F4B6BCD1671544400AE6880 /* assemblies.json in Resources */ = {isa = PBXBuildFile; fileRef = 8FF921E016702352005A1C55 /* assemblies.json */; };
 		8F4B6BCE1671544400AE6880 /* workshops.json in Resources */ = {isa = PBXBuildFile; fileRef = 8FF921E116702352005A1C55 /* workshops.json */; };
@@ -220,16 +214,6 @@
 		8F35653E166B937C00814549 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8F356540166B937C00814549 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		8F356542166B937C00814549 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		8F49844D167DED89003E0FDE /* JSON2Assembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON2Assembly.h; sourceTree = "<group>"; };
-		8F49844E167DED89003E0FDE /* JSON2Assembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSON2Assembly.m; sourceTree = "<group>"; };
-		8F49844F167DED89003E0FDE /* JSON2PrintRequests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON2PrintRequests.h; sourceTree = "<group>"; };
-		8F498450167DED89003E0FDE /* JSON2PrintRequests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSON2PrintRequests.m; sourceTree = "<group>"; };
-		8F498451167DED89003E0FDE /* JSON2ResultsAssemblies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON2ResultsAssemblies.h; sourceTree = "<group>"; };
-		8F498452167DED89003E0FDE /* JSON2ResultsAssemblies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSON2ResultsAssemblies.m; sourceTree = "<group>"; };
-		8F498453167DED89003E0FDE /* JSON2ResultsWorkshops.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON2ResultsWorkshops.h; sourceTree = "<group>"; };
-		8F498454167DED89003E0FDE /* JSON2ResultsWorkshops.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSON2ResultsWorkshops.m; sourceTree = "<group>"; };
-		8F498455167DED89003E0FDE /* JSON2Workshop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON2Workshop.h; sourceTree = "<group>"; };
-		8F498456167DED89003E0FDE /* JSON2Workshop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSON2Workshop.m; sourceTree = "<group>"; };
 		8F49845D167DEEB6003E0FDE /* Workshop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Workshop.h; sourceTree = "<group>"; };
 		8F49845E167DEEB6003E0FDE /* Workshop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Workshop.m; sourceTree = "<group>"; };
 		8F498460167DEEC4003E0FDE /* Assembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Assembly.h; sourceTree = "<group>"; };
@@ -238,8 +222,6 @@
 		8F498464167DEEEA003E0FDE /* Workshops.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Workshops.m; sourceTree = "<group>"; };
 		8F498466167DEEF9003E0FDE /* Assemblies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Assemblies.h; sourceTree = "<group>"; };
 		8F498467167DEEFA003E0FDE /* Assemblies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Assemblies.m; sourceTree = "<group>"; };
-		8F498469167E095E003E0FDE /* SemanticWikiProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SemanticWikiProperties.h; sourceTree = "<group>"; };
-		8F49846A167E095F003E0FDE /* SemanticWikiProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SemanticWikiProperties.m; sourceTree = "<group>"; };
 		8F49846C167E18AD003E0FDE /* SemanticWikiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SemanticWikiParser.h; sourceTree = "<group>"; };
 		8F49846D167E18AD003E0FDE /* SemanticWikiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SemanticWikiParser.m; sourceTree = "<group>"; };
 		8F4B6BCC1671544400AE6880 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -922,18 +904,6 @@
 				8F498464167DEEEA003E0FDE /* Workshops.m */,
 				8F49845D167DEEB6003E0FDE /* Workshop.h */,
 				8F49845E167DEEB6003E0FDE /* Workshop.m */,
-				8F498469167E095E003E0FDE /* SemanticWikiProperties.h */,
-				8F49846A167E095F003E0FDE /* SemanticWikiProperties.m */,
-				8F49844F167DED89003E0FDE /* JSON2PrintRequests.h */,
-				8F498450167DED89003E0FDE /* JSON2PrintRequests.m */,
-				8F498451167DED89003E0FDE /* JSON2ResultsAssemblies.h */,
-				8F498452167DED89003E0FDE /* JSON2ResultsAssemblies.m */,
-				8F49844D167DED89003E0FDE /* JSON2Assembly.h */,
-				8F49844E167DED89003E0FDE /* JSON2Assembly.m */,
-				8F498453167DED89003E0FDE /* JSON2ResultsWorkshops.h */,
-				8F498454167DED89003E0FDE /* JSON2ResultsWorkshops.m */,
-				8F498455167DED89003E0FDE /* JSON2Workshop.h */,
-				8F498456167DED89003E0FDE /* JSON2Workshop.m */,
 				8FF9217D166FFD4E005A1C55 /* JSONProperties.h */,
 				8FF9217E166FFD4E005A1C55 /* JSONProperties.m */,
 				8FF9217F166FFD4E005A1C55 /* JSONWorkshop.h */,
@@ -1280,16 +1250,10 @@
 				8FBB595C167ABB630016E638 /* WebbrowserViewController.m in Sources */,
 				8FBB5979167B984A0016E638 /* ColoredAccessoryView.m in Sources */,
 				8F51F12C167BFFB800C7A22B /* WeblinksViewController.m in Sources */,
-				8F498457167DED89003E0FDE /* JSON2Assembly.m in Sources */,
-				8F498458167DED89003E0FDE /* JSON2PrintRequests.m in Sources */,
-				8F498459167DED89003E0FDE /* JSON2ResultsAssemblies.m in Sources */,
-				8F49845A167DED89003E0FDE /* JSON2ResultsWorkshops.m in Sources */,
-				8F49845B167DED89003E0FDE /* JSON2Workshop.m in Sources */,
 				8F49845F167DEEB7003E0FDE /* Workshop.m in Sources */,
 				8F498462167DEEC5003E0FDE /* Assembly.m in Sources */,
 				8F498465167DEEEA003E0FDE /* Workshops.m in Sources */,
 				8F498468167DEEFA003E0FDE /* Assemblies.m in Sources */,
-				8F49846B167E0960003E0FDE /* SemanticWikiProperties.m in Sources */,
 				8F49846E167E18AD003E0FDE /* SemanticWikiParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

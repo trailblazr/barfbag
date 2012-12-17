@@ -237,4 +237,10 @@
     return [[FavouriteManager sharedManager] hasStoredFavourite:self];
 }
 
+- (NSTimeInterval) itemSortNumberDateTime {
+    // we have the day
+    // we have hour start and minute
+    return 0.0f;
+}
+
 @end
