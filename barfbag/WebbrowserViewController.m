@@ -492,6 +492,7 @@ BOOL isShowingActionSheet = NO;
         NSLog( @"FINALLY LOADING URL %@", [request.URL absoluteString] );
         self.shouldStartLoadingCheckedRequest = NO;
         self.requestChecked = nil;
+        
         return YES;
     }
 }
@@ -510,6 +511,107 @@ BOOL isShowingActionSheet = NO;
 	[backButton setEnabled:[webView canGoBack]];
 	[forwardButton setEnabled:[webView canGoForward]];
     [self shouldHideNetworkIndicator];
+
+    // CHECK IF THAT IS AN SSL URL
+    if( [[webView.request.URL absoluteString] containsString:@"https://" ignoringCase:YES] ) {
+        [self connectUsingAsiRequestWithUrlString:[webView.request.URL absoluteString]];
+    }
 }
+
+#pragma mark - ASI STUFF
+
+- (void) addUserAgentInfoToASIRequest:(ASIHTTPRequest*)request {
+	NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+	NSString *appPlatform = [[UIDevice currentDevice] platformString];
+	NSString *appSystemVersion = [[UIDevice currentDevice] systemVersion];
+	NSString *appLanguageContext = [[NSLocale currentLocale] localeIdentifier];
+	NSString *appDisplayName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
+	
+	NSString *uaString = [NSString stringWithFormat:@"%@/%@ (%@; iOS %@; %@)", appDisplayName, appVersion, appPlatform, appSystemVersion, appLanguageContext];
+	
+	if( DEBUG ) NSLog( @"CONNECTION: USER AGENT: %@", uaString );
+    [request addRequestHeader:@"User-Agent" value:uaString];
+    request.useCookiePersistence = NO;
+}
+
+- (ASIHTTPRequest*) requestWithTimeoutInterval:(NSTimeInterval)timeoutInterval forUrl:(NSURL*)connectUrl {
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:connectUrl];
+    self.currentRequest = request;
+    request.timeOutSeconds = timeoutInterval;
+    [self addUserAgentInfoToASIRequest:request];
+	return request;
+}
+
+- (ASIHTTPRequest*)requestForAbsoluteUrl:(NSString *)absoluteUrl withTimeoutInterval:(NSTimeInterval)timeoutInterval {
+	NSURL *url = [NSURL URLWithString:absoluteUrl];
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    self.currentRequest = request;
+    request.timeOutSeconds = timeoutInterval;
+    [self addUserAgentInfoToASIRequest:request];
+	return request;
+}
+
+- (void) connectUsingAsiRequestWithUrlString:(NSString*)urlString {
+    NSURL *connectUrl = [NSURL URLWithString:urlString];
+    ASIHTTPRequest *request = [self requestWithTimeoutInterval:60.0f forUrl:connectUrl];
+    request.shouldRedirect = YES; // FOLLOW REDIRECTS (e.g. for secure connections)
+    request.validatesSecureCertificate = NO;
+    request.delegate = self;
+    [request startAsynchronous]; // FROM NOW ON ASI is in Control via its delegates
+}
+
+#pragma mark - ASIHTTPRequestDelegate
+
+- (void)requestStarted:(ASIHTTPRequest *)request {
+    if( DEBUG ) NSLog( @"ASI: requestStarted: %@", [request.url absoluteString] );
+}
+
+- (void)request:(ASIHTTPRequest *)request didReceiveResponseHeaders:(NSDictionary *)responseHeaders {
+
+}
+
+/*
+ - (void)request:(ASIHTTPRequest *)request willRedirectToURL:(NSURL *)newURL {
+ NSLog( @"ASI: willRedirectToURL: %@",newURL );
+ }
+ */
+
+- (void)requestRedirected:(ASIHTTPRequest *)request {
+    
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request {
+    self.currentRequest.delegate = nil;
+    if( DEBUG ) NSLog( @"ASI: requestFinished" );
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    if( DEBUG ) NSLog( @"RESPONSE CODE: %i", request.responseStatusCode );
+    
+    if( request.responseData == nil && request.responseString == nil ) {
+        if( DEBUG ) NSLog( @"ATTENTION: NO RESPONSE DATA. RESPONSE WAS PROBABLY NOT OF PROTOCOL 'HTTP'" );
+    }
+    NSString *pageContent = nil;
+    if( request.responseStatusCode < 500 ) { // SUCCESS: SOME RESULT
+        @try {
+            pageContent = request.responseString;
+        }
+        @catch (NSException *exception) {
+            if( DEBUG ) NSLog( @"FATAL ERROR: %s ---> %@", __PRETTY_FUNCTION__, exception );
+        }
+    }
+    else { // INVALID: NO RESULT
+        if( DEBUG ) NSLog( @"ERROR RESPONSE CODE: %i", request.responseStatusCode );
+    }
+    if( pageContent ) { // LOAD INTO WEBVIEW NOW
+        [fullWebView loadHTMLString:pageContent baseURL:request.url];
+    }
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request {
+    self.currentRequest.delegate = nil;
+    if( DEBUG ) NSLog( @"ASI: requestFailed" );
+    if( DEBUG ) NSLog( @"RESPONSE CODE: %i", request.responseStatusCode );
+}
+
+
 
 @end

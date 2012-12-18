@@ -7,6 +7,10 @@
 //
 
 #import "GenericViewController.h"
+#import "ASIHTTPRequestDelegate.h"
+#import "ASIProgressDelegate.h"
+#import "ASIFormDataRequest.h"
+#import "ASIHTTPRequest.h"
 
 @protocol WebbrowserViewControllerDelegate;
 
@@ -36,6 +40,10 @@
     NSTimer *timerActivityIndicator;
     NSTimer *timerFadeInFinal;
     id<WebbrowserViewControllerDelegate> delegate;
+    
+    // ASI STUFF FOR LOADING SSL PAGES
+    ASIHTTPRequest *currentRequest;
+
 }
 
 @property (nonatomic, assign) BOOL shouldScaleToFit;
@@ -62,6 +70,10 @@
 @property (nonatomic, retain) NSURLRequest *requestChecked;
 @property (nonatomic, retain) NSTimer *timerActivityIndicator;
 @property (nonatomic, retain) NSTimer *timerFadeInFinal;
+
+// ASI STUFF
+@property( nonatomic, retain ) ASIHTTPRequest *currentRequest;
+
 
 - (IBAction) actionStopReload:(id)sender;
 - (IBAction) actionDone:(id)sender;
