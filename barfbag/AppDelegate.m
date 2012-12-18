@@ -429,7 +429,7 @@
         id result = nil;
         @try {
             result = [[Assemblies class] objectFromJSONObject:[jsonString JSONValue] mapping:[Assemblies objectMapping]];
-            NSLog( @"WIKI: ASSEMBLIESCLASS = %@, OBJECT: %@", NSStringFromClass( [result class] ), result );
+            if( DEBUG ) NSLog( @"WIKI: ASSEMBLIESCLASS = %@, OBJECT: %@", NSStringFromClass( [result class] ), result );
             Assemblies *assemblies = (Assemblies*)result;
             if( DEBUG ) NSLog( @"WIKI: ASSEMBLIES FOUND %i items", [[assemblies assemblyItems] count] );
             self.semanticWikiAssemblies = [assemblies assemblyItemsSorted];
@@ -444,7 +444,7 @@
         id result = nil;
         @try {
             result = [[Workshops class] objectFromJSONObject:[jsonString JSONValue] mapping:[Workshops objectMapping]];
-            NSLog( @"WIKI: WORKSHOPSCLASS = %@, OBJECT: %@", NSStringFromClass( [result class] ), result );
+            if( DEBUG ) NSLog( @"WIKI: WORKSHOPSCLASS = %@, OBJECT: %@", NSStringFromClass( [result class] ), result );
             Workshops *workshops = (Workshops*)result;
             if( DEBUG ) NSLog( @"WIKI: WORKSHOPS FOUND %i items", [[workshops workshopItems] count] );
             self.semanticWikiWorkshops = [workshops workshopItemsSorted];
@@ -602,6 +602,28 @@
         [self semanticWikiFillCached:YES];
     }
     else {
+        NSURL *bundleUrlAssemblies = [[NSBundle mainBundle] URLForResource:@"assemblies" withExtension:@"json"];
+        NSURL *bundleUrlWorkshops = [[NSBundle mainBundle] URLForResource:@"workshops" withExtension:@"json"];
+        NSData *dataAssemblies = [NSData dataWithContentsOfURL:bundleUrlAssemblies];
+        NSData *dataWorkshops = [NSData dataWithContentsOfURL:bundleUrlWorkshops];
+        // CLONE FROm BUNDLE
+        BOOL hasStoredFileAssemblies = [dataAssemblies writeToFile:pathToCachedAssemblyFile atomically:YES];
+        if( !hasStoredFileAssemblies ) {
+            if( DEBUG ) NSLog( @"WIKI: JSON CLONING FAILED!!!" );
+        }
+        else {
+            if( DEBUG ) NSLog( @"WIKI: JSON CLONING SUCCEEDED." );
+        }
+        BOOL hasStoredFileWorkshops = [dataWorkshops writeToFile:pathToCachedWorkshopFile atomically:YES];
+        if( !hasStoredFileWorkshops ) {
+            if( DEBUG ) NSLog( @"WIKI: JSON CLONING FAILED!!!" );
+        }
+        else {
+            if( DEBUG ) NSLog( @"WIKI: JSON CLONING SUCCEEDED." );
+        }
+        if( hasStoredFileAssemblies && hasStoredFileWorkshops ) { // REFILL
+            [self semanticWikiFillCached:YES];
+        }
         // TRY TO UPDATE DATA IMMEDIATELY
         [self semanticWikiRefresh];
     }
@@ -671,7 +693,7 @@
         if( hasNewDataVersion ) {
             [[NSUserDefaults standardUserDefaults] setObject:versionUpdated forKey:kUSERDEFAULT_KEY_DATA_VERSION_CURRENT];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            [self alertWithTag:0 title:LOC( @"Aktualisierung" ) andMessage:[NSString stringWithFormat:LOC( @"Die Plandaten wurden aktualisiert auf %@." ), versionUpdated]];
+            [self alertWithTag:0 title:LOC( @"Aktualisierung" ) andMessage:[NSString stringWithFormat:LOC( @"Die Plandaten wurden aktualisiert auf %@." ), [NSString placeHolder:@"n.a." forEmptyString:versionUpdated]]];
         }
     }
     if( DEBUG ) NSLog( @"BARFBAG: PARSING COMPLETED." );
@@ -738,7 +760,13 @@
             if( data && [data length] > 500 ) {
                 isCached = NO;
                 // SAVE INFOS
-                NSString *pathToStoreFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_FAHRPLAN_EN]; // CACHE .xml file
+                NSString *pathToStoreFile = nil;
+                if( [MasterConfig sharedConfiguration].currentLanguage == MasterConfigLanguageEn ) {
+                    pathToStoreFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_FAHRPLAN_EN]; // CACHE .xml file
+                }
+                else {
+                    pathToStoreFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_FAHRPLAN_DE]; // CACHE .xml file
+                }
                 BOOL hasStoredFile = [data writeToFile:pathToStoreFile atomically:YES];
                 if( !hasStoredFile ) {
                     if( DEBUG ) NSLog( @"BARFBAG: XML SAVING FAILED!!!" );
@@ -756,7 +784,7 @@
         [self hideHud];
     } errorBlock:^(NSError *error) {
         if( DEBUG ) NSLog( @"BARFBAG: NO INTERNET CONNECTION." );
-        [self alertWithTag:0 title:LOC( @"Verbindungsproblem" ) andMessage:[NSString stringWithFormat:LOC( @"Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten.\n\nSie verwenden derzeit\n%@ der Daten." ), [self barfBagCurrentDataVersion]]];
+        [self alertWithTag:0 title:LOC( @"Verbindungsproblem" ) andMessage:[NSString stringWithFormat:LOC( @"Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten.\n\nSie verwenden derzeit\n%@ der Daten." ), [NSString placeHolder:@"n.a." forEmptyString:[self barfBagCurrentDataVersion]]]];
         // TODO: DISPLAY SOME ERROR...
         BOOL isCached = YES;
         [self barfBagFillCached:isCached];
@@ -779,6 +807,31 @@
         [self barfBagFillCached:YES];
     }
     else {
+        // MOVE ONE COPY FROM BUNDLE
+        NSURL *bundleUrlEn = [[NSBundle mainBundle] URLForResource:@"fahrplan_en" withExtension:@"xml"];
+        NSURL *bundleUrlDe = [[NSBundle mainBundle] URLForResource:@"fahrplan_de" withExtension:@"xml"];
+        NSData *dataEn = [NSData dataWithContentsOfURL:bundleUrlEn];
+        NSData *dataDe = [NSData dataWithContentsOfURL:bundleUrlDe];
+        NSString *pathToStoreFileEn = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_FAHRPLAN_EN]; // CACHE .xml file
+        NSString *pathToStoreFileDe = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_FAHRPLAN_DE]; // CACHE .xml file
+        BOOL hasStoredFileEn = [dataEn writeToFile:pathToStoreFileEn atomically:YES];
+        if( !hasStoredFileEn ) {
+            if( DEBUG ) NSLog( @"BARFBAG: XML EN CLONING FAILED!!!" );
+        }
+        else {
+            if( DEBUG ) NSLog( @"BARFBAG: XML EN CLONING SUCCEEDED." );
+        }
+        BOOL hasStoredFileDe = [dataDe writeToFile:pathToStoreFileDe atomically:YES];
+        if( !hasStoredFileDe ) {
+            if( DEBUG ) NSLog( @"BARFBAG: XML DE CLONING FAILED!!!" );
+        }
+        else {
+            if( DEBUG ) NSLog( @"BARFBAG: XML DE CLONING SUCCEEDED." );
+        }
+        if( hasStoredFileDe && hasStoredFileEn ) { // FILL NOW
+            [self barfBagFillCached:YES];
+        }
+        
         // TRY TO UPDATE DATA IMMEDIATELY
         [self barfBagRefresh];
     }
@@ -801,9 +854,13 @@
     [self semanticWikiLoadCached];
 }
 
-- (void) allDataRefresh {
+- (void) allDataRefreshDelayed { // START REAL UPDATES 15 SECONDS DELAYED
     [self barfBagRefresh];
     [self semanticWikiRefresh];
+}
+
+- (void) allDataRefresh { // FIRST UPDATE MASTER CONFIG
+    [self performSelector:@selector(allDataRefreshDelayed) withObject:nil afterDelay:15.0];
 }
 
 - (void) manageCloudStorage {

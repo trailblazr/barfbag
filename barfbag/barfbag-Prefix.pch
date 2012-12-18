@@ -40,7 +40,7 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 } FavouriteItemType;
 
 // DEPLOYMENT & DEVELOPMENT PARAMETERS
-#define DEBUG 0
+#define DEBUG 1
 #define SCREENSHOTMODE 0
 #define SIMULATE_28C3 0
 
@@ -116,10 +116,6 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 #define kURL_KEY_29C3_WIKI_BASE             @"wikibaseurl"
 
 // 29C3 URLS FAHRPLAN
-#define kURL_DATA_29C3_FAHRPLAN_EN      @"http://events.ccc.de/congress/2012/Fahrplan/schedule.en.xml"
-#define kURL_DATA_29C3_FAHRPLAN_DE      @"http://events.ccc.de/congress/2012/Fahrplan/schedule.de.xml"
-#define kURL_DATA_29C3_IMAGE_PATH       @"http://events.ccc.de/congress/2012/Fahrplan/images/person-$id$-128x128.png"
-
 #define kURL_DATA_28C3_FAHRPLAN_EN      @"http://events.ccc.de/congress/2011/Fahrplan/schedule.en.xml"
 #define kURL_DATA_28C3_FAHRPLAN_DE      @"http://events.ccc.de/congress/2011/Fahrplan/schedule.de.xml"
 #define kURL_DATA_28C3_IMAGE_PATH       @"http://events.ccc.de/congress/2012/Fahrplan/images/person-$id$-128x128.png"

@@ -138,11 +138,9 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
         urlString = urlFromDictionary;
     }
     else {
-        // WE GET PATHS FOR SOME KEYS
-        NSString *urlStringRelayFromDictionary = [shipDictionary objectForKey:kURL_KEY_29C3_RELAY_BASE];
-        // NSString *pathRelayCache = [shipDictionary objectForKey:kURL_KEY_29C3_RELAY_STATUS_EVENTS];
-        NSString *pathFromDictionary = [languageDictionary objectForKey:key];
-        urlString = [NSString stringWithFormat:@"%@/%@", urlStringRelayFromDictionary, pathFromDictionary];
+        // WE GET COMPLETE URLS
+        NSString *urlFromDictionary = [languageDictionary objectForKey:key];
+        urlString = urlFromDictionary;
     }
     BOOL isSimulation = NO;
     
@@ -161,6 +159,14 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
     }
     // NSLog( @"MASTERCONFIG: Accessing %@ (%@) url[%@]: %@", isMothership ? @"mothership" : @"mothership_relay", langCode, key, urlString  );
     return urlString;
+}
+
+- (MasterConfigLanguage) currentLanguage {
+    MasterConfigLanguage language = MasterConfigLanguageEn;
+    if( [[[[NSLocale autoupdatingCurrentLocale] objectForKey:NSLocaleLanguageCode] lowercaseString] containsString:@"de"] ) {
+        language = MasterConfigLanguageDe;
+    }
+    return language;
 }
 
 - (NSString*) urlStringForKey:(NSString*)key isMothership:(BOOL)isMothership { // DEFAULT USER LANGUAGE

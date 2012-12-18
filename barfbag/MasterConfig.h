@@ -60,6 +60,7 @@ typedef enum {
 - (NSString*) urlStringForKey:(NSString*)key;
 
 - (NSString*) urlStringWikiPageWithPath:(NSString*)wikiPath;
+- (MasterConfigLanguage) currentLanguage;
 
 @end
 

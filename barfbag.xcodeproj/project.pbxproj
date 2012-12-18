@@ -103,6 +103,8 @@
 		8F754BC5166EB28C00F74DBB /* VideoStreamsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F754BC3166EB28C00F74DBB /* VideoStreamsViewController.xib */; };
 		8F754BC8166EB47200F74DBB /* video.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754BC6166EB47200F74DBB /* video.png */; };
 		8F754BC9166EB47200F74DBB /* video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F754BC7166EB47200F74DBB /* video@2x.png */; };
+		8F7ED79B168E6CD800665637 /* fahrplan_de.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8F7ED799168E6CD800665637 /* fahrplan_de.xml */; };
+		8F7ED79C168E6CD800665637 /* fahrplan_en.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8F7ED79A168E6CD800665637 /* fahrplan_en.xml */; };
 		8F96FCFD1676853600EE0D5B /* GenericDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F96FCFB1676853600EE0D5B /* GenericDetailViewController.m */; };
 		8F96FCFE1676853600EE0D5B /* GenericDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F96FCFC1676853600EE0D5B /* GenericDetailViewController.xib */; };
 		8FBB594F167AA9910016E638 /* SearchableItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FBB594E167AA9910016E638 /* SearchableItem.m */; };
@@ -318,6 +320,8 @@
 		8F754BC3166EB28C00F74DBB /* VideoStreamsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoStreamsViewController.xib; sourceTree = "<group>"; };
 		8F754BC6166EB47200F74DBB /* video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = video.png; path = images/video.png; sourceTree = SOURCE_ROOT; };
 		8F754BC7166EB47200F74DBB /* video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "video@2x.png"; path = "images/video@2x.png"; sourceTree = SOURCE_ROOT; };
+		8F7ED799168E6CD800665637 /* fahrplan_de.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = fahrplan_de.xml; path = xml/fahrplan_de.xml; sourceTree = SOURCE_ROOT; };
+		8F7ED79A168E6CD800665637 /* fahrplan_en.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = fahrplan_en.xml; path = xml/fahrplan_en.xml; sourceTree = SOURCE_ROOT; };
 		8F96FCFA1676853600EE0D5B /* GenericDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericDetailViewController.h; sourceTree = "<group>"; };
 		8F96FCFB1676853600EE0D5B /* GenericDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericDetailViewController.m; sourceTree = "<group>"; };
 		8F96FCFC1676853600EE0D5B /* GenericDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GenericDetailViewController.xib; sourceTree = "<group>"; };
@@ -429,8 +433,6 @@
 		E8A5B495167A20C300225247 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		E8E5D8221678B9AC00590612 /* config_remote.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config_remote.plist; sourceTree = "<group>"; };
 		E8F0F54F1678C5D00081A972 /* cachestatus.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cachestatus.json; sourceTree = "<group>"; };
-		E8F0F5521678C5D80081A972 /* schedule.de.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = schedule.de.xml; sourceTree = "<group>"; };
-		E8F0F5531678C5D80081A972 /* schedule.en.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = schedule.en.xml; sourceTree = "<group>"; };
 		E8F0F5541678C8E70081A972 /* MasterConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterConfig.h; sourceTree = "<group>"; };
 		E8F0F5551678C8E70081A972 /* MasterConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterConfig.m; sourceTree = "<group>"; };
 		FD1B947B16774BAD0021A58A /* MKiCloudSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKiCloudSync.h; sourceTree = "<group>"; };
@@ -1030,8 +1032,8 @@
 		E8F0F5511678C5D80081A972 /* xml */ = {
 			isa = PBXGroup;
 			children = (
-				E8F0F5521678C5D80081A972 /* schedule.de.xml */,
-				E8F0F5531678C5D80081A972 /* schedule.en.xml */,
+				8F7ED799168E6CD800665637 /* fahrplan_de.xml */,
+				8F7ED79A168E6CD800665637 /* fahrplan_en.xml */,
 				8F51F112167BBC9000C7A22B /* 28c3_schedule.de.xml */,
 				8F51F113167BBC9000C7A22B /* 28c3_schedule.en.xml */,
 			);
@@ -1162,6 +1164,8 @@
 				8F51F120167BF25100C7A22B /* search_back@2x.png in Resources */,
 				8F51F12D167BFFB800C7A22B /* WeblinksViewController.xib in Resources */,
 				8F51F12F167C0F6100C7A22B /* person-0-128x128.png in Resources */,
+				8F7ED79B168E6CD800665637 /* fahrplan_de.xml in Resources */,
+				8F7ED79C168E6CD800665637 /* fahrplan_en.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

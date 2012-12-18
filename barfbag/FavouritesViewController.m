@@ -79,7 +79,6 @@
     }
     self.favouritesKeysArray = [NSArray arrayWithArray:neededKeys];
     [self setupTableViewHeader];
-    
     [self.tableView reloadData];
 }
 
@@ -94,9 +93,9 @@
     for( FavouriteItem *currentFavourite in arrayOfEventsWithStartDates ) {
         NSTimeInterval currentOffset = CGFLOAT_MAX;
         if( currentFavourite && currentFavourite.searchableItem && currentFavourite.searchableItem.itemDateStart ) {
-            currentOffset = fabs([dateNow timeIntervalSinceDate:currentFavourite.searchableItem.itemDateStart]);
+            currentOffset = [currentFavourite.searchableItem.itemDateStart timeIntervalSinceNow];
         }
-        if( currentOffset < timeOffsetMinimum ) {
+        if( currentOffset < timeOffsetMinimum && currentOffset > 0.0 ) {
             timeOffsetMinimum = currentOffset;
             itemFound = currentFavourite.searchableItem;
         }
@@ -124,27 +123,34 @@
         [timerUpdateUpNextString invalidate];
     }
     self.timerUpdateUpNextString = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateUpNextString:) userInfo:nil repeats:YES];
+    [self updateUpNextString:nil];
+}
+
+- (void) refreshNextItem {
+    self.itemUpNext = [self nextEventOnSchedule];
 }
 
 - (void) updateUpNextString:(NSTimer*)timer {
+    if( !upNextButton ) return;
     if( numOfRefreshes == 0 ) {
-        self.itemUpNext = [self nextEventOnSchedule];
+        [self refreshNextItem];
     }
     numOfRefreshes++;
     if( numOfRefreshes > 600 ) {
-        self.itemUpNext = [self nextEventOnSchedule];
+        [self refreshNextItem];
         numOfRefreshes = 0;
     }
     NSInteger minutes = itemUpNext.itemMinutesTilStart % 60;
     NSInteger hours = (itemUpNext.itemMinutesTilStart-minutes)/60;
     NSInteger seconds = [[NSNumber numberWithDouble:(itemUpNext.itemSecondsTilStart - (minutes*60+hours*60*60))] integerValue];
     NSString *startsInMinutes = [NSString stringWithFormat:LOC( @"STARTS: IN %02dH %02dM %02dS" ), hours, minutes, seconds];
-    NSString *scheduledItemTitle = [NSString stringWithFormat:@"%@ - %@\n%@",[self stringShortTimeForDate:[self nextEventOnSchedule].itemDateStart], itemUpNext.itemTitle, startsInMinutes];
+    NSString *scheduledItemTitle = [NSString stringWithFormat:@"%@ - %@\n%@",[NSString placeHolder:@"n.a." forEmptyString:[self stringShortTimeForDate:[self nextEventOnSchedule].itemDateStart]], [NSString placeHolder:@"n.a." forEmptyString:itemUpNext.itemTitle], startsInMinutes];
     NSString *nextEventString = [NSString stringWithFormat:LOC( @"UP NEXT: %@" ), [NSString placeHolder:LOC( @"Nothing scheduled." ) forEmptyString:scheduledItemTitle]];
     [upNextButton setTitle:nextEventString forState:UIControlStateNormal];
 }
 
 - (void) setupTableViewHeader {
+    [self refreshNextItem];
     if( [favouritesStored count] > 0 ) {
         CGFloat width = self.tableView.frame.size.width;
         UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 90.0)] autorelease];
@@ -177,12 +183,11 @@
         upNextButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
         upNextButton.center = footerView.center;
         self.tableView.tableHeaderView = footerView;
-        [self timerStartUpNextUpdates];
     }
     else {
-        [self timerStopUpNextUpdates];
         self.tableView.tableHeaderView = nil;
     }
+    [self timerStartUpNextUpdates];
 }
 
 - (void) setupTableViewFooter {
@@ -255,6 +260,7 @@
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     self.navigationItem.title = LOC( @"29C3 Favoriten" );
     self.navigationItem.rightBarButtonItem = [self actionBarButtonItemSharingOnly];
+    [self refreshNextItem];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -313,8 +319,8 @@
     cell.backgroundView = nil;
     
     // Configure the cell...
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", [self stringShortTimeForDate:currentSearchableItem.itemDateStart], currentSearchableItem.itemTitle];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", currentSearchableItem.itemLocation];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", [NSString placeHolder:@"--:--" forEmptyString:[self stringShortTimeForDate:currentSearchableItem.itemDateStart]], currentFavourite.favouriteName];
+    cell.detailTextLabel.text = [NSString placeHolder:currentSearchableItem.itemLocation forEmptyString:@""];
     cell.accessoryView = [ColoredAccessoryView disclosureIndicatorViewWithColor:[self themeColor]];
     if( currentSearchableItem.itemMinutesFromNow < 60 || currentSearchableItem == itemUpNext ) {
         NSInteger minutes = currentSearchableItem.itemMinutesFromNow;
@@ -351,6 +357,7 @@
         }
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         [tableView endUpdates];
+        [self refreshNextItem];
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view

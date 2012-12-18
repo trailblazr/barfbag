@@ -337,7 +337,7 @@
         currentNumOfRows = [self tableView:self.tableView numberOfRowsInSection:indexPathTarget.section];
         distance = distance + (currentNumOfRows-(indexPathTarget.row+1));
         if( abs(indexPathTarget.section - indexPathSource.section) > 1 ) {
-            for( int i = indexPathTarget.section+1; i < indexPathSource.section-1; i++ ) {
+            for( int i = indexPathTarget.section+1; i < indexPathSource.section; i++ ) {
                 currentNumOfRows = [self tableView:self.tableView numberOfRowsInSection:i];
                 distance = distance + currentNumOfRows;
             }
@@ -522,10 +522,10 @@
         colorMarker.opaque = NO;
         [cell.contentView addSubview:colorMarker];
         
-        if( NO ) {
-            NSLog( @"indexPathSource = %i/%i (item: %i)", indexPathMedian.section, indexPathMedian.row, [self tableView:self.tableView numberOfRowsInSection:indexPathMedian.section] );
+        if( DEBUG ) {
+            NSLog( @"indexPathSource = %i/%i (items: %i)", indexPathMedian.section, indexPathMedian.row, [self tableView:self.tableView numberOfRowsInSection:indexPathMedian.section] );
             NSLog( @"indexPathtarget = %i/%i (items: %i)", indexPath.section, indexPath.row, [self tableView:self.tableView numberOfRowsInSection:indexPath.section] );
-            NSLog( @"rowDistanceForIndexPath = %i", [self rowDistanceForIndexPath:indexPath fromIndexPath:indexPathMedian] );
+            NSLog( @"rowDistanceForIndexPath = %i\n", [self rowDistanceForIndexPath:indexPath fromIndexPath:indexPathMedian] );
         }
     }
     else if( [sectionKey isEqualToString:@"links"] ) {

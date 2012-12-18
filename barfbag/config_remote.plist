@@ -293,30 +293,48 @@
 			<key>port_de</key>
 			<dict>
 				<key>fahrplan</key>
-				<string>schedule.de.xml</string>
-				<key>fahrplan_images</key>
-				<string>images</string>
+				<string>http://29c3.postcapitalism.org/data/schedule.de.xml</string>
+				<key>fahrplan_site</key>
+				<string>http://events.ccc.de/congress/2012/Fahrplan</string>
+				<key>fahrplan_person_img</key>
+				<string>http://29c3.postcapitalism.org/data/images/person-$id$-128x128.png</string>
+				<key>fahrplan_person_site</key>
+				<string>http://events.ccc.de/congress/2012/Fahrplan/speakers/$id$.de.html</string>
+				<key>fahrplan_event_img</key>
+				<string>http://29c3.postcapitalism.org/data/images/event-$id$-128x128.png</string>
+				<key>fahrplan_event_site</key>
+				<string>http://events.ccc.de/congress/2012/Fahrplan/events/$id$.de.html</string>
 				<key>workshops</key>
-				<string>workshops.json</string>
+				<string>http://29c3.postcapitalism.org/data/workshops.json</string>
 				<key>assemblies</key>
-				<string>assemblies.json</string>
+				<string>http://29c3.postcapitalism.org/data/assemblies.json</string>
 				<key>livestreams</key>
-				<string>streams_de_remote.html</string>
+				<string>http://29c3.postcapitalism.org/data/streams_de_remote.html</string>
+				<key>wikibaseurl</key>
+				<string>https://events.ccc.de/congress/2012/wiki</string>
 				<key>cache_status</key>
 				<string>status.json</string>
 			</dict>
 			<key>port_en</key>
 			<dict>
 				<key>fahrplan</key>
-				<string>schedule.en.xml</string>
-				<key>fahrplan_images</key>
-				<string>images</string>
+				<string>http://29c3.postcapitalism.org/data/schedule.en.xml</string>
+				<key>fahrplan_person_img</key>
+				<string>http://29c3.postcapitalism.org/data/images/person-$id$-128x128.png</string>
+				<key>fahrplan_person_site</key>
+				<string>http://events.ccc.de/congress/2012/Fahrplan/speakers/$id$.en.html</string>
+				<key>fahrplan_event_img</key>
+				<string>http://29c3.postcapitalism.org/data/images/event-$id$-128x128.png</string>
+				<key>fahrplan_event_site</key>
+				<string>http://events.ccc.de/congress/2012/Fahrplan/events/$id$.en.html</string>
 				<key>workshops</key>
-				<string>workshops.json</string>
+				<string>http://29c3.postcapitalism.org/data/workshops.json</string>
 				<key>assemblies</key>
-				<string>assemblies.json</string>
+				<string>http://29c3.postcapitalism.org/data/assemblies.json</string>
 				<key>livestreams</key>
-				<string>streams_en_remote.html</string>
+				<string>http://29c3.postcapitalism.org/data/streams_en_remote.html</string>
+				<key>wikibaseurl</key>
+				<string>https://events.ccc.de/congress/2012/wiki</string>
 				<key>cache_status</key>
 				<string>status.json</string>
 			</dict>

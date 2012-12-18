@@ -18,6 +18,15 @@
 "Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten.\n\nSie verwenden derzeit\n%@ der Daten." = "It seems as if we do\nnot have a network connection\nto update the data.\n\nYou are using\n%@ of the Fahrplan.";
 "Aktualisiere Fahrplan" = "Updating Fahrplan";
 
+"Master Configuration" = "Master Configuration";
+"Derzeit liegen keine\nKonfigurationsdaten vor\num zu Aktualisieren.\n\nProbieren sie es später\nnoch einmal bitte!" = "There is no\nconfiguration available\nto update.\n\nPlease try again\nlater connecting!";
+"Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten." = "It seems as if we do\nnot have a network connection\nto update the data.";
+"Wikiplan" = "Wikiplan";
+"Derzeit liegen keine\nAssemblydaten vor\num zu Aktualisieren.\n\nProbieren sie es später\nnoch einmal bitte!" = "There is no\nAssemblydata available\nto update.\n\nPlease try again later\nor use backupserver!";
+"Derzeit liegen keine\nWorkshopdaten vor\num zu Aktualisieren.\n\nProbieren sie es später\nnoch einmal bitte!" = "There is no\nWorkshopdata available\nto update.\n\nPlease try again later\nor use backupserver!";
+"Fahrplan" = "Fahrplan";
+"Derzeit liegen keine\nFahrplandaten vor\num zu Aktualisieren.\n\nProbieren sie es später\nnoch einmal bitte!" = "There is no\nFahrplandata available\nto update.\n\nPlease try again later\nor use backupserver!";
+
 /* FavouriteManager */
 "Favoritenliste" = "Favoritelist";
 

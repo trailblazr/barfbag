@@ -10,6 +10,216 @@
 	},
 	"items": [
 		{
+			"label": "$natch",
+			"description": ["natch challenge is real-time and \u201creal-life\u201d Internet Banking hacking contest. Specially for the competition, we developed our own remote banking system from scratch and imbedded common vulnerabilities discovered during of security assessment of such systems. The solution called PHDays I-Bank is a standard Internet bank with a web interface, PIN code to access the account and a processing. Remote banking vulnerabilities are very different from typical web vulnerabilities (such as XSS or SQL Injection): most vulnerabilities of PHDays I-Bank are logic (such as Race Conditions, One-Time Password prediction, Inefficient Authorization and so on)."],
+			"start_time": ["2012-12-29 15:00:00"],
+			"end_time": ["2012-12-29 17:00:00"],
+			"entry_location": ["Hall 13"],
+			"person_organizing": ["User:Sscherbel","User:Ygoltsev"],
+			"orga_contact": ["ygoltsev@ptsecurity.ru"],
+			"duration": [120]
+		},
+		{
+			"label": "Antragsschach, Proposal Chess",
+			"description": ["Game design workshop for a LARP, inspired by Nomic (1982) and the latest and greatest Bundesparteitag (2012)"],
+			"start_time": ["2012-12-28 10:00:00"],
+			"end_time": ["2012-12-28 12:00:00"],
+			"entry_location": ["Hall 13"],
+			"person_organizing": ["User:Sotp"],
+			"orga_contact": ["zugangserschwernis@yahoo.com"],
+			"duration": [120]
+		},
+		{
+			"label": "Arduino *Programming* Intro (for other genders)",
+			"description": ["There have been and will be various Arduino-Hardware-Workshops. This\nworkshops aims\nat providing a brief hands-on basic introduction to *programming* them:\nI have ~10 Arduinos with simple led shields, all you need to bring is a\nlaptop with an USB-Port and preferably the Arduino-IDE already\ninstalled, and you're ready to get the lights blinken!\n\nSo there's place for 10-20 without their own Arduino, more if some bring\ntheir own Arduino, maybe with something attached that blinks, otherwise\nI will have some spare leds.\nI work with Arduino Unos, but the examples should work for other models\nas well.\n\nThis workshop is for other genders, that is, cis female and all other\ngendered nerds and hackers, just not for cis male nerds and hackers, and\njust to push the odds off balance to meet other \"other gendered\" hackers\nand hackers-to-be at the congress.\n\nIf there are some cis-men interested in taking this workshop, email me\nand we can see if we can set up another time slot."],
+			"start_time": ["2012-12-28 14:00:00"],
+			"end_time": ["2012-12-28 15:30:00"],
+			"entry_location": ["Hall 14"],
+			"person_organizing": ["User:Drblinken"],
+			"orga_contact": ["drblinken@gmail.com"],
+			"duration": [90]
+		},
+		{
+			"label": "Arduino For Total Newbies Workshop",
+			"description": ["Arduino workshop for newbies, using TV-B-Gone remote controls as an intro"],
+			"start_time": ["2012-12-28 12:00:00"],
+			"end_time": ["2012-12-28 15:00:00"],
+			"entry_location": ["Hardware Hacking Area"],
+			"person_organizing": ["User:Maltman23"],
+			"orga_contact": ["29C3@hackerspaceshop.com"],
+			"duration": [180]
+		},
+		{
+			"label": "Arduino For Total Newbies Workshop day3",
+			"description": ["Arduino workshop for newbies, using TV-B-Gone remote controls as an intro"],
+			"start_time": ["2012-12-29 12:00:00"],
+			"end_time": ["2012-12-29 15:00:00"],
+			"entry_location": ["Hardware Hacking Area"],
+			"person_organizing": ["User:Maltman23"],
+			"orga_contact": ["29C3@hackerspaceshop.com"],
+			"duration": [180]
+		},
+		{
+			"label": "Beginners Giude to Android Reverse Engineering",
+			"description": ["Android is a colorful platform for a variety of useful apps. But do you trust downloads from the Internet on a device carrying most of your personal data? Mobile malware has spread by side-loading or even by passing through Google Play. Does it send Premium-SMS in the background? Or leak addressbok data to a remote server?\n\nThis workshop is a beginners guide to the first steps of self-defense by dismanteling apps and gaining inside their functions. It is aimed at hackers with some general knownledge about programming (understanding Java is better) and the use of command line tools. \n\nAfter a short introduction about the approach and useful tools we should select some examples and have a deep look at least at one sample (the groups favorite). \n\nTo pepare, please download and install one of the following VMs: \n\n* A.R.E - Android Reverse Engineering VM (4,6GB compressed) at https:\/\/redmine.honeynet.org\/projects\/are\/wiki and make an update via git from within.\n* Santoku Linux ISO  (1,2GB) at https:\/\/santoku-linux.com\/download , currently v0.3\n\nYou may bring your own apps, we might extract some of present devices or fetch some malware from well-known repositories (e.g. from Milas excellent collection at http:\/\/contagiodump.blogspot.de\/)."],
+			"end_time": ["2012-12-16 15:01:44"],
+			"person_organizing": ["User:Sam"],
+			"orga_contact": ["sam@ccc.de"],
+			"duration": [60]
+		},
+		{
+			"label": "Brewing probiotic beverages",
+			"description": ["Introduction to brewing probiotic beverages using kombucha, granos tibicos (water kefir) and milk kefir whey. The workshop will be partly demonstration and partly hands on, sharing the cultures with participants."],
+			"start_time": ["2012-12-28 14:00:00"],
+			"end_time": ["2012-12-28 16:00:00"],
+			"entry_location": ["Hall 12"],
+			"person_organizing": ["User:Algoldor"],
+			"orga_contact": ["algoldor@yahoo.com"],
+			"duration": [120]
+		},
+		{
+			"label": "Building Wikidata",
+			"description": ["Wikidata will be presented in talks at 29c3. In the mass collaboration assembly we want to show you the project from a technical perspective, giving you an idea of what we have done so far, what we're planning to do and where you can help."],
+			"start_time": ["2012-12-28 17:00:00"],
+			"end_time": ["2012-12-28 17:45:00"],
+			"entry_location": ["Mass collaboration"],
+			"person_organizing": ["User:Jeroen De Dauw"],
+			"duration": [45]
+		},
+		{
+			"label": "CCC Regiotreffen",
+			"description": ["Meeting of the CCC, only for interested CCC members"],
+			"start_time": ["2012-12-28 16:00:00"],
+			"end_time": ["2012-12-28 19:00:00"],
+			"entry_location": ["Hall 13"],
+			"person_organizing": ["User:Maha"],
+			"orga_contact": ["mail@ccc.de"],
+			"duration": [180]
+		},
+		{
+			"label": "CCC Regiotreffen 2",
+			"description": ["Meeting of the CCC, only for interested CCC members"],
+			"start_time": ["2012-12-28 16:00:00"],
+			"end_time": ["2012-12-28 19:00:00"],
+			"entry_location": ["Hall 14"],
+			"person_organizing": ["User:Maha"],
+			"orga_contact": ["mail@ccc.de"],
+			"duration": [180]
+		},
+		{
+			"label": "Code Hero/Workshop",
+			"description": ["TBD"],
+			"start_time": ["2012-12-27 00:00:00"],
+			"end_time": ["2012-12-28 00:00:00"],
+			"entry_location": ["Milliways"],
+			"duration": [1440]
+		},
+		{
+			"label": "Der männliche G-Punkt - Eine Übung",
+			"description": ["Mythen praktisch Erkunden: Angesichts der Diskussion um die Unterschiede und Parallelen der sexuellen Erlebniswelt von Mann und Frau soll der Begriff des \"G-Punkt\" n\u00e4her erkundet werden. Zudem werden Fakten aus der Soziologie und der sexualp\u00e4dagogischen Praxis geliefert. Danach evtl. Ideologiekritik und praktische Erkundungen in Kleingruppen."],
+			"start_time": ["2012-12-28 19:00:00"],
+			"end_time": ["2012-12-28 20:00:00"],
+			"entry_location": ["Speakers Corner"],
+			"person_organizing": ["User:Webby"],
+			"duration": [60]
+		},
+		{
+			"label": "Digital Cooking",
+			"description": ["We will bring several EveryCook digital cooking machines.\nUsing the EveryCook database we will create digital recipes and cook them in the machines."],
+			"start_time": ["2012-12-28 00:45:00"],
+			"end_time": ["2012-12-28 03:45:00"],
+			"person_organizing": ["Alexis Wiasmitinow"],
+			"orga_contact": ["alexis@everycook.org"],
+			"duration": [180]
+		},
+		{
+			"label": "Do good by being evil - How to begin with your own real Star Wars costume",
+			"description": ["A society hack.\nTouch an approved Star Wars costume or even get dressed in it.\nHints how to start with your own costume."],
+			"start_time": ["2012-12-29 13:00:00"],
+			"end_time": ["2012-12-29 14:00:00"],
+			"entry_location": ["Hall 14"],
+			"person_organizing": ["TD-23017"],
+			"orga_contact": ["soren.heinze@compbuoy.com"],
+			"duration": [60]
+		},
+		{
+			"label": "EU Data Protection Reform - Call for Arms",
+			"description": ["The EU is reforming its data protection law, and industry lobbyists are heavily outnumbering our folks in Brussels. The workshop will build on the talk by Jan Philipp Albecht, Katarzyna Szymielewizc and Kirsten Fiedler on \"The Grand EU Data Protection Reform\", and will aim at developing a campaign strategy and battle plan to defend our privacy from corporate interests."],
+			"start_time": ["2012-12-29 20:00:00"],
+			"end_time": ["2012-12-29 23:00:00"],
+			"entry_location": ["La Quadrature du Net"],
+			"person_organizing": ["EDRi data protection working group"],
+			"orga_contact": ["bendrath@zedat.fu-berlin.de"],
+			"duration": [180]
+		},
+		{
+			"label": "FPGA 101",
+			"description": ["A crash course on FPGAs. Learn everything you need to know to get started with your project"],
+			"start_time": ["2012-12-27 17:00:00"],
+			"end_time": ["2012-12-27 23:59:00"],
+			"entry_location": ["Hall 12"],
+			"person_organizing": ["User:4rOs1s"],
+			"orga_contact": ["kb@ptscientists.com"],
+			"duration": [419]
+		},
+		{
+			"label": "Gentoo e.V. Mitgliederversammlung",
+			"description": ["Regul\u00e4re (also nicht au\u00dferordentliche) Mitgliederversammlung des F\u00f6rdervereins Gentoo e.V.\nhttps:\/\/www.gentoo-ev.org\/"],
+			"start_time": ["2012-12-29 18:00:00"],
+			"end_time": ["2012-12-29 20:00:00"],
+			"entry_location": ["Hall 13"],
+			"person_organizing": ["User:Sping"],
+			"orga_contact": ["sping@gentoo.org"],
+			"duration": [120]
+		},
+		{
+			"label": "Geocaching",
+			"description": ["Treasure hunting via GPS - We will search Geocaches near CCH!"],
+			"start_time": ["2012-12-29 13:00:00"],
+			"end_time": ["2012-12-29 17:00:00"],
+			"entry_location": ["AquaVille"],
+			"person_organizing": ["User:Martl"],
+			"duration": [240]
+		},
+		{
+			"label": "Hackerspaces exchange",
+			"description": ["All hackerspaces deal with similar challenges, and it would be beneficial for all of us to exchange experiences and learn from each other. I would like to meet people from different hackerspaces, create new connections, and even help creation of new hackerspaces!"],
+			"start_time": ["2012-12-27 17:00:00"],
+			"end_time": ["2012-12-27 18:00:00"],
+			"entry_location": ["Hall 13"],
+			"person_organizing": ["User:Becha"],
+			"orga_contact": ["becha@xs4all.nl"],
+			"duration": [60]
+		},
+		{
+			"label": "Hacking and Contribution Party",
+			"description": ["We are hacking on fun stuff around Wikidata, Collaborative Mapping of Surveillance Technologies, Open Technology for Transparency Initiative and maybe other projects!"],
+			"start_time": ["2012-12-28 18:00:00"],
+			"end_time": ["2012-12-28 20:00:00"],
+			"entry_location": ["Mass collaboration"],
+			"person_organizing": ["User:Lydia Pintscher"],
+			"orga_contact": ["lydia.pintscher@wikimedia.de"],
+			"duration": [120]
+		},
+		{
+			"label": "Hacking and Contribution Party 2",
+			"description": ["We are hacking on fun stuff around Wikidata, Collaborative Mapping of Surveillance Technologies, Open Technology for Transparency Initiative and maybe other projects!"],
+			"start_time": ["2012-12-29 18:00:00"],
+			"end_time": ["2012-12-29 20:00:00"],
+			"entry_location": ["Mass collaboration"],
+			"person_organizing": ["User:Lydia Pintscher"],
+			"orga_contact": ["lydia.pintscher@wikimedia.de"],
+			"duration": [120]
+		},
+		{
+			"label": "HexF",
+			"description": ["Can I  move my hotel door unlocking to Hall 13th instead of the hardware hacking area, at the same time (28 December 2012 16:00:00)\n\nI attempted to edit the calendar for Hall 13 but could not. Thanks in advance"],
+			"entry_location": ["Hall 13"],
+			"person_organizing": ["HexF"],
+			"orga_contact": ["HexF@gmx.com"],
+			"duration": [120]
+		},
+		{
 			"label": "Hotel Door Unlocking Kit Assembly",
 			"description": ["In August 2012 Cody Brocious released information on a flaw with Onity HT Hotel Room lock. He described the software and hardware needed to trigger the door to open.\nSee here for the slides:\nhttp:\/\/demoseen.com\/bhtalk2.pdf\n\nThe locks, cards and programmer all contain encryption and formerly secret protocols. We will discuss these and try to improve on the public information available.\nThe workshop will consist of an overview of how the locking system works, followed by soldering a simple kit that enables instant opening of any flawed door.\n\nThere will also be a working lock brought along with valid room cards. We can also look at the software and encryption and discuss further tests and possible flaws and fixes."],
 			"start_time": ["2012-12-28 16:00:00"],
@@ -61,10 +271,10 @@
 		},
 		{
 			"label": "OpenBTS workshop",
-			"description": ["What is OpenBTS and how to run it. More details to be added later."],
-			"start_time": ["2012-12-29 16:00:00"],
-			"end_time": ["2012-12-29 19:00:00"],
-			"entry_location": ["Hall 13"],
+			"description": ["What is OpenBTS and how to run it.\n\n1) A generic overview of what is OpenBTS and how it operates.\n\n2) Precautions to run a test network without disrupting a carrier service.\n\n3) How to build OpenBTS.\n\n4) How to run OpenBTS and common pitfalls."],
+			"start_time": ["2012-12-29 18:00:00"],
+			"end_time": ["2012-12-29 21:00:00"],
+			"entry_location": ["Hall 14"],
 			"person_organizing": ["User:Ipse"],
 			"orga_contact": ["Alexander.Chemeris@gmail.com"],
 			"duration": [180]

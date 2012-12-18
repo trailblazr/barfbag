@@ -18,6 +18,16 @@
 "Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten.\n\nSie verwenden derzeit\n%@ der Daten." = "Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten.\n\nSie verwenden derzeit\n%@ des Fahrplans.";
 "Aktualisiere Fahrplan" = "Aktualisiere Fahrplan";
 
+"Master Configuration" = "Hauptkonfiguration";
+"Derzeit liegen keine\nKonfigurationsdaten vor\num zu Aktualisieren.\n\nProbieren sie es später\nnoch einmal bitte!" = "Derzeit liegen keine\nKonfigurationsdaten vor\num zu Aktualisieren.\n\nProbieren sie es später\nnoch einmal bitte!";
+"Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten." = "Derzeit besteht scheinbar\nkeine Internetverbindung zum\nAktualisieren der Daten.";
+"Wikiplan" = "Wikiplan";
+"Derzeit liegen keine\nAssemblydaten vor\num zu Aktualisieren.\n\nProbieren sie es später\nnoch einmal bitte!" = "Derzeit liegen keine\nAssemblydaten vor\num zu Aktualisieren.\n\nProbieren sie es später\noder aktivieren sie den Backupserver.";
+"Derzeit liegen keine\nWorkshopdaten vor\num zu Aktualisieren.\n\nProbieren sie es später\nnoch einmal bitte!" = "Derzeit liegen keine\nWorkshopdaten vor\num zu Aktualisieren.\n\nProbieren sie es später\noder aktivieren sie den Backupserver.";
+"Fahrplan" = "Fahrplan";
+"Derzeit liegen keine\nFahrplandaten vor\num zu Aktualisieren.\n\nProbieren sie es später\nnoch einmal bitte!" = "Derzeit liegen keine\nFahrplandaten vor\num zu Aktualisieren.\n\nProbieren sie es später\noder aktivieren sie den Backupserver.";
+
+
 /* FavouriteManager */
 "Favoritenliste" = "Favoritenliste";
 
