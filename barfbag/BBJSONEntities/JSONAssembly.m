@@ -4,6 +4,7 @@
 
 #import "JSONAssembly.h"
 #import "FavouriteManager.h"
+#import "MasterConfig.h"
 
 @implementation JSONAssembly
 
@@ -95,17 +96,18 @@ nil];
     }
 }
 
+- (NSString*) websiteHref {
+    NSString* urlString = [[MasterConfig sharedConfiguration] urlStringWikiPageWithPath:[self itemTitle]];
+    return urlString;
+}
+
 - (NSString*) stringRepresentationMail {
-    return [NSString stringWithFormat:@"<b>%@</b><br>%@", [NSString placeHolder:@"(Kein Titel)" forEmptyString:[self singlePropertyFromObject:label]], [NSString placeHolder:@"(Kein Ort)" forEmptyString:[self singlePropertyFromObject:nameOfLocation]]];
+    return [NSString stringWithFormat:@"<b>%@</b><br>%@", [NSString placeHolder:@"(Kein Titel)" forEmptyString:[self itemTitle]], [NSString placeHolder:@"(Kein Ort)" forEmptyString:[self itemLocation]]];
 }
 
 - (NSString*) stringRepresentationTwitter {
-    NSString *firstLink = nil;
-    if( webLinks && [webLinks count] > 0 ) {
-        firstLink = [webLinks objectAtIndex:0];
-    }
-    NSString *linkHref = [firstLink httpUrlString];
-    return [NSString stringWithFormat:@"\"%@\" %@", [NSString placeHolder:@"(Kein Titel)" forEmptyString:[self singlePropertyFromObject:label]], [NSString placeHolder:@"" forEmptyString:linkHref]];
+    NSString *linkString = [self websiteHref];
+    return [NSString stringWithFormat:@"\"%@\" %@", [NSString placeHolder:@"(Kein Titel)" forEmptyString:[self itemTitle]], [NSString placeHolder:@"" forEmptyString:linkString]];
 }
 
 - (NSString*) description {

@@ -860,7 +860,7 @@
 }
 
 - (void) allDataRefresh { // FIRST UPDATE MASTER CONFIG
-    [self performSelector:@selector(allDataRefreshDelayed) withObject:nil afterDelay:15.0];
+    [self performSelector:@selector(allDataRefreshDelayed) withObject:nil afterDelay:5.0];
 }
 
 - (void) manageCloudStorage {

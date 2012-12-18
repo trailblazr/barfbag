@@ -33,5 +33,6 @@
 - (NSString*)abstract;
 - (NSString*) stringRepresentationMail;
 - (NSString*) stringRepresentationTwitter;
+- (NSString*) websiteHref;
 
 @end
