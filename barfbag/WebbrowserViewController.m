@@ -514,9 +514,12 @@ BOOL isShowingActionSheet = NO;
     [self shouldHideNetworkIndicator];
 
     // CHECK IF THAT IS AN SSL URL
+    /*
+     // TAKEN OUT DESTROYS VIDEO STREAMS
     if( [[webView.request.URL absoluteString] containsString:@"https://" ignoringCase:YES] ) {
         [self connectUsingAsiRequestWithUrlString:[webView.request.URL absoluteString]];
     }
+     */
 }
 
 #pragma mark - ASI STUFF

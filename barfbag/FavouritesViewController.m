@@ -121,7 +121,7 @@
     if( timerUpdateUpNextString && [timerUpdateUpNextString isValid] ) {
         [timerUpdateUpNextString invalidate];
     }
-    self.timerUpdateUpNextString = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateUpNextString:) userInfo:nil repeats:YES];
+    self.timerUpdateUpNextString = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateUpNextString:) userInfo:nil repeats:YES];
     [self updateUpNextString:nil];
 }
 

@@ -41,7 +41,7 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 
 // DEPLOYMENT & DEVELOPMENT PARAMETERS
 #define DEBUG 0
-#define SCREENSHOTMODE 1
+#define SCREENSHOTMODE 0
 #define SIMULATE_28C3 0
 
 // APP LAUNCH PARAMETERS

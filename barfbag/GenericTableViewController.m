@@ -63,20 +63,25 @@
         Event *event = (Event*)item;
         [stringRep appendString:[event stringRepresentationMail]];
     }
-    if( [item isKindOfClass:[Assembly class]] ) {
-        Assembly* assembly = (Assembly*)item;
+    if( [item isKindOfClass:[JSONAssembly class]] ) {
+        JSONAssembly* assembly = (JSONAssembly*)item;
         [stringRep appendString:[assembly stringRepresentationMail]];
     }
-    if( [item isKindOfClass:[Workshop class]] ) {
-        Workshop* workshop = (Workshop*)item;
+    if( [item isKindOfClass:[JSONWorkshop class]] ) {
+        JSONWorkshop* workshop = (JSONWorkshop*)item;
         [stringRep appendString:[workshop stringRepresentationMail]];
     }
     if( [item isKindOfClass:[FavouriteItem class]] ) {
         FavouriteItem* favourite = (FavouriteItem*)item;
         [stringRep appendString:[favourite stringRepresentationMail]];
     }
-    if( [item isKindOfClass:[NSDictionary class]] || [item isKindOfClass:[NSMutableDictionary class]] ) {
-        NSDictionary *dictionary = (NSDictionary*)item;
+    if( [item isKindOfClass:[FavouriteManager class]] ) {
+        
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+        [dictionary setObject:[[FavouriteManager sharedManager] favouritedItemsOfType:FavouriteItemTypeEvent] forKey:@"events"];
+        [dictionary setObject:[[FavouriteManager sharedManager] favouritedItemsOfType:FavouriteItemTypeWorkshop] forKey:@"workshops"];
+        [dictionary setObject:[[FavouriteManager sharedManager] favouritedItemsOfType:FavouriteItemTypeAssembly] forKey:@"assemblies"];
+        
         NSArray *allKeys = [dictionary allKeys];
         NSArray *sectionItems = nil;
         for( NSString* currentKey in allKeys ) {
