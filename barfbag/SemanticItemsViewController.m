@@ -242,22 +242,43 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-    if( indexPath.section == 0 ) {
-        Workshop *workshop = [[self appDelegate].semanticWikiWorkshops objectAtIndex:indexPath.row];
-        WorkshopDetailViewController *detailViewController = [[WorkshopDetailViewController alloc] initWithNibName:@"WorkshopDetailViewController" bundle:nil];
-        detailViewController.workshop = workshop;
-        detailViewController.navigationTitle = [NSString stringWithFormat:LOC( @"Workshop #%i" ), indexPath.row+1];
-        [self.navigationController pushViewController:detailViewController animated:YES];
-        [detailViewController release];
+    if( isSearching ) {
+        SearchableItem *itemTapped = [searchItemsFiltered objectAtIndex:indexPath.row];
+        if( [itemTapped isKindOfClass:[JSONWorkshop class]] ) {
+            Workshop *workshop = (Workshop*)itemTapped;
+            WorkshopDetailViewController *detailViewController = [[WorkshopDetailViewController alloc] initWithNibName:@"WorkshopDetailViewController" bundle:nil];
+            detailViewController.workshop = workshop;
+            detailViewController.navigationTitle = [NSString placeHolder:@"" forEmptyString:itemTapped.itemTitle];
+            [self.navigationController pushViewController:detailViewController animated:YES];
+            [detailViewController release];
+        }
+        if( [itemTapped isKindOfClass:[JSONAssembly class]] ) {
+            Assembly *assembly = (Assembly*)itemTapped;
+            AssemblyDetailViewController *detailViewController = [[AssemblyDetailViewController alloc] initWithNibName:@"AssemblyDetailViewController" bundle:nil];
+            detailViewController.navigationTitle = [NSString placeHolder:@"" forEmptyString:itemTapped.itemTitle];
+            detailViewController.assembly = assembly;
+            [self.navigationController pushViewController:detailViewController animated:YES];
+            [detailViewController release];
+        }
     }
-    if( indexPath.section == 1 ) {
-        Assembly *assembly = [[self appDelegate].semanticWikiAssemblies objectAtIndex:indexPath.row];
-        AssemblyDetailViewController *detailViewController = [[AssemblyDetailViewController alloc] initWithNibName:@"AssemblyDetailViewController" bundle:nil];
-        detailViewController.navigationTitle = [NSString stringWithFormat:LOC( @"Assembly #%i" ), indexPath.row+1];
-        detailViewController.assembly = assembly;
-        [self.navigationController pushViewController:detailViewController animated:YES];
-        [detailViewController release];
+    else {
+        // Navigation logic may go here. Create and push another view controller.
+        if( indexPath.section == 0 ) {
+            Workshop *workshop = [[self appDelegate].semanticWikiWorkshops objectAtIndex:indexPath.row];
+            WorkshopDetailViewController *detailViewController = [[WorkshopDetailViewController alloc] initWithNibName:@"WorkshopDetailViewController" bundle:nil];
+            detailViewController.workshop = workshop;
+            detailViewController.navigationTitle = [NSString placeHolder:@"" forEmptyString:workshop.itemTitle];
+            [self.navigationController pushViewController:detailViewController animated:YES];
+            [detailViewController release];
+        }
+        if( indexPath.section == 1 ) {
+            Assembly *assembly = [[self appDelegate].semanticWikiAssemblies objectAtIndex:indexPath.row];
+            AssemblyDetailViewController *detailViewController = [[AssemblyDetailViewController alloc] initWithNibName:@"AssemblyDetailViewController" bundle:nil];
+            detailViewController.navigationTitle = [NSString placeHolder:@"" forEmptyString:assembly.itemTitle];
+            detailViewController.assembly = assembly;
+            [self.navigationController pushViewController:detailViewController animated:YES];
+            [detailViewController release];
+        }
     }
 }
 

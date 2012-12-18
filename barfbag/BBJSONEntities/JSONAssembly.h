@@ -12,6 +12,7 @@
 @property (nonatomic, copy) NSString *label;
 @property (nonatomic, copy) NSString *descriptionText;
 @property (nonatomic, retain) NSNumber *lectureSeats;
+@property (nonatomic, retain) NSNumber *memberSeats;
 @property (nonatomic, retain) NSArray* webLinks;
 @property (nonatomic, copy) NSString *bringsStuff;
 @property (nonatomic, copy) NSString *plannedWorkshops;
@@ -28,6 +29,7 @@
 - (NSArray*) arrayForPropertyWithName:(NSString*)propertyName;
 
 - (NSInteger) numLectureSeats;
+- (NSInteger) numMemberSeats;
 - (NSString*)abstract;
 - (NSString*) stringRepresentationMail;
 - (NSString*) stringRepresentationTwitter;

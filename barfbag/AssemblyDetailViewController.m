@@ -75,13 +75,13 @@
     self.tableView.tableHeaderView = detailHeaderViewController.view;
 
     detailHeaderViewController.titleLabel.text = assembly.label;
-    detailHeaderViewController.subtitleLabel.text = @"";
+    detailHeaderViewController.subtitleLabel.text = [NSString placeHolder:@"" forEmptyString:assembly.itemSubtitle];
     detailHeaderViewController.timeStart.text = assembly.locationOpenedAt;
     detailHeaderViewController.timeDuration.text = @"";
-    detailHeaderViewController.roomLabel.text = assembly.nameOfLocation;
+    detailHeaderViewController.roomLabel.text = assembly.itemLocation;
     detailHeaderViewController.dateLabel.text = @"";
-    detailHeaderViewController.languageLabel.text = @"";
-    detailHeaderViewController.trackLabel.text = [NSString stringWithFormat:@"%i Plätze", assembly.numLectureSeats];
+    detailHeaderViewController.languageLabel.text = [NSString stringWithFormat:LOC( @"%i Plätze (Members)" ), assembly.numMemberSeats];
+    detailHeaderViewController.trackLabel.text = [NSString stringWithFormat:LOC( @"%i Plätze (Lecture)" ), assembly.numLectureSeats];
     detailHeaderViewController.speakerLabel.text = assembly.personOrganizing;
 
     [self setupTableViewFooter];

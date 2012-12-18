@@ -11,6 +11,7 @@
 @synthesize label;
 @synthesize descriptionText;
 @synthesize lectureSeats;
+@synthesize memberSeats;
 @synthesize webLinks;
 @synthesize bringsStuff;
 @synthesize plannedWorkshops;
@@ -26,6 +27,7 @@
                                  @"label", @"label",
                                  @"descriptionText", @"description",
                                  @"lectureSeats", @"lecture_seats",
+                                 @"memberSeats", @"member_seats",
                                  @"webLinks", @"weblink",
                                  @"bringsStuff", @"brings_stuff",
                                  @"plannedWorkshops", @"planned_workshops",
@@ -73,7 +75,18 @@ nil];
 
 - (NSInteger) numLectureSeats {
     NSNumber *seats = [self singlePropertyFromObject:lectureSeats];
-;
+    ;
+    if( seats ) {
+        return [seats integerValue];
+    }
+    else {
+        return 0;
+    }
+}
+
+- (NSInteger) numMemberSeats {
+    NSNumber *seats = [self singlePropertyFromObject:memberSeats];
+    ;
     if( seats ) {
         return [seats integerValue];
     }

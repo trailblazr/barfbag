@@ -105,6 +105,8 @@
 "webLinks" = "Links";
 "planningNotes" = "Notes";
 "bringsStuff" = "Stuff";
+"%i Plätze (Members)" = "%i places (members)";
+"%i Plätze (Lecture)" = "%i places (lecture)";
 
 /* WorkshopDetailViewController */
 
