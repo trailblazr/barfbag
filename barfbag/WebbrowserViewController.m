@@ -42,6 +42,7 @@
 @synthesize shouldUseSmoothFading;
 @synthesize timerFadeInFinal;
 @synthesize isPresentedModal;
+@synthesize currentRequest;
 
 BOOL isFirstLoad = YES;
 BOOL isShowingActionSheet = NO;

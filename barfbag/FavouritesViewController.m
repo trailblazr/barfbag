@@ -84,7 +84,6 @@
 
 - (SearchableItem*) nextEventOnSchedule {
     // iterate over all events and find the best fit
-    NSDate *dateNow = [NSDate date];
     NSTimeInterval timeOffsetMinimum = CGFLOAT_MAX;
     SearchableItem *itemFound = nil;
     NSMutableArray *arrayOfEventsWithStartDates = [NSMutableArray array];
