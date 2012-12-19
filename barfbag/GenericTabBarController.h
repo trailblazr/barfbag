@@ -15,10 +15,14 @@
 @interface GenericTabBarController : UITabBarController <ATMHudDelegate> {
 
     ATMHud *hud;
+    NSDateFormatter *sharedDateFormatter;
 
 }
 
 @property( nonatomic, retain ) ATMHud *hud;
+@property( nonatomic, retain ) NSDateFormatter *sharedDateFormatter;
+
+- (NSDateFormatter*) dateFormatter;
 
 - (void) showHudWithCaption:(NSString*)caption hasActivity:(BOOL)hasActivity;
 - (void) hideHud;

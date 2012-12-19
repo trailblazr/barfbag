@@ -23,12 +23,14 @@
 @synthesize isSearching;
 @synthesize isUserAllowedToSelectRow;
 @synthesize searchItemsFiltered;
+@synthesize sharedDateFormatter;
 
 - (void) dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.hud = nil;
     self.reminderObject = nil;
     self.searchItemsFiltered = nil;
+    self.sharedDateFormatter = nil;
     [super dealloc];
 }
 
@@ -52,6 +54,13 @@
             }
         }
     }
+}
+
+- (NSDateFormatter*) dateFormatter {
+    if( !sharedDateFormatter ) {
+        self.sharedDateFormatter = [[NSDateFormatter alloc] init];
+    }
+    return sharedDateFormatter;
 }
 
 #pragma mark - UIActionSheetDelegate
@@ -219,10 +228,6 @@
 
 - (NSString*) htmlMailBodyForObject:(id)object {
     NSMutableString *htmlString = [NSMutableString string];
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.dateStyle = NSDateFormatterMediumStyle;
-    df.timeStyle = NSDateFormatterShortStyle;
-    
     [htmlString appendFormat:@"<html><body>"];
     [htmlString appendFormat:@"<p><strong>%@:</strong></p>", LOC( @"29c3 Favorit(en)" )];
     [htmlString appendString:@"<p>"];
@@ -231,7 +236,6 @@
 
     [htmlString appendString:@"</p>"];
     [htmlString appendString:@"</body></html>"];
-    [df release];
     return htmlString;
 }
 
@@ -525,22 +529,18 @@
 
 - (NSString*) stringForDate:(NSDate*)date withFormat:(NSString*)format {
     if( !date ) return nil;
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.dateFormat = format;
-    NSString *formattedDate = [df stringFromDate:date];
-    [df release];
+    [self dateFormatter].dateFormat = format;
+    NSString *formattedDate = [[self dateFormatter] stringFromDate:date];
     return formattedDate;
 }
 
 
 - (NSString*) stringDayForDate:(NSDate*)date withDayFormat:(NSString*)dayFormat {
     if( !date ) return nil;
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.timeStyle = NSDateFormatterNoStyle;
-    df.dateStyle = NSDateFormatterMediumStyle;
-    df.dateFormat = [NSString stringWithFormat:@"%@, %@", dayFormat, df.dateFormat];
-    NSString *formattedDate = [df stringFromDate:date];
-    [df release];
+    [self dateFormatter].timeStyle = NSDateFormatterNoStyle;
+    [self dateFormatter].dateStyle = NSDateFormatterMediumStyle;
+    [self dateFormatter].dateFormat = [NSString stringWithFormat:@"%@, %@", dayFormat, [self dateFormatter].dateFormat];
+    NSString *formattedDate = [[self dateFormatter] stringFromDate:date];
     return formattedDate;
 }
 

@@ -79,6 +79,9 @@
     }
     self.favouritesKeysArray = [NSArray arrayWithArray:neededKeys];
     [self setupTableViewHeader];
+    if( [MKiCloudSync instance].isActivatedRightNow ) {
+        [self setupTableViewFooter];
+    }
     [self.tableView reloadData];
 }
 
@@ -201,12 +204,10 @@
     cloudDateLabel.textAlignment = UITextAlignmentCenter;
     cloudDateLabel.adjustsFontSizeToFitWidth = YES;
     [footerView addSubview:cloudDateLabel];
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.timeStyle = NSDateFormatterFullStyle;
-    df.dateStyle = NSDateFormatterFullStyle;
-    df.doesRelativeDateFormatting = YES;
-    NSString *formattedDate = [df stringFromDate:[MKiCloudSync instance].dateLastSynced];
-    [df release];
+    [self dateFormatter].timeStyle = NSDateFormatterFullStyle;
+    [self dateFormatter].dateStyle = NSDateFormatterFullStyle;
+    [self dateFormatter].doesRelativeDateFormatting = YES;
+    NSString *formattedDate = [[self dateFormatter] stringFromDate:[MKiCloudSync instance].dateLastSynced];
     if( [favouritesStored count] == 0 ) {
         cloudDateLabel.text = LOC( @"0 Favoriten.\nMarkiere Events, Assemblies\noder Workshops." );
     }
@@ -221,22 +222,10 @@
 }
 
 - (void) refreshAfterCloudSync {
-    [self showCloudSyncDate];
     [self refreshData];
 }
 
-- (void) showCloudSyncDate {
-    [self setupTableViewFooter];
-}
-
-- (void) hideCloudSyncDate {
-    self.tableView.tableFooterView = nil;
-}
-
 - (void)viewWillAppear:(BOOL)animated {
-    if( [MKiCloudSync instance].isActivatedRightNow ) {
-        [self showCloudSyncDate];
-    }
     [self refreshData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAfterCloudSync) name:kMKiCloudSyncNotification object:nil];
 }

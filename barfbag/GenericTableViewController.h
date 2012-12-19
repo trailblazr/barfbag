@@ -24,7 +24,7 @@
     BOOL isSearching;
     BOOL isUserAllowedToSelectRow;
     NSMutableArray *searchItemsFiltered;
-
+    NSDateFormatter *sharedDateFormatter;
 }
 
 @property( nonatomic, assign ) BOOL isSearching;
@@ -32,6 +32,9 @@
 @property( nonatomic, retain ) ATMHud *hud;
 @property( nonatomic, retain ) id reminderObject;
 @property( nonatomic, retain ) NSMutableArray *searchItemsFiltered;
+@property( nonatomic, retain ) NSDateFormatter *sharedDateFormatter;
+
+- (NSDateFormatter*) dateFormatter;
 
 - (void) showHudWithCaption:(NSString*)caption hasActivity:(BOOL)hasActivity;
 - (void) hideHud;

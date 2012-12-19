@@ -12,9 +12,11 @@
 @implementation GenericViewController
 
 @synthesize hud;
+@synthesize sharedDateFormatter;
 
 - (void) dealloc {
     self.hud = nil;
+    self.sharedDateFormatter = nil;
     [super dealloc];
 }
 
@@ -31,6 +33,13 @@
     self.view.backgroundColor = [self backgroundColor];
 }
 
+- (NSDateFormatter*) dateFormatter {
+    if( !sharedDateFormatter ) {
+        self.sharedDateFormatter = [[NSDateFormatter alloc] init];
+    }
+    return sharedDateFormatter;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -43,12 +52,10 @@
 
 - (NSString*) stringDayForDate:(NSDate*)date withDayFormat:(NSString*)dayFormat {
     if( !date ) return nil;
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.timeStyle = NSDateFormatterNoStyle;
-    df.dateStyle = NSDateFormatterMediumStyle;
-    df.dateFormat = [NSString stringWithFormat:@"%@, %@", dayFormat, df.dateFormat];
-    NSString *formattedDate = [df stringFromDate:date];
-    [df release];
+    [self dateFormatter].timeStyle = NSDateFormatterNoStyle;
+    [self dateFormatter].dateStyle = NSDateFormatterMediumStyle;
+    [self dateFormatter].dateFormat = [NSString stringWithFormat:@"%@, %@", dayFormat, [self dateFormatter].dateFormat];
+    NSString *formattedDate = [[self dateFormatter] stringFromDate:date];
     return formattedDate;
 }
 

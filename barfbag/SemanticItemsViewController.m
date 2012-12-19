@@ -155,10 +155,11 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
     if (isSearching) {
         SearchableItem *currentItem = [searchItemsFiltered objectAtIndex:indexPath.row];
-        NSDateFormatter *df = [[NSDateFormatter alloc] init];
-        df.dateFormat = @"HH:mm";
-        NSString *startTimeString = [df stringFromDate:currentItem.itemDateStart];
-        [df release];
+        NSString *startTimeString = nil;
+        @synchronized( [self dateFormatter] ) {
+            [self dateFormatter].dateFormat = @"HH:mm";
+            startTimeString = [[self dateFormatter] stringFromDate:currentItem.itemDateStart];
+        }
         cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",[NSString placeHolder:@"<start>" forEmptyString:startTimeString], [NSString placeHolder:@"<title>"forEmptyString:currentItem.itemTitle]];
         cell.detailTextLabel.text = [NSString placeHolder:@"<description>" forEmptyString:currentItem.itemSubtitle];
         // CHECK FAVOURITE
