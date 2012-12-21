@@ -564,6 +564,13 @@
     return [self stringDayForDate:date withDayFormat:@"eee"];
 }
 
+- (NSString*) stringShortDayOnlyForDate:(NSDate*)date {
+    if( !date ) return nil;
+    [self dateFormatter].dateFormat = [NSString stringWithFormat:@"eee"];
+    NSString *formattedDate = [[self dateFormatter] stringFromDate:date];
+    return formattedDate;
+}
+
 #pragma mark - Colors
 
 - (UIColor*) backgroundColor {
@@ -690,13 +697,13 @@
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    CGFloat height20 = [[UIDevice currentDevice] isPad] ? 40.0f : 20.0f;
+    CGFloat height20 = [[UIDevice currentDevice] isPad] ? 30.0f : 20.0f;
     return height20;
 }
 
 - (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    CGFloat height20 = [[UIDevice currentDevice] isPad] ? 40.0f : 20.0f;
-    CGFloat fontSize16 = [[UIDevice currentDevice] isPad] ? 32.0f : 16.0f;
+    CGFloat height20 = [[UIDevice currentDevice] isPad] ? 30.0f : 20.0f;
+    CGFloat fontSize16 = [[UIDevice currentDevice] isPad] ? 24.0f : 16.0f;
     CGRect containerRect = CGRectMake(0.0, 0.0, self.view.bounds.size.width, height20);
     UIView *containerView = [[[UIView alloc] initWithFrame:containerRect] autorelease];
     containerView.opaque = NO;

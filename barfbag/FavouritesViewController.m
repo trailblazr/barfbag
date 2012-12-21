@@ -350,7 +350,7 @@
     cell.backgroundColor = kCOLOR_CLEAR;
     // Configure the cell...
     if( DEBUGPERF ) NSLog( @"++++++++++++++++++++++++++  # 16.2 +++++++++++++ cellForRowAtIndexPath" );
-    NSString *dateTimeString = [NSString stringWithFormat:@"%@ %@", [NSString placeHolder:@"--" forEmptyString:[self stringShortDayForDate:currentSearchableItem.itemDateStart]], [NSString placeHolder:@"--:--" forEmptyString:[self stringShortTimeForDate:currentSearchableItem.itemDateStart]]];
+    NSString *dateTimeString = [NSString stringWithFormat:@"%@ %@", [NSString placeHolder:@"--" forEmptyString:[self stringShortDayOnlyForDate:currentSearchableItem.itemDateStart]], [NSString placeHolder:@"--:--" forEmptyString:[self stringShortTimeForDate:currentSearchableItem.itemDateStart]]];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", dateTimeString, currentFavourite.favouriteName];
     cell.detailTextLabel.text = [NSString placeHolder:currentSearchableItem.itemLocation forEmptyString:@""];
     cell.accessoryView = [ColoredAccessoryView disclosureIndicatorViewWithColor:[self themeColor]];
