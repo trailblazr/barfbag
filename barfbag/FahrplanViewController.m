@@ -370,12 +370,27 @@
     CGFloat intensityValue = 1.0-[[NSNumber numberWithInt:abs(indexDistance)] floatValue] / [[NSNumber numberWithInt:rowScope] floatValue];
     
     UIColor *color1 = kCOLOR_BACK;
+    UIColor *colorPre = [self themeColor];
+    CGFloat huePre = [colorPre hue];
+    UIColor *color2 = [UIColor colorWithHue:huePre saturation:1.0 brightness:0.4 alpha:1.0];
     
+    CGFloat rDiff = [color2 red] - [color1 red];
+    CGFloat gDiff = [color2 green] - [color1 green];
+    CGFloat bDiff = [color2 blue] - [color1 blue];
+    
+    CGFloat red = [color1 red]+(intensityValue * rDiff);
+    CGFloat green = [color1 green]+(intensityValue * gDiff);
+    CGFloat blue = [color1 blue]+(intensityValue * bDiff);
+    
+    /*
     CGFloat hue1 = [color1 hue];
     CGFloat brightness1 = [color1 brightness]+((1.0-[color1 brightness]) * 0.6*intensityValue);
     // CGFloat saturation1 = isPastEvent ? [color1 saturation]*0.5 : [color1 saturation];
     // CGFloat alpha1 = isPastEvent ? 0.5+(0.3*intensityValue) : 0.5+(0.5*intensityValue);
     color1 =  [UIColor colorWithHue:hue1 saturation:[color1 saturation] brightness:brightness1 alpha:1.0];
+     */
+    color1 =  [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
+
     return color1;
 }
 
@@ -460,8 +475,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-        cell.textLabel.textColor = [self brightColor];
-        cell.detailTextLabel.textColor = [self brighterColor];
+        cell.textLabel.textColor = [self brighterColor];
+        cell.detailTextLabel.textColor = [self themeColor];
         cell.textLabel.backgroundColor = kCOLOR_CLEAR;
         cell.detailTextLabel.backgroundColor = kCOLOR_CLEAR;
         cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:cell.detailTextLabel.font.pointSize];
@@ -486,8 +501,8 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.imageView.image = nil;
     cell.backgroundView = nil;
-    cell.textLabel.textColor = [self brightColor];
-    cell.detailTextLabel.textColor = [self brighterColor];
+    cell.textLabel.textColor = [self brighterColor];
+    cell.detailTextLabel.textColor = [self themeColor];
     UIView *oldView = [cell.contentView viewWithTag:kCELL_ATTACHED_VIEW_TAG];
     if( oldView ) {
         [oldView removeFromSuperview];
