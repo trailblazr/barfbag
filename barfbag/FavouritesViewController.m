@@ -297,7 +297,8 @@
 }
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    cell.textLabel.backgroundColor = kCOLOR_CLEAR;
+    cell.detailTextLabel.backgroundColor = kCOLOR_CLEAR;
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -341,21 +342,22 @@
     cell.detailTextLabel.text = [NSString placeHolder:currentSearchableItem.itemLocation forEmptyString:@""];
     cell.accessoryView = [ColoredAccessoryView disclosureIndicatorViewWithColor:[self themeColor]];
     if( DEBUGPERF ) NSLog( @"++++++++++++++++++++++++++  # 16.3 +++++++++++++ cellForRowAtIndexPath" );
-    if( currentSearchableItem.itemMinutesFromNow < 60 || currentSearchableItem == itemUpNext ) {
-        NSInteger minutes = currentSearchableItem.itemMinutesFromNow;
-        CGFloat intensityColor = (60-minutes)/60.0f;
+    NSInteger minuteScope = 80;
+    CGFloat minuteScopeFloat = 80.0f;
+    if( currentSearchableItem.itemMinutesFromNow < minuteScope || currentSearchableItem == itemUpNext ) {
+        NSInteger minutes = ( currentSearchableItem.itemMinutesFromNow > minuteScope ) ? minuteScope : currentSearchableItem.itemMinutesFromNow;
+        CGFloat intensityColor = (minuteScope-minutes)/minuteScopeFloat;
         CGFloat hue = [[self themeColor] hue];
         CGFloat brightness = [[self themeColor] brightness];
         CGFloat saturation = [[self themeColor] saturation];
-        UIColor *minuteColor =  [UIColor colorWithHue:hue saturation:saturation brightness:brightness*(0.4f+(0.6*intensityColor)) alpha:1.0];
+        UIColor *minuteColor =  [UIColor colorWithHue:hue saturation:saturation brightness:brightness*(0.5f+(0.5*intensityColor)) alpha:1.0];
         cell.backgroundColor = minuteColor;
-        /*
+
         UIImage *gradientImage = [self imageGradientWithSize:cell.bounds.size color1:kCOLOR_BACK color2:minuteColor];
         UIView *normalBackgroundView = [[[UIImageView alloc] initWithImage:gradientImage] autorelease];
         normalBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         normalBackgroundView.backgroundColor = [self darkColor];
         cell.backgroundView = normalBackgroundView;
-         */
         cell.textLabel.textColor = kCOLOR_WHITE;
         cell.detailTextLabel.textColor = kCOLOR_WHITE;
         if( DEBUGPERF ) NSLog( @"++++++++++++++++++++++++++  # 16.4 +++++++++++++ cellForRowAtIndexPath" );
