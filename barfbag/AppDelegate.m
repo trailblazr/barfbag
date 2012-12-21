@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 #import "MasterConfig.h"
+#import "FavouriteManager.h"
 
 #import "ATMHud.h"
 #import "ATMHudQueueItem.h"
@@ -216,38 +217,45 @@
 }
 
 - (void) signalCloudSyncToUser {
-    CGFloat sizeValue = MAX([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-    if( flashyView ) {
-        return;
-    }
-    self.flashyView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, sizeValue, sizeValue )] autorelease];
-    flashyView.backgroundColor = kCOLOR_WHITE;
-    flashyView.alpha = 0.0f;
-    [_window.rootViewController.view addSubview:flashyView];
-    [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        flashyView.alpha = 1.0;
-    } completion:^(BOOL finished) {
-        if( finished ) {
-            [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                flashyView.backgroundColor = [self themeColor];
-            } completion:^(BOOL finished) {
-                if( finished ) {
-                    
-                    [UIView animateWithDuration:0.8 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                        flashyView.alpha = 0.0;
-                    } completion:^(BOOL finished) {
-                        if( finished ) {
-                            [flashyView removeFromSuperview];
-                            self.flashyView = nil;
-                            [self showHudWithCaption:@"iCloud was synced." hasActivity:NO];
-                        }
-                    }];
-                    
-                }
-            }];
-        
+    [self showHudWithCaption:@"Syncing iCloud" hasActivity:YES];
+    [[FavouriteManager sharedManager] rebuildFavouriteCache];
+    [self showHudWithCaption:@"iCloud was synced." hasActivity:NO];
+    
+    BOOL shouldUseErrorProneAnimation = NO;
+        if( shouldUseErrorProneAnimation ) {
+        CGFloat sizeValue = MAX([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+        if( flashyView ) {
+            return;
         }
-    }];
+        self.flashyView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, sizeValue, sizeValue )] autorelease];
+        flashyView.backgroundColor = kCOLOR_WHITE;
+        flashyView.alpha = 0.0f;
+        [_window.rootViewController.view addSubview:flashyView];
+        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            flashyView.alpha = 1.0;
+        } completion:^(BOOL finished) {
+            if( finished ) {
+                [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    flashyView.backgroundColor = [self themeColor];
+                } completion:^(BOOL finished) {
+                    if( finished ) {
+                        
+                        [UIView animateWithDuration:0.8 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                            flashyView.alpha = 0.0;
+                        } completion:^(BOOL finished) {
+                            if( finished ) {
+                                [flashyView removeFromSuperview];
+                                self.flashyView = nil;
+                                [self showHudWithCaption:@"iCloud was synced." hasActivity:NO];
+                            }
+                        }];
+                        
+                    }
+                }];
+            
+            }
+        }];
+    }
 }
 
 - (void) configureAppearance {
@@ -860,7 +868,7 @@
 }
 
 - (void) allDataRefresh { // FIRST UPDATE MASTER CONFIG
-    [self performSelector:@selector(allDataRefreshDelayed) withObject:nil afterDelay:5.0];
+    [self performSelector:@selector(allDataRefreshDelayed) withObject:nil afterDelay:0.3];
 }
 
 - (void) manageCloudStorage {

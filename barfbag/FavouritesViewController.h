@@ -18,6 +18,8 @@
     NSTimer *timerUpdateUpNextString;
     NSInteger numOfRefreshes;
     SearchableItem *itemUpNext;
+    UIView *cachedTableFooter;
+    UIView *cachedTableHeader;
 }
 
 @property( nonatomic, assign ) NSInteger numOfRefreshes;
@@ -26,5 +28,7 @@
 @property( nonatomic, retain ) UIButton *upNextButton;
 @property( nonatomic, retain ) NSTimer *timerUpdateUpNextString;
 @property( nonatomic, retain ) SearchableItem *itemUpNext;
+@property( nonatomic, retain ) UIView *cachedTableFooter;
+@property( nonatomic, retain ) UIView *cachedTableHeader;
 
 @end

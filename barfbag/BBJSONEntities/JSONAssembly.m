@@ -158,11 +158,11 @@ nil];
 
  // NO DATES AVAILABLE FOR ASSEMBLIES
 - (NSDate*) itemDateStart {
-    return [NSDate dateWithTimeInterval:600000000 sinceDate:[NSDate date]];
+    return nil;
 }
 
 - (NSDate*) itemDateEnd {
-    return [NSDate dateWithTimeInterval:600000001 sinceDate:[NSDate date]];
+    return nil;
 }
 
 - (BOOL) isFavourite {

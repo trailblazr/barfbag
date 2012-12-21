@@ -34,6 +34,7 @@
 @synthesize favouriteId;
 @synthesize favouriteName;
 @synthesize type;
+@synthesize searchableItemAssociated;
 
 - (id)init {
     self = [super init];

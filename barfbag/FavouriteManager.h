@@ -23,6 +23,7 @@
 @property( nonatomic, retain ) NSTimer *timerSaveFavourites;
 
 + (FavouriteManager*) sharedManager;
+- (void) rebuildFavouriteCache;
 
 - (NSArray*) favouritedItemsOfType:(FavouriteItemType)itemType;
 - (BOOL) hasStoredFavouriteForId:(NSString*)itemId forItemType:(FavouriteItemType)itemType;

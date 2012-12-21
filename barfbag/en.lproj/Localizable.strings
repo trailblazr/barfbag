@@ -130,6 +130,10 @@
 "Nothing scheduled." = "Nothing scheduled.";
 "STARTS: IN %02dH %02dM %02dS" = "– IN %02dH %02dM %02dS –";
 "UP NEXT: %@" = "UP NEXT: %@";
+"%@ (%i Einträge)" = "%@ (%i entries)";
+"events" = "Events";
+"assemblies" = "Assemblies";
+"workshops" = "Workshops";
 
 /* VideoStreamNavigationController */
 

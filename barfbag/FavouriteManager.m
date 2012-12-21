@@ -119,6 +119,11 @@ static FavouriteManager *sharedInstance = nil;
     if( readFavourites && [readFavourites count] > 0 ) {
         self.favouriteCacheArray = [NSMutableArray arrayWithArray:readFavourites];
     }
+    // REASSOCIATE SEARCHABLE ITEMS
+    SearchableItem *itemAssociated = nil;
+    for( FavouriteItem *currentItem in favouriteCacheArray ) {
+        itemAssociated = [self searchableItemForFavourite:currentItem];
+    }
 }
 
 - (NSArray*) favouritedItemsOfType:(FavouriteItemType)itemType {
@@ -195,10 +200,12 @@ static FavouriteManager *sharedInstance = nil;
 
 - (SearchableItem*) searchableItemForFavourite:(FavouriteItem*)item {
     SearchableItem *itemFound = nil;
+    if( item.searchableItemAssociated ) return item.searchableItemAssociated;
     if( item.type = FavouriteItemTypeEvent ) {
         for( Event *currentItem in [self appDelegate].conference.allEvents ) {
             if( [currentItem.itemId isEqualToString:item.favouriteId] ) {
                 itemFound = currentItem;
+                item.searchableItemAssociated = itemFound;
                 return itemFound;
             }
         }
@@ -207,6 +214,7 @@ static FavouriteManager *sharedInstance = nil;
         for( JSONAssembly *currentItem in [self appDelegate].semanticWikiAssemblies ) {
             if( [currentItem.itemId isEqualToString:item.favouriteId] ) {
                 itemFound = currentItem;
+                item.searchableItemAssociated = itemFound;
                 return itemFound;
             }
         }
@@ -215,6 +223,7 @@ static FavouriteManager *sharedInstance = nil;
         for( JSONWorkshop *currentItem in [self appDelegate].semanticWikiWorkshops ) {
             if( [currentItem.itemId isEqualToString:item.favouriteId] ) {
                 itemFound = currentItem;
+                item.searchableItemAssociated = itemFound;
                 return itemFound;
             }
         }

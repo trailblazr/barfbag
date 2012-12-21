@@ -14,11 +14,13 @@
     NSString *favouriteName;
     NSString *favouriteId;
     FavouriteItemType type;
-
+    SearchableItem *searchableItemAssociated;
+    
 }
 
 @property( nonatomic, retain ) NSString *favouriteName;
 @property( nonatomic, retain ) NSString *favouriteId;
+@property( nonatomic, retain ) SearchableItem *searchableItemAssociated;
 @property( nonatomic ) FavouriteItemType type;
 
 + (FavouriteItem*) storedFavouriteWithId:(NSString*)_favouriteId andFavouriteType:(FavouriteItemType)_type;
