@@ -70,13 +70,25 @@
     
     currentFavourites = [[FavouriteManager sharedManager] favouritedItemsOfType:FavouriteItemTypeEvent];
     if( currentFavourites && [currentFavourites count] > 0 ) {
-        [favouritesStored setObject:[NSMutableArray arrayWithArray:currentFavourites] forKey:@"events"];
+        // SORT THAT SHIT
+        NSMutableArray *eventsUnsorted = [NSMutableArray arrayWithArray:currentFavourites];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"searchableItem.itemSortNumberDateTime" ascending:TRUE];
+        [eventsUnsorted sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+        NSArray *eventsSorted = [NSArray arrayWithArray:eventsUnsorted];
+        
+        [favouritesStored setObject:eventsSorted forKey:@"events"];
         [neededKeys addObject:@"events"];
     }
     
     currentFavourites = [[FavouriteManager sharedManager] favouritedItemsOfType:FavouriteItemTypeWorkshop];
     if( currentFavourites && [currentFavourites count] > 0 ) {
-        [favouritesStored setObject:[NSMutableArray arrayWithArray:currentFavourites] forKey:@"workshops"];
+        // SORT THAT SHIT
+        NSMutableArray *workshopsUnsorted = [NSMutableArray arrayWithArray:currentFavourites];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"searchableItem.itemSortNumberDateTime" ascending:TRUE];
+        [workshopsUnsorted sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+        NSArray *workshopsSorted = [NSArray arrayWithArray:workshopsUnsorted];
+
+        [favouritesStored setObject:workshopsSorted forKey:@"workshops"];
         [neededKeys addObject:@"workshops"];
     }
     
@@ -338,7 +350,8 @@
     cell.backgroundColor = kCOLOR_CLEAR;
     // Configure the cell...
     if( DEBUGPERF ) NSLog( @"++++++++++++++++++++++++++  # 16.2 +++++++++++++ cellForRowAtIndexPath" );
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", [NSString placeHolder:@"--:--" forEmptyString:[self stringShortTimeForDate:currentSearchableItem.itemDateStart]], currentFavourite.favouriteName];
+    NSString *dateTimeString = [NSString stringWithFormat:@"%@ %@", [NSString placeHolder:@"--" forEmptyString:[self stringShortDayForDate:currentSearchableItem.itemDateStart]], [NSString placeHolder:@"--:--" forEmptyString:[self stringShortTimeForDate:currentSearchableItem.itemDateStart]]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", dateTimeString, currentFavourite.favouriteName];
     cell.detailTextLabel.text = [NSString placeHolder:currentSearchableItem.itemLocation forEmptyString:@""];
     cell.accessoryView = [ColoredAccessoryView disclosureIndicatorViewWithColor:[self themeColor]];
     if( DEBUGPERF ) NSLog( @"++++++++++++++++++++++++++  # 16.3 +++++++++++++ cellForRowAtIndexPath" );
