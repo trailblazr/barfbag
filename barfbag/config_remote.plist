@@ -86,6 +86,20 @@
 				<key>groupKey</key>
 				<string>otherlinks</string>
 				<key>itemUrl</key>
+				<string>https://events.ccc.de/congress/2012/wiki/How_To_Survive</string>
+				<key>itemTitleDe</key>
+				<string>How to survive</string>
+				<key>itemTitleEn</key>
+				<string>How to survive</string>
+				<key>itemSubtitleDe</key>
+				<string>Keeping your stuff&apos;s integrity up</string>
+				<key>itemSubtitleEn</key>
+				<string>Keeping your stuff&apos;s integrity up</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
 				<string>https://events.ccc.de/congress/2012/wiki/Frequently_Asked_Questions</string>
 				<key>itemTitleDe</key>
 				<string>FAQ</string>
