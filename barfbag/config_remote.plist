@@ -16,43 +16,71 @@
 				<key>groupKey</key>
 				<string>livestream</string>
 				<key>itemUrl</key>
-				<string>http://http.28c3.fem-net.de/live/stream_saal1.m3u8</string>
+				<string>http://29c3.postcapitalism.org/barfbag.html</string>
+				<key>itemTitleDe</key>
+				<string>IMPORTANT! / WICHTIG!</string>
+				<key>itemTitleEn</key>
+				<string>IMPORTANT! / WICHTIG!</string>
+				<key>itemSubtitleDe</key>
+				<string>BarfBag v1.0 Issues &amp; Workarounds</string>
+				<key>itemSubtitleEn</key>
+				<string>BarfBag v1.0 Issues &amp; Workarounds</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>livestream</string>
+				<key>itemUrl</key>
+				<string>http://http.29c3.fem-net.de/live/stream_saal1.m3u8</string>
 				<key>itemTitleDe</key>
 				<string>Saal 1</string>
 				<key>itemTitleEn</key>
 				<string>Room 1</string>
 				<key>itemSubtitleDe</key>
-				<string>Stream (by FEM)</string>
+				<string>LIVE Stream by FEM - available soon...</string>
 				<key>itemSubtitleEn</key>
-				<string>Stream (by FEM)</string>
+				<string>LIVE Stream by FEM - available soon...</string>
 			</dict>
 			<dict>
 				<key>groupKey</key>
 				<string>livestream</string>
 				<key>itemUrl</key>
-				<string>http://http.28c3.fem-net.de/live/stream_saal2.m3u8</string>
+				<string>http://http.29c3.fem-net.de/live/stream_saal4.m3u8</string>
 				<key>itemTitleDe</key>
-				<string>Saal 2</string>
+				<string>Saal 4</string>
 				<key>itemTitleEn</key>
-				<string>Room 2</string>
+				<string>Room 4</string>
 				<key>itemSubtitleDe</key>
-				<string>Stream (by FEM)</string>
+				<string>LIVE Stream by FEM - available soon...</string>
 				<key>itemSubtitleEn</key>
-				<string>Stream (by FEM)</string>
+				<string>LIVE Stream by FEM - available soon...</string>
 			</dict>
 			<dict>
 				<key>groupKey</key>
 				<string>livestream</string>
 				<key>itemUrl</key>
-				<string>http://http.28c3.fem-net.de/live/stream_saal3.m3u8</string>
+				<string>http://http.29c3.fem-net.de/live/stream_saal6.m3u8</string>
 				<key>itemTitleDe</key>
-				<string>Saal 3</string>
+				<string>Saal 6</string>
 				<key>itemTitleEn</key>
-				<string>Room 3</string>
+				<string>Room 6</string>
 				<key>itemSubtitleDe</key>
-				<string>Stream (by FEM)</string>
+				<string>LIVE Stream by FEM - available soon...</string>
 				<key>itemSubtitleEn</key>
-				<string>Stream (by FEM)</string>
+				<string>LIVE Stream by FEM - available soon...</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>livestream</string>
+				<key>itemUrl</key>
+				<string>http://fem-net.de</string>
+				<key>itemTitleDe</key>
+				<string>FeM-Net</string>
+				<key>itemTitleEn</key>
+				<string>FeM-Net</string>
+				<key>itemSubtitleDe</key>
+				<string>The guys providing the streams</string>
+				<key>itemSubtitleEn</key>
+				<string>The guys providing the streams</string>
 			</dict>
 			<dict>
 				<key>groupKey</key>
@@ -142,15 +170,15 @@
 				<key>groupKey</key>
 				<string>otherlinks</string>
 				<key>itemUrl</key>
-				<string>https://events.ccc.de/congress/2012/wiki/</string>
+				<string>https://events.ccc.de/congress/2012/wiki/Frequently_Asked_Questions</string>
 				<key>itemTitleDe</key>
-				<string>29c3 Wiki</string>
+				<string>FAQ</string>
 				<key>itemTitleEn</key>
-				<string>29c3 Wiki</string>
+				<string>FAQ</string>
 				<key>itemSubtitleDe</key>
-				<string>Im Web</string>
+				<string>Web</string>
 				<key>itemSubtitleEn</key>
-				<string>On the Web</string>
+				<string>Web</string>
 			</dict>
 			<dict>
 				<key>groupKey</key>
@@ -162,9 +190,163 @@
 				<key>itemTitleEn</key>
 				<string>29c3 Fahrplan</string>
 				<key>itemSubtitleDe</key>
-				<string>Im Web</string>
+				<string>Web</string>
 				<key>itemSubtitleEn</key>
-				<string>On the Web</string>
+				<string>Web</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>https://events.ccc.de/congress/2012/wiki/</string>
+				<key>itemTitleDe</key>
+				<string>29c3 Wiki</string>
+				<key>itemTitleEn</key>
+				<string>29c3 Wiki</string>
+				<key>itemSubtitleDe</key>
+				<string>Web</string>
+				<key>itemSubtitleEn</key>
+				<string>Web</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>https://events.ccc.de/congress/2012/wiki/Lightning_Talks</string>
+				<key>itemTitleDe</key>
+				<string>29c3 Lightning Talks</string>
+				<key>itemTitleEn</key>
+				<string>29c3 Lightning Talks</string>
+				<key>itemSubtitleDe</key>
+				<string>Web</string>
+				<key>itemSubtitleEn</key>
+				<string>Web</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>https://events.ccc.de/congress/2012/wiki/Projects</string>
+				<key>itemTitleDe</key>
+				<string>29c3 Projects</string>
+				<key>itemTitleEn</key>
+				<string>29c3 Projects</string>
+				<key>itemSubtitleDe</key>
+				<string>Web</string>
+				<key>itemSubtitleEn</key>
+				<string>Web</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>https://events.ccc.de/congress/2012/wiki/Lounge</string>
+				<key>itemTitleDe</key>
+				<string>29c3 Lounge</string>
+				<key>itemTitleEn</key>
+				<string>29c3 Lounge</string>
+				<key>itemSubtitleDe</key>
+				<string>Web</string>
+				<key>itemSubtitleEn</key>
+				<string>Web</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>https://events.ccc.de/congress/2012/wiki/TenForward</string>
+				<key>itemTitleDe</key>
+				<string>29c3 Ten Forward</string>
+				<key>itemTitleEn</key>
+				<string>29c3 Ten Forward</string>
+				<key>itemSubtitleDe</key>
+				<string>Web</string>
+				<key>itemSubtitleEn</key>
+				<string>Web</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>https://events.ccc.de/congress/2012/wiki/Accommodation</string>
+				<key>itemTitleDe</key>
+				<string>Accomodation</string>
+				<key>itemTitleEn</key>
+				<string>Accomodation</string>
+				<key>itemSubtitleDe</key>
+				<string>Web</string>
+				<key>itemSubtitleEn</key>
+				<string>Web</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>https://events.ccc.de/congress/2012/wiki/Travel</string>
+				<key>itemTitleDe</key>
+				<string>Travel / Map</string>
+				<key>itemTitleEn</key>
+				<string>Travel / Map</string>
+				<key>itemSubtitleDe</key>
+				<string>Web</string>
+				<key>itemSubtitleEn</key>
+				<string>Web</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>https://events.ccc.de/congress/2012/wiki/Local_Transport</string>
+				<key>itemTitleDe</key>
+				<string>Local Transport</string>
+				<key>itemTitleEn</key>
+				<string>Local Transport</string>
+				<key>itemSubtitleDe</key>
+				<string>Web</string>
+				<key>itemSubtitleEn</key>
+				<string>Web</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>https://events.ccc.de/congress/2012/wiki/Useful_Places</string>
+				<key>itemTitleDe</key>
+				<string>Useful Places</string>
+				<key>itemTitleEn</key>
+				<string>Useful Places</string>
+				<key>itemSubtitleDe</key>
+				<string>Web</string>
+				<key>itemSubtitleEn</key>
+				<string>Web</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>https://events.ccc.de/congress/2012/wiki/Food_and_drinks</string>
+				<key>itemTitleDe</key>
+				<string>Food &amp; Drinks</string>
+				<key>itemTitleEn</key>
+				<string>Food &amp; Drinks</string>
+				<key>itemSubtitleDe</key>
+				<string>Web</string>
+				<key>itemSubtitleEn</key>
+				<string>Web</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>https://events.ccc.de/congress/2012/wiki/Volunteers</string>
+				<key>itemTitleDe</key>
+				<string>Volunteering</string>
+				<key>itemTitleEn</key>
+				<string>Volunteering</string>
+				<key>itemSubtitleDe</key>
+				<string>Web</string>
+				<key>itemSubtitleEn</key>
+				<string>Web</string>
 			</dict>
 			<dict>
 				<key>groupKey</key>
@@ -172,13 +354,13 @@
 				<key>itemUrl</key>
 				<string>http://events.ccc.de/congress/2012/Fahrplan/day_2012-12-27.en.html</string>
 				<key>itemTitleDe</key>
-				<string>Tag 1</string>
+				<string>Day 1</string>
 				<key>itemTitleEn</key>
 				<string>Day 1</string>
 				<key>itemSubtitleDe</key>
-				<string>auf dem 29c3</string>
+				<string>Thursday 27th</string>
 				<key>itemSubtitleEn</key>
-				<string>at 29c3</string>
+				<string>Thursday 27th</string>
 			</dict>
 			<dict>
 				<key>groupKey</key>
@@ -186,13 +368,13 @@
 				<key>itemUrl</key>
 				<string>http://events.ccc.de/congress/2012/Fahrplan/day_2012-12-28.en.html</string>
 				<key>itemTitleDe</key>
-				<string>Tag 2</string>
+				<string>Day 2</string>
 				<key>itemTitleEn</key>
 				<string>Day 2</string>
 				<key>itemSubtitleDe</key>
-				<string>auf dem 29c3</string>
+				<string>Friday 28th</string>
 				<key>itemSubtitleEn</key>
-				<string>at 29c3</string>
+				<string>Friday 28th</string>
 			</dict>
 			<dict>
 				<key>groupKey</key>
@@ -200,13 +382,13 @@
 				<key>itemUrl</key>
 				<string>http://events.ccc.de/congress/2012/Fahrplan/day_2012-12-29.en.html</string>
 				<key>itemTitleDe</key>
-				<string>Tag 3</string>
+				<string>Day 3</string>
 				<key>itemTitleEn</key>
 				<string>Day 3</string>
 				<key>itemSubtitleDe</key>
-				<string>auf dem 29c3</string>
+				<string>Saturday 29th</string>
 				<key>itemSubtitleEn</key>
-				<string>at 29c3</string>
+				<string>Saturday 29th</string>
 			</dict>
 			<dict>
 				<key>groupKey</key>
@@ -214,13 +396,27 @@
 				<key>itemUrl</key>
 				<string>http://events.ccc.de/congress/2012/Fahrplan/day_2012-12-30.en.html</string>
 				<key>itemTitleDe</key>
-				<string>Tag 4</string>
+				<string>Day 4</string>
 				<key>itemTitleEn</key>
 				<string>Day 4</string>
 				<key>itemSubtitleDe</key>
-				<string>auf dem 29c3</string>
+				<string>Sunday 30th</string>
 				<key>itemSubtitleEn</key>
-				<string>at 29c3</string>
+				<string>Sunday 30th</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>https://events.ccc.de/congress/2012/wiki/After_Party</string>
+				<key>itemTitleDe</key>
+				<string>29c3 After Party</string>
+				<key>itemTitleEn</key>
+				<string>29c3 After Party</string>
+				<key>itemSubtitleDe</key>
+				<string>Sunday 30th at 20h</string>
+				<key>itemSubtitleEn</key>
+				<string>Sunday 30th at 20h</string>
 			</dict>
 		</array>
 		<key>mothership</key>
