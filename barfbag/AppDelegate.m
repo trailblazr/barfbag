@@ -678,6 +678,7 @@
         // do nothing
     }
     if( currentConference ) {
+        NSLog( @"BARFBAG: RELEASE = %@", currentConference.release );
         [currentConference computeCachedProperties];
         NSString *versionCurrent = [self barfBagCurrentDataVersion];
         NSString *versionUpdated = currentConference.release;
@@ -720,7 +721,13 @@
 }
 
 -(void) barfBagFillCached:(BOOL)isCachedContent {
-    NSString *pathToStoredFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_FAHRPLAN_EN]; // CACHE .xml file
+    NSString *pathToStoredFile = nil;
+    if( [MasterConfig sharedConfiguration].currentLanguage == MasterConfigLanguageEn ) {
+        pathToStoredFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_FAHRPLAN_EN]; // CACHE .xml file
+    }
+    else {
+        pathToStoredFile = [kFOLDER_DOCUMENTS stringByAppendingPathComponent:kFILE_CACHED_FAHRPLAN_DE]; // CACHE .xml file
+    }
 	BarfBagParser *pentaParser = [[BarfBagParser alloc] init];
 	pentaParser.responseData = [NSData dataWithContentsOfFile:pathToStoredFile];
 	pentaParser.delegate = self;
