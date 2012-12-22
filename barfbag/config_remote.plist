@@ -84,90 +84,6 @@
 			</dict>
 			<dict>
 				<key>groupKey</key>
-				<string>livestreamtest</string>
-				<key>itemUrl</key>
-				<string>https://devimages.apple.com.edgekey.net/resources/http-streaming/examples/bipbop_4x3/bipbop_4x3_variant.m3u8</string>
-				<key>itemTitleDe</key>
-				<string>4:3</string>
-				<key>itemTitleEn</key>
-				<string>4:3</string>
-				<key>itemSubtitleDe</key>
-				<string>Autoadjust</string>
-				<key>itemSubtitleEn</key>
-				<string>Autoadjust</string>
-			</dict>
-			<dict>
-				<key>groupKey</key>
-				<string>livestreamtest</string>
-				<key>itemUrl</key>
-				<string>https://devimages.apple.com.edgekey.net/resources/http-streaming/examples/bipbop_16x9/bipbop_16x9_variant.m3u8</string>
-				<key>itemTitleDe</key>
-				<string>16:9</string>
-				<key>itemTitleEn</key>
-				<string>16:9</string>
-				<key>itemSubtitleDe</key>
-				<string>Autoadjust</string>
-				<key>itemSubtitleEn</key>
-				<string>Autoadjust</string>
-			</dict>
-			<dict>
-				<key>groupKey</key>
-				<string>livestreamtest</string>
-				<key>itemUrl</key>
-				<string>http://devimages.apple.com/iphone/samples/bipbop/gear1/prog_index.m3u8</string>
-				<key>itemTitleDe</key>
-				<string>Gear 1</string>
-				<key>itemTitleEn</key>
-				<string>Gear 1</string>
-				<key>itemSubtitleDe</key>
-				<string>400x300 @ 232 kbps</string>
-				<key>itemSubtitleEn</key>
-				<string>400x300 @ 232 kbps</string>
-			</dict>
-			<dict>
-				<key>groupKey</key>
-				<string>livestreamtest</string>
-				<key>itemUrl</key>
-				<string>http://devimages.apple.com/iphone/samples/bipbop/gear2/prog_index.m3u8</string>
-				<key>itemTitleDe</key>
-				<string>Gear 2</string>
-				<key>itemTitleEn</key>
-				<string>Gear 2</string>
-				<key>itemSubtitleDe</key>
-				<string>640x480 @ 650 kbps</string>
-				<key>itemSubtitleEn</key>
-				<string>640x480 @ 650 kbps</string>
-			</dict>
-			<dict>
-				<key>groupKey</key>
-				<string>livestreamtest</string>
-				<key>itemUrl</key>
-				<string>http://devimages.apple.com/iphone/samples/bipbop/gear3/prog_index.m3u8</string>
-				<key>itemTitleDe</key>
-				<string>Gear 3</string>
-				<key>itemTitleEn</key>
-				<string>Gear 3</string>
-				<key>itemSubtitleDe</key>
-				<string>640x480 @ 1 Mbps</string>
-				<key>itemSubtitleEn</key>
-				<string>640x480 @ 1 Mbps</string>
-			</dict>
-			<dict>
-				<key>groupKey</key>
-				<string>livestreamtest</string>
-				<key>itemUrl</key>
-				<string>http://devimages.apple.com/iphone/samples/bipbop/gear4/prog_index.m3u8</string>
-				<key>itemTitleDe</key>
-				<string>Gear 4</string>
-				<key>itemTitleEn</key>
-				<string>Gear 4</string>
-				<key>itemSubtitleDe</key>
-				<string>960x720 @ 2 Mbps</string>
-				<key>itemSubtitleEn</key>
-				<string>960x720 @ 2 Mbps</string>
-			</dict>
-			<dict>
-				<key>groupKey</key>
 				<string>otherlinks</string>
 				<key>itemUrl</key>
 				<string>https://events.ccc.de/congress/2012/wiki/Frequently_Asked_Questions</string>
@@ -186,9 +102,9 @@
 				<key>itemUrl</key>
 				<string>http://events.ccc.de/congress/2012/Fahrplan/</string>
 				<key>itemTitleDe</key>
-				<string>29c3 Fahrplan</string>
+				<string>Fahrplan</string>
 				<key>itemTitleEn</key>
-				<string>29c3 Fahrplan</string>
+				<string>Fahrplan</string>
 				<key>itemSubtitleDe</key>
 				<string>Web</string>
 				<key>itemSubtitleEn</key>
@@ -200,9 +116,9 @@
 				<key>itemUrl</key>
 				<string>https://events.ccc.de/congress/2012/wiki/</string>
 				<key>itemTitleDe</key>
-				<string>29c3 Wiki</string>
+				<string>Wiki</string>
 				<key>itemTitleEn</key>
-				<string>29c3 Wiki</string>
+				<string>Wiki</string>
 				<key>itemSubtitleDe</key>
 				<string>Web</string>
 				<key>itemSubtitleEn</key>
@@ -214,9 +130,9 @@
 				<key>itemUrl</key>
 				<string>https://events.ccc.de/congress/2012/wiki/Lightning_Talks</string>
 				<key>itemTitleDe</key>
-				<string>29c3 Lightning Talks</string>
+				<string>Lightning Talks</string>
 				<key>itemTitleEn</key>
-				<string>29c3 Lightning Talks</string>
+				<string>Lightning Talks</string>
 				<key>itemSubtitleDe</key>
 				<string>Web</string>
 				<key>itemSubtitleEn</key>
@@ -228,9 +144,9 @@
 				<key>itemUrl</key>
 				<string>https://events.ccc.de/congress/2012/wiki/Projects</string>
 				<key>itemTitleDe</key>
-				<string>29c3 Projects</string>
+				<string>Projects</string>
 				<key>itemTitleEn</key>
-				<string>29c3 Projects</string>
+				<string>Projects</string>
 				<key>itemSubtitleDe</key>
 				<string>Web</string>
 				<key>itemSubtitleEn</key>
@@ -242,13 +158,13 @@
 				<key>itemUrl</key>
 				<string>https://events.ccc.de/congress/2012/wiki/Lounge</string>
 				<key>itemTitleDe</key>
-				<string>29c3 Lounge</string>
+				<string>Lounge</string>
 				<key>itemTitleEn</key>
-				<string>29c3 Lounge</string>
+				<string>Lounge</string>
 				<key>itemSubtitleDe</key>
-				<string>Web</string>
+				<string>Smokers Lounge in a tent</string>
 				<key>itemSubtitleEn</key>
-				<string>Web</string>
+				<string>Smokers Lounge in a tent</string>
 			</dict>
 			<dict>
 				<key>groupKey</key>
@@ -256,13 +172,13 @@
 				<key>itemUrl</key>
 				<string>https://events.ccc.de/congress/2012/wiki/TenForward</string>
 				<key>itemTitleDe</key>
-				<string>29c3 Ten Forward</string>
+				<string>Ten Forward</string>
 				<key>itemTitleEn</key>
-				<string>29c3 Ten Forward</string>
+				<string>Ten Forward</string>
 				<key>itemSubtitleDe</key>
-				<string>Web</string>
+				<string>Non-Smokers Lounge</string>
 				<key>itemSubtitleEn</key>
-				<string>Web</string>
+				<string>Non-Smokers Lounge</string>
 			</dict>
 			<dict>
 				<key>groupKey</key>
@@ -410,13 +326,97 @@
 				<key>itemUrl</key>
 				<string>https://events.ccc.de/congress/2012/wiki/After_Party</string>
 				<key>itemTitleDe</key>
-				<string>29c3 After Party</string>
+				<string>After Party</string>
 				<key>itemTitleEn</key>
-				<string>29c3 After Party</string>
+				<string>After Party</string>
 				<key>itemSubtitleDe</key>
-				<string>Sunday 30th at 20h</string>
+				<string>Sunday 30th at 20h (Bus shuttle available)</string>
 				<key>itemSubtitleEn</key>
-				<string>Sunday 30th at 20h</string>
+				<string>Sunday 30th at 20h (Bus shuttle available)</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>livestreamtest</string>
+				<key>itemUrl</key>
+				<string>https://devimages.apple.com.edgekey.net/resources/http-streaming/examples/bipbop_4x3/bipbop_4x3_variant.m3u8</string>
+				<key>itemTitleDe</key>
+				<string>4:3</string>
+				<key>itemTitleEn</key>
+				<string>4:3</string>
+				<key>itemSubtitleDe</key>
+				<string>Autoadjust</string>
+				<key>itemSubtitleEn</key>
+				<string>Autoadjust</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>livestreamtest</string>
+				<key>itemUrl</key>
+				<string>https://devimages.apple.com.edgekey.net/resources/http-streaming/examples/bipbop_16x9/bipbop_16x9_variant.m3u8</string>
+				<key>itemTitleDe</key>
+				<string>16:9</string>
+				<key>itemTitleEn</key>
+				<string>16:9</string>
+				<key>itemSubtitleDe</key>
+				<string>Autoadjust</string>
+				<key>itemSubtitleEn</key>
+				<string>Autoadjust</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>livestreamtest</string>
+				<key>itemUrl</key>
+				<string>http://devimages.apple.com/iphone/samples/bipbop/gear1/prog_index.m3u8</string>
+				<key>itemTitleDe</key>
+				<string>Gear 1</string>
+				<key>itemTitleEn</key>
+				<string>Gear 1</string>
+				<key>itemSubtitleDe</key>
+				<string>400x300 @ 232 kbps</string>
+				<key>itemSubtitleEn</key>
+				<string>400x300 @ 232 kbps</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>livestreamtest</string>
+				<key>itemUrl</key>
+				<string>http://devimages.apple.com/iphone/samples/bipbop/gear2/prog_index.m3u8</string>
+				<key>itemTitleDe</key>
+				<string>Gear 2</string>
+				<key>itemTitleEn</key>
+				<string>Gear 2</string>
+				<key>itemSubtitleDe</key>
+				<string>640x480 @ 650 kbps</string>
+				<key>itemSubtitleEn</key>
+				<string>640x480 @ 650 kbps</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>livestreamtest</string>
+				<key>itemUrl</key>
+				<string>http://devimages.apple.com/iphone/samples/bipbop/gear3/prog_index.m3u8</string>
+				<key>itemTitleDe</key>
+				<string>Gear 3</string>
+				<key>itemTitleEn</key>
+				<string>Gear 3</string>
+				<key>itemSubtitleDe</key>
+				<string>640x480 @ 1 Mbps</string>
+				<key>itemSubtitleEn</key>
+				<string>640x480 @ 1 Mbps</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>livestreamtest</string>
+				<key>itemUrl</key>
+				<string>http://devimages.apple.com/iphone/samples/bipbop/gear4/prog_index.m3u8</string>
+				<key>itemTitleDe</key>
+				<string>Gear 4</string>
+				<key>itemTitleEn</key>
+				<string>Gear 4</string>
+				<key>itemSubtitleDe</key>
+				<string>960x720 @ 2 Mbps</string>
+				<key>itemSubtitleEn</key>
+				<string>960x720 @ 2 Mbps</string>
 			</dict>
 		</array>
 		<key>mothership</key>
