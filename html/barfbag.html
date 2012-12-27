@@ -65,23 +65,27 @@ hr {
 <hr>
 <h2>Known Issues & Workarounds</h2>
 <p><strong>UPDATE ISSUE:</strong><br>
-BarfBag 1.0 has a small bug, which prevents correct updating of the Fahrplan data in german language. To keep up-to-date, please <u>switch the language of your device to english language</u>, than update the Fahrplan. You can switch it back to german after that procedure, but you need to repeat this as a german speaking user everytime you want an updated schedule (Sorry, this just happens if you are coding into early morning hours... don't do that.).</p>
+BarfBag 1.0 has a small bug, which prevents correct updating of the Fahrplan data in german language. To keep up-to-date, please <u>switch device to region format &quot;United Kingdom(!)&quot; <strong>AND</strong> the language of your device to &quot;English&quot; language</u>, than update the Fahrplan. You can switch it back to german settings after that procedure, but you need to repeat this as a german speaking user everytime you want an updated schedule. International users may need to switch permanently to the above mentioned settings. (Sorry, things like this happen if you are coding into early morning hours... don't do that.).</p>
 
 <p><strong>CERTIFICATE ISSUE:</strong><br>
-Opening Wiki Pages in the internal webbrowser of BarfBag may fail due to unverifyable SSL-certs. Please point your Safari to the CAcert-site and download/install the root-certificate from CAcert on your device. Please choose &quot;Class 1 PKI-Schluessel / Stammzertifikat (PEM Format)&quot;</p>
+Opening Wiki Pages in the internal webbrowser of BarfBag may fail due to unverifyable SSL-certs. The only reliable workaround is opening the URL in Safari (use the actionbutton in the upper right corner). Nevertheless you can try to point your Safari to the CAcert-site and download/install the root-certificate from CAcert on your device. Please choose &quot;Class 1 PKI-Schluessel / Stammzertifikat (PEM Format)&quot;</p>
 <p><strong>Here is the link:</strong><br>
 <a href="http://www.cacert.org/index.php?id=3">http://www.cacert.org/index.php?id=3</a></p>
-<p>After the install of the certificate, please <u>restart the complete device by switching it off and on</u> again (Yes, I know this feels like using windows). Restart BarfBag again, now all sites should be shown correctly.</p>
+<p>After the install of the certificate, please <u>restart the complete device by switching it off and on</u> again (Yes, I know this feels like using windows). Restart BarfBag again, now all sites might be shown correctly. Basically some valid SSL/Cert of the Wiki would really help here. ;)</p>
+<p>We have setup a non-SSL-based caching of some wiki-pages to work around this issue in the LIVE Streams tab to enable access to at least some very important wikipages.</p>
 
 </p>
 <p><strong>LIVE STREAMS:</strong><br>
 The live streams will be up and running as soon as the congress begins. The app will fetch the correct and up-to-date info when updating its Master Configuration. You can enforce this by <u>pressing the &quot;RESET&quot;-button</u> in the Settings. Your favourites will be kept even if you reset all Settings!</p>
+<p>The Livestreams Tab also caries a lot of dynamic info and links to various useful stuff. Have a look here from time to time to discover new and useful information. The LIVE coverage from the german radiostation Deutschlandfunk is directly linked, so you can at any time tune into the station e.g. to follow the live coverage.</p>
 
 <p><strong>CLOUD SYNC:</strong><br>
 When using iCloud sync there might occur an issue where the app on wake from sleep displays a white screen. Please kill the app when this happens. It is a bug. You can avoid this bug by <u>turning off iCloud sync</u> if you do not need it and just switch it on occasionally to sync the stuff you need.</p>
+<p>In case of problems syncing to/from iCloud at all, one valid procedure consists of deleting the iCloud account from your device. This can be a way to fix general syncing trouble with the cloud. I made positive experience with deleting the iCloud account (on the device) and a minute later reconnecting it. That fixed it for me.</p>
 
-<p><strong>BACKUP SERVER:</strong><br>
-In case of problems connecting to the chaos infrastructure you can switch the app to use the backupserver to update its schedule, workshop & assembly informations. Just <u>switch in the Settings to &quot;Use Backupserver permanently&quot;</u> this will fetch the latest publicly available data which was cached by the backupserver. Usually this should be also significantly speedup the refresh of data during autoupdate.</p>
+<p><strong>BACKUP SERVER & DATA:</strong><br>
+In case of problems connecting to the chaos infrastructure you can switch the app to use the backupserver to update its schedule, workshop & assembly informations. Just <u>switch in the Settings to &quot;Use Backupserver permanently&quot;</u> this will fetch the latest publicly available data which was cached by the backupserver. Usually this should also significantly speedup the refresh of data during autoupdate.</p>
+<p>Keep in mind, that stuff tapped in the Livestreams area is NOT CACHED on the device and fires up the internal browser fetching linked URL's from the web thus costing you valuable data traffic if you are on an Non-Wifi-Connection. Keep that im mind when tapping those items. ;)</p>
 
 <h2>Help & Service</h2>
 <p>During congress developers of BarfBag (i.e. trailblazr & plaetzchen) will be around at the CCH. You can meet them and asking them questions is welcome. It is allowed to buy them a Club Mate or a Hot Coffee. ;-) If you do that, they might provide you with a completely bugfixed release of the app directly to your device.</p>
@@ -90,9 +94,11 @@ In case of problems connecting to the chaos infrastructure you can switch the ap
 <h2>Feedback</h2>
 <p>Feedback for the App is very welcome. You can leave <a href="http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=583709361&pageNumber=0&sortOrdering=1&type=Purple+Software&mt=8">Feedback on the Appstore (open in Safari, please.)</a> and in the congress wiki's <a href="https://events.ccc.de/congress/2012/wiki/Talk:BarfBag">discussion page (you need to be a registered user)</a> or you send an <a href="mailto:trailblazr@noxymo.com?subject=Feedback%20BarfBag">email</a> to the devs of <a href="https://events.ccc.de/congress/2012/wiki/BarfBag">BarfBag</a>.
 
+<h2>License</h2>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/de/"><img alt="Creative Commons Lizenzvertrag" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/de/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">BarfBag</span> von <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/trailblazr/barfbag" property="cc:attributionName" rel="cc:attributionURL">trailblazr</a> steht unter einer <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/de/">Creative Commons Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 3.0 Deutschland Lizenz</a>.</p>
 <hr>
 <h1>Have fun at the 29c3!</h1>
 
-<div style="position:fixed;top:0px;right:0px;width:250px;height:20px;font-size:16px;z-index:99;background-color:#000;opacity:0.8;color:#fff;text-align:center;padding:5px;margin:0px;">22nd of Dec 2012, trailblazr</div>
+<div style="position:fixed;top:0px;right:0px;width:200px;height:20px;font-size:12px;z-index:99;background-color:#000;opacity:0.8;color:#fff;text-align:center;padding:5px;margin:0px;">Updated: 23:16 26th of Dec 2012</div>
 </body>
 </html>
