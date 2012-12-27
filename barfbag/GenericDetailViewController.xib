@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1536</int>
-		<string key="IBDocument.SystemVersion">12C3006</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
+		<int key="IBDocument.SystemTarget">1552</int>
+		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.InterfaceBuilderVersion">3083</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1930</string>
+			<string key="NS.object.0">2083</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -40,7 +40,6 @@
 						<int key="NSvFlags">290</int>
 						<string key="NSFrame">{{6, 0}, {307, 57}}</string>
 						<reference key="NSSuperview" ref="106826920"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1020807815"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="340161548">
 							<int key="NSColorSpace">3</int>
@@ -66,7 +65,7 @@
 						<string key="IBUIShadowOffset">{0, 0}</string>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
-						<int key="IBUINumberOfLines">3</int>
+						<int key="IBUINumberOfLines">2</int>
 						<int key="IBUITextAlignment">1</int>
 						<int key="IBUILineBreakMode">5</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
@@ -85,7 +84,6 @@
 						<int key="NSvFlags">290</int>
 						<string key="NSFrame">{{6, 48}, {307, 28}}</string>
 						<reference key="NSSuperview" ref="106826920"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="425100440"/>
 						<reference key="IBUIBackgroundColor" ref="340161548"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -122,7 +120,6 @@
 						<int key="NSvFlags">290</int>
 						<string key="NSFrame">{{6, 72}, {307, 28}}</string>
 						<reference key="NSSuperview" ref="106826920"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="631183922"/>
 						<reference key="IBUIBackgroundColor" ref="340161548"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -150,7 +147,6 @@
 						<int key="NSvFlags">294</int>
 						<string key="NSFrame">{{4, 91}, {159, 21}}</string>
 						<reference key="NSSuperview" ref="106826920"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="693416749"/>
 						<reference key="IBUIBackgroundColor" ref="340161548"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -180,7 +176,6 @@
 						<int key="NSvFlags">294</int>
 						<string key="NSFrame">{{4, 107}, {159, 21}}</string>
 						<reference key="NSSuperview" ref="106826920"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="74191092"/>
 						<reference key="IBUIBackgroundColor" ref="340161548"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -201,7 +196,6 @@
 						<int key="NSvFlags">294</int>
 						<string key="NSFrame">{{4, 123}, {159, 21}}</string>
 						<reference key="NSSuperview" ref="106826920"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="420744810"/>
 						<reference key="IBUIBackgroundColor" ref="340161548"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -222,7 +216,6 @@
 						<int key="NSvFlags">291</int>
 						<string key="NSFrame">{{171, 91}, {145, 21}}</string>
 						<reference key="NSSuperview" ref="106826920"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="639082107"/>
 						<reference key="IBUIBackgroundColor" ref="340161548"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -244,7 +237,6 @@
 						<int key="NSvFlags">291</int>
 						<string key="NSFrame">{{171, 107}, {145, 21}}</string>
 						<reference key="NSSuperview" ref="106826920"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="700630586"/>
 						<reference key="IBUIBackgroundColor" ref="340161548"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -266,7 +258,6 @@
 						<int key="NSvFlags">291</int>
 						<string key="NSFrame">{{171, 123}, {145, 21}}</string>
 						<reference key="NSSuperview" ref="106826920"/>
-						<reference key="NSWindow"/>
 						<reference key="IBUIBackgroundColor" ref="340161548"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -285,7 +276,6 @@
 				</array>
 				<string key="NSFrameSize">{320, 150}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="302260645"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
@@ -489,79 +479,11 @@
 			<nil key="sourceID"/>
 			<int key="maxID">59</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">GenericDetailViewController</string>
-					<string key="superclassName">GenericViewController</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="dateLabel">UILabel</string>
-						<string key="languageLabel">UILabel</string>
-						<string key="roomLabel">UILabel</string>
-						<string key="speakerLabel">UILabel</string>
-						<string key="subtitleLabel">UILabel</string>
-						<string key="timeDuration">UILabel</string>
-						<string key="timeStart">UILabel</string>
-						<string key="titleLabel">UILabel</string>
-						<string key="trackLabel">UILabel</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="dateLabel">
-							<string key="name">dateLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="languageLabel">
-							<string key="name">languageLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="roomLabel">
-							<string key="name">roomLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="speakerLabel">
-							<string key="name">speakerLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="subtitleLabel">
-							<string key="name">subtitleLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="timeDuration">
-							<string key="name">timeDuration</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="timeStart">
-							<string key="name">timeStart</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="titleLabel">
-							<string key="name">titleLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="trackLabel">
-							<string key="name">trackLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/GenericDetailViewController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">GenericViewController</string>
-					<string key="superclassName">UIViewController</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/GenericViewController.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<string key="IBCocoaTouchPluginVersion">1930</string>
+		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>
