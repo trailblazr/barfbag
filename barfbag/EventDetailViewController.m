@@ -81,7 +81,7 @@
     detailHeaderViewController.titleLabel.layer.masksToBounds = NO;
     detailHeaderViewController.subtitleLabel.text = event.subtitle;
     detailHeaderViewController.timeStart.text = [self stringTimeForDate:event.itemDateStart];
-    detailHeaderViewController.timeDuration.text = [NSString stringWithFormat:@"%.1f h", event.duration];
+    detailHeaderViewController.timeDuration.text = event.durationString;
     detailHeaderViewController.roomLabel.text = event.room;
     detailHeaderViewController.dateLabel.text = @"-";
     detailHeaderViewController.languageLabel.text = event.localizedLanguageName;
