@@ -334,4 +334,10 @@
     return room;
 }
 
+- (NSString*) durationString {
+    NSInteger hours = floor(self.durationSeconds/3600);
+    NSInteger minutes = round((self.durationSeconds - hours * 3600)/60);
+    return [NSString stringWithFormat:@"%d:%02d",hours,minutes];
+}
+
 @end

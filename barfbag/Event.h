@@ -67,6 +67,7 @@
 - (NSString*) websiteHref;
 - (NSString*) speakerList;
 - (NSString*) localizedLanguageName;
+- (NSString*) durationString;
 
 - (void) takeValuesFromDictionary:(NSDictionary*)dict;
 - (void) takeDurationFromString:(NSString*)durationString;
