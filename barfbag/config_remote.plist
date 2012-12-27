@@ -30,11 +30,11 @@
 				<key>groupKey</key>
 				<string>livestream</string>
 				<key>itemUrl</key>
-				<string>http://http.29c3.fem-net.de/live/stream_saal1.m3u8</string>
+				<string>http://http.29c3.fem-net.de/live/stream_hall1.m3u8</string>
 				<key>itemTitleDe</key>
 				<string>Saal 1</string>
 				<key>itemTitleEn</key>
-				<string>Room 1</string>
+				<string>Hall 1</string>
 				<key>itemSubtitleDe</key>
 				<string>LIVE Stream by FEM - available soon...</string>
 				<key>itemSubtitleEn</key>
@@ -44,11 +44,11 @@
 				<key>groupKey</key>
 				<string>livestream</string>
 				<key>itemUrl</key>
-				<string>http://http.29c3.fem-net.de/live/stream_saal4.m3u8</string>
+				<string>http://http.29c3.fem-net.de/live/stream_hall4.m3u8</string>
 				<key>itemTitleDe</key>
 				<string>Saal 4</string>
 				<key>itemTitleEn</key>
-				<string>Room 4</string>
+				<string>Hall 4</string>
 				<key>itemSubtitleDe</key>
 				<string>LIVE Stream by FEM - available soon...</string>
 				<key>itemSubtitleEn</key>
@@ -58,11 +58,11 @@
 				<key>groupKey</key>
 				<string>livestream</string>
 				<key>itemUrl</key>
-				<string>http://http.29c3.fem-net.de/live/stream_saal6.m3u8</string>
+				<string>http://http.29c3.fem-net.de/live/stream_hall6.m3u8</string>
 				<key>itemTitleDe</key>
 				<string>Saal 6</string>
 				<key>itemTitleEn</key>
-				<string>Room 6</string>
+				<string>Hall 6</string>
 				<key>itemSubtitleDe</key>
 				<string>LIVE Stream by FEM - available soon...</string>
 				<key>itemSubtitleEn</key>
@@ -84,31 +84,297 @@
 			</dict>
 			<dict>
 				<key>groupKey</key>
-				<string>otherlinks</string>
+				<string>livestream</string>
 				<key>itemUrl</key>
-				<string>https://events.ccc.de/congress/2012/wiki/How_To_Survive</string>
+				<string>http://www.dradio.de/streaming/dlf.m3u</string>
 				<key>itemTitleDe</key>
-				<string>How to survive</string>
+				<string>Deutschlandfunk</string>
 				<key>itemTitleEn</key>
-				<string>How to survive</string>
+				<string>Deutschlandfunk</string>
 				<key>itemSubtitleDe</key>
-				<string>Keeping your stuff&apos;s integrity up</string>
+				<string>LIVE Stream of DLF radio</string>
 				<key>itemSubtitleEn</key>
-				<string>Keeping your stuff&apos;s integrity up</string>
+				<string>LIVE Stream of DLF radio</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>livestream</string>
+				<key>itemUrl</key>
+				<string>http://www.youtube.com/watch?v=nNHgtgwxnNA</string>
+				<key>itemTitleDe</key>
+				<string>Deutschlandfunk 29c3 Trailer</string>
+				<key>itemTitleEn</key>
+				<string>Deutschlandfunk 29c3 Trailer</string>
+				<key>itemSubtitleDe</key>
+				<string>DLF@29C3, Hamburg 2012 (Youtube)</string>
+				<key>itemSubtitleEn</key>
+				<string>DLF@29C3, Hamburg 2012 (Youtube)</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>livestream</string>
+				<key>itemUrl</key>
+				<string>http://www.dradio.de/hackerkongress</string>
+				<key>itemTitleDe</key>
+				<string>Deutschlandfunk Berichte</string>
+				<key>itemTitleEn</key>
+				<string>Deutschlandfunk Berichte</string>
+				<key>itemSubtitleDe</key>
+				<string>27./28./29.@16:30 LIVE coverage</string>
+				<key>itemSubtitleEn</key>
+				<string>27./28./29.@16:30 LIVE coverage</string>
 			</dict>
 			<dict>
 				<key>groupKey</key>
 				<string>otherlinks</string>
 				<key>itemUrl</key>
-				<string>https://events.ccc.de/congress/2012/wiki/Frequently_Asked_Questions</string>
+				<string>http://29c3.postcapitalism.org/data/How_To_Survive.html</string>
+				<key>itemTitleDe</key>
+				<string>How to survive</string>
+				<key>itemTitleEn</key>
+				<string>How to survive</string>
+				<key>itemSubtitleDe</key>
+				<string>Cached(!) from Wiki</string>
+				<key>itemSubtitleEn</key>
+				<string>Cached(!) from Wiki</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://29c3.postcapitalism.org/data/Frequently_Asked_Questions.html</string>
 				<key>itemTitleDe</key>
 				<string>FAQ</string>
 				<key>itemTitleEn</key>
 				<string>FAQ</string>
 				<key>itemSubtitleDe</key>
-				<string>Web</string>
+				<string>Cached(!) from Wiki</string>
 				<key>itemSubtitleEn</key>
-				<string>Web</string>
+				<string>Cached(!) from Wiki</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://29c3.postcapitalism.org/cch/cch_map_colored_0x00.png</string>
+				<key>itemTitleDe</key>
+				<string>Floor 0x00</string>
+				<key>itemTitleEn</key>
+				<string>Floor 0x00</string>
+				<key>itemSubtitleDe</key>
+				<string>Cloakroom, Shirts, Food/Drinks, NOC</string>
+				<key>itemSubtitleEn</key>
+				<string>Cloakroom, Shirts, Food/Drinks, NOC</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://29c3.postcapitalism.org/cch/cch_map_colored_0x01.png</string>
+				<key>itemTitleDe</key>
+				<string>Floor 0x01</string>
+				<key>itemTitleEn</key>
+				<string>Floor 0x01</string>
+				<key>itemSubtitleDe</key>
+				<string>Workshops, Assemblies, Heaven, GSM, POC</string>
+				<key>itemSubtitleEn</key>
+				<string>Workshops, Assemblies, Heaven, GSM, POC</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://29c3.postcapitalism.org/cch/cch_map_colored_0x02.png</string>
+				<key>itemTitleDe</key>
+				<string>Floor 0x02</string>
+				<key>itemTitleEn</key>
+				<string>Floor 0x02</string>
+				<key>itemSubtitleDe</key>
+				<string>More Assemblies, Cooked food, Ballpit</string>
+				<key>itemSubtitleEn</key>
+				<string>More Assemblies, Cooked food, Ballpit</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://29c3.postcapitalism.org/cch/cch_map_colored_0x03.png</string>
+				<key>itemTitleDe</key>
+				<string>Floor 0x03</string>
+				<key>itemTitleEn</key>
+				<string>Floor 0x03</string>
+				<key>itemSubtitleDe</key>
+				<string>Hot Dogs, Pizza, Mobile, Retro Gaming</string>
+				<key>itemSubtitleEn</key>
+				<string>Hot Dogs, Pizza, Mobile, Retro Gaming</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://29c3.postcapitalism.org/cch/cch_map_colored_0x04.png</string>
+				<key>itemTitleDe</key>
+				<string>Floor 0x04</string>
+				<key>itemTitleEn</key>
+				<string>Floor 0x04</string>
+				<key>itemSubtitleDe</key>
+				<string>Chillout Zone, TenForward, Top entry Hall 1</string>
+				<key>itemSubtitleEn</key>
+				<string>Chillout Zone, TenForward, Top entry Hall 1</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://29c3.postcapitalism.org/data/Main_Page.html</string>
+				<key>itemTitleDe</key>
+				<string>Wiki Main</string>
+				<key>itemTitleEn</key>
+				<string>Wiki Main</string>
+				<key>itemSubtitleDe</key>
+				<string>Cached(!) from Wiki</string>
+				<key>itemSubtitleEn</key>
+				<string>Cached(!) from Wiki</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://29c3.postcapitalism.org/data/Lightning_Talks.html</string>
+				<key>itemTitleDe</key>
+				<string>Lightning Talks</string>
+				<key>itemTitleEn</key>
+				<string>Lightning Talks</string>
+				<key>itemSubtitleDe</key>
+				<string>Cached(!) from Wiki</string>
+				<key>itemSubtitleEn</key>
+				<string>Cached(!) from Wiki</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://29c3.postcapitalism.org/data/Projects.html</string>
+				<key>itemTitleDe</key>
+				<string>Projects</string>
+				<key>itemTitleEn</key>
+				<string>Projects</string>
+				<key>itemSubtitleDe</key>
+				<string>Cached(!) from Wiki</string>
+				<key>itemSubtitleEn</key>
+				<string>Cached(!) from Wiki</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://29c3.postcapitalism.org/data/Lounge.html</string>
+				<key>itemTitleDe</key>
+				<string>Lounge (smoking)</string>
+				<key>itemTitleEn</key>
+				<string>Lounge (smoking)</string>
+				<key>itemSubtitleDe</key>
+				<string>Cached(!) from Wiki</string>
+				<key>itemSubtitleEn</key>
+				<string>Cached(!) from Wiki</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://29c3.postcapitalism.org/data/TenForward.html</string>
+				<key>itemTitleDe</key>
+				<string>Ten Forward (non-smoking)</string>
+				<key>itemTitleEn</key>
+				<string>Ten Forward (non-smoking)</string>
+				<key>itemSubtitleDe</key>
+				<string>Cached(!) from Wiki</string>
+				<key>itemSubtitleEn</key>
+				<string>Cached(!) from Wiki</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://29c3.postcapitalism.org/data/Accommodation.html</string>
+				<key>itemTitleDe</key>
+				<string>Accomodation</string>
+				<key>itemTitleEn</key>
+				<string>Accomodation</string>
+				<key>itemSubtitleDe</key>
+				<string>Cached(!) from Wiki</string>
+				<key>itemSubtitleEn</key>
+				<string>Cached(!) from Wiki</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://29c3.postcapitalism.org/data/Travel.html</string>
+				<key>itemTitleDe</key>
+				<string>Travel / Map</string>
+				<key>itemTitleEn</key>
+				<string>Travel / Map</string>
+				<key>itemSubtitleDe</key>
+				<string>Cached(!) from Wiki</string>
+				<key>itemSubtitleEn</key>
+				<string>Cached(!) from Wiki</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://29c3.postcapitalism.org/data/Local_Transport.html</string>
+				<key>itemTitleDe</key>
+				<string>Local Transport</string>
+				<key>itemTitleEn</key>
+				<string>Local Transport</string>
+				<key>itemSubtitleDe</key>
+				<string>Cached(!) from Wiki</string>
+				<key>itemSubtitleEn</key>
+				<string>Cached(!) from Wiki</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://29c3.postcapitalism.org/data/Useful_Places.html</string>
+				<key>itemTitleDe</key>
+				<string>Useful Places</string>
+				<key>itemTitleEn</key>
+				<string>Useful Places</string>
+				<key>itemSubtitleDe</key>
+				<string>Cached(!) from Wiki</string>
+				<key>itemSubtitleEn</key>
+				<string>Cached(!) from Wiki</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://29c3.postcapitalism.org/data/Food_and_drinks.html</string>
+				<key>itemTitleDe</key>
+				<string>Food &amp; Drinks</string>
+				<key>itemTitleEn</key>
+				<string>Food &amp; Drinks</string>
+				<key>itemSubtitleDe</key>
+				<string>Cached(!) from Wiki</string>
+				<key>itemSubtitleEn</key>
+				<string>Cached(!) from Wiki</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://29c3.postcapitalism.org/data/Volunteers.html</string>
+				<key>itemTitleDe</key>
+				<string>Volunteering</string>
+				<key>itemTitleEn</key>
+				<string>Volunteering</string>
+				<key>itemSubtitleDe</key>
+				<string>Cached(!) from Wiki</string>
+				<key>itemSubtitleEn</key>
+				<string>Cached(!) from Wiki</string>
 			</dict>
 			<dict>
 				<key>groupKey</key>
@@ -120,163 +386,9 @@
 				<key>itemTitleEn</key>
 				<string>Fahrplan</string>
 				<key>itemSubtitleDe</key>
-				<string>Web</string>
+				<string>Fahrplan on the WEB</string>
 				<key>itemSubtitleEn</key>
-				<string>Web</string>
-			</dict>
-			<dict>
-				<key>groupKey</key>
-				<string>otherlinks</string>
-				<key>itemUrl</key>
-				<string>https://events.ccc.de/congress/2012/wiki/</string>
-				<key>itemTitleDe</key>
-				<string>Wiki</string>
-				<key>itemTitleEn</key>
-				<string>Wiki</string>
-				<key>itemSubtitleDe</key>
-				<string>Web</string>
-				<key>itemSubtitleEn</key>
-				<string>Web</string>
-			</dict>
-			<dict>
-				<key>groupKey</key>
-				<string>otherlinks</string>
-				<key>itemUrl</key>
-				<string>https://events.ccc.de/congress/2012/wiki/Lightning_Talks</string>
-				<key>itemTitleDe</key>
-				<string>Lightning Talks</string>
-				<key>itemTitleEn</key>
-				<string>Lightning Talks</string>
-				<key>itemSubtitleDe</key>
-				<string>Web</string>
-				<key>itemSubtitleEn</key>
-				<string>Web</string>
-			</dict>
-			<dict>
-				<key>groupKey</key>
-				<string>otherlinks</string>
-				<key>itemUrl</key>
-				<string>https://events.ccc.de/congress/2012/wiki/Projects</string>
-				<key>itemTitleDe</key>
-				<string>Projects</string>
-				<key>itemTitleEn</key>
-				<string>Projects</string>
-				<key>itemSubtitleDe</key>
-				<string>Web</string>
-				<key>itemSubtitleEn</key>
-				<string>Web</string>
-			</dict>
-			<dict>
-				<key>groupKey</key>
-				<string>otherlinks</string>
-				<key>itemUrl</key>
-				<string>https://events.ccc.de/congress/2012/wiki/Lounge</string>
-				<key>itemTitleDe</key>
-				<string>Lounge</string>
-				<key>itemTitleEn</key>
-				<string>Lounge</string>
-				<key>itemSubtitleDe</key>
-				<string>Smokers Lounge in a tent</string>
-				<key>itemSubtitleEn</key>
-				<string>Smokers Lounge in a tent</string>
-			</dict>
-			<dict>
-				<key>groupKey</key>
-				<string>otherlinks</string>
-				<key>itemUrl</key>
-				<string>https://events.ccc.de/congress/2012/wiki/TenForward</string>
-				<key>itemTitleDe</key>
-				<string>Ten Forward</string>
-				<key>itemTitleEn</key>
-				<string>Ten Forward</string>
-				<key>itemSubtitleDe</key>
-				<string>Non-Smokers Lounge</string>
-				<key>itemSubtitleEn</key>
-				<string>Non-Smokers Lounge</string>
-			</dict>
-			<dict>
-				<key>groupKey</key>
-				<string>otherlinks</string>
-				<key>itemUrl</key>
-				<string>https://events.ccc.de/congress/2012/wiki/Accommodation</string>
-				<key>itemTitleDe</key>
-				<string>Accomodation</string>
-				<key>itemTitleEn</key>
-				<string>Accomodation</string>
-				<key>itemSubtitleDe</key>
-				<string>Web</string>
-				<key>itemSubtitleEn</key>
-				<string>Web</string>
-			</dict>
-			<dict>
-				<key>groupKey</key>
-				<string>otherlinks</string>
-				<key>itemUrl</key>
-				<string>https://events.ccc.de/congress/2012/wiki/Travel</string>
-				<key>itemTitleDe</key>
-				<string>Travel / Map</string>
-				<key>itemTitleEn</key>
-				<string>Travel / Map</string>
-				<key>itemSubtitleDe</key>
-				<string>Web</string>
-				<key>itemSubtitleEn</key>
-				<string>Web</string>
-			</dict>
-			<dict>
-				<key>groupKey</key>
-				<string>otherlinks</string>
-				<key>itemUrl</key>
-				<string>https://events.ccc.de/congress/2012/wiki/Local_Transport</string>
-				<key>itemTitleDe</key>
-				<string>Local Transport</string>
-				<key>itemTitleEn</key>
-				<string>Local Transport</string>
-				<key>itemSubtitleDe</key>
-				<string>Web</string>
-				<key>itemSubtitleEn</key>
-				<string>Web</string>
-			</dict>
-			<dict>
-				<key>groupKey</key>
-				<string>otherlinks</string>
-				<key>itemUrl</key>
-				<string>https://events.ccc.de/congress/2012/wiki/Useful_Places</string>
-				<key>itemTitleDe</key>
-				<string>Useful Places</string>
-				<key>itemTitleEn</key>
-				<string>Useful Places</string>
-				<key>itemSubtitleDe</key>
-				<string>Web</string>
-				<key>itemSubtitleEn</key>
-				<string>Web</string>
-			</dict>
-			<dict>
-				<key>groupKey</key>
-				<string>otherlinks</string>
-				<key>itemUrl</key>
-				<string>https://events.ccc.de/congress/2012/wiki/Food_and_drinks</string>
-				<key>itemTitleDe</key>
-				<string>Food &amp; Drinks</string>
-				<key>itemTitleEn</key>
-				<string>Food &amp; Drinks</string>
-				<key>itemSubtitleDe</key>
-				<string>Web</string>
-				<key>itemSubtitleEn</key>
-				<string>Web</string>
-			</dict>
-			<dict>
-				<key>groupKey</key>
-				<string>otherlinks</string>
-				<key>itemUrl</key>
-				<string>https://events.ccc.de/congress/2012/wiki/Volunteers</string>
-				<key>itemTitleDe</key>
-				<string>Volunteering</string>
-				<key>itemTitleEn</key>
-				<string>Volunteering</string>
-				<key>itemSubtitleDe</key>
-				<string>Web</string>
-				<key>itemSubtitleEn</key>
-				<string>Web</string>
+				<string>Fahrplan on the WEB</string>
 			</dict>
 			<dict>
 				<key>groupKey</key>
@@ -288,9 +400,9 @@
 				<key>itemTitleEn</key>
 				<string>Day 1</string>
 				<key>itemSubtitleDe</key>
-				<string>Thursday 27th</string>
+				<string>Th., 27th on the WEB</string>
 				<key>itemSubtitleEn</key>
-				<string>Thursday 27th</string>
+				<string>Th., 27th on the WEB</string>
 			</dict>
 			<dict>
 				<key>groupKey</key>
@@ -302,9 +414,9 @@
 				<key>itemTitleEn</key>
 				<string>Day 2</string>
 				<key>itemSubtitleDe</key>
-				<string>Friday 28th</string>
+				<string>Fr., 28th on the WEB</string>
 				<key>itemSubtitleEn</key>
-				<string>Friday 28th</string>
+				<string>Fr., 28th on the WEB</string>
 			</dict>
 			<dict>
 				<key>groupKey</key>
@@ -316,9 +428,9 @@
 				<key>itemTitleEn</key>
 				<string>Day 3</string>
 				<key>itemSubtitleDe</key>
-				<string>Saturday 29th</string>
+				<string>Sa., 29th on the WEB</string>
 				<key>itemSubtitleEn</key>
-				<string>Saturday 29th</string>
+				<string>Sa., 29th on the WEB</string>
 			</dict>
 			<dict>
 				<key>groupKey</key>
@@ -330,23 +442,37 @@
 				<key>itemTitleEn</key>
 				<string>Day 4</string>
 				<key>itemSubtitleDe</key>
-				<string>Sunday 30th</string>
+				<string>Su., 30th on the WEB</string>
 				<key>itemSubtitleEn</key>
-				<string>Sunday 30th</string>
+				<string>Su., 30th on the WEB</string>
 			</dict>
 			<dict>
 				<key>groupKey</key>
 				<string>otherlinks</string>
 				<key>itemUrl</key>
-				<string>https://events.ccc.de/congress/2012/wiki/After_Party</string>
+				<string>http://29c3.postcapitalism.org/data/After_Party.html</string>
 				<key>itemTitleDe</key>
-				<string>After Party</string>
+				<string>After Party (Su., 30th@2000)</string>
 				<key>itemTitleEn</key>
-				<string>After Party</string>
+				<string>After Party (Su., 30th@2000)</string>
 				<key>itemSubtitleDe</key>
-				<string>Sunday 30th at 20h (Bus shuttle available)</string>
+				<string>Cached(!) from Wiki - Bus Shuttle</string>
 				<key>itemSubtitleEn</key>
-				<string>Sunday 30th at 20h (Bus shuttle available)</string>
+				<string>Cached(!) from Wiki - Bus Shuttle</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>otherlinks</string>
+				<key>itemUrl</key>
+				<string>http://www.youtube.com/watch?v=5V7me25aNtI</string>
+				<key>itemTitleDe</key>
+				<string>Once the rockets are up…</string>
+				<key>itemTitleEn</key>
+				<string>Once the rockets are up…</string>
+				<key>itemSubtitleDe</key>
+				<string>…who cares where they come down.</string>
+				<key>itemSubtitleEn</key>
+				<string>…who cares where they come down.</string>
 			</dict>
 			<dict>
 				<key>groupKey</key>
