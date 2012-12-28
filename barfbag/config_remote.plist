@@ -30,43 +30,57 @@
 				<key>groupKey</key>
 				<string>livestream</string>
 				<key>itemUrl</key>
-				<string>http://http.29c3.fem-net.de/live/stream_hall1.m3u8</string>
+				<string>http://29c3.fem-net.de/</string>
+				<key>itemTitleDe</key>
+				<string>LIVE Stream Info</string>
+				<key>itemTitleEn</key>
+				<string>LIVE Stream Info</string>
+				<key>itemSubtitleDe</key>
+				<string>Available Streams right now</string>
+				<key>itemSubtitleEn</key>
+				<string>Available Streams right now</string>
+			</dict>
+			<dict>
+				<key>groupKey</key>
+				<string>livestream</string>
+				<key>itemUrl</key>
+				<string>http://saal1.hls.29c3.fem-net.de/#</string>
 				<key>itemTitleDe</key>
 				<string>Saal 1</string>
 				<key>itemTitleEn</key>
 				<string>Hall 1</string>
 				<key>itemSubtitleDe</key>
-				<string>LIVE Stream by FEM - available soon...</string>
+				<string>LIVE Stream by FEM - (should work now)</string>
 				<key>itemSubtitleEn</key>
-				<string>LIVE Stream by FEM - available soon...</string>
+				<string>LIVE Stream by FEM - (should work now)</string>
 			</dict>
 			<dict>
 				<key>groupKey</key>
 				<string>livestream</string>
 				<key>itemUrl</key>
-				<string>http://http.29c3.fem-net.de/live/stream_hall4.m3u8</string>
+				<string>http://saal4.hls.29c3.fem-net.de/#</string>
 				<key>itemTitleDe</key>
 				<string>Saal 4</string>
 				<key>itemTitleEn</key>
 				<string>Hall 4</string>
 				<key>itemSubtitleDe</key>
-				<string>LIVE Stream by FEM - available soon...</string>
+				<string>LIVE Stream by FEM - (should work now)</string>
 				<key>itemSubtitleEn</key>
-				<string>LIVE Stream by FEM - available soon...</string>
+				<string>LIVE Stream by FEM - (should work now)</string>
 			</dict>
 			<dict>
 				<key>groupKey</key>
 				<string>livestream</string>
 				<key>itemUrl</key>
-				<string>http://http.29c3.fem-net.de/live/stream_hall6.m3u8</string>
+				<string>http://saal6.hls.29c3.fem-net.de/#</string>
 				<key>itemTitleDe</key>
 				<string>Saal 6</string>
 				<key>itemTitleEn</key>
 				<string>Hall 6</string>
 				<key>itemSubtitleDe</key>
-				<string>LIVE Stream by FEM - available soon...</string>
+				<string>LIVE Stream by FEM - (should work now)</string>
 				<key>itemSubtitleEn</key>
-				<string>LIVE Stream by FEM - available soon...</string>
+				<string>LIVE Stream by FEM - (should work now)</string>
 			</dict>
 			<dict>
 				<key>groupKey</key>
