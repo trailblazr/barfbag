@@ -18,10 +18,14 @@
 
 @synthesize sectionKeys;
 @synthesize sectionArrays;
+@synthesize indexPathMedian;
+@synthesize timerUpdateMedian;
 
 - (void) dealloc {
     self.sectionKeys = nil;
     self.sectionArrays = nil;
+    self.indexPathMedian = nil;
+    self.timerUpdateMedian = nil;
     [super dealloc];
 }
 
@@ -31,6 +35,22 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void) timerStopMedian {
+    if( timerUpdateMedian && [timerUpdateMedian isValid] ) {
+        [timerUpdateMedian invalidate];
+    }
+    self.timerUpdateMedian = nil;
+}
+
+- (void) timerStartMedian {
+    [self timerStopMedian];
+    self.timerUpdateMedian = [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(updateMedianIndexPath) userInfo:nil repeats:YES];
+}
+
+- (void) updateMedianIndexPath {
+    self.indexPathMedian = [self indexPathOfItemWithMinimumMinutesTilStart];
 }
 
 #pragma mark - Convenience Methods
@@ -112,7 +132,7 @@
     [self.tableView reloadData];
     [self updateNavigationTitle];
     self.navigationItem.rightBarButtonItem.enabled = YES;
-    
+    [self timerStartMedian];
 }
 
 - (IBAction) actionButtonTapped:(id)sender {
@@ -351,11 +371,10 @@
 
 - (UIView*) backgroundViewForCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
     NSInteger rowScope = 7;
-    NSIndexPath *indexPathMedian = [self indexPathOfItemWithMinimumMinutesTilStart];
     NSInteger indexDistance = [self rowDistanceForIndexPath:indexPath fromIndexPath:indexPathMedian];
     NSInteger absIndexDistance = abs(indexDistance);
     if( absIndexDistance > rowScope ) return nil;
-    BOOL isPastEvent = ( indexDistance < 0 );
+    // BOOL isPastEvent = ( indexDistance < 0 );
     
     CGFloat intensityValue = 1.0-[[NSNumber numberWithInt:abs(indexDistance)] floatValue] / [[NSNumber numberWithInt:rowScope] floatValue];
     
@@ -369,7 +388,7 @@
     color1 =  [UIColor colorWithHue:hue1 saturation:[color1 saturation] brightness:brightness1 alpha:1.0];
     
     CGFloat hue2 = [color2 hue];
-    CGFloat brightness2 = [color2 brightness]+((1.0-[color2 brightness]) * intensityValue);
+    CGFloat brightness2 = [color2 brightness]+((1.0-[color2 brightness]) * 0.5 *intensityValue);
     // CGFloat saturation2 = isPastEvent ? [color2 saturation]*0.5 : [color2 saturation];
     // CGFloat alpha2 = isPastEvent ? 0.2+(0.3*intensityValue) : 0.5+(0.5*intensityValue);
     color2 =  [UIColor colorWithHue:hue2 saturation:[color2 saturation] brightness:brightness2 alpha:1.0];
@@ -436,7 +455,6 @@
         cell.backgroundView = [self backgroundViewForCell:cell atIndexPath:indexPath];
         
         if( NO ) {
-            NSIndexPath *indexPathMedian = [self indexPathOfItemWithMinimumMinutesTilStart];
             NSLog( @"indexPathSource = %i/%i (item: %i)", indexPathMedian.section, indexPathMedian.row, [self tableView:self.tableView numberOfRowsInSection:indexPathMedian.section] );
             NSLog( @"indexPathtarget = %i/%i (items: %i)", indexPath.section, indexPath.row, [self tableView:self.tableView numberOfRowsInSection:indexPath.section] );
             NSLog( @"rowDistanceForIndexPath = %i", [self rowDistanceForIndexPath:indexPath fromIndexPath:indexPathMedian] );
