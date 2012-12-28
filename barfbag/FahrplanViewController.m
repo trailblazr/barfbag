@@ -372,7 +372,7 @@
     UIColor *color1 = kCOLOR_BACK;
     
     CGFloat hue1 = [color1 hue];
-    CGFloat brightness1 = [color1 brightness]+((1.0-[color1 brightness]) * 0.8*intensityValue);
+    CGFloat brightness1 = [color1 brightness]+((1.0-[color1 brightness]) * 0.6*intensityValue);
     // CGFloat saturation1 = isPastEvent ? [color1 saturation]*0.5 : [color1 saturation];
     // CGFloat alpha1 = isPastEvent ? 0.5+(0.3*intensityValue) : 0.5+(0.5*intensityValue);
     color1 =  [UIColor colorWithHue:hue1 saturation:[color1 saturation] brightness:brightness1 alpha:1.0];
@@ -443,7 +443,12 @@
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     cell.imageView.backgroundColor = [self darkColor];
     cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    cell.backgroundColor = [self backgroundColorForCell:cell atIndexPath:indexPath];
+    // COLORIZE CELL
+    // cell.textLabel.textColor = [self textLabelColorForCell:cell atIndexPath:indexPath withColor:[self brighterColor]];
+    if( [[self appDelegate] isConfigOnForKey:kUSERDEFAULT_KEY_BOOL_USE_TIME_FOCUS defaultValue:YES] ) {
+        cell.backgroundColor = [self backgroundColorForCell:cell atIndexPath:indexPath];
+    }
+    cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:cell.detailTextLabel.font.pointSize];    
     UIView *colorMarker = [cell.contentView viewWithTag:kCELL_ATTACHED_VIEW_TAG];
     if( colorMarker ) {
         colorMarker.center = CGPointMake(3.0, cell.contentView.center.y);
@@ -455,10 +460,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-        cell.textLabel.textColor = [self brighterColor];
-        cell.detailTextLabel.textColor = [self themeColor];
+        cell.textLabel.textColor = [self brightColor];
+        cell.detailTextLabel.textColor = [self brighterColor];
         cell.textLabel.backgroundColor = kCOLOR_CLEAR;
         cell.detailTextLabel.backgroundColor = kCOLOR_CLEAR;
+        cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:cell.detailTextLabel.font.pointSize];
         UIView *backgroundView = [[[UIView alloc] initWithFrame:CGRectNull] autorelease];
         backgroundView.backgroundColor = [self backgroundColor];
         cell.backgroundView = backgroundView;
@@ -480,8 +486,8 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.imageView.image = nil;
     cell.backgroundView = nil;
-    cell.textLabel.textColor = [self brighterColor];
-    cell.detailTextLabel.textColor = [self themeColor];
+    cell.textLabel.textColor = [self brightColor];
+    cell.detailTextLabel.textColor = [self brighterColor];
     UIView *oldView = [cell.contentView viewWithTag:kCELL_ATTACHED_VIEW_TAG];
     if( oldView ) {
         [oldView removeFromSuperview];
@@ -506,12 +512,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         // CHECK FAVOURITE
         cell.accessoryView = [currentEvent isFavourite] ? [ColoredAccessoryView checkmarkViewWithColor:[self themeColor]] : [ColoredAccessoryView disclosureIndicatorViewWithColor:[self themeColor]];
-    
-        // COLORIZE CELL
-        // cell.backgroundView = [self backgroundViewForCell:cell atIndexPath:indexPath];
-        cell.backgroundColor = [self backgroundColorForCell:cell atIndexPath:indexPath];
-        cell.textLabel.textColor = [self textLabelColorForCell:cell atIndexPath:indexPath withColor:[self brighterColor]];
-        
+            
         // ADD TRACK INFO
         UIColor *trackColor = [[self conference] colorForTrack:currentEvent.track];
         // trackColor = [UIColor greenColor];

@@ -94,6 +94,9 @@
                 [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:1.0];
             }
         }
+        if( [currentDict objectForKey:@"switchTimeFocus"] == theSwitch ) {
+            [self updateDefaultsForKey:kUSERDEFAULT_KEY_BOOL_USE_TIME_FOCUS withValue:theSwitch.isOn];
+        }
     }
 }
 
@@ -119,6 +122,11 @@
         if( currentSwitch ) {
             [currentSwitch setOn:YES animated:YES];
             [self updateDefaultsForKey:kUSERDEFAULT_KEY_BOOL_USE_CLOUD_SYNC withValue:YES];
+        }
+        currentSwitch = (UISwitch*)[currentDict objectForKey:@"switchTimeFocus"];
+        if( currentSwitch ) {
+            [currentSwitch setOn:YES animated:YES];
+            [self updateDefaultsForKey:kUSERDEFAULT_KEY_BOOL_USE_TIME_FOCUS withValue:YES];
         }
     }
     [[self appDelegate] emptyAllFilesFromFolder:kFOLDER_DOCUMENTS];
@@ -156,6 +164,13 @@
     switchUseCloudSync.on = [[self appDelegate] isConfigOnForKey:kUSERDEFAULT_KEY_BOOL_USE_CLOUD_SYNC defaultValue:YES];
     [switchUseCloudSync addTarget:self action:@selector(actionSwitchChanged:) forControlEvents:UIControlEventValueChanged];
     itemEntry = [NSDictionary dictionaryWithObject:switchUseCloudSync forKey:@"switchCloudSync"];
+    [sectionsArray addObject:itemEntry];
+
+    // SWITCH TIME FOCUS
+    UISwitch *switchTimeFocus = [[[UISwitch alloc] init] autorelease];
+    switchTimeFocus.on = [[self appDelegate] isConfigOnForKey:kUSERDEFAULT_KEY_BOOL_USE_TIME_FOCUS defaultValue:YES];
+    [switchTimeFocus addTarget:self action:@selector(actionSwitchChanged:) forControlEvents:UIControlEventValueChanged];
+    itemEntry = [NSDictionary dictionaryWithObject:switchTimeFocus forKey:@"switchTimeFocus"];
     [sectionsArray addObject:itemEntry];
 
     // BUTTON RESET
@@ -307,7 +322,7 @@
     return [sectionsArray count];
 }
 
-#define kROW_NUM_REFRESH_BUTTON 5
+#define kROW_NUM_REFRESH_BUTTON 6
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if( indexPath.row == kROW_NUM_REFRESH_BUTTON ) {
@@ -383,7 +398,15 @@
             break;
         }
 
-        case 4:
+        case 4: {
+            uiElement = [currentDict objectForKey:@"switchTimeFocus"];
+            cell.textLabel.text = LOC( @"Timefocus" );
+            cell.detailTextLabel.text = LOC( @"Aktuelle Fahrplanzeit hervorheben" );
+            cell.accessoryView = uiElement;
+            break;
+        }
+
+        case 5:
             uiElement = [currentDict objectForKey:@"buttonForceReconfig"];
             cell.textLabel.text = LOC( @"Force Reconfigure" );
             cell.detailTextLabel.text = LOC( @"Basiskonfiguration resetten" );

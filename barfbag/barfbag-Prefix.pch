@@ -140,6 +140,7 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 #define kUSERDEFAULT_KEY_DATE_LAST_FAVOURITE    @"dateLastSyncedToCloud"
 #define kUSERDEFAULT_KEY_DATE_LAST_SYNCED       @"dateLastSyncedFromCloud"
 #define kUSERDEFAULT_KEY_INTEGER_COLOR_INDEX    @"integerIndexOfColorLastShown"
+#define kUSERDEFAULT_KEY_BOOL_USE_TIME_FOCUS    @"boolUseTimeFocus"
 
 // NOTIFICATIONS
 #define kNOTIFICATION_PARSER_STARTED        @"xmlParserStarted"
