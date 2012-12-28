@@ -158,8 +158,16 @@ nil];
     return nil;
 }
 
+- (NSInteger) itemMinutesFromNow {
+    return NSIntegerMax;
+}
+
 - (NSInteger) itemMinutesTilStart {
     return NSIntegerMax;
+}
+
+- (NSString*) itemLocation {
+    return [self singlePropertyFromObject:nameOfLocation];
 }
 
 @end

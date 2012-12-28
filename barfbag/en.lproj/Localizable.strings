@@ -44,6 +44,8 @@
 "Vormerken" = "Remember";
 "E-Mailen" = "Mail";
 "Twittern" = "Tweet";
+"Kontaktaufnahme auf dem 29c3" = "First contact at 29c3";
+"Hallo,\n\n" = "Hello,\n\n";
 
 /* ScheduleNavigationController */
 
@@ -115,6 +117,8 @@
 "Letzter iCloud Sync:\n%@" = "Last iCloud Sync:\n%@";
 "0 Favoriten.\nMarkiere Events, Assemblies\noder Workshops." = "0 Favorites.\nMark Events, Assemblies\nor Workshops.";
 "Nothing scheduled." = "Nothing scheduled.";
+"STARTS: IN %02dH %02dM %02dS" = "– IN %02dH %02dM %02dS –";
+"UP NEXT: %@" = "UP NEXT: %@";
 
 /* VideoStreamNavigationController */
 

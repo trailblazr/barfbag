@@ -44,7 +44,7 @@
 }
 
 - (void) actionOpenInWiki:(NSString*)wikiPath {
-    NSString* urlString = [self urlStringWikiPageWithPath:wikiPath];
+    NSString* urlString = [[MasterConfig sharedConfiguration] urlStringWikiPageWithPath:wikiPath];
     NSURL *url = [NSURL URLWithString:urlString];
     [self loadSimpleWebViewWithURL:url shouldScaleToFit:YES];
 }
@@ -229,11 +229,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if( [[sectionKeys objectAtIndex:indexPath.section] isEqualToString:@"contactOrganizing"] ) {
         NSLog( @"TOUCHED MAILTO" );
+        NSString *userMail = [self textToDisplayForIndexPath:indexPath];
+        [self sendMailToRecipientAddress:userMail];
     }
     if( [[sectionKeys objectAtIndex:indexPath.section] isEqualToString:@"personOrganizing"] ) {
         NSLog( @"TOUCHED WIKI USR PAGE" );
         NSString *userName = [self textToDisplayForIndexPath:indexPath];
-        NSString *wikiUrl = [self urlStringWikiPageWithPath:userName];
+        NSString *wikiUrl = [[MasterConfig sharedConfiguration] urlStringWikiPageWithPath:userName];
         NSURL *url = [NSURL URLWithString:[wikiUrl httpUrlString]];
         [self loadSimpleWebViewWithURL:url shouldScaleToFit:YES];
     }

@@ -35,6 +35,8 @@
         self.view.alpha = 0.0;
     } completion:^(BOOL finished) {
         if( finished ) {
+            // ACTIVATE CLOUD SUPPORT
+            [[self appDelegate] activateCloudSupport];
             // TRY TO INIT WITH EXISTING DATA
             BOOL shouldAutoUpdateOnStartup = [[self appDelegate] isConfigOnForKey:kUSERDEFAULT_KEY_BOOL_AUTOUPDATE defaultValue:YES];
             if( shouldAutoUpdateOnStartup ) {

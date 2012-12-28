@@ -236,6 +236,152 @@
      */
 }
 
+- (NSIndexPath*) indexPathOfItemWithMinimumMinutesTilStart {
+    NSArray *allItems = [self appDelegate].conference.allEvents;
+    SearchableItem *itemFound = nil;
+    NSIndexPath *indexPathFound = nil;
+    NSInteger indexFound = 0;
+    NSInteger index = 0;
+    NSTimeInterval minimumInterval = CGFLOAT_MAX;
+    
+    for( SearchableItem *currentItem in allItems ) {
+        if( currentItem.itemSecondsTilStart > 0 && currentItem.itemSecondsTilStart < minimumInterval ) {
+            minimumInterval = currentItem.itemSecondsTilStart;
+            itemFound = currentItem;
+            indexFound = index;
+        }
+        index++;
+    }
+    // FIND ITEM IN SECTIONS
+    NSInteger section = 0;
+    NSInteger row = 0;
+    for( NSString *currentSectionKey in sectionKeys ) {
+        NSArray *currentSectionArray = [sectionArrays objectForKey:currentSectionKey];
+        if( [currentSectionKey containsString:@"day"] ) { // ONLY SCAN EVENTS
+            row = 0;
+            for( id currentItem in currentSectionArray ) {
+                if( currentItem == itemFound ) {
+                    indexPathFound = [NSIndexPath indexPathForRow:row inSection:section];
+                    return indexPathFound;
+                }
+                row++;
+            }
+        }
+        section++;
+    }
+    return indexPathFound;
+}
+
+- (NSIndexPath*) indexPathForPreviousOfIndexPath:(NSIndexPath*)indexPath {
+    if( !indexPath ) return nil;
+    NSInteger row, section = 0;
+    if( indexPath.row > 0 ) {
+        row = indexPath.row-1;
+        section = indexPath.section;
+    }
+    else {
+        section = indexPath.section-1;
+        if( section < 0 ) return nil;
+        NSInteger numOfRows = [self tableView:self.tableView numberOfRowsInSection:section];
+        row = numOfRows-1;
+    }
+    return [NSIndexPath indexPathForRow:row inSection:section];
+}
+
+- (NSIndexPath*) indexPathForNextOfIndexPath:(NSIndexPath*)indexPath {
+    if( !indexPath ) return nil;
+    NSInteger row, section = 0;
+    NSInteger numOfRows = [self tableView:self.tableView numberOfRowsInSection:indexPath.section];
+    if( indexPath.row == numOfRows-1 ) {
+        section = indexPath.section+1;
+        if( section > [self numberOfSectionsInTableView:self.tableView] ) {
+            return nil;
+        }
+        row = 0;
+    }
+    else {
+        row = indexPath.row +1;
+        section = indexPath.section;
+    }
+    return [NSIndexPath indexPathForRow:row inSection:section];
+}
+
+- (NSInteger)rowDistanceForIndexPath:(NSIndexPath*)indexPathTarget fromIndexPath:(NSIndexPath*)indexPathSource {
+    BOOL isDistanceNegative = NO;
+    if( indexPathTarget.section == indexPathSource.section ) {
+        if( indexPathTarget.row == indexPathSource.row ) {
+            isDistanceNegative = NO;
+            return 0;
+        }
+        else {
+            return( indexPathSource.row - indexPathTarget.row );
+        }
+    }
+    else if( indexPathTarget.section < indexPathSource.section ) {
+        NSInteger currentNumOfRows = 0;
+        NSInteger distance = 0;
+        currentNumOfRows = [self tableView:self.tableView numberOfRowsInSection:indexPathSource.section];
+        distance = distance + (indexPathSource.row+1);
+        currentNumOfRows = [self tableView:self.tableView numberOfRowsInSection:indexPathTarget.section];
+        distance = distance + (currentNumOfRows-(indexPathTarget.row+1));
+        if( abs(indexPathTarget.section - indexPathSource.section) > 1 ) {
+            for( int i = indexPathTarget.section+1; i < indexPathSource.section-1; i++ ) {
+                currentNumOfRows = [self tableView:self.tableView numberOfRowsInSection:i];
+                distance = distance + currentNumOfRows;
+            }
+        }
+        return distance;
+    }
+    else { // if( indexPathTarget.section > indexPathSource.section )
+        NSInteger currentNumOfRows = 0;
+        NSInteger distance = 0;
+        currentNumOfRows = [self tableView:self.tableView numberOfRowsInSection:indexPathSource.section];
+        distance = distance + (currentNumOfRows-(indexPathSource.row+1));
+        currentNumOfRows = [self tableView:self.tableView numberOfRowsInSection:indexPathTarget.section];
+        distance = distance + ((indexPathTarget.row+1));
+        if( abs(indexPathTarget.section - indexPathSource.section) >= 1 ) {
+            for( int i = indexPathSource.section+1; i < indexPathTarget.section; i++ ) {
+                currentNumOfRows = [self tableView:self.tableView numberOfRowsInSection:i];
+                distance = distance + currentNumOfRows;
+            }
+        }
+        return distance;
+    }
+}
+
+- (UIView*) backgroundViewForCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
+    NSInteger rowScope = 7;
+    NSIndexPath *indexPathMedian = [self indexPathOfItemWithMinimumMinutesTilStart];
+    NSInteger indexDistance = [self rowDistanceForIndexPath:indexPath fromIndexPath:indexPathMedian];
+    NSInteger absIndexDistance = abs(indexDistance);
+    if( absIndexDistance > rowScope ) return nil;
+    BOOL isPastEvent = ( indexDistance < 0 );
+    
+    CGFloat intensityValue = 1.0-[[NSNumber numberWithInt:abs(indexDistance)] floatValue] / [[NSNumber numberWithInt:rowScope] floatValue];
+    
+    UIColor *color1 = kCOLOR_BACK;
+    UIColor *color2 = kCOLOR_BACK;
+    
+    CGFloat hue1 = [color1 hue];
+    CGFloat brightness1 = [color1 brightness]+((1.0-[color1 brightness]) * intensityValue);
+    // CGFloat saturation1 = isPastEvent ? [color1 saturation]*0.5 : [color1 saturation];
+    // CGFloat alpha1 = isPastEvent ? 0.5+(0.3*intensityValue) : 0.5+(0.5*intensityValue);
+    color1 =  [UIColor colorWithHue:hue1 saturation:[color1 saturation] brightness:brightness1 alpha:1.0];
+    
+    CGFloat hue2 = [color2 hue];
+    CGFloat brightness2 = [color2 brightness]+((1.0-[color2 brightness]) * intensityValue);
+    // CGFloat saturation2 = isPastEvent ? [color2 saturation]*0.5 : [color2 saturation];
+    // CGFloat alpha2 = isPastEvent ? 0.2+(0.3*intensityValue) : 0.5+(0.5*intensityValue);
+    color2 =  [UIColor colorWithHue:hue2 saturation:[color2 saturation] brightness:brightness2 alpha:1.0];
+    
+    
+    UIImage *gradientImage = [self imageGradientWithSize:cell.bounds.size color1:color1 color2:color2];
+    UIView *normalBackgroundView = [[[UIImageView alloc] initWithImage:gradientImage] autorelease];
+    normalBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    normalBackgroundView.backgroundColor = [self darkColor];
+    return normalBackgroundView;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -264,6 +410,9 @@
     cell.accessoryView = nil;
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.imageView.image = nil;
+    cell.backgroundView = nil;
+    cell.textLabel.textColor = [self brighterColor];
+    cell.detailTextLabel.textColor = [self themeColor];
     // Configure the cell...
     NSString *sectionKey = [sectionKeys objectAtIndex:indexPath.section];
     NSArray *sectionItems = [sectionArrays objectForKey:sectionKey];
@@ -283,6 +432,15 @@
         // CHECK FAVOURITE
         cell.accessoryView = [currentEvent isFavourite] ? [ColoredAccessoryView checkmarkViewWithColor:[self themeColor]] : [ColoredAccessoryView disclosureIndicatorViewWithColor:[self themeColor]];
     
+        // COLORIZE CELL
+        cell.backgroundView = [self backgroundViewForCell:cell atIndexPath:indexPath];
+        
+        if( NO ) {
+            NSIndexPath *indexPathMedian = [self indexPathOfItemWithMinimumMinutesTilStart];
+            NSLog( @"indexPathSource = %i/%i (item: %i)", indexPathMedian.section, indexPathMedian.row, [self tableView:self.tableView numberOfRowsInSection:indexPathMedian.section] );
+            NSLog( @"indexPathtarget = %i/%i (items: %i)", indexPath.section, indexPath.row, [self tableView:self.tableView numberOfRowsInSection:indexPath.section] );
+            NSLog( @"rowDistanceForIndexPath = %i", [self rowDistanceForIndexPath:indexPath fromIndexPath:indexPathMedian] );
+        }
     }
     else if( [sectionKey isEqualToString:@"links"] ) {
         Link *currentLink = (Link*)[sectionItems objectAtIndex:indexPath.row];

@@ -17,6 +17,7 @@
 
 @synthesize eventId;
 @synthesize duration;
+@synthesize durationSeconds;
 @synthesize start;
 @synthesize timeHour;
 @synthesize timeMinute;
@@ -310,6 +311,11 @@
     }
 }
 
+- (NSInteger) itemMinutesFromNow {
+    NSTimeInterval secondsTilStart = fabs([[self itemDateStart] timeIntervalSinceNow]);
+    return [[NSNumber numberWithDouble:(secondsTilStart/60.0f)] integerValue];
+}
+
 - (NSTimeInterval) itemSecondsTilStart {
     return [[self itemDateStart] timeIntervalSinceNow];
 }
@@ -317,6 +323,10 @@
 - (NSInteger) itemMinutesTilStart {
     NSTimeInterval secondsTilStart = [[self itemDateStart] timeIntervalSinceNow];
     return [[NSNumber numberWithDouble:(secondsTilStart/60.0f)] integerValue];
+}
+
+- (NSString*) itemLocation {
+    return room;
 }
 
 @end

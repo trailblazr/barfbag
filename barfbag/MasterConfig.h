@@ -59,6 +59,8 @@ typedef enum {
 - (NSString*) urlStringForKey:(NSString*)key isMothership:(BOOL)isMothership;
 - (NSString*) urlStringForKey:(NSString*)key;
 
+- (NSString*) urlStringWikiPageWithPath:(NSString*)wikiPath;
+
 @end
 
 @protocol MasterConfigDelegate <NSObject>

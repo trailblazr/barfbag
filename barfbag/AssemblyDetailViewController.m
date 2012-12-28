@@ -7,6 +7,7 @@
 //
 
 #import "AssemblyDetailViewController.h"
+#import  "MasterConfig.h"
 
 @implementation AssemblyDetailViewController
 
@@ -42,7 +43,7 @@
 }
 
 - (void) actionOpenInWiki:(NSString*)wikiPath {
-    NSString* urlString = [self urlStringWikiPageWithPath:wikiPath];
+    NSString* urlString = [[MasterConfig sharedConfiguration] urlStringWikiPageWithPath:wikiPath];
     NSURL *url = [NSURL URLWithString:urlString];
     [self loadSimpleWebViewWithURL:url shouldScaleToFit:YES];
 }

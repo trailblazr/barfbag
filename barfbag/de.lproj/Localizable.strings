@@ -34,7 +34,7 @@
 "Mail wurde versendet!" = "Mail wurde versendet!";
 "Versand fehlgeschlagen!" = "Versand fehlgeschlagen!";
 "29c3 Favorit(en)" = "29c3 Favorit(en)";
-"Keine Informtion" = "Keine Informtion";
+"Keine Informtion" = "Keine Information";
 "Sie haben derzeit keinen E-Mail-Account auf ihrem Gerät konfiguriert. Bitte zunächst das Mail App in Betrieb nehmen!" = "Sie haben derzeit keinen E-Mail-Account auf ihrem Gerät konfiguriert. Bitte zunächst das Mail App in Betrieb nehmen!";
 "29c3 Veranstaltungstipp" = "29c3 Veranstaltungstipp";
 "Information für\n%@\nweitersagen?" = "Information für\n%@\nweitersagen?";
@@ -44,6 +44,8 @@
 "Vormerken" = "Vormerken";
 "E-Mailen" = "E-Mailen";
 "Twittern" = "Twittern";
+"Kontaktaufnahme auf dem 29c3" = "Kontaktaufnahme auf dem 29c3";
+"Hallo,\n\n" = "Hallo,\n\n";
 
 /* ScheduleNavigationController */
 
@@ -115,6 +117,8 @@
 "Letzter iCloud Sync:\n%@" = "Letzter iCloud Sync:\n%@";
 "0 Favoriten.\nMarkiere Events, Assemblies\noder Workshops." = "0 Favoriten.\nMarkiere Events, Assemblies\noder Workshops.";
 "Nothing scheduled." = "Keine Eintragung.";
+"STARTS: IN %02dH %02dM %02dS" = "– IN %02dH %02dM %02dS –";
+"UP NEXT: %@" = "UP NEXT: %@";
 
 /* VideoStreamNavigationController */
 

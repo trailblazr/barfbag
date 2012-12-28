@@ -218,7 +218,7 @@
 - (void) signalCloudSyncToUser {
     CGFloat sizeValue = MAX([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     if( flashyView ) {
-        [flashyView removeFromSuperview];
+        return;
     }
     self.flashyView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, sizeValue, sizeValue )] autorelease];
     flashyView.backgroundColor = kCOLOR_WHITE;
@@ -820,23 +820,13 @@
     }
 }
 
-#pragma mark - Application Launching & State Transitions
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    self.themeColor = [self randomColor];
-
-    // CONFIGURE APP
-    [MasterConfig sharedConfiguration].delegate = self;
-    // WILL REFRESH CONFIG FROM CACHE/BUNDLE
-    [[MasterConfig sharedConfiguration] initialize];
-    
+- (void) activateCloudSupport {
     // START SYNC TO ICLOUD
     // MONITOR ICLOUD AVAILABILITY
     if( ![[UIDevice currentDevice] isLowerThanOS_6] ) {
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(manageCloudStorage)
-                                                 name:NSUbiquityIdentityDidChangeNotification                                                    object:nil];
+                                                 selector:@selector(manageCloudStorage)
+                                                     name:NSUbiquityIdentityDidChangeNotification                                                    object:nil];
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(signalCloudSyncToUser) name:kMKiCloudSyncNotification object:nil];
     
@@ -847,7 +837,19 @@
     else {
         if( DEBUG ) NSLog( @"CLOUD: USER DOES NOT WANT IT." );
     }
-    
+}
+
+#pragma mark - Application Launching & State Transitions
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.themeColor = [self randomColor];
+
+    // CONFIGURE APP
+    [MasterConfig sharedConfiguration].delegate = self;
+    // WILL REFRESH CONFIG FROM CACHE/BUNDLE
+    [[MasterConfig sharedConfiguration] initialize];
+        
     // CONFIGURE CUSTOM UI APPEARANCE
     [self configureAppearance];
     

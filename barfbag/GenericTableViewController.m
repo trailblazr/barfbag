@@ -54,16 +54,6 @@
     }
 }
 
-#pragma mark - C-FUNCTIONS
-
-NSString* newEncodeToPercentEscapeString(NSString *string) {
-    return (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef) string,NULL,(CFStringRef) @"!*'();:@&=+$,/?%#[]",kCFStringEncodingUTF8);
-}
-
-NSString* newDecodeFromPercentEscapeString(NSString *string) {
-    return (NSString *) CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,(CFStringRef) string, CFSTR(""), kCFStringEncodingUTF8);
-}
-
 #pragma mark - UIActionSheetDelegate
 
 - (NSString*) stringRepresentationMailFor:(id)item {
@@ -260,6 +250,28 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
     [controller.navigationBar setTintColor:kCOLOR_BACK];
     [controller release];
 }
+
+- (void)sendMailToRecipientAddress:(NSString*)mailTo {
+    if( !mailTo || [mailTo length] == 0 ) return;
+    if ( ![MFMailComposeViewController canSendMail] ) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"E-Mail" message:LOC( @"Sie haben derzeit keinen E-Mail-Account auf ihrem Gerät konfiguriert. Bitte zunächst das Mail App in Betrieb nehmen!" ) delegate:nil cancelButtonTitle:nil otherButtonTitles:LOC( @"OK" ), nil];
+        [alert show];
+        [alert release];
+        return;
+    }
+    NSArray* toRecipients = [NSArray arrayWithObject:mailTo];
+    MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
+    [controller setMailComposeDelegate:self];
+    [controller setToRecipients:toRecipients];
+    [controller setSubject:LOC( @"Kontaktaufnahme auf dem 29c3" )];
+    NSString *message = LOC( @"Hallo,\n\n" );
+    [controller setMessageBody:message isHTML:NO];
+    [[self navigationController] presentModalViewController:controller animated:YES];
+    [controller.navigationBar setTintColor:kCOLOR_BACK];
+    [controller release];
+}
+
+
 
 #pragma mark - Action Sheet Handling
 
@@ -621,17 +633,6 @@ NSString* newDecodeFromPercentEscapeString(NSString *string) {
     
     UIGraphicsEndImageContext();
     return image;
-}
-
-#pragma mark - Wiki URLS
-
-- (NSString*) urlStringWikiPageWithPath:(NSString*)wikiPath {
-    if( !wikiPath || [wikiPath length] == 0 ) return nil;
-    NSString *percentEscaped = newEncodeToPercentEscapeString(wikiPath);
-    NSString *path = [NSString stringWithFormat:@"%@/%@", [[MasterConfig sharedConfiguration] urlStringForKey:kURL_KEY_29C3_WIKI_BASE], percentEscaped];
-    [percentEscaped release];
-    path =  [path httpUrlString];
-    return path;
 }
 
 #pragma mark - Headup Display Management

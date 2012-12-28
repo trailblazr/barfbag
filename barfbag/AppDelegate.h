@@ -48,6 +48,7 @@
 - (UIFont*) fontWithType:(CustomFontType)fontType andPointSize:(CGFloat)pointSize;
 
 - (void) signalCloudSyncToUser;
+- (void) activateCloudSupport;
 
 - (void) configLoadCached;
 - (void) emptyAllFilesFromFolder:(NSString*)folderPath;

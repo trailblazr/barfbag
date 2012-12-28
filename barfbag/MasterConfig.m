@@ -36,6 +36,16 @@ static MasterConfig *sharedInstance = nil;
     return sharedInstance;
 }
 
+#pragma mark - C-FUNCTIONS
+
+NSString* newEncodeToPercentEscapeString(NSString *string) {
+    return (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef) string,NULL,(CFStringRef) @"!*'();:@&=+$,/?%#[]",kCFStringEncodingUTF8);
+}
+
+NSString* newDecodeFromPercentEscapeString(NSString *string) {
+    return (NSString *) CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,(CFStringRef) string, CFSTR(""), kCFStringEncodingUTF8);
+}
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.currentConfigDictionary = nil;
@@ -230,6 +240,15 @@ static MasterConfig *sharedInstance = nil;
     else {
         if( DEBUG ) NSLog( @"MASTERCONFIG: NO BUNDLE CONFIG FOUND. WE'RE FUCKED." );
     }
+}
+
+- (NSString*) urlStringWikiPageWithPath:(NSString*)wikiPath {
+    if( !wikiPath || [wikiPath length] == 0 ) return nil;
+    NSString *percentEscaped = newEncodeToPercentEscapeString(wikiPath);
+    NSString *path = [NSString stringWithFormat:@"%@/%@", [self urlStringForKey:kURL_KEY_29C3_WIKI_BASE], percentEscaped];
+    [percentEscaped release];
+    path =  [path httpUrlString];
+    return path;
 }
 
 @end

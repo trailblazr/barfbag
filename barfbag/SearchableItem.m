@@ -47,6 +47,10 @@
     return nil;
 }
 
+- (NSInteger) itemMinutesFromNow {
+    return NSIntegerMax;
+}
+
 - (NSInteger) itemMinutesTilStart {
     return NSIntegerMax;
 }
@@ -57,6 +61,10 @@
 
 - (NSComparisonResult)itemContinuousTimeCompare:(SearchableItem*)item {
     return NSOrderedSame;
+}
+
+- (NSString*) itemLocation {
+    return nil;
 }
 
 @end

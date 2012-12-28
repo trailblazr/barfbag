@@ -4,6 +4,7 @@
 
 #import "JSONWorkshop.h"
 #import "FavouriteManager.h"
+#import "MasterConfig.h"
 
 @implementation JSONWorkshop
 
@@ -115,12 +116,18 @@
  [NSDate mappingWithKey:@"dateTimeEnd" dateFormatString:@"yyyy-MM-dd hh:mm:ssZ"], @"end_time",
  */
 
+- (NSString*) websiteHref {
+    NSString* urlString = [[MasterConfig sharedConfiguration] urlStringWikiPageWithPath:[self itemTitle]];
+    return urlString;
+}
+
 - (NSString*) stringRepresentationMail {
     return [NSString stringWithFormat:@"<b>%@</b><br>%@<br>%@", [NSString placeHolder:@"(Kein Titel)" forEmptyString:[self singlePropertyFromObject:label]],[self startTime],[NSString placeHolder:@"(Kein Ort)" forEmptyString:[self singlePropertyFromObject:location]]];
 }
 
 - (NSString*) stringRepresentationTwitter {
-    return [NSString stringWithFormat:@"\"%@\"", [NSString placeHolder:@"(Kein Titel)" forEmptyString:[self singlePropertyFromObject:label]]];
+    NSString *linkString = [self websiteHref];
+    return [NSString stringWithFormat:@"\"%@\" %@", [NSString placeHolder:@"(Kein Titel)" forEmptyString:[self singlePropertyFromObject:label]], [NSString placeHolder:@"" forEmptyString:linkString]];
 }
 
 - (NSString*) description {
@@ -201,9 +208,18 @@
     return [[self itemDateStart] timeIntervalSinceNow];
 }
 
+- (NSInteger) itemMinutesFromNow {
+    NSTimeInterval secondsTilStart = fabs([[self itemDateStart] timeIntervalSinceNow]);
+    return [[NSNumber numberWithDouble:(secondsTilStart/60.0f)] integerValue];
+}
+
 - (NSInteger) itemMinutesTilStart {
     NSTimeInterval secondsTilStart = [[self itemDateStart] timeIntervalSinceNow];
     return [[NSNumber numberWithDouble:(secondsTilStart/60.0f)] integerValue];
+}
+
+- (NSString*) itemLocation {
+    return [self singlePropertyFromObject:location];
 }
 
 @end

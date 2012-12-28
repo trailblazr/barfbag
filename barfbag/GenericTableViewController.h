@@ -60,8 +60,6 @@
 
 - (Conference*) conference;
 
-- (NSString*) urlStringWikiPageWithPath:(NSString*)wikiPath;
-
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 - (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -76,5 +74,6 @@
 - (NSArray*) allSearchableItems;
 - (void) loadSimpleWebViewWithURL:(NSURL*)url shouldScaleToFit:(BOOL)shouldScaleToFit;
 - (void) loadSimpleWebViewWithURL:(NSURL*)url shouldScaleToFit:(BOOL)shouldScaleToFit isModal:(BOOL)isModal;
+- (void) sendMailToRecipientAddress:(NSString*)mailTo;
 
 @end

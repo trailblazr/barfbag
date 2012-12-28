@@ -138,9 +138,9 @@
     NSInteger minutes = itemUpNext.itemMinutesTilStart % 60;
     NSInteger hours = (itemUpNext.itemMinutesTilStart-minutes)/60;
     NSInteger seconds = [[NSNumber numberWithDouble:(itemUpNext.itemSecondsTilStart - (minutes*60+hours*60*60))] integerValue];
-    NSString *startsInMinutes = [NSString stringWithFormat:@"STARTS: IN %02dH %02dM %02dS", hours, minutes, seconds];
+    NSString *startsInMinutes = [NSString stringWithFormat:LOC( @"STARTS: IN %02dH %02dM %02dS" ), hours, minutes, seconds];
     NSString *scheduledItemTitle = [NSString stringWithFormat:@"%@ - %@\n%@",[self stringShortTimeForDate:[self nextEventOnSchedule].itemDateStart], itemUpNext.itemTitle, startsInMinutes];
-    NSString *nextEventString = [NSString stringWithFormat:@"UP NEXT: %@", [NSString placeHolder:LOC( @"Nothing scheduled." ) forEmptyString:scheduledItemTitle]];
+    NSString *nextEventString = [NSString stringWithFormat:LOC( @"UP NEXT: %@" ), [NSString placeHolder:LOC( @"Nothing scheduled." ) forEmptyString:scheduledItemTitle]];
     [upNextButton setTitle:nextEventString forState:UIControlStateNormal];
 }
 
@@ -161,17 +161,18 @@
         self.upNextButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, width, 90.0)];
         [upNextButton addTarget:self action:@selector(actionOpenFavourite:) forControlEvents:UIControlEventTouchUpInside];
         [footerView addSubview:upNextButton];
-        SearchableItem *nextItem = [self nextEventOnSchedule];
-        NSInteger minutes = nextItem.itemMinutesTilStart % 60;
-        NSInteger hours = (nextItem.itemMinutesTilStart-minutes)/60;
-        NSInteger seconds = [[NSNumber numberWithDouble:(nextItem.itemSecondsTilStart - (minutes*60+hours*60*60))] integerValue];
-        NSString *startsInMinutes = [NSString stringWithFormat:@"STARTS: IN %iH %iM %iS", hours, minutes, seconds];
-        NSString *scheduledItemTitle = [NSString stringWithFormat:@"%@ - %@\n%@",[self stringShortTimeForDate:[self nextEventOnSchedule].itemDateStart], nextItem.itemTitle, startsInMinutes];
-        NSString *nextEventString = [NSString stringWithFormat:@"UP NEXT: %@", [NSString placeHolder:LOC( @"Nothing scheduled." ) forEmptyString:scheduledItemTitle]];
+        self.itemUpNext = [self nextEventOnSchedule];
+        NSInteger minutes = itemUpNext.itemMinutesTilStart % 60;
+        NSInteger hours = (itemUpNext.itemMinutesTilStart-minutes)/60;
+        NSInteger seconds = [[NSNumber numberWithDouble:(itemUpNext.itemSecondsTilStart - (minutes*60+hours*60*60))] integerValue];
+        NSString *startsInMinutes = [NSString stringWithFormat:LOC( @"STARTS: IN %02dH %02dM %02dS" ), hours, minutes, seconds];
+        NSString *scheduledItemTitle = [NSString stringWithFormat:@"%@ - %@\n%@",[self stringShortTimeForDate:itemUpNext.itemDateStart], itemUpNext.itemTitle, startsInMinutes];
+        NSString *nextEventString = [NSString stringWithFormat:LOC( @"UP NEXT: %@" ), [NSString placeHolder:LOC( @"Nothing scheduled." ) forEmptyString:scheduledItemTitle]];
         [upNextButton setTitle:nextEventString forState:UIControlStateNormal];
         [upNextButton.titleLabel setFont:[UIFont boldSystemFontOfSize:upNextButton.titleLabel.font.pointSize]];
         upNextButton.titleLabel.numberOfLines = 5;
         upNextButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+        upNextButton.titleLabel.textAlignment = UITextAlignmentCenter;
         [upNextButton setTitleColor:kCOLOR_WHITE forState:UIControlStateNormal];
         upNextButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
         upNextButton.center = footerView.center;
@@ -305,10 +306,32 @@
     NSString* key = [favouritesKeysArray objectAtIndex:indexPath.section];
     NSArray *items = [favouritesStored objectForKey:key];
     FavouriteItem *currentFavourite = [items objectAtIndex:indexPath.row];
+    SearchableItem *currentSearchableItem = [[FavouriteManager sharedManager] searchableItemForFavourite:currentFavourite];
 
+    cell.textLabel.textColor = [self brighterColor];
+    cell.detailTextLabel.textColor = [self themeColor];
+    cell.backgroundView = nil;
+    
     // Configure the cell...
-    cell.textLabel.text = currentFavourite.favouriteName;
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", [self stringShortTimeForDate:currentSearchableItem.itemDateStart], currentSearchableItem.itemTitle];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", currentSearchableItem.itemLocation];
     cell.accessoryView = [ColoredAccessoryView disclosureIndicatorViewWithColor:[self themeColor]];
+    if( currentSearchableItem.itemMinutesFromNow < 60 || currentSearchableItem == itemUpNext ) {
+        NSInteger minutes = currentSearchableItem.itemMinutesFromNow;
+        CGFloat intensityColor = (60-minutes)/60.0f;
+        CGFloat hue = [[self themeColor] hue];
+        CGFloat brightness = [[self themeColor] brightness];
+        CGFloat saturation = [[self themeColor] saturation];
+        UIColor *minuteColor =  [UIColor colorWithHue:hue saturation:saturation brightness:brightness*(0.4f+(0.6*intensityColor)) alpha:1.0];
+        
+        UIImage *gradientImage = [self imageGradientWithSize:cell.bounds.size color1:kCOLOR_BACK color2:minuteColor];
+        UIView *normalBackgroundView = [[[UIImageView alloc] initWithImage:gradientImage] autorelease];
+        normalBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        normalBackgroundView.backgroundColor = [self darkColor];
+        cell.backgroundView = normalBackgroundView;
+        cell.textLabel.textColor = kCOLOR_WHITE;
+        cell.detailTextLabel.textColor = kCOLOR_WHITE;
+    }
     return cell;
 }
 
