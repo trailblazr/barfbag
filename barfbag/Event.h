@@ -71,6 +71,7 @@
 - (void) takeValuesFromDictionary:(NSDictionary*)dict;
 - (void) takeDurationFromString:(NSString*)durationString;
 - (void) takeStartDateTimeFromString:(NSString*)dateString;
+- (BOOL) isTrack:(NSString*)trackName;
 
 - (NSString*) stringRepresentationMail;
 - (NSString*) stringRepresentationTwitter;

@@ -250,6 +250,11 @@
     return dateCalculated;
 }
 
+- (BOOL) isTrack:(NSString*)trackName {
+    if( !trackName ) return NO;
+    return [trackName isEqualToString:track];
+}
+
 // SEARCHABLE ITEM
 
 - (NSString*) itemId {

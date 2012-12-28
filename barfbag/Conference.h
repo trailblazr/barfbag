@@ -74,6 +74,7 @@
 - (NSArray*) eventsForPerson:(Person*)person;
 - (NSArray*) eventsForLink:(Link*)link;
 
+- (UIColor*) colorForTrack:(NSString*)trackName;
 
 @end
 

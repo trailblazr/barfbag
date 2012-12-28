@@ -248,17 +248,6 @@
     }
 }
 
-- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    cell.imageView.backgroundColor = [self darkColor];
-    cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    /*
-    cell.imageView.layer.cornerRadius = 7.0;
-    cell.imageView.layer.masksToBounds = YES;
-    cell.imageView.layer.borderColor = [[self darkerColor] colorWithAlphaComponent:0.3].CGColor;
-    cell.imageView.layer.borderWidth = 1.0;
-     */
-}
-
 - (NSIndexPath*) indexPathOfItemWithMinimumMinutesTilStart {
     NSArray *allItems = [self appDelegate].conference.allEvents;
     SearchableItem *itemFound = nil;
@@ -372,6 +361,42 @@
     }
 }
 
+- (UIColor*) backgroundColorForCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
+    NSInteger rowScope = 7;
+    NSInteger indexDistance = [self rowDistanceForIndexPath:indexPath fromIndexPath:indexPathMedian];
+    NSInteger absIndexDistance = abs(indexDistance);
+    if( absIndexDistance > rowScope ) return nil;
+    
+    CGFloat intensityValue = 1.0-[[NSNumber numberWithInt:abs(indexDistance)] floatValue] / [[NSNumber numberWithInt:rowScope] floatValue];
+    
+    UIColor *color1 = kCOLOR_BACK;
+    
+    CGFloat hue1 = [color1 hue];
+    CGFloat brightness1 = [color1 brightness]+((1.0-[color1 brightness]) * 0.8*intensityValue);
+    // CGFloat saturation1 = isPastEvent ? [color1 saturation]*0.5 : [color1 saturation];
+    // CGFloat alpha1 = isPastEvent ? 0.5+(0.3*intensityValue) : 0.5+(0.5*intensityValue);
+    color1 =  [UIColor colorWithHue:hue1 saturation:[color1 saturation] brightness:brightness1 alpha:1.0];
+    return color1;
+}
+
+- (UIColor*) textLabelColorForCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath withColor:(UIColor*)colorInput {
+    NSInteger rowScope = 7;
+    NSInteger indexDistance = [self rowDistanceForIndexPath:indexPath fromIndexPath:indexPathMedian];
+    NSInteger absIndexDistance = abs(indexDistance);
+    if( absIndexDistance > rowScope ) return colorInput;
+    
+    CGFloat intensityValue = 1.0-[[NSNumber numberWithInt:abs(indexDistance)] floatValue] / [[NSNumber numberWithInt:rowScope] floatValue];
+    
+    UIColor *color1 = colorInput;
+    
+    CGFloat hue1 = [color1 hue];
+    CGFloat brightness1 = [color1 brightness];
+    CGFloat saturation1 = [color1 saturation]+((1.0-[color1 saturation]) * 0.8*intensityValue);
+    // CGFloat alpha1 = isPastEvent ? 0.5+(0.3*intensityValue) : 0.5+(0.5*intensityValue);
+    color1 =  [UIColor colorWithHue:hue1 saturation:saturation1 brightness:brightness1 alpha:1.0];
+    return color1;
+}
+
 - (UIView*) backgroundViewForCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
     if( !cachedCellBackgroundImageViews ) {
         self.cachedCellBackgroundImageViews = [NSMutableDictionary dictionary];
@@ -384,7 +409,7 @@
     NSString *cacheKey = [NSString stringWithFormat:@"%i", indexDistance];
     
     if( [cachedCellBackgroundImageViews objectForKey:cacheKey] ) {
-        NSLog( @"CACHE READ %@", cacheKey );
+        // NSLog( @"CACHE READ %@", cacheKey );
         return [cachedCellBackgroundImageViews objectForKey:cacheKey];
     }
     CGFloat intensityValue = 1.0-[[NSNumber numberWithInt:abs(indexDistance)] floatValue] / [[NSNumber numberWithInt:rowScope] floatValue];
@@ -410,9 +435,19 @@
     normalBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     normalBackgroundView.contentMode = UIViewContentModeScaleAspectFill;
     normalBackgroundView.backgroundColor = [self darkColor];
-    NSLog( @"CACHE WRITE %@", cacheKey );
+    // NSLog( @"CACHE WRITE %@", cacheKey );
     [cachedCellBackgroundImageViews setObject:normalBackgroundView forKey:cacheKey];
     return normalBackgroundView;
+}
+
+- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.imageView.backgroundColor = [self darkColor];
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    cell.backgroundColor = [self backgroundColorForCell:cell atIndexPath:indexPath];
+    UIView *colorMarker = [cell.contentView viewWithTag:kCELL_ATTACHED_VIEW_TAG];
+    if( colorMarker ) {
+        colorMarker.center = CGPointMake(3.0, cell.contentView.center.y);
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -431,6 +466,7 @@
         UIView *selectedBackgroundView = [[[UIImageView alloc] initWithImage:gradientImage] autorelease];
         selectedBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         selectedBackgroundView.backgroundColor = [self darkColor];
+        // cell.selectedBackgroundView = selectedBackgroundView;
         cell.selectedBackgroundView = selectedBackgroundView;
         /*
         UIButton *favButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -446,6 +482,10 @@
     cell.backgroundView = nil;
     cell.textLabel.textColor = [self brighterColor];
     cell.detailTextLabel.textColor = [self themeColor];
+    UIView *oldView = [cell.contentView viewWithTag:kCELL_ATTACHED_VIEW_TAG];
+    if( oldView ) {
+        [oldView removeFromSuperview];
+    }
     // Configure the cell...
     NSString *sectionKey = [sectionKeys objectAtIndex:indexPath.section];
     NSArray *sectionItems = [sectionArrays objectForKey:sectionKey];
@@ -460,13 +500,26 @@
         }
         // NSLog( @"EVENT: %@", currentEvent );
         cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",[currentEvent.start placeHolderWhenEmpty:@"<start>"], [currentEvent.title placeHolderWhenEmpty:@"<title>"]];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@",[currentEvent.track placeHolderWhenEmpty:@"<track>"], [currentEvent.subtitle placeHolderWhenEmpty:@"<subtitle>"]];
+        NSString *subTitleString = [NSString placeHolder:@"" forEmptyString:currentEvent.itemSubtitle];
+        BOOL hasSubTitle = [subTitleString length] > 0;
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%@%@",[NSString placeHolder:@"" forEmptyString:currentEvent.itemLocation], hasSubTitle ? @": " : @"" ,subTitleString];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         // CHECK FAVOURITE
         cell.accessoryView = [currentEvent isFavourite] ? [ColoredAccessoryView checkmarkViewWithColor:[self themeColor]] : [ColoredAccessoryView disclosureIndicatorViewWithColor:[self themeColor]];
     
         // COLORIZE CELL
-        cell.backgroundView = [self backgroundViewForCell:cell atIndexPath:indexPath];
+        // cell.backgroundView = [self backgroundViewForCell:cell atIndexPath:indexPath];
+        cell.backgroundColor = [self backgroundColorForCell:cell atIndexPath:indexPath];
+        cell.textLabel.textColor = [self textLabelColorForCell:cell atIndexPath:indexPath withColor:[self brighterColor]];
+        
+        // ADD TRACK INFO
+        UIColor *trackColor = [[self conference] colorForTrack:currentEvent.track];
+        // trackColor = [UIColor greenColor];
+        UIView *colorMarker = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 6.0, 44.0)];
+        colorMarker.tag = kCELL_ATTACHED_VIEW_TAG;
+        colorMarker.backgroundColor = trackColor;
+        colorMarker.opaque = NO;
+        [cell.contentView addSubview:colorMarker];
         
         if( NO ) {
             NSLog( @"indexPathSource = %i/%i (item: %i)", indexPathMedian.section, indexPathMedian.row, [self tableView:self.tableView numberOfRowsInSection:indexPathMedian.section] );

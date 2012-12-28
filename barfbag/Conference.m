@@ -113,6 +113,24 @@
     }
 }
 
+- (UIColor*) colorForTrack:(NSString*)trackName {
+    NSArray *availableColors = [NSArray arrayWithObjects:kCOLOR_CYAN,kCOLOR_GREEN,kCOLOR_ORANGE,kCOLOR_RED,kCOLOR_VIOLET,[UIColor yellowColor],[UIColor blueColor], [UIColor brownColor],kCOLOR_WHITE, nil];
+    if( !trackName ) return kCOLOR_CLEAR;
+    NSInteger index = 0;
+    for( NSString* currentTrack in cachedAvailableTracks ) {
+        if( [[currentTrack lowercaseString] isEqualToString:[trackName lowercaseString]] ) {
+            if( index < [availableColors count]-1 ) {
+                return [availableColors objectAtIndex:index];
+            }
+            else {
+                return [UIColor randomColor];
+            }
+        }
+        index++;
+    }
+    return [UIColor randomColor];
+}
+
 - (NSArray*) allEvents {
     NSMutableArray *allEvents = [NSMutableArray array];
     for( Day* currentDay in days ) {
