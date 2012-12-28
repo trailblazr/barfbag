@@ -15,9 +15,11 @@
     NSMutableDictionary *sectionArrays;
     NSIndexPath *indexPathMedian;
     NSTimer *timerUpdateMedian;
+    NSMutableDictionary *cachedCellBackgroundImageViews;
 }
 
 @property( nonatomic, retain ) NSIndexPath *indexPathMedian;
+@property( nonatomic, retain ) NSMutableDictionary *cachedCellBackgroundImageViews;
 @property( nonatomic, retain ) NSTimer *timerUpdateMedian;
 @property( nonatomic, retain ) NSArray *sectionKeys;
 @property( nonatomic, retain ) NSMutableDictionary *sectionArrays;

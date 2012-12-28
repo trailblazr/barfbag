@@ -20,12 +20,14 @@
 @synthesize sectionArrays;
 @synthesize indexPathMedian;
 @synthesize timerUpdateMedian;
+@synthesize cachedCellBackgroundImageViews;
 
 - (void) dealloc {
     self.sectionKeys = nil;
     self.sectionArrays = nil;
     self.indexPathMedian = nil;
     self.timerUpdateMedian = nil;
+    self.cachedCellBackgroundImageViews = nil;
     [super dealloc];
 }
 
@@ -47,6 +49,7 @@
 - (void) timerStartMedian {
     [self timerStopMedian];
     self.timerUpdateMedian = [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(updateMedianIndexPath) userInfo:nil repeats:YES];
+    [self updateMedianIndexPath];
 }
 
 - (void) updateMedianIndexPath {
@@ -365,39 +368,50 @@
                 distance = distance + currentNumOfRows;
             }
         }
-        return distance;
+        return -abs(distance);
     }
 }
 
 - (UIView*) backgroundViewForCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath {
+    if( !cachedCellBackgroundImageViews ) {
+        self.cachedCellBackgroundImageViews = [NSMutableDictionary dictionary];
+    }
     NSInteger rowScope = 7;
     NSInteger indexDistance = [self rowDistanceForIndexPath:indexPath fromIndexPath:indexPathMedian];
     NSInteger absIndexDistance = abs(indexDistance);
     if( absIndexDistance > rowScope ) return nil;
     // BOOL isPastEvent = ( indexDistance < 0 );
+    NSString *cacheKey = [NSString stringWithFormat:@"%i", indexDistance];
     
+    if( [cachedCellBackgroundImageViews objectForKey:cacheKey] ) {
+        NSLog( @"CACHE READ %@", cacheKey );
+        return [cachedCellBackgroundImageViews objectForKey:cacheKey];
+    }
     CGFloat intensityValue = 1.0-[[NSNumber numberWithInt:abs(indexDistance)] floatValue] / [[NSNumber numberWithInt:rowScope] floatValue];
     
     UIColor *color1 = kCOLOR_BACK;
     UIColor *color2 = kCOLOR_BACK;
     
     CGFloat hue1 = [color1 hue];
-    CGFloat brightness1 = [color1 brightness]+((1.0-[color1 brightness]) * intensityValue);
+    CGFloat brightness1 = [color1 brightness]+((1.0-[color1 brightness]) * 0.8*intensityValue);
     // CGFloat saturation1 = isPastEvent ? [color1 saturation]*0.5 : [color1 saturation];
     // CGFloat alpha1 = isPastEvent ? 0.5+(0.3*intensityValue) : 0.5+(0.5*intensityValue);
     color1 =  [UIColor colorWithHue:hue1 saturation:[color1 saturation] brightness:brightness1 alpha:1.0];
     
     CGFloat hue2 = [color2 hue];
-    CGFloat brightness2 = [color2 brightness]+((1.0-[color2 brightness]) * 0.5 *intensityValue);
+    CGFloat brightness2 = [color2 brightness]+((1.0-[color2 brightness]) * 0.4 *intensityValue);
     // CGFloat saturation2 = isPastEvent ? [color2 saturation]*0.5 : [color2 saturation];
     // CGFloat alpha2 = isPastEvent ? 0.2+(0.3*intensityValue) : 0.5+(0.5*intensityValue);
     color2 =  [UIColor colorWithHue:hue2 saturation:[color2 saturation] brightness:brightness2 alpha:1.0];
     
     
     UIImage *gradientImage = [self imageGradientWithSize:cell.bounds.size color1:color1 color2:color2];
-    UIView *normalBackgroundView = [[[UIImageView alloc] initWithImage:gradientImage] autorelease];
+    UIView *normalBackgroundView = [[UIImageView alloc] initWithImage:gradientImage];
     normalBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    normalBackgroundView.contentMode = UIViewContentModeScaleAspectFill;
     normalBackgroundView.backgroundColor = [self darkColor];
+    NSLog( @"CACHE WRITE %@", cacheKey );
+    [cachedCellBackgroundImageViews setObject:normalBackgroundView forKey:cacheKey];
     return normalBackgroundView;
 }
 
