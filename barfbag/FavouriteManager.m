@@ -235,7 +235,7 @@ static FavouriteManager *sharedInstance = nil;
     if( [item isKindOfClass:[SearchableItem class]] ) {
         return searcheableItem.itemTitle;
     }
-    if( [item isKindOfClass:[NSDictionary class]] || [item isKindOfClass:[NSMutableDictionary class]] ) {
+    if( [item isKindOfClass:[FavouriteManager class]] ) {
         return LOC( @"Favoritenliste" );
     }
     return nil;
@@ -279,6 +279,14 @@ static FavouriteManager *sharedInstance = nil;
 
 - (BOOL) favouriteRemoved:(id)item {
     return [self favouriteRemovedId:[self favouriteIdFromItem:item] forItemType:[self favouriteTypeForItem:item]];
+}
+
+- (NSArray*) allFavourites {
+    NSMutableArray *arrayAll = [NSMutableArray array];
+    [arrayAll addObjectsFromArray:[self favouritedItemsOfType:FavouriteItemTypeEvent]];
+    [arrayAll addObjectsFromArray:[self favouritedItemsOfType:FavouriteItemTypeWorkshop]];
+    [arrayAll addObjectsFromArray:[self favouritedItemsOfType:FavouriteItemTypeAssembly]];
+    return [NSArray arrayWithArray:arrayAll];
 }
 
 @end

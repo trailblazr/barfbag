@@ -112,10 +112,9 @@
     else if( [item isKindOfClass:[JSONWorkshop class]] ) {
         JSONWorkshop* workshop = (JSONWorkshop*)item;
         [stringRep appendString:[workshop stringRepresentationTwitter]];
-    } else if( [item isKindOfClass:[NSDictionary class]] || [item isKindOfClass:[NSMutableDictionary class]] ) {
+    } else if( [item isKindOfClass:[FavouriteManager class]] ) {
         // THIS IS THE FAVOURITE LIST WE NEED TO STRINGIFY...
-        NSDictionary *dictionary = (NSDictionary*)item;
-        NSArray *allEntries = [dictionary allValues];
+        NSArray *allEntries = [[FavouriteManager sharedManager] allFavourites];
         NSInteger numOfFavourites = [allEntries count];
         if( numOfFavourites > 0 ) {
             [stringRep appendString:[NSString stringWithFormat:LOC( @"Habe schon %i Veranstaltungsfavoriten in meiner Liste." ), numOfFavourites ]];

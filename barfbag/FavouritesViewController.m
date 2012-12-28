@@ -242,7 +242,7 @@
 }
 
 - (IBAction) actionMultiActionSharingOnlyButtonTapped:(UIBarButtonItem*)item {
-    [self presentActionSheetSharinOnlyForObject:favouritesStored fromBarButtonItem:item];
+    [self presentActionSheetSharinOnlyForObject:[FavouriteManager sharedManager] fromBarButtonItem:item];
 }
 
 - (void)viewDidLoad {
