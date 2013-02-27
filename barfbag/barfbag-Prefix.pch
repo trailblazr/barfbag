@@ -20,16 +20,15 @@
 // TYPEDEFS
 
 typedef enum {
-    CustomFontTypeExtralight = 0,
-    CustomFontTypeLight = 1,
-    CustomFontTypeRegular = 2,
-    CustomFontTypeSemibold = 3,
-    CustomFontTypeBold = 4,
-    CustomFontTypeBlack = 5,
+    CustomFontTypeExtralight    = 0,
+    CustomFontTypeLight         = 1,
+    CustomFontTypeRegular       = 2,
+    CustomFontTypeSemibold      = 3,
+    CustomFontTypeBold          = 4,
+    CustomFontTypeBlack         = 5,
 } CustomFontType;
 
 typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in doubt ask!
-    
     FavouriteItemTypeUndefined      = 0,
     FavouriteItemTypeEvent          = 1,
     FavouriteItemTypeAssembly       = 2,
@@ -40,9 +39,9 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 } FavouriteItemType;
 
 // DEPLOYMENT & DEVELOPMENT PARAMETERS
-#define DEBUG 0
-#define SCREENSHOTMODE 0
-#define SIMULATE_28C3 0
+#define DEBUG           0
+#define SCREENSHOTMODE  0
+#define SIMULATE_28C3   0
 
 // APP LAUNCH PARAMETERS
 #if SCREENSHOTMODE
@@ -96,6 +95,18 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 // NETWORKING PARAMETERS
 #define kCONNECTION_TIMEOUT         60.0f
 
+// TODO: THIS STUFF HERE (HARDWIRED URLS)... NEEDS TO BE MADE FREELY CONFIGURABLE BY THE USER.
+/*
+ IDEA: Let user enter a URL for specific conference which uses frab and
+ and then connect the app's logic with the data gathered from that URL's .plist-File.
+ Best would be if frab-installations themselves would provide this URL/FILE automagically.
+ 
+ For this to happen a PER-CONFERENCE/PER-FRAB-CONFIG-FILE needs to be
+ placed under the specific URL to be downloaded. This config file should contain
+ all stuff to fetch the relevant infos, and it should additionally allow for the TOTAL CUSTOMIZATION
+ of the app through this config-file in regard to COLORS, IMAGES & LOGOS used etc.
+*/
+
 // 29C3 URL MASTER CONFIGURATION (WILL OVERRIDE ALL URLS SEEN BELOW, STORES TO kFILE_CACHED_MASTER_CONFIG)
 #define kURL_MASTER_CONFIG_29C3         @"http://29c3.postcapitalism.org/config_remote.plist"
 
@@ -115,12 +126,12 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 #define kURL_KEY_29C3_STREAMS               @"livestreams"
 #define kURL_KEY_29C3_WIKI_BASE             @"wikibaseurl"
 
-// 29C3 URLS FAHRPLAN
+// 28C3 URLS FAHRPLAN (ONLY FOR SIMULATION USED)
 #define kURL_DATA_28C3_FAHRPLAN_EN      @"http://events.ccc.de/congress/2011/Fahrplan/schedule.en.xml"
 #define kURL_DATA_28C3_FAHRPLAN_DE      @"http://events.ccc.de/congress/2011/Fahrplan/schedule.de.xml"
 #define kURL_DATA_28C3_IMAGE_PATH       @"http://events.ccc.de/congress/2012/Fahrplan/images/person-$id$-128x128.png"
 
-// 29C3 URLS SEMANTIC WIKI
+// 29C3 URLS SEMANTIC WIKI (HARDWIRED WIKI CALL-URLS WHICH WERE A FIRST TIMER IN 2012, NOT REALLY USED BECAUSE MASTERCONFIG RULEZ!)
 #define kASIHTTP_SHOULD_VALIDATE_SECURE_CERTIFICATE NO
 #define kURL_DATA_29C3_ASSEMBLIES        @"https://events.ccc.de/congress/2012/wiki/Special:Ask/-5B-5BCategory:Assembly-5D-5D/-3F%3Duri-23/-3FDescription/-3FLecture-20seats/-3FName-20of-20location/-3FWeblink/-3FOrga-20contact/-3FLocation-20opened-20at/-3FPlanned-20workshops/-3FPlanning-20notes/-3FBrings-20stuff/-3FPerson-20organizing/mainlabel%3Duri/offset%3D20/limit%3D500/searchlabel%3D/format%3Djson"
 #define kURL_DATA_29C3_WORKSHOPS         @"https://events.ccc.de/congress/2012/wiki/Special:Ask/-5B-5BCategory:ScheduleEntry-5D-5D/-3FDescription/-3FStart-20time/-3FEnd-20time/-3FEntry-20location/-3FPerson-20organizing/-3FOrga-20contact/-3FDuration/mainlabel%3D/offset%3D20/limit%3D500/searchlabel%3D/format%3Djson"
@@ -168,7 +179,6 @@ typedef enum { // ATTN: Needs to keep it's values, so DO NOT CHANGE values, in d
 #define kNOTIFICATION_MASTER_CONFIG_COMPLETED   @"masterConfigCompleted"
 
 // UIVIEW TAGS
-
 #define kACTION_SHEET_TAG_REMINDER      100
 #define kACTION_SHEET_TAG_SHARING       101
 #define kACTIONSHEET_WEBVIEW_ASK_ACTION 102
